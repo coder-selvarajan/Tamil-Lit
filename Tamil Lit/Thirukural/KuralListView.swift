@@ -8,11 +8,21 @@
 import SwiftUI
 
 struct KuralListView: View {
+    let kuralData: [Kural]
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+//        NavigationView {
+            List(kuralData) { item in
+                NavigationLink(destination: KuralDetailView(kural: item)) {
+                    Text("\(item.Number): \(item.Line1)")
+                }
+            }
+            .navigationBarTitle("Thirukural")
+            .navigationBarTitleDisplayMode(.inline)
+//        }
     }
 }
 
-#Preview {
-    KuralListView()
-}
+//#Preview {
+//    KuralListView(kuralData: [Kural])
+//}

@@ -11,11 +11,8 @@
 		70685E432B66453E001EB657 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70685E422B66453E001EB657 /* HomeView.swift */; };
 		70685E452B669161001EB657 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70685E442B669161001EB657 /* ViewModel.swift */; };
 		70EAE06D2B663CD800E4930D /* Tamil_LitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EAE06C2B663CD800E4930D /* Tamil_LitApp.swift */; };
-		70EAE06F2B663CD800E4930D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EAE06E2B663CD800E4930D /* ContentView.swift */; };
-		70EAE0712B663CD800E4930D /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EAE0702B663CD800E4930D /* Item.swift */; };
 		70EAE0732B663CDA00E4930D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70EAE0722B663CDA00E4930D /* Assets.xcassets */; };
 		70EAE0762B663CDA00E4930D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70EAE0752B663CDA00E4930D /* Preview Assets.xcassets */; };
-		70EAE07D2B663D5C00E4930D /* VerseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EAE07C2B663D5C00E4930D /* VerseInfo.swift */; };
 		70EAE0812B663E3000E4930D /* thirukkural.json in Resources */ = {isa = PBXBuildFile; fileRef = 70EAE07F2B663E3000E4930D /* thirukkural.json */; };
 		70EAE0822B663E3000E4930D /* aathicudi.json in Resources */ = {isa = PBXBuildFile; fileRef = 70EAE0802B663E3000E4930D /* aathicudi.json */; };
 		70EAE0842B66420400E4930D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 70EAE0832B66420400E4930D /* README.md */; };
@@ -29,11 +26,8 @@
 		70685E442B669161001EB657 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		70EAE0692B663CD800E4930D /* Tamil Lit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tamil Lit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70EAE06C2B663CD800E4930D /* Tamil_LitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tamil_LitApp.swift; sourceTree = "<group>"; };
-		70EAE06E2B663CD800E4930D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		70EAE0702B663CD800E4930D /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		70EAE0722B663CDA00E4930D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		70EAE0752B663CDA00E4930D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		70EAE07C2B663D5C00E4930D /* VerseInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerseInfo.swift; sourceTree = "<group>"; };
 		70EAE07F2B663E3000E4930D /* thirukkural.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = thirukkural.json; sourceTree = "<group>"; };
 		70EAE0802B663E3000E4930D /* aathicudi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = aathicudi.json; sourceTree = "<group>"; };
 		70EAE0832B66420400E4930D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -75,11 +69,8 @@
 				70EAE0852B6642DA00E4930D /* Thirukural */,
 				70EAE07E2B663E0400E4930D /* Resources */,
 				70EAE06C2B663CD800E4930D /* Tamil_LitApp.swift */,
-				70EAE06E2B663CD800E4930D /* ContentView.swift */,
-				70EAE0702B663CD800E4930D /* Item.swift */,
 				70EAE0722B663CDA00E4930D /* Assets.xcassets */,
 				70EAE0742B663CDA00E4930D /* Preview Content */,
-				70EAE07C2B663D5C00E4930D /* VerseInfo.swift */,
 			);
 			path = "Tamil Lit";
 			sourceTree = "<group>";
@@ -190,11 +181,8 @@
 				70685E452B669161001EB657 /* ViewModel.swift in Sources */,
 				70EAE0882B66434000E4930D /* Model.swift in Sources */,
 				70685E412B664467001EB657 /* KuralDetailView.swift in Sources */,
-				70EAE06F2B663CD800E4930D /* ContentView.swift in Sources */,
-				70EAE0712B663CD800E4930D /* Item.swift in Sources */,
 				70685E432B66453E001EB657 /* HomeView.swift in Sources */,
 				70EAE06D2B663CD800E4930D /* Tamil_LitApp.swift in Sources */,
-				70EAE07D2B663D5C00E4930D /* VerseInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

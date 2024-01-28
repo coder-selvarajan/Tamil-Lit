@@ -11,7 +11,6 @@ struct KuralListView: View {
     let kuralData: [Kural]
 
     var body: some View {
-//        NavigationView {
             List(kuralData) { item in
                 NavigationLink(destination: KuralDetailView(kural: item)) {
                     Text("\(item.Number): \(item.Line1)")
@@ -19,7 +18,6 @@ struct KuralListView: View {
             }
             .navigationBarTitle("Thirukural")
             .navigationBarTitleDisplayMode(.inline)
-//        }
     }
 }
 

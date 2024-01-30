@@ -1,5 +1,5 @@
 //
-//  ViewModel.swift
+//  AthichudiViewModel.swift
 //  Tamil Lit
 //
 //  Created by Selvarajan on 28/01/24.
@@ -7,9 +7,10 @@
 
 import Foundation
 
-class ThirukuralViewModel {
-    func loadKuralData() -> [Kural] {
-        guard let url = Bundle.main.url(forResource: "thirukkural", withExtension: "json") else {
+class AthichudiViewModel {
+    
+    func loadAthichudiData() -> [Athichudi] {
+        guard let url = Bundle.main.url(forResource: "athichudi", withExtension: "json") else {
             fatalError("Failed to locate file in bundle.")
         }
         
@@ -18,8 +19,9 @@ class ThirukuralViewModel {
         }
         
         let decoder = JSONDecoder()
-        let decodedData = try! decoder.decode(KuralData.self, from: data)
+        let decodedData = try! decoder.decode(AthichudiData.self, from: data)
         
-        return decodedData.kural
+        return decodedData.athichudi
     }
+    
 }

@@ -7,31 +7,49 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		701621CA2B66C30B003054AF /* AthichudiHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701621C92B66C30B003054AF /* AthichudiHomeView.swift */; };
+		701621CC2B66C40C003054AF /* AthichudiListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701621CB2B66C40C003054AF /* AthichudiListView.swift */; };
+		701621CE2B66C424003054AF /* AthichudiDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701621CD2B66C424003054AF /* AthichudiDetailView.swift */; };
+		701621D02B66C434003054AF /* AthichudiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701621CF2B66C434003054AF /* AthichudiModel.swift */; };
+		701621D22B66CBB6003054AF /* AthichudiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701621D12B66CBB6003054AF /* AthichudiViewModel.swift */; };
+		702240562B69653C00EF072B /* WrapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702240552B69653C00EF072B /* WrapView.swift */; };
 		70685E412B664467001EB657 /* KuralDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70685E402B664467001EB657 /* KuralDetailView.swift */; };
-		70685E432B66453E001EB657 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70685E422B66453E001EB657 /* HomeView.swift */; };
-		70685E452B669161001EB657 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70685E442B669161001EB657 /* ViewModel.swift */; };
+		70685E432B66453E001EB657 /* KuralHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70685E422B66453E001EB657 /* KuralHomeView.swift */; };
+		70685E452B669161001EB657 /* KuralViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70685E442B669161001EB657 /* KuralViewModel.swift */; };
+		70A435762B6911F50019DBEC /* KuralCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A435752B6911F50019DBEC /* KuralCategoryView.swift */; };
+		70A435782B6914F00019DBEC /* kural-category.json in Resources */ = {isa = PBXBuildFile; fileRef = 70A435772B6914F00019DBEC /* kural-category.json */; };
+		70A4357A2B6916210019DBEC /* KuralCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A435792B6916210019DBEC /* KuralCategoryModel.swift */; };
 		70EAE06D2B663CD800E4930D /* Tamil_LitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EAE06C2B663CD800E4930D /* Tamil_LitApp.swift */; };
 		70EAE0732B663CDA00E4930D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70EAE0722B663CDA00E4930D /* Assets.xcassets */; };
 		70EAE0762B663CDA00E4930D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70EAE0752B663CDA00E4930D /* Preview Assets.xcassets */; };
 		70EAE0812B663E3000E4930D /* thirukkural.json in Resources */ = {isa = PBXBuildFile; fileRef = 70EAE07F2B663E3000E4930D /* thirukkural.json */; };
-		70EAE0822B663E3000E4930D /* aathicudi.json in Resources */ = {isa = PBXBuildFile; fileRef = 70EAE0802B663E3000E4930D /* aathicudi.json */; };
+		70EAE0822B663E3000E4930D /* athichudi.json in Resources */ = {isa = PBXBuildFile; fileRef = 70EAE0802B663E3000E4930D /* athichudi.json */; };
 		70EAE0842B66420400E4930D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 70EAE0832B66420400E4930D /* README.md */; };
-		70EAE0882B66434000E4930D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EAE0872B66434000E4930D /* Model.swift */; };
+		70EAE0882B66434000E4930D /* KuralModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EAE0872B66434000E4930D /* KuralModel.swift */; };
 		70EAE08A2B6643F100E4930D /* KuralListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EAE0892B6643F100E4930D /* KuralListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		701621C92B66C30B003054AF /* AthichudiHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthichudiHomeView.swift; sourceTree = "<group>"; };
+		701621CB2B66C40C003054AF /* AthichudiListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthichudiListView.swift; sourceTree = "<group>"; };
+		701621CD2B66C424003054AF /* AthichudiDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthichudiDetailView.swift; sourceTree = "<group>"; };
+		701621CF2B66C434003054AF /* AthichudiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthichudiModel.swift; sourceTree = "<group>"; };
+		701621D12B66CBB6003054AF /* AthichudiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthichudiViewModel.swift; sourceTree = "<group>"; };
+		702240552B69653C00EF072B /* WrapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapView.swift; sourceTree = "<group>"; };
 		70685E402B664467001EB657 /* KuralDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuralDetailView.swift; sourceTree = "<group>"; };
-		70685E422B66453E001EB657 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		70685E442B669161001EB657 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		70685E422B66453E001EB657 /* KuralHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuralHomeView.swift; sourceTree = "<group>"; };
+		70685E442B669161001EB657 /* KuralViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuralViewModel.swift; sourceTree = "<group>"; };
+		70A435752B6911F50019DBEC /* KuralCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuralCategoryView.swift; sourceTree = "<group>"; };
+		70A435772B6914F00019DBEC /* kural-category.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "kural-category.json"; sourceTree = "<group>"; };
+		70A435792B6916210019DBEC /* KuralCategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuralCategoryModel.swift; sourceTree = "<group>"; };
 		70EAE0692B663CD800E4930D /* Tamil Lit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tamil Lit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70EAE06C2B663CD800E4930D /* Tamil_LitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tamil_LitApp.swift; sourceTree = "<group>"; };
 		70EAE0722B663CDA00E4930D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		70EAE0752B663CDA00E4930D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		70EAE07F2B663E3000E4930D /* thirukkural.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = thirukkural.json; sourceTree = "<group>"; };
-		70EAE0802B663E3000E4930D /* aathicudi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = aathicudi.json; sourceTree = "<group>"; };
+		70EAE0802B663E3000E4930D /* athichudi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = athichudi.json; sourceTree = "<group>"; };
 		70EAE0832B66420400E4930D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		70EAE0872B66434000E4930D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		70EAE0872B66434000E4930D /* KuralModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuralModel.swift; sourceTree = "<group>"; };
 		70EAE0892B6643F100E4930D /* KuralListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuralListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -46,6 +64,63 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		701621C82B66C2E1003054AF /* Athichudi */ = {
+			isa = PBXGroup;
+			children = (
+				7022405A2B697C6900EF072B /* Views */,
+				702240592B697C5000EF072B /* Model */,
+			);
+			path = Athichudi;
+			sourceTree = "<group>";
+		};
+		702240542B69652000EF072B /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				702240552B69653C00EF072B /* WrapView.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		702240572B69712500EF072B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				70685E442B669161001EB657 /* KuralViewModel.swift */,
+				70A435792B6916210019DBEC /* KuralCategoryModel.swift */,
+				70EAE0872B66434000E4930D /* KuralModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		702240582B69712B00EF072B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				70EAE0892B6643F100E4930D /* KuralListView.swift */,
+				70685E402B664467001EB657 /* KuralDetailView.swift */,
+				70685E422B66453E001EB657 /* KuralHomeView.swift */,
+				70A435752B6911F50019DBEC /* KuralCategoryView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		702240592B697C5000EF072B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				701621CF2B66C434003054AF /* AthichudiModel.swift */,
+				701621D12B66CBB6003054AF /* AthichudiViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7022405A2B697C6900EF072B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				701621C92B66C30B003054AF /* AthichudiHomeView.swift */,
+				701621CB2B66C40C003054AF /* AthichudiListView.swift */,
+				701621CD2B66C424003054AF /* AthichudiDetailView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		70EAE0602B663CD800E4930D = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +141,8 @@
 		70EAE06B2B663CD800E4930D /* Tamil Lit */ = {
 			isa = PBXGroup;
 			children = (
+				702240542B69652000EF072B /* Helper */,
+				701621C82B66C2E1003054AF /* Athichudi */,
 				70EAE0852B6642DA00E4930D /* Thirukural */,
 				70EAE07E2B663E0400E4930D /* Resources */,
 				70EAE06C2B663CD800E4930D /* Tamil_LitApp.swift */,
@@ -86,7 +163,8 @@
 		70EAE07E2B663E0400E4930D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				70EAE0802B663E3000E4930D /* aathicudi.json */,
+				70A435772B6914F00019DBEC /* kural-category.json */,
+				70EAE0802B663E3000E4930D /* athichudi.json */,
 				70EAE07F2B663E3000E4930D /* thirukkural.json */,
 			);
 			path = Resources;
@@ -95,11 +173,8 @@
 		70EAE0852B6642DA00E4930D /* Thirukural */ = {
 			isa = PBXGroup;
 			children = (
-				70EAE0872B66434000E4930D /* Model.swift */,
-				70EAE0892B6643F100E4930D /* KuralListView.swift */,
-				70685E402B664467001EB657 /* KuralDetailView.swift */,
-				70685E422B66453E001EB657 /* HomeView.swift */,
-				70685E442B669161001EB657 /* ViewModel.swift */,
+				702240582B69712B00EF072B /* Views */,
+				702240572B69712500EF072B /* Model */,
 			);
 			path = Thirukural;
 			sourceTree = "<group>";
@@ -165,7 +240,8 @@
 				70EAE0812B663E3000E4930D /* thirukkural.json in Resources */,
 				70EAE0762B663CDA00E4930D /* Preview Assets.xcassets in Resources */,
 				70EAE0842B66420400E4930D /* README.md in Resources */,
-				70EAE0822B663E3000E4930D /* aathicudi.json in Resources */,
+				70A435782B6914F00019DBEC /* kural-category.json in Resources */,
+				70EAE0822B663E3000E4930D /* athichudi.json in Resources */,
 				70EAE0732B663CDA00E4930D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -178,11 +254,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				70EAE08A2B6643F100E4930D /* KuralListView.swift in Sources */,
-				70685E452B669161001EB657 /* ViewModel.swift in Sources */,
-				70EAE0882B66434000E4930D /* Model.swift in Sources */,
+				701621CA2B66C30B003054AF /* AthichudiHomeView.swift in Sources */,
+				701621D02B66C434003054AF /* AthichudiModel.swift in Sources */,
+				70A4357A2B6916210019DBEC /* KuralCategoryModel.swift in Sources */,
+				70685E452B669161001EB657 /* KuralViewModel.swift in Sources */,
+				70EAE0882B66434000E4930D /* KuralModel.swift in Sources */,
 				70685E412B664467001EB657 /* KuralDetailView.swift in Sources */,
-				70685E432B66453E001EB657 /* HomeView.swift in Sources */,
+				701621CE2B66C424003054AF /* AthichudiDetailView.swift in Sources */,
+				701621CC2B66C40C003054AF /* AthichudiListView.swift in Sources */,
+				70685E432B66453E001EB657 /* KuralHomeView.swift in Sources */,
+				702240562B69653C00EF072B /* WrapView.swift in Sources */,
 				70EAE06D2B663CD800E4930D /* Tamil_LitApp.swift in Sources */,
+				70A435762B6911F50019DBEC /* KuralCategoryView.swift in Sources */,
+				701621D22B66CBB6003054AF /* AthichudiViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

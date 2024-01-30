@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Kural: Identifiable, Codable {
+struct Kural: Identifiable, Codable, Hashable {
     var id: Int { Number }
     let Number: Int
     let Line1, Line2, Translation: String
@@ -15,6 +15,11 @@ struct Kural: Identifiable, Codable {
     let couplet, explanation, transliteration1, transliteration2: String
 }
 
-struct KuralData: Codable {
+struct AboutThirukural: Codable, Hashable {
+    let Description: String
+}
+
+struct KuralData: Codable, Hashable {
+    let about: AboutThirukural
     let kural: [Kural]
 }

@@ -15,15 +15,17 @@ struct Tamil_LitApp: App {
         WindowGroup {
             NavigationView {
                 List {
-                    NavigationLink(destination: HomeView()) {
-                        Text("Thirukural")
+                    NavigationLink(destination: KuralHomeView()) {
+                        Text("திருக்குறள்")
+                            .padding(.vertical, 15)
                     }
                     
-                    NavigationLink(destination: HomeView()) {
-                        Text("Aathisudi")
+                    NavigationLink(destination: AthichudiHomeView()) {
+                        Text("ஆத்தி சூடி")
+                            .padding(.vertical, 15)
                     }
                 }
-                .navigationBarTitle("Tamil Lit App")
+                .navigationBarTitle("Tamil Lit")
                 .navigationBarTitleDisplayMode(.inline)
             }.preferredColorScheme(.light)
         }

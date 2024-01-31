@@ -9,7 +9,6 @@ import SwiftUI
 
 struct KuralCategoryView: View {
     @State var kuralList: [Kural]
-    
     @State var sections: [KuralSection]
     @State var selSection: KuralSection?
     @State var selChapterGroup: KuralChapterGroup?
@@ -18,10 +17,6 @@ struct KuralCategoryView: View {
     init(sections: [KuralSection], kuralList: [Kural]) {
         self.kuralList = kuralList
         self.sections = sections
-        self.selSection = sections[0]
-        self.selChapterGroup = sections[0].chapterGroup.detail.first
-        
-        updateSection(section: sections[0])
     }
     
     func updateSection(section: KuralSection) {
@@ -48,19 +43,20 @@ struct KuralCategoryView: View {
     }
     
     var body: some View {
-        ScrollView {
+        ScrollView(showsIndicators: false) {
             VStack(alignment: .leading) {
                 Text("பால்:")
                     .foregroundStyle(.gray)
                     .font(.caption)
+                    .fontWeight(.bold)
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(sections) { section in
                             Text("\(section.name)")
                                 .padding(10)
                                 .font(.subheadline)
-                                .foregroundColor(selSection?.name == section.name ? .black : .gray.opacity(0.75))
-                                .background(.gray.opacity(0.25))
+                                .foregroundColor(selSection?.name == section.name ? .white : .gray)
+                                .background(selSection?.name == section.name ? .blue : .gray.opacity(0.20))
                                 .cornerRadius(10.0)
                                 .onTapGesture {
                                     updateSection(section: section)
@@ -70,18 +66,21 @@ struct KuralCategoryView: View {
                     }
                 }
             }
+            .padding(.bottom, 10)
+            Divider()
             
             VStack(alignment: .leading) {
                 Text("இயல்:")
                     .foregroundStyle(.gray)
                     .font(.caption)
+                    .fontWeight(.bold)
                 WrapView(data: selSection?.chapterGroup.detail ?? [], content: { chapterGroup in
                     Button(action: {}) {
                         Text(chapterGroup.name)
                             .padding(10)
                             .font(.subheadline)
-                            .foregroundColor(selChapterGroup?.name == chapterGroup.name ? .black : .gray.opacity(0.75))
-                            .background(.gray.opacity(0.25))
+                            .foregroundColor(selChapterGroup?.name == chapterGroup.name ? .white : .gray)
+                            .background(selChapterGroup?.name == chapterGroup.name ? .blue : .gray.opacity(0.20))
                             .cornerRadius(10.0)
                             .onTapGesture {
                                 updateChapterGroup(chapterGroup: chapterGroup)
@@ -89,12 +88,14 @@ struct KuralCategoryView: View {
                     }
                 })
             }
+            .padding(.bottom, 10)
+            Divider()
             
             VStack(alignment: .leading) {
                 Text("அதிகாரம்:")
                     .foregroundStyle(.gray)
                     .font(.caption)
-                
+                    .fontWeight(.bold)
                 ScrollView {
                     LazyVStack(alignment: .leading) {
                         ForEach(selChapterGroup?.chapters.detail ?? [], id: \.self) { chapter in
@@ -116,6 +117,13 @@ struct KuralCategoryView: View {
         .padding(20)
         .navigationBarTitle("திருக்குறள்")
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            if selSection == nil {
+                if let firstSection = sections.first {
+                    updateSection(section: firstSection)
+                }
+            }
+        }
     }
 }
 

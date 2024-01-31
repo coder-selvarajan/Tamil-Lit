@@ -17,21 +17,22 @@ struct KuralDetailView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     Text("#\(kural.Number)")
                         .fontWeight(Font.Weight.bold)
-                        .foregroundStyle(.blue)
+                        .foregroundStyle(.white)
                     VStack(alignment: .leading, spacing: 2.0) {
                         Text("\(kural.Line1)")
-                            .font(.headline)
-                            .foregroundStyle(.blue)
+                            .font(.subheadline)
+                            .foregroundStyle(.white)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         Text("\(kural.Line2)")
-                            .font(.headline)
-                            .foregroundStyle(.blue)
+                            .font(.subheadline)
+                            .foregroundStyle(.white)
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }
                 .padding(15)
                 .frame(maxWidth: .infinity)
-                .background(.gray.opacity(0.25))
+//                .background(.gray.opacity(0.15))
+                .background(.blue.opacity(0.95))
                 .cornerRadius(15)
                 
                 Spacer()
@@ -47,11 +48,9 @@ struct KuralDetailView: View {
                 VStack(alignment: .leading, spacing: 2.0) {
                     Text("மு.வரதராசன் உரை:")
                         .font(.callout)
-                        .foregroundStyle(.indigo)
+                        .foregroundStyle(.blue)
                     Text("\(kural.mv)")
                         .font(.body)
-//                        .fontWeight(Font.Weight.bold)
-//                        .foregroundStyle(.purple)
                 }
                 
                 Divider().background(.gray)
@@ -59,22 +58,18 @@ struct KuralDetailView: View {
                 VStack(alignment: .leading, spacing: 2.0) {
                     Text("சாலமன் பாப்பையா உரை:")
                         .font(.callout)
-                        .foregroundStyle(.indigo)
+                        .foregroundStyle(.blue)
                     Text("\(kural.sp)")
                         .font(.body)
-//                        .fontWeight(Font.Weight.bold)
-//                        .foregroundStyle(.purple)
                 }
                 Divider().background(.gray)
                 
                 VStack(alignment: .leading, spacing: 2.0) {
                     Text("கலைஞர் உரை:")
                         .font(.callout)
-                        .foregroundStyle(.indigo)
+                        .foregroundStyle(.blue)
                     Text("\(kural.mk)")
                         .font(.body)
-//                        .fontWeight(Font.Weight.bold)
-//                        .foregroundStyle(.purple)
                 }
                 Spacer()
                 

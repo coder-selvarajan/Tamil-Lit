@@ -16,12 +16,12 @@ struct AthichudiDetailView: View {
                 HStack(alignment: .top, spacing: 10.0) {
                     Text("\(athichudi.number). \(athichudi.poem)")
                         .font(.headline)
-                        .foregroundStyle(.teal)
+                        .foregroundStyle(.white)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .padding(15)
                 .frame(maxWidth: .infinity)
-                .background(.gray.opacity(0.25))
+                .background(.teal)
                 .cornerRadius(15)
                 
                 Spacer()

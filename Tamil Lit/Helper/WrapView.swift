@@ -19,6 +19,7 @@ struct WrapView<Data: Collection, Content: View>: View where Data.Element: Hasha
                 self.generateContent(in: geometry)
             }
         }
+        .padding(0)
         .frame(height: totalHeight)
     }
     

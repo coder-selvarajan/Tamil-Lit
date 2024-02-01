@@ -99,7 +99,7 @@ struct KuralCategoryView: View {
                 ScrollView {
                     LazyVStack(alignment: .leading) {
                         ForEach(selChapterGroup?.chapters.detail ?? [], id: \.self) { chapter in
-                            NavigationLink(destination: KuralListView(kuralList: filterKuralByChapter(chapter: chapter), chapter: chapter)) {
+                            NavigationLink(destination: KuralListView(kuralList: filterKuralByChapter(chapter: chapter), section: selSection!, chapterGroup: selChapterGroup!, chapter: chapter)) {
                                 HStack {
                                     Text("\(chapter.name)")
                                         .padding(.vertical, 10)

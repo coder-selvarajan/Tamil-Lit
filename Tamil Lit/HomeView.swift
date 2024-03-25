@@ -51,6 +51,26 @@ struct HomeView: View {
                     .padding(.bottom, 10)
                 }
                 
+                NavigationLink(value: "Naaladiyar") {
+                    HStack {
+                        Text("📙")
+                            .font(.system(size: 40))
+                            .padding(.trailing, 15)
+                        
+                        Text("நாலடியார்")
+                            .font(.title2)
+                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                            .foregroundStyle(.black)
+                            .padding(.vertical, 15)
+                        
+                        Spacer()
+                    }
+                    .padding()
+                    .background(.gray.opacity(0.1))
+                    .cornerRadius(15.0)
+                    .padding(.bottom, 10)
+                }
+                
                 Spacer()
             }
             .padding(20)
@@ -62,6 +82,8 @@ struct HomeView: View {
                     KuralHomeView()
                 } else if value == "Athichudi" {
                     AthichudiHomeView()
+                } else if value == "Naaladiyar" {
+                    NaaladiyarHomeView()
                 }
             }
         } // NavigationStack

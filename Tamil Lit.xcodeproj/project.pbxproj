@@ -13,6 +13,15 @@
 		701621D02B66C434003054AF /* AthichudiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701621CF2B66C434003054AF /* AthichudiModel.swift */; };
 		701621D22B66CBB6003054AF /* AthichudiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701621D12B66CBB6003054AF /* AthichudiViewModel.swift */; };
 		702240562B69653C00EF072B /* WrapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702240552B69653C00EF072B /* WrapView.swift */; };
+		7058F26C2BB08CF600D957B0 /* NaaladiyarCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7058F26B2BB08CF600D957B0 /* NaaladiyarCategoryModel.swift */; };
+		7058F26E2BB08EC600D957B0 /* NaaladiyarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7058F26D2BB08EC600D957B0 /* NaaladiyarViewModel.swift */; };
+		7058F2702BB090B300D957B0 /* NaaladiyarPoemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7058F26F2BB090B300D957B0 /* NaaladiyarPoemModel.swift */; };
+		7058F2732BB091C500D957B0 /* NaaladiyarHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7058F2722BB091C500D957B0 /* NaaladiyarHomeView.swift */; };
+		7058F2762BB091EC00D957B0 /* NaaladiyarListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7058F2752BB091EC00D957B0 /* NaaladiyarListView.swift */; };
+		7058F2782BB0920600D957B0 /* NaaladiyarCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7058F2772BB0920600D957B0 /* NaaladiyarCategoryView.swift */; };
+		7058F27A2BB0922A00D957B0 /* NaaladiyarDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7058F2792BB0922A00D957B0 /* NaaladiyarDetailView.swift */; };
+		7058F27B2BB09B0300D957B0 /* naaladiyar.json in Resources */ = {isa = PBXBuildFile; fileRef = 7058F2672BB0723600D957B0 /* naaladiyar.json */; };
+		7058F27C2BB09B0600D957B0 /* naaladiyar-category.json in Resources */ = {isa = PBXBuildFile; fileRef = 7058F2682BB085DC00D957B0 /* naaladiyar-category.json */; };
 		70685E412B664467001EB657 /* KuralDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70685E402B664467001EB657 /* KuralDetailView.swift */; };
 		70685E432B66453E001EB657 /* KuralHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70685E422B66453E001EB657 /* KuralHomeView.swift */; };
 		70685E452B669161001EB657 /* KuralViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70685E442B669161001EB657 /* KuralViewModel.swift */; };
@@ -37,6 +46,15 @@
 		701621CF2B66C434003054AF /* AthichudiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthichudiModel.swift; sourceTree = "<group>"; };
 		701621D12B66CBB6003054AF /* AthichudiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthichudiViewModel.swift; sourceTree = "<group>"; };
 		702240552B69653C00EF072B /* WrapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapView.swift; sourceTree = "<group>"; };
+		7058F2672BB0723600D957B0 /* naaladiyar.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = naaladiyar.json; sourceTree = "<group>"; };
+		7058F2682BB085DC00D957B0 /* naaladiyar-category.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "naaladiyar-category.json"; sourceTree = "<group>"; };
+		7058F26B2BB08CF600D957B0 /* NaaladiyarCategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaaladiyarCategoryModel.swift; sourceTree = "<group>"; };
+		7058F26D2BB08EC600D957B0 /* NaaladiyarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaaladiyarViewModel.swift; sourceTree = "<group>"; };
+		7058F26F2BB090B300D957B0 /* NaaladiyarPoemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaaladiyarPoemModel.swift; sourceTree = "<group>"; };
+		7058F2722BB091C500D957B0 /* NaaladiyarHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaaladiyarHomeView.swift; sourceTree = "<group>"; };
+		7058F2752BB091EC00D957B0 /* NaaladiyarListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaaladiyarListView.swift; sourceTree = "<group>"; };
+		7058F2772BB0920600D957B0 /* NaaladiyarCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaaladiyarCategoryView.swift; sourceTree = "<group>"; };
+		7058F2792BB0922A00D957B0 /* NaaladiyarDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaaladiyarDetailView.swift; sourceTree = "<group>"; };
 		70685E402B664467001EB657 /* KuralDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuralDetailView.swift; sourceTree = "<group>"; };
 		70685E422B66453E001EB657 /* KuralHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuralHomeView.swift; sourceTree = "<group>"; };
 		70685E442B669161001EB657 /* KuralViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuralViewModel.swift; sourceTree = "<group>"; };
@@ -123,6 +141,36 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		7058F2692BB08CC500D957B0 /* Naaladiyar */ = {
+			isa = PBXGroup;
+			children = (
+				7058F2712BB091B100D957B0 /* Views */,
+				7058F26A2BB08CD200D957B0 /* Model */,
+			);
+			path = Naaladiyar;
+			sourceTree = "<group>";
+		};
+		7058F26A2BB08CD200D957B0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7058F26B2BB08CF600D957B0 /* NaaladiyarCategoryModel.swift */,
+				7058F26D2BB08EC600D957B0 /* NaaladiyarViewModel.swift */,
+				7058F26F2BB090B300D957B0 /* NaaladiyarPoemModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7058F2712BB091B100D957B0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7058F2722BB091C500D957B0 /* NaaladiyarHomeView.swift */,
+				7058F2752BB091EC00D957B0 /* NaaladiyarListView.swift */,
+				7058F2772BB0920600D957B0 /* NaaladiyarCategoryView.swift */,
+				7058F2792BB0922A00D957B0 /* NaaladiyarDetailView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		70EAE0602B663CD800E4930D = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +191,7 @@
 		70EAE06B2B663CD800E4930D /* Tamil Lit */ = {
 			isa = PBXGroup;
 			children = (
+				7058F2692BB08CC500D957B0 /* Naaladiyar */,
 				702240542B69652000EF072B /* Helper */,
 				701621C82B66C2E1003054AF /* Athichudi */,
 				70EAE0852B6642DA00E4930D /* Thirukural */,
@@ -169,6 +218,8 @@
 				70A435772B6914F00019DBEC /* kural-category.json */,
 				70EAE0802B663E3000E4930D /* athichudi.json */,
 				70EAE07F2B663E3000E4930D /* thirukkural.json */,
+				7058F2672BB0723600D957B0 /* naaladiyar.json */,
+				7058F2682BB085DC00D957B0 /* naaladiyar-category.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -241,9 +292,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				70EAE0812B663E3000E4930D /* thirukkural.json in Resources */,
+				7058F27C2BB09B0600D957B0 /* naaladiyar-category.json in Resources */,
 				70EAE0762B663CDA00E4930D /* Preview Assets.xcassets in Resources */,
 				70EAE0842B66420400E4930D /* README.md in Resources */,
 				70A435782B6914F00019DBEC /* kural-category.json in Resources */,
+				7058F27B2BB09B0300D957B0 /* naaladiyar.json in Resources */,
 				70EAE0822B663E3000E4930D /* athichudi.json in Resources */,
 				70EAE0732B663CDA00E4930D /* Assets.xcassets in Resources */,
 			);
@@ -264,11 +317,18 @@
 				70685E452B669161001EB657 /* KuralViewModel.swift in Sources */,
 				70EAE0882B66434000E4930D /* KuralModel.swift in Sources */,
 				70685E412B664467001EB657 /* KuralDetailView.swift in Sources */,
+				7058F2762BB091EC00D957B0 /* NaaladiyarListView.swift in Sources */,
+				7058F2702BB090B300D957B0 /* NaaladiyarPoemModel.swift in Sources */,
 				701621CE2B66C424003054AF /* AthichudiDetailView.swift in Sources */,
+				7058F2732BB091C500D957B0 /* NaaladiyarHomeView.swift in Sources */,
 				701621CC2B66C40C003054AF /* AthichudiListView.swift in Sources */,
+				7058F26E2BB08EC600D957B0 /* NaaladiyarViewModel.swift in Sources */,
 				70685E432B66453E001EB657 /* KuralHomeView.swift in Sources */,
+				7058F2782BB0920600D957B0 /* NaaladiyarCategoryView.swift in Sources */,
 				702240562B69653C00EF072B /* WrapView.swift in Sources */,
 				70EAE06D2B663CD800E4930D /* Tamil_LitApp.swift in Sources */,
+				7058F26C2BB08CF600D957B0 /* NaaladiyarCategoryModel.swift in Sources */,
+				7058F27A2BB0922A00D957B0 /* NaaladiyarDetailView.swift in Sources */,
 				70A435762B6911F50019DBEC /* KuralCategoryView.swift in Sources */,
 				701621D22B66CBB6003054AF /* AthichudiViewModel.swift in Sources */,
 			);

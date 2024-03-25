@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct NaaladiyarHomeView: View {
+    var vm: NaaladiyarViewModel = NaaladiyarViewModel()
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NaaladiyarCategoryView(poems: nil, categories: vm.loadNaaladiyarCategoryData())
     }
 }
 

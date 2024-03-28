@@ -8,7 +8,7 @@
 import Foundation
 
 // Define the root of the JSON structure
-struct NaaladiyarPoemData: Codable {
+struct NaaladiyarPoemData: Codable, Hashable {
     let about: AboutNaaladiyar
     let poems: [NaaladiyarPoem]
     
@@ -20,7 +20,7 @@ struct NaaladiyarPoemData: Codable {
 }
 
 // Define the About section model
-struct AboutNaaladiyar: Codable {
+struct AboutNaaladiyar: Codable, Hashable {
     let description: String
     let poem: String
     let meaning: String
@@ -34,7 +34,8 @@ struct AboutNaaladiyar: Codable {
 }
 
 // Define the Poem model
-struct NaaladiyarPoem: Codable {
+struct NaaladiyarPoem: Identifiable, Codable, Hashable {
+    var id: Int { number }
     let number: Int
     let category: String
     let subCategory: String

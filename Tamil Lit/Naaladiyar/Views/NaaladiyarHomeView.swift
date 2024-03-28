@@ -10,7 +10,7 @@ import SwiftUI
 struct NaaladiyarHomeView: View {
     var vm: NaaladiyarViewModel = NaaladiyarViewModel()
     var body: some View {
-        NaaladiyarCategoryView(poems: nil, categories: vm.loadNaaladiyarCategoryData())
+        NaaladiyarCategoryView(poems: vm.loadNaaladiyarData(), categories: vm.loadNaaladiyarCategoryData())
     }
 }
 

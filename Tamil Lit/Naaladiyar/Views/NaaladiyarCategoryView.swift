@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NaaladiyarCategoryView: View {
-    @State var poems: [NaaladiyarPoem]?
+    @State var poems: [NaaladiyarPoem]
     @State var categories: [NaaladiyarCategory]
     @State var selCategory: NaaladiyarCategory?
     @State var selSubCategory: NaaladiyarSubcategory?
@@ -30,6 +30,11 @@ struct NaaladiyarCategoryView: View {
     
     func updateSection(section: NaaladiyarSection) {
         self.selSection = section
+    }
+    
+    func filterNaaladiyarBySection(section: NaaladiyarSection) -> [NaaladiyarPoem] {
+        let filteredPoems = poems.filter { $0.number >= section.start && $0.number <= section.end }
+        return filteredPoems
     }
     
     var body: some View {
@@ -90,7 +95,11 @@ struct NaaladiyarCategoryView: View {
                 ScrollView {
                     LazyVStack(alignment: .leading) {
                         ForEach(selSubCategory?.sections ?? [], id: \.self) { section in
-                            
+                            NavigationLink(destination: NaaladiyarListView(
+                                naaladiyarPoemList: filterNaaladiyarBySection(section: section),
+                                category: selCategory!,
+                                subCategory: selSubCategory!,
+                                section: selSection!)) {
                                 HStack {
                                     Text("\(section.section)")
                                         .padding(.vertical, 10)
@@ -98,7 +107,7 @@ struct NaaladiyarCategoryView: View {
                                     Image(systemName: "chevron.right")
                                         .foregroundColor(.gray)
                                 }
-                            
+                            }
                             Divider()
                         }
                     }

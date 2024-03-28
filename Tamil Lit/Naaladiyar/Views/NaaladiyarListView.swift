@@ -8,11 +8,25 @@
 import SwiftUI
 
 struct NaaladiyarListView: View {
+    var naaladiyarPoemList: [NaaladiyarPoem]?
+    let category: NaaladiyarCategory
+    let subCategory: NaaladiyarSubcategory
+    let section: NaaladiyarSection
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List(naaladiyarPoemList ?? [], id: \.self) { poem in
+            NavigationLink(destination: NaaladiyarDetailView(poem: poem,
+                                                             category: category,
+                                                             subCategory: subCategory,
+                                                             section: section)) {
+                Text("\(poem.number): \(poem.poem)")
+            }
+        }
+        .navigationBarTitle(section.section)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
-#Preview {
-    NaaladiyarListView()
-}
+//#Preview {
+//    NaaladiyarListView()
+//}

@@ -37,6 +37,7 @@
 		70EAE0842B66420400E4930D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 70EAE0832B66420400E4930D /* README.md */; };
 		70EAE0882B66434000E4930D /* KuralModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EAE0872B66434000E4930D /* KuralModel.swift */; };
 		70EAE08A2B6643F100E4930D /* KuralListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EAE0892B6643F100E4930D /* KuralListView.swift */; };
+		70F7709F2C08BBAD00D329C3 /* HomeView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F7709E2C08BBAD00D329C3 /* HomeView2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,7 @@
 		70EAE0832B66420400E4930D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		70EAE0872B66434000E4930D /* KuralModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuralModel.swift; sourceTree = "<group>"; };
 		70EAE0892B6643F100E4930D /* KuralListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuralListView.swift; sourceTree = "<group>"; };
+		70F7709E2C08BBAD00D329C3 /* HomeView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +202,7 @@
 				70C50C612B6BC8F400D30338 /* HomeView.swift */,
 				70EAE0722B663CDA00E4930D /* Assets.xcassets */,
 				70EAE0742B663CDA00E4930D /* Preview Content */,
+				70F7709E2C08BBAD00D329C3 /* HomeView2.swift */,
 			);
 			path = "Tamil Lit";
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				70685E412B664467001EB657 /* KuralDetailView.swift in Sources */,
 				7058F2762BB091EC00D957B0 /* NaaladiyarListView.swift in Sources */,
 				7058F2702BB090B300D957B0 /* NaaladiyarPoemModel.swift in Sources */,
+				70F7709F2C08BBAD00D329C3 /* HomeView2.swift in Sources */,
 				701621CE2B66C424003054AF /* AthichudiDetailView.swift in Sources */,
 				7058F2732BB091C500D957B0 /* NaaladiyarHomeView.swift in Sources */,
 				701621CC2B66C40C003054AF /* AthichudiListView.swift in Sources */,

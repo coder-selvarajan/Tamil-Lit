@@ -11,10 +11,16 @@ struct AthichudiListView: View {
     let athichudiData: [Athichudi]
 
     var body: some View {
-        List(athichudiData) { item in
-            NavigationLink(destination: AthichudiDetailView(athichudi: item)) {
-                Text("\(item.number): \(item.poem)")
+        ZStack {
+            Color.teal.opacity(0.2).ignoresSafeArea()
+         
+            List(athichudiData) { item in
+                NavigationLink(destination: AthichudiDetailView(athichudi: item)) {
+                    Text("\(item.number): \(item.poem)")
+                }
+                .listRowBackground(Color.white.opacity(0.7))
             }
+            .scrollContentBackground(Visibility.hidden)
         }
         .navigationBarTitle("ஆத்தி சூடி")
         .navigationBarTitleDisplayMode(.inline)

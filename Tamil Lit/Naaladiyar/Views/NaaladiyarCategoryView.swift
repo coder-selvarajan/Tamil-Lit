@@ -41,7 +41,7 @@ struct NaaladiyarCategoryView: View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading) {
                 Text("பால்:")
-                    .foregroundStyle(.gray)
+                    .foregroundStyle(.black.opacity(0.8))
                     .font(.caption)
                     .fontWeight(.bold)
                 ScrollView(.horizontal, showsIndicators: false) {
@@ -50,8 +50,8 @@ struct NaaladiyarCategoryView: View {
                             Text("\(category.category)")
                                 .padding(10)
                                 .font(.subheadline)
-                                .foregroundColor(selCategory?.category == category.category ? .white : .gray)
-                                .background(selCategory?.category == category.category ? .blue : .gray.opacity(0.20))
+                                .foregroundColor(selCategory?.category == category.category ? .white : .black)
+                                .background(selCategory?.category == category.category ? .indigo.opacity(0.8) : .white)
                                 .cornerRadius(10.0)
                                 .onTapGesture {
                                     updateCategory(category: category)
@@ -66,7 +66,7 @@ struct NaaladiyarCategoryView: View {
             
             VStack(alignment: .leading) {
                 Text("இயல்:")
-                    .foregroundStyle(.gray)
+                    .foregroundStyle(.black.opacity(0.8))
                     .font(.caption)
                     .fontWeight(.bold)
                 WrapView(data: selCategory?.subcategories ?? [], content: { subCategory in
@@ -74,8 +74,8 @@ struct NaaladiyarCategoryView: View {
                         Text(subCategory.subcategory)
                             .padding(10)
                             .font(.subheadline)
-                            .foregroundColor(selSubCategory?.subcategory == subCategory.subcategory ? .white : .gray)
-                            .background(selSubCategory?.subcategory == subCategory.subcategory ? .blue : .gray.opacity(0.20))
+                            .foregroundColor(selSubCategory?.subcategory == subCategory.subcategory ? .white : .black)
+                            .background(selSubCategory?.subcategory == subCategory.subcategory ? .indigo.opacity(0.8) : .white)
                             .cornerRadius(10.0)
                             .onTapGesture {
                                 updateSubCategory(subCategory: subCategory)
@@ -89,7 +89,7 @@ struct NaaladiyarCategoryView: View {
             
             VStack(alignment: .leading) {
                 Text("அதிகாரம்:")
-                    .foregroundStyle(.gray)
+                    .foregroundStyle(.black.opacity(0.8))
                     .font(.caption)
                     .fontWeight(.bold)
                 ScrollView {
@@ -103,6 +103,7 @@ struct NaaladiyarCategoryView: View {
                                 HStack {
                                     Text("\(section.section)")
                                         .padding(.vertical, 10)
+                                        .foregroundStyle(.black)
                                     Spacer()
                                     Image(systemName: "chevron.right")
                                         .foregroundColor(.gray)

@@ -46,7 +46,7 @@ struct KuralCategoryView: View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading) {
                 Text("பால்:")
-                    .foregroundStyle(.gray)
+                    .foregroundStyle(.black.opacity(0.8))
                     .font(.caption)
                     .fontWeight(.bold)
                 ScrollView(.horizontal, showsIndicators: false) {
@@ -55,8 +55,8 @@ struct KuralCategoryView: View {
                             Text("\(section.name)")
                                 .padding(10)
                                 .font(.subheadline)
-                                .foregroundColor(selSection?.name == section.name ? .white : .gray)
-                                .background(selSection?.name == section.name ? .blue : .gray.opacity(0.20))
+                                .foregroundColor(selSection?.name == section.name ? .white : .black)
+                                .background(selSection?.name == section.name ? .blue.opacity(0.8) : .white)
                                 .cornerRadius(10.0)
                                 .onTapGesture {
                                     updateSection(section: section)
@@ -71,7 +71,7 @@ struct KuralCategoryView: View {
             
             VStack(alignment: .leading) {
                 Text("இயல்:")
-                    .foregroundStyle(.gray)
+                    .foregroundStyle(.black.opacity(0.8))
                     .font(.caption)
                     .fontWeight(.bold)
                 WrapView(data: selSection?.chapterGroup.detail ?? [], content: { chapterGroup in
@@ -79,8 +79,8 @@ struct KuralCategoryView: View {
                         Text(chapterGroup.name)
                             .padding(10)
                             .font(.subheadline)
-                            .foregroundColor(selChapterGroup?.name == chapterGroup.name ? .white : .gray)
-                            .background(selChapterGroup?.name == chapterGroup.name ? .blue : .gray.opacity(0.20))
+                            .foregroundColor(selChapterGroup?.name == chapterGroup.name ? .white : .black)
+                            .background(selChapterGroup?.name == chapterGroup.name ? .blue.opacity(0.8) : .white)
                             .cornerRadius(10.0)
                             .onTapGesture {
                                 updateChapterGroup(chapterGroup: chapterGroup)
@@ -93,7 +93,7 @@ struct KuralCategoryView: View {
             
             VStack(alignment: .leading) {
                 Text("அதிகாரம்:")
-                    .foregroundStyle(.gray)
+                    .foregroundStyle(.black.opacity(0.8))
                     .font(.caption)
                     .fontWeight(.bold)
                 ScrollView {
@@ -103,6 +103,7 @@ struct KuralCategoryView: View {
                                 HStack {
                                     Text("\(chapter.name)")
                                         .padding(.vertical, 10)
+                                        .foregroundStyle(.black)
                                     Spacer()
                                     Image(systemName: "chevron.right")
                                         .foregroundColor(.gray)

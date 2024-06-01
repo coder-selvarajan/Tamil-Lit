@@ -11,52 +11,56 @@ struct AthichudiDetailView: View {
     let athichudi: Athichudi
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 10.0) {
-                HStack(alignment: .top, spacing: 10.0) {
-                    Text("\(athichudi.number). \(athichudi.poem)")
-                        .font(.headline)
-                        .foregroundStyle(.white)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                }
-                .padding(15)
-                .frame(maxWidth: .infinity)
-                .background(.teal)
-                .cornerRadius(15)
-                
-                Spacer()
-                
-                Text("Translation: \(athichudi.translation ?? "")")
-                    .font(.subheadline)
-                    .foregroundStyle(.gray)
-                
-                Spacer()
-                
-                Divider().background(.gray)
-                
-                VStack(alignment: .leading, spacing: 2.0) {
-                    Text("Meaning: ")
-                        .font(.callout)
-                        .foregroundStyle(.teal)
-                    Text("\(athichudi.meaning ?? "")")
-                        .font(.body)
-                }
-                
-                Divider().background(.gray)
+        ZStack {
+            Color.teal.opacity(0.2).ignoresSafeArea()
+            
+            ScrollView {
+                VStack(alignment: .leading, spacing: 10.0) {
+                    HStack(alignment: .top, spacing: 10.0) {
+                        Text("\(athichudi.number). \(athichudi.poem)")
+                            .font(.headline)
+                            .foregroundStyle(.black)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    .padding(15)
+                    .frame(maxWidth: .infinity)
+                    .background(.teal.opacity(0.5))
+                    .cornerRadius(10)
                     
-                VStack(alignment: .leading, spacing: 2.0) {
-                    Text("Paraphrase:")
-                        .font(.callout)
-                        .foregroundStyle(.teal)
-                    Text("\(athichudi.paraphrase ?? "")")
-                        .font(.body)
+                    Spacer()
+                    
+                    Text("Translation: \(athichudi.translation ?? "")")
+                        .font(.subheadline)
+                        .foregroundStyle(.black.opacity(0.80))
+                    
+                    Spacer()
+                    
+                    Divider().background(.black.opacity(0.7))
+                    
+                    VStack(alignment: .leading, spacing: 2.0) {
+                        Text("Meaning: ")
+                            .font(.callout)
+                            .foregroundStyle(.teal)
+                        Text("\(athichudi.meaning ?? "")")
+                            .font(.body)
+                    }
+                    
+                    Divider().background(.black.opacity(0.7))
+                    
+                    VStack(alignment: .leading, spacing: 2.0) {
+                        Text("Paraphrase:")
+                            .font(.callout)
+                            .foregroundStyle(.teal)
+                        Text("\(athichudi.paraphrase ?? "")")
+                            .font(.body)
                         
+                    }
+                    
+                    Spacer()
+                    
                 }
-                
-                Spacer()
-                
+                .padding()
             }
-            .padding()
         }
         .navigationTitle("ஆத்தி சூடி")
         .navigationBarTitleDisplayMode(.inline)

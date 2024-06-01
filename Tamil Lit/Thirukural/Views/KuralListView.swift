@@ -14,10 +14,16 @@ struct KuralListView: View {
     let chapter: KuralChapter
     
     var body: some View {
-        List(kuralList ?? []) { item in
-            NavigationLink(destination: KuralDetailView(kural: item, section: section, chapterGroup: chapterGroup, chapter: chapter)) {
-                Text("\(item.Number): \(item.Line1)")
+        ZStack {
+            Color.blue.opacity(0.2).ignoresSafeArea()
+            
+            List(kuralList ?? []) { item in
+                NavigationLink(destination: KuralDetailView(kural: item, section: section, chapterGroup: chapterGroup, chapter: chapter)) {
+                    Text("\(item.Number): \(item.Line1)")
+                }
+                .listRowBackground(Color.white.opacity(0.7))
             }
+            .scrollContentBackground(Visibility.hidden)
         }
         .navigationBarTitle(chapter.name)
         .navigationBarTitleDisplayMode(.inline)

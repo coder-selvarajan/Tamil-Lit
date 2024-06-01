@@ -10,7 +10,11 @@ import SwiftUI
 struct KuralHomeView: View {
     var vm: KuralViewModel = KuralViewModel()
     var body: some View {
-        KuralCategoryView(sections: vm.loadKuralCategoryData(), kuralList: vm.loadKuralData())
+        ZStack {
+            Color.blue.opacity(0.2).ignoresSafeArea()
+            
+            KuralCategoryView(sections: vm.loadKuralCategoryData(), kuralList: vm.loadKuralData())
+        }
     }
 }
 

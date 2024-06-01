@@ -10,7 +10,11 @@ import SwiftUI
 struct NaaladiyarHomeView: View {
     var vm: NaaladiyarViewModel = NaaladiyarViewModel()
     var body: some View {
-        NaaladiyarCategoryView(poems: vm.loadNaaladiyarData(), categories: vm.loadNaaladiyarCategoryData())
+        ZStack {
+            Color.indigo.opacity(0.2).ignoresSafeArea()
+            
+            NaaladiyarCategoryView(poems: vm.loadNaaladiyarData(), categories: vm.loadNaaladiyarCategoryData())
+        }
     }
 }
 

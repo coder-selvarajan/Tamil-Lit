@@ -24,7 +24,7 @@ struct NaaladiyarListView: View {
                                                                  section: section)) {
                     Text("\(poem.number): \(poem.poem)")
                 }
-                .listRowBackground(Color.white.opacity(0.7))
+                .listRowBackground(Color.indigo.opacity(0.3))
             }
             .scrollContentBackground(Visibility.hidden)
         }

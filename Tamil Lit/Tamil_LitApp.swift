@@ -13,7 +13,7 @@ struct Tamil_LitApp: App {
     
     var body: some Scene {
         WindowGroup {
-            HomeView2()
+            MainView()
                 .preferredColorScheme(ColorScheme.light)
         }
     }

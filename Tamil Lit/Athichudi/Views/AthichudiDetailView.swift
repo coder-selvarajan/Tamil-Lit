@@ -24,7 +24,7 @@ struct AthichudiDetailView: View {
                     }
                     .padding(15)
                     .frame(maxWidth: .infinity)
-                    .background(.teal.opacity(0.5))
+                    .background(.teal.opacity(0.35))
                     .cornerRadius(10)
                     
                     Spacer()

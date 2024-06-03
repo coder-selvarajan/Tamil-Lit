@@ -18,7 +18,7 @@ struct AthichudiListView: View {
                 NavigationLink(destination: AthichudiDetailView(athichudi: item)) {
                     Text("\(item.number): \(item.poem)")
                 }
-                .listRowBackground(Color.white.opacity(0.7))
+                .listRowBackground(Color.teal.opacity(0.3))
             }
             .scrollContentBackground(Visibility.hidden)
         }

@@ -19,38 +19,6 @@ struct NaaladiyarDetailView: View {
         ZStack(alignment: .top) {
             Color.indigo.opacity(0.2).ignoresSafeArea()
             
-            
-            //            VStack(spacing: 0) {
-            //                Color.indigo.opacity(0.5)
-            //                    .edgesIgnoringSafeArea(.top)
-            //                    .frame(height: 250)
-            //                    .clipShape(RoundedRectangle(cornerRadius: 15.0))
-            //                Spacer()
-            //            }
-            //
-            //            // Custom Buttons
-            //            HStack {
-            //                Button(action: {
-            //                    // Action for back button
-            //                    self.presentationMode.wrappedValue.dismiss()
-            //                }) {
-            //                    Image(systemName: "arrow.left")
-            //                        .foregroundColor(.white)
-            //                        .padding()
-            //                }
-            //
-            //                Spacer() // Pushes everything to the left and right
-            //
-            //                Button(action: {
-            //                    // Action for more button
-            //                }) {
-            //                    Image(systemName: "ellipsis")
-            //                        .foregroundColor(.white)
-            //                        .padding()
-            //                }
-            //            }
-            //            .padding(.horizontal, 10)
-            
             ScrollView(showsIndicators: false) {
                 
                 VStack(alignment: .leading, spacing: 10.0) {
@@ -80,7 +48,7 @@ struct NaaladiyarDetailView: View {
                     }
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(.indigo.opacity(0.5))
+                    .background(.indigo.opacity(0.35))
                     .cornerRadius(10.0)
                     .padding(.bottom)
                     .padding(.horizontal, 10)

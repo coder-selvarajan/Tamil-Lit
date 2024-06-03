@@ -18,10 +18,15 @@ struct KuralListView: View {
             Color.blue.opacity(0.2).ignoresSafeArea()
             
             List(kuralList ?? []) { item in
-                NavigationLink(destination: KuralDetailView(kural: item, section: section, chapterGroup: chapterGroup, chapter: chapter)) {
-                    Text("\(item.Number): \(item.Line1)")
+                NavigationLink(destination: KuralDetailView(kuralList: kuralList,
+                                                            kural: item,
+                                                            section: section,
+                                                            chapterGroup: chapterGroup,
+                                                            chapter: chapter)) {
+                    Text("\(item.Number): \(item.Line1) \(item.Line2)")
                 }
-                .listRowBackground(Color.white.opacity(0.7))
+                .listSectionSeparatorTint(Color.white)
+                .listRowBackground(Color.blue.opacity(0.3))
             }
             .scrollContentBackground(Visibility.hidden)
         }

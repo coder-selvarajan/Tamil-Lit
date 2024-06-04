@@ -114,6 +114,10 @@ struct KuralCategoryView: View {
                     }
                 }
             }
+            
+            VStack{
+                Text(" ")
+            }.frame(height: 50.0)
         }
         .padding(20)
         .navigationBarTitle("திருக்குறள்")

@@ -17,18 +17,24 @@ struct KuralListView: View {
         ZStack {
             Color.blue.opacity(0.2).ignoresSafeArea()
             
-            List(kuralList ?? []) { item in
-                NavigationLink(destination: KuralDetailView(kuralList: kuralList,
-                                                            kural: item,
-                                                            section: section,
-                                                            chapterGroup: chapterGroup,
-                                                            chapter: chapter)) {
-                    Text("\(item.Number): \(item.Line1) \(item.Line2)")
+            VStack {
+                List(kuralList ?? []) { item in
+                    NavigationLink(destination: KuralDetailView(kuralList: kuralList ?? [],
+                                                                selKural: item,
+                                                                section: section,
+                                                                chapterGroup: chapterGroup,
+                                                                chapter: chapter)) {
+                        Text("\(item.Number): \(item.Line1) \(item.Line2)")
+                    }
+                                                                .listSectionSeparatorTint(Color.white)
+                                                                .listRowBackground(Color.blue.opacity(0.3))
                 }
-                .listSectionSeparatorTint(Color.white)
-                .listRowBackground(Color.blue.opacity(0.3))
+                .scrollContentBackground(Visibility.hidden)
+                
+                VStack{
+                    Text(" ")
+                }.frame(height: 50.0)
             }
-            .scrollContentBackground(Visibility.hidden)
         }
         .navigationBarTitle(chapter.name)
         .navigationBarTitleDisplayMode(.inline)

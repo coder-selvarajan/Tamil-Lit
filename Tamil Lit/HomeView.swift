@@ -19,18 +19,22 @@ struct HomeView: View {
                                 Text("Poem of the day")
                                     .font(.headline)
                                     .fontWeight(.semibold)
-                                    .padding(.bottom)
                                 
                                 Spacer()
                                 
+                                Image(systemName: "star")
+                                    .padding(.horizontal, 10)
+                                    .foregroundStyle(.black)
                                 Image(systemName: "info.circle")
+                                    .foregroundStyle(.black)
                             }
+                            .padding(.bottom)
                             Text("இருள்சேர் இருவினையும் சேரா இறைவன்")
                             Text("பொருள்சேர் புகழ்புரிந்தார் மாட்டு.")
                         }
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color(.systemGray6))
+                        .background(Color(.systemGray5))
                         .cornerRadius(8)
                         .padding()
                         
@@ -65,23 +69,37 @@ struct HomeView: View {
                                                  footnote: "Quatrains",
                                                  color: Color.indigo)
                                 }
-                                BookTileView(bookTitle: "அகநானூறு",
+                                BookTileView(bookTitle: "இனியவை நாற்பது",
                                              iconName: "text.book.closed",
                                              footnote: "Epic Poetry",
                                              color: Color.purple)
                             }
                             HStack(spacing: 16) {
-                                BookTileView(bookTitle: "குறிஞ்சிப்பாட்டு",
+                                BookTileView(bookTitle: "திரிகடுகம்",
+                                             iconName: "text.book.closed",
+                                             footnote: "Epic Poetry",
+                                             color: Color.green)
+                                BookTileView(bookTitle: "இன்னா நாற்பது",
+                                             iconName: "book",
+                                             footnote: "Sangam Poetry",
+                                             color: Color.yellow)
+                            }
+                            HStack(spacing: 16) {
+                                BookTileView(bookTitle: "நான்மணிக்கடிகை",
                                              iconName: "text.book.closed",
                                              footnote: "Epic Poetry",
                                              color: Color.orange)
-                                BookTileView(bookTitle: "புறநானூறு",
+                                BookTileView(bookTitle: "ஆச்சாரக்கோவை",
                                              iconName: "book",
                                              footnote: "Sangam Poetry",
-                                             color: Color.mint)
+                                             color: Color.red)
                             }
                         }
                         .padding()
+                        
+                        VStack{
+                            Text(" ")
+                        }.frame(height: 50.0)
                         
                         Spacer()
                     }
@@ -148,7 +166,9 @@ struct BookTileView: View {
             Image(systemName: iconName)
                 .font(.title2)
             Text(bookTitle)
-                .font(.headline)
+                .font(.subheadline)
+                .fontWeight(Font.Weight.semibold)
+                .lineLimit(1)
             Text(footnote)
                 .font(.caption2)
                 .foregroundColor(.black.opacity(0.7))

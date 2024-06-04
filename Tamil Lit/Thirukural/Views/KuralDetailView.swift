@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct KuralDetailView: View {
-    let kuralList: [Kural]?
+    let kuralList: [Kural]
+    @State var selKural: Kural
     
-    let kural: Kural
     let section: KuralSection
     let chapterGroup: KuralChapterGroup
     let chapter: KuralChapter
@@ -38,43 +38,73 @@ struct KuralDetailView: View {
                     .padding(.horizontal, 20)
                     
                     VStack {
-                        TabView {
-                            ForEach(kuralList ?? []) { currentKural in
-                                VStack(alignment: .leading, spacing: 10) {
-                                    Spacer()
-                                    Text("#\(currentKural.Number)")
-                                        .fontWeight(Font.Weight.bold)
-                                        .foregroundStyle(.black)
-                                    
-                                    VStack(alignment: .leading, spacing: 2.0) {
-                                        Text("\(currentKural.Line1)")
-                                            .font(.subheadline)
+                        ZStack {
+                            TabView(selection: $selKural) {
+                                ForEach(kuralList, id: \.id) { kural in
+                                    VStack(alignment: .leading, spacing: 10) {
+                                        Spacer()
+                                        Text("குறள்: \(kural.Number)")
+                                            .font(.callout)
+                                            .fontWeight(Font.Weight.semibold)
                                             .foregroundStyle(.black)
-                                            .frame(maxWidth: .infinity, alignment: .leading)
-                                        Text("\(currentKural.Line2)")
-                                            .font(.subheadline)
-                                            .foregroundStyle(.black)
-                                            .frame(maxWidth: .infinity, alignment: .leading)
+                                        
+                                        VStack(alignment: .leading, spacing: 2.0) {
+                                            Text("\(kural.Line1)")
+                                                .font(.subheadline)
+                                                .fontWeight(Font.Weight.semibold)
+                                                .foregroundStyle(.black)
+                                                .frame(maxWidth: .infinity, alignment: .leading)
+                                            Text("\(kural.Line2)")
+                                                .font(.subheadline)
+                                                .fontWeight(Font.Weight.semibold)
+                                                .foregroundStyle(.black)
+                                                .frame(maxWidth: .infinity, alignment: .leading)
+                                        }
+                                        
+                                        //                                    Divider()
+                                        //                                        .overlay(Color.white)
+                                        //                                        .padding(.vertical, 10)
+                                        //
+                                        //                                    VStack(alignment: .leading, spacing: 2.0) {
+                                        //                                        Text("\(kural.transliteration1)")
+                                        //                                        Text("\(kural.transliteration2)")
+                                        //                                    }
+                                        //                                    .font(.subheadline)
+                                        
+                                        Spacer()
                                     }
-                                    Spacer()
+                                    .tag(kural)
+                                    .padding(.bottom, 15)
+                                    .frame(maxWidth: .infinity)
+                                    //                                .padding()
+                                    //.background(.blue.opacity(0.35))
+                                    //                    .background(.blue.opacity(0.5))
+                                    //.cornerRadius(10.0)
+                                    .padding(.horizontal, 10)
                                 }
-                                .frame(maxWidth: .infinity)
-                                //                                .padding()
-                                //.background(.blue.opacity(0.35))
-                                //                    .background(.blue.opacity(0.5))
-                                //.cornerRadius(10.0)
-                                .padding(.horizontal, 10)
+                                
                             }
+                            .frame(height: 160)
+                            .tabViewStyle(.page)
+                            .indexViewStyle(.page(backgroundDisplayMode: .never))
                             
+//                            Text("SAVE")
+//                                .foregroundStyle(.red)
+                            
+                            Image(systemName: "bookmark")
+                                .font(.body)
+                                .foregroundStyle(.white)
+                                .padding([.top, .trailing])
+                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+//                                .offset(x: -5, y: -5)
+                                
                         }
-                        .frame(height: 150)
-                        .tabViewStyle(.page)
-                        .indexViewStyle(.page(backgroundDisplayMode: .never))
                     }
                     .padding(.horizontal, 10)
                     .background(.blue.opacity(0.35))
                     .cornerRadius(10.0)
                     .padding(.horizontal, 10)
+                    .padding(.bottom, 20)
                     
                     VStack(alignment: .leading) {
                         Text("Tamil :")
@@ -85,7 +115,7 @@ struct KuralDetailView: View {
                             Text("மு.வரதராசன் உரை:")
                                 .font(.callout)
                                 .foregroundStyle(.blue)
-                            Text("\(kural.mv)")
+                            Text("\(selKural.mv)")
                                 .font(.body)
                         }.padding(.bottom, 15)
                         
@@ -93,7 +123,7 @@ struct KuralDetailView: View {
                             Text("சாலமன் பாப்பையா உரை:")
                                 .font(.callout)
                                 .foregroundStyle(.blue)
-                            Text("\(kural.sp)")
+                            Text("\(selKural.sp)")
                                 .font(.body)
                         }.padding(.bottom, 15)
                         
@@ -101,7 +131,7 @@ struct KuralDetailView: View {
                             Text("கலைஞர் உரை:")
                                 .font(.callout)
                                 .foregroundStyle(.blue)
-                            Text("\(kural.mk)")
+                            Text("\(selKural.mk)")
                                 .font(.body)
                         }
                         .padding(.bottom, 30)
@@ -117,9 +147,9 @@ struct KuralDetailView: View {
                             Text("Transliteration:")
                                 .font(.callout)
                                 .foregroundStyle(.blue)
-                            Text("\(kural.transliteration1)")
+                            Text("\(selKural.transliteration1)")
                                 .font(.body)
-                            Text("\(kural.transliteration2)")
+                            Text("\(selKural.transliteration2)")
                                 .font(.body)
                         }.padding(.bottom, 15)
                         
@@ -127,7 +157,7 @@ struct KuralDetailView: View {
                             Text("Couplet:")
                                 .font(.callout)
                                 .foregroundStyle(.blue)
-                            Text("\(kural.couplet)")
+                            Text("\(selKural.couplet)")
                                 .font(.body)
                         }.padding(.bottom, 15)
                         
@@ -135,11 +165,15 @@ struct KuralDetailView: View {
                             Text("Explanation:")
                                 .font(.callout)
                                 .foregroundStyle(.blue)
-                            Text("\(kural.explanation)")
+                            Text("\(selKural.explanation)")
                                 .font(.body)
                         }.padding(.bottom, 15)
                     } //VStack
                     .padding(.horizontal, 20)
+                    
+                    VStack{
+                        Text(" ")
+                    }.frame(height: 50.0)
                 } // VStack
             }//Scrollview
             .padding(.horizontal, 0)

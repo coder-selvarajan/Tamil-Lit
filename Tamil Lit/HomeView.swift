@@ -32,16 +32,22 @@ struct HomeView: View {
                             Text("இருள்சேர் இருவினையும் சேரா இறைவன்")
                             Text("பொருள்சேர் புகழ்புரிந்தார் மாட்டு.")
                         }
+//                        .foregroundStyle(.white)
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(Color(.systemGray5))
+//                        .background(Color.black.opacity(0.9))
                         .cornerRadius(8)
                         .padding()
                         
                         // Tiles
                         VStack(spacing: 16) {
                             HStack {
-                                Text("தமிழ் இலக்கிய நூல்கள்:")
+                                
+                                Image(systemName: "books.vertical")
+                                    .font(.title2)
+                                    .padding(.trailing, 5)
+                                Text("தமிழ் இலக்கிய நூல்கள்")
                                     .font(.headline)
                                 
                                 Spacer()
@@ -51,13 +57,15 @@ struct HomeView: View {
                             HStack(spacing: 16) {
                                 NavigationLink(value: "Thirukural") {
                                     BookTileView(bookTitle: "திருக்குறள்",
-                                                 iconName: "book",
+                                                 imageName: "Thiruvalluvar3",
+//                                                 iconName: "book",
                                                  footnote: "1330 poems",
                                                  color: Color.blue)
                                 }
                                 NavigationLink(value: "Athichudi") {
                                     BookTileView(bookTitle: "ஆத்தி சூடி",
-                                                 iconName: "character.book.closed",
+                                                 imageName: "Avvaiyar3",
+//                                                 iconName: "character.book.closed",
                                                  footnote: "100 proverbs",
                                                  color: Color.teal)
                                 }
@@ -65,7 +73,7 @@ struct HomeView: View {
                             HStack(spacing: 16) {
                                 NavigationLink(value: "Naaladiyar") {
                                     BookTileView(bookTitle: "நாலடியார்",
-                                                 iconName: "book",
+                                                 imageName: "Jainmonk",
                                                  footnote: "Quatrains",
                                                  color: Color.indigo)
                                 }
@@ -75,25 +83,28 @@ struct HomeView: View {
                                              color: Color.purple)
                             }
                             HStack(spacing: 16) {
-                                BookTileView(bookTitle: "திரிகடுகம்",
+                                BookTileView(bookTitle: "ஆச்சாரக் கோவை",
+                                             iconName: "book",
+                                             footnote: "Sangam Poetry",
+                                             color: Color.red)
+                                BookTileView(bookTitle: "நான்மணிக் கடிகை",
                                              iconName: "text.book.closed",
                                              footnote: "Epic Poetry",
-                                             color: Color.green)
+                                             color: Color.orange)
+                                
+                            }
+                            HStack(spacing: 16) {
                                 BookTileView(bookTitle: "இன்னா நாற்பது",
                                              iconName: "book",
                                              footnote: "Sangam Poetry",
                                              color: Color.yellow)
-                            }
-                            HStack(spacing: 16) {
-                                BookTileView(bookTitle: "நான்மணிக்கடிகை",
+                                BookTileView(bookTitle: "திரிகடுகம்",
                                              iconName: "text.book.closed",
                                              footnote: "Epic Poetry",
-                                             color: Color.orange)
-                                BookTileView(bookTitle: "ஆச்சாரக்கோவை",
-                                             iconName: "book",
-                                             footnote: "Sangam Poetry",
-                                             color: Color.red)
+                                             color: Color.green)
+                                
                             }
+                            
                         }
                         .padding()
                         
@@ -157,28 +168,99 @@ struct HomeView: View {
 struct BookTileView: View {
     var colors = [Color.blue, Color.green, Color.red, Color.cyan, Color.indigo, Color.orange, Color.purple, Color.brown, Color.teal, Color.pink, Color.gray, Color.yellow]
     var bookTitle: String
-    var iconName: String
+    var imageName: String?
+    var iconName: String = ""
     var footnote: String
     var color: Color = Color.clear
     
     var body: some View {
-        VStack(spacing: 5) {
-            Image(systemName: iconName)
-                .font(.title2)
-            Text(bookTitle)
-                .font(.subheadline)
-                .fontWeight(Font.Weight.semibold)
-                .lineLimit(1)
-            Text(footnote)
-                .font(.caption2)
-                .foregroundColor(.black.opacity(0.7))
-//                .padding(.bottom)
+        ZStack(alignment: .topLeading) {
+            RoundedRectangle(cornerRadius: 10)
+                .fill((color != Color.clear ? color.opacity(0.25) : colors.randomElement()?.opacity(0.25))!)
+                .shadow(radius: 5)
+            
+            HStack(alignment: .top) {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(bookTitle)
+                        .font(.headline)
+                        .foregroundStyle(.black)
+                        .fontWeight(Font.Weight.semibold)
+                        //.lineLimit(1)
+                    Text(footnote)
+                        .font(.footnote)
+                        .foregroundColor(.black.opacity(0.7))
+                }
+//                .frame(maxWidth: .infinity)
+                .padding()
+                
+                Spacer()
+            }
+            
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    if let img = imageName {
+                        Image(img)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 70)
+                            .saturation(0.0)
+                            .brightness(0.02)
+//                            .contrast(1.0)
+//                            .padding(10)
+                            .opacity(0.8)
+                    }
+                    else {
+                        Image("book-icon")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 50)
+                            .saturation(0.0)
+                            .opacity(0.6)
+                            .padding()
+                        
+//                        Image(systemName: iconName)
+//                            .font(.title)
+//                            .foregroundStyle(.black.opacity(0.35))
+//                            .padding()
+                    }
+                }.padding(0)
+            }.padding(0)
         }
-        .foregroundStyle(.black)
-        .padding(20)
-        .frame(maxWidth: .infinity)
-        .background(color != Color.clear ? color.opacity(0.25) : colors.randomElement()?.opacity(0.25))
-        .cornerRadius(10)
+        .frame(height: 150)
+        
+//        ZStack {
+//            VStack(alignment: .leading, spacing: 5) {
+////                Image(systemName: iconName)
+////                    .font(.title2)
+//                Text(bookTitle)
+//                    .font(.subheadline)
+//                    .fontWeight(Font.Weight.semibold)
+//                    .lineLimit(1)
+//                Text(footnote)
+//                    .font(.caption2)
+//                    .foregroundColor(.black.opacity(0.7))
+//    //                .padding(.bottom)
+//            }
+//            .foregroundStyle(.black)
+//            .padding(20)
+//            .frame(maxWidth: .infinity)
+//            .background(color != Color.clear ? color.opacity(0.25) : colors.randomElement()?.opacity(0.25))
+//            .cornerRadius(10)
+//            
+//            VStack {
+//                Spacer()
+//                HStack {
+//                    Spacer()
+//                    Image(systemName: iconName)
+//                        .font(.title2)
+//                        .foregroundStyle(.black)
+//                        .padding(10)
+//                }
+//            }
+//        }
+        
     }
 }
 

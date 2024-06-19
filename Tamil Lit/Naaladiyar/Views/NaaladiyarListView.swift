@@ -32,7 +32,7 @@ struct NaaladiyarListView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 }
-
+  
 //#Preview {
 //    NaaladiyarListView()
 //}

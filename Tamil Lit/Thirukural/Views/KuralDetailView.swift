@@ -91,11 +91,11 @@ struct KuralDetailView: View {
 //                            Text("SAVE")
 //                                .foregroundStyle(.red)
                             
-                            Image(systemName: "bookmark")
-                                .font(.body)
-                                .foregroundStyle(.white)
-                                .padding([.top, .trailing])
-                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+//                            Image(systemName: "bookmark")
+//                                .font(.body)
+//                                .foregroundStyle(.white)
+//                                .padding([.top, .trailing])
+//                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
 //                                .offset(x: -5, y: -5)
                                 
                         }
@@ -107,8 +107,33 @@ struct KuralDetailView: View {
                     .padding(.bottom, 20)
                     
                     VStack(alignment: .leading) {
-                        Text("Tamil :")
-                            .font(.title3)
+                        HStack {
+                            Text("Tamil :")
+                                .font(.title3)
+                            
+                            Spacer()
+                            
+                            Button {
+                                //
+                            } label: {
+                                Image(systemName: "bookmark")
+                                    .font(.title3)
+                                    .foregroundStyle(.black)
+                            }
+
+                            Button {
+                                //
+                            } label: {
+                                Image(systemName: "paperplane")
+                                    .font(.title3)
+                                    .foregroundStyle(.black)
+                                    .padding(.horizontal, 10) 
+                            }
+
+                            
+                            
+                        }
+                        
                         Divider().background(.gray)
                         
                         VStack(alignment: .leading, spacing: 2.0) {

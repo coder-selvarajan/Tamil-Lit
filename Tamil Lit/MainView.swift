@@ -39,6 +39,13 @@ struct MainView: View {
                             Text("Settings")
                         }
                         .tag(2)
+                    
+                    HomeViewOld()
+                        .tabItem {
+                            Image(systemName: "star")
+                            Text("Favourites")
+                        }
+                        .tag(3)
                 }
                 .edgesIgnoringSafeArea(.bottom)
                 
@@ -50,9 +57,11 @@ struct MainView: View {
                 HStack {
                     TabButton(icon: "house.fill", tabIndex: 0, selectedTab: $selectedTab)
                     Spacer()
-                    TabButton(icon: "star.fill", tabIndex: 1, selectedTab: $selectedTab)
+//                    TabButton(icon: "sparkles.square.filled.on.square", tabIndex: 1, selectedTab: $selectedTab)
+//                    Spacer()
+                    TabButton(icon: "bookmark.fill", tabIndex: 2, selectedTab: $selectedTab)
                     Spacer()
-                    TabButton(icon: "gearshape.fill", tabIndex: 2, selectedTab: $selectedTab)
+                    TabButton(icon: "gearshape.fill", tabIndex: 3, selectedTab: $selectedTab)
                 }
                 .padding(5)
                 .background(
@@ -81,9 +90,10 @@ struct TabButton: View {
             selectedTab = tabIndex
         }) {
             Image(systemName: icon)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 20)
+                .font(.title3)
+//                .resizable()
+//                .scaledToFit()
+//                .frame(width: 20)
                 .foregroundColor(selectedTab == tabIndex ? Color.black : Color.gray)
                 .padding()
         }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23A344" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
-    <entity name="Book" representedClassName="Book" syncable="YES" codeGenerationType="class">
+    <entity name="Book" representedClassName="Book" syncable="YES">
         <attribute name="author" optional="YES" attributeType="String"/>
         <attribute name="color" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
@@ -10,10 +10,10 @@
         <attribute name="noofpoems" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="period" optional="YES" attributeType="String"/>
-        <relationship name="categories" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MainCategory"/>
+        <relationship name="categories" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MainCategory" inverseName="book" inverseEntity="MainCategory"/>
         <relationship name="poems" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Poem" inverseName="book" inverseEntity="Poem"/>
     </entity>
-    <entity name="Explanation" representedClassName="Explanation" syncable="YES" codeGenerationType="class">
+    <entity name="Explanation" representedClassName="Explanation" syncable="YES">
         <attribute name="author" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="info" optional="YES" attributeType="String"/>
@@ -21,46 +21,46 @@
         <attribute name="meaning" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="title2" optional="YES" attributeType="String"/>
-        <relationship name="poem" maxCount="1" deletionRule="Nullify" destinationEntity="Poem"/>
+        <relationship name="poem" maxCount="1" deletionRule="Nullify" destinationEntity="Poem" inverseName="explanations" inverseEntity="Poem"/>
     </entity>
-    <entity name="MainCategory" representedClassName="MainCategory" syncable="YES" codeGenerationType="class">
+    <entity name="MainCategory" representedClassName="MainCategory" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="info" optional="YES" attributeType="String"/>
         <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="subtitle" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="book" maxCount="1" deletionRule="Nullify" destinationEntity="Book"/>
-        <relationship name="poems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Poem"/>
-        <relationship name="subCategories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SubCategory"/>
+        <relationship name="book" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="categories" inverseEntity="Book"/>
+        <relationship name="poems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Poem" inverseName="mainCategory" inverseEntity="Poem"/>
+        <relationship name="subCategories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SubCategory" inverseName="mainCategory" inverseEntity="SubCategory"/>
     </entity>
-    <entity name="Poem" representedClassName="Poem" syncable="YES" codeGenerationType="class">
+    <entity name="Poem" representedClassName="Poem" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="poem" optional="YES" attributeType="String"/>
         <attribute name="poeminfo" optional="YES" attributeType="String"/>
         <relationship name="book" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="poems" inverseEntity="Book"/>
-        <relationship name="explanations" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Explanation"/>
-        <relationship name="mainCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MainCategory"/>
-        <relationship name="section" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Section"/>
-        <relationship name="subCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubCategory"/>
+        <relationship name="explanations" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Explanation" inverseName="poem" inverseEntity="Explanation"/>
+        <relationship name="mainCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MainCategory" inverseName="poems" inverseEntity="MainCategory"/>
+        <relationship name="section" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Section" inverseName="poems" inverseEntity="Section"/>
+        <relationship name="subCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubCategory" inverseName="poems" inverseEntity="SubCategory"/>
     </entity>
-    <entity name="Section" representedClassName="Section" syncable="YES" codeGenerationType="class">
+    <entity name="Section" representedClassName="Section" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="info" optional="YES" attributeType="String"/>
         <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="subtitle" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="poems" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Poem"/>
-        <relationship name="subCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubCategory"/>
+        <relationship name="poems" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Poem" inverseName="section" inverseEntity="Poem"/>
+        <relationship name="subCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SubCategory" inverseName="sections" inverseEntity="SubCategory"/>
     </entity>
-    <entity name="Settings" representedClassName="Settings" syncable="YES" codeGenerationType="class"/>
-    <entity name="SubCategory" representedClassName="SubCategory" syncable="YES" codeGenerationType="class">
+    <entity name="Settings" representedClassName="Settings" syncable="YES"/>
+    <entity name="SubCategory" representedClassName="SubCategory" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="info" optional="YES" attributeType="String"/>
         <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="subtitle" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="mainCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MainCategory"/>
-        <relationship name="poems" toMany="YES" deletionRule="Nullify" destinationEntity="Poem"/>
-        <relationship name="sections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Section"/>
+        <relationship name="mainCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MainCategory" inverseName="subCategories" inverseEntity="MainCategory"/>
+        <relationship name="poems" toMany="YES" deletionRule="Nullify" destinationEntity="Poem" inverseName="subCategory" inverseEntity="Poem"/>
+        <relationship name="sections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Section" inverseName="subCategory" inverseEntity="Section"/>
     </entity>
 </model>

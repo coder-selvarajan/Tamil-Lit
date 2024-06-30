@@ -14,6 +14,20 @@
 		701621D02B66C434003054AF /* AthichudiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701621CF2B66C434003054AF /* AthichudiModel.swift */; };
 		701621D22B66CBB6003054AF /* AthichudiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701621D12B66CBB6003054AF /* AthichudiViewModel.swift */; };
 		702240562B69653C00EF072B /* WrapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702240552B69653C00EF072B /* WrapView.swift */; };
+		702BCA472C313EC70051D8C2 /* Explanation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BCA3B2C313EC70051D8C2 /* Explanation+CoreDataClass.swift */; };
+		702BCA482C313EC70051D8C2 /* Explanation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BCA3C2C313EC70051D8C2 /* Explanation+CoreDataProperties.swift */; };
+		702BCA492C313EC70051D8C2 /* Book+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BCA3D2C313EC70051D8C2 /* Book+CoreDataClass.swift */; };
+		702BCA4A2C313EC70051D8C2 /* Book+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BCA3E2C313EC70051D8C2 /* Book+CoreDataProperties.swift */; };
+		702BCA4B2C313EC70051D8C2 /* MainCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BCA3F2C313EC70051D8C2 /* MainCategory+CoreDataClass.swift */; };
+		702BCA4C2C313EC70051D8C2 /* MainCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BCA402C313EC70051D8C2 /* MainCategory+CoreDataProperties.swift */; };
+		702BCA4D2C313EC70051D8C2 /* SubCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BCA412C313EC70051D8C2 /* SubCategory+CoreDataClass.swift */; };
+		702BCA4E2C313EC70051D8C2 /* SubCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BCA422C313EC70051D8C2 /* SubCategory+CoreDataProperties.swift */; };
+		702BCA512C313EC70051D8C2 /* Poem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BCA452C313EC70051D8C2 /* Poem+CoreDataClass.swift */; };
+		702BCA522C313EC70051D8C2 /* Poem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BCA462C313EC70051D8C2 /* Poem+CoreDataProperties.swift */; };
+		702BCA552C313F1F0051D8C2 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BCA542C313F1F0051D8C2 /* CoreDataManager.swift */; };
+		702BCA592C31446B0051D8C2 /* SectionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BCA562C31446B0051D8C2 /* SectionListView.swift */; };
+		702BCA5A2C31446B0051D8C2 /* MainCategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BCA572C31446B0051D8C2 /* MainCategoryListView.swift */; };
+		702BCA5B2C31446B0051D8C2 /* SubCategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BCA582C31446B0051D8C2 /* SubCategoryListView.swift */; };
 		7058F26C2BB08CF600D957B0 /* NaaladiyarCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7058F26B2BB08CF600D957B0 /* NaaladiyarCategoryModel.swift */; };
 		7058F26E2BB08EC600D957B0 /* NaaladiyarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7058F26D2BB08EC600D957B0 /* NaaladiyarViewModel.swift */; };
 		7058F2702BB090B300D957B0 /* NaaladiyarPoemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7058F26F2BB090B300D957B0 /* NaaladiyarPoemModel.swift */; };
@@ -23,18 +37,6 @@
 		7058F27A2BB0922A00D957B0 /* NaaladiyarDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7058F2792BB0922A00D957B0 /* NaaladiyarDetailView.swift */; };
 		7058F27B2BB09B0300D957B0 /* naaladiyar.json in Resources */ = {isa = PBXBuildFile; fileRef = 7058F2672BB0723600D957B0 /* naaladiyar.json */; };
 		7058F27C2BB09B0600D957B0 /* naaladiyar-category.json in Resources */ = {isa = PBXBuildFile; fileRef = 7058F2682BB085DC00D957B0 /* naaladiyar-category.json */; };
-		70626FBE2C23D53D00055E77 /* SubCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70626FB22C23D53D00055E77 /* SubCategory+CoreDataClass.swift */; };
-		70626FBF2C23D53D00055E77 /* SubCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70626FB32C23D53D00055E77 /* SubCategory+CoreDataProperties.swift */; };
-		70626FC02C23D53D00055E77 /* MainCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70626FB42C23D53D00055E77 /* MainCategory+CoreDataClass.swift */; };
-		70626FC12C23D53D00055E77 /* MainCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70626FB52C23D53D00055E77 /* MainCategory+CoreDataProperties.swift */; };
-		70626FC22C23D53D00055E77 /* Book+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70626FB62C23D53D00055E77 /* Book+CoreDataClass.swift */; };
-		70626FC32C23D53D00055E77 /* Book+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70626FB72C23D53D00055E77 /* Book+CoreDataProperties.swift */; };
-		70626FC42C23D53D00055E77 /* Section+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70626FB82C23D53D00055E77 /* Section+CoreDataClass.swift */; };
-		70626FC52C23D53D00055E77 /* Section+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70626FB92C23D53D00055E77 /* Section+CoreDataProperties.swift */; };
-		70626FC62C23D53D00055E77 /* Explanation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70626FBA2C23D53D00055E77 /* Explanation+CoreDataClass.swift */; };
-		70626FC72C23D53D00055E77 /* Explanation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70626FBB2C23D53D00055E77 /* Explanation+CoreDataProperties.swift */; };
-		70626FC82C23D53D00055E77 /* Poem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70626FBC2C23D53D00055E77 /* Poem+CoreDataClass.swift */; };
-		70626FC92C23D53D00055E77 /* Poem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70626FBD2C23D53D00055E77 /* Poem+CoreDataProperties.swift */; };
 		70685E412B664467001EB657 /* KuralDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70685E402B664467001EB657 /* KuralDetailView.swift */; };
 		70685E432B66453E001EB657 /* KuralHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70685E422B66453E001EB657 /* KuralHomeView.swift */; };
 		70685E452B669161001EB657 /* KuralViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70685E442B669161001EB657 /* KuralViewModel.swift */; };
@@ -48,6 +50,17 @@
 		70AFD0EF2C213E2500EB7351 /* Thirikadukam.json in Resources */ = {isa = PBXBuildFile; fileRef = 70AFD0EC2C213E2500EB7351 /* Thirikadukam.json */; };
 		70C50C622B6BC8F400D30338 /* HomeViewOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C50C612B6BC8F400D30338 /* HomeViewOld.swift */; };
 		70E729822C230C7D00DE5977 /* TamilLitDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70E729802C230C7D00DE5977 /* TamilLitDB.xcdatamodeld */; };
+		70E739242C314A5F00A4CF0E /* PoemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E739232C314A5F00A4CF0E /* PoemListView.swift */; };
+		70E739272C314C3400A4CF0E /* Section+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E739252C314C3400A4CF0E /* Section+CoreDataClass.swift */; };
+		70E739282C314C3400A4CF0E /* Section+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E739262C314C3400A4CF0E /* Section+CoreDataProperties.swift */; };
+		70E7392A2C31528500A4CF0E /* MainCategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E739292C31528500A4CF0E /* MainCategoryListViewModel.swift */; };
+		70E7392C2C3152B500A4CF0E /* SubCategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E7392B2C3152B500A4CF0E /* SubCategoryListViewModel.swift */; };
+		70E7392E2C3152DC00A4CF0E /* SectionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E7392D2C3152DC00A4CF0E /* SectionListViewModel.swift */; };
+		70E739302C31530000A4CF0E /* PoemListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E7392F2C31530000A4CF0E /* PoemListViewModel.swift */; };
+		70E739322C31555400A4CF0E /* PoemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E739312C31555400A4CF0E /* PoemView.swift */; };
+		70E739342C31559C00A4CF0E /* ExplanationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E739332C31559C00A4CF0E /* ExplanationListViewModel.swift */; };
+		70E739362C316D8700A4CF0E /* CategoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E739352C316D8700A4CF0E /* CategoryListViewModel.swift */; };
+		70E739382C316DBA00A4CF0E /* CategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E739372C316DBA00A4CF0E /* CategoryListView.swift */; };
 		70EAE06D2B663CD800E4930D /* Tamil_LitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EAE06C2B663CD800E4930D /* Tamil_LitApp.swift */; };
 		70EAE0732B663CDA00E4930D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70EAE0722B663CDA00E4930D /* Assets.xcassets */; };
 		70EAE0762B663CDA00E4930D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70EAE0752B663CDA00E4930D /* Preview Assets.xcassets */; };
@@ -67,6 +80,20 @@
 		701621CF2B66C434003054AF /* AthichudiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthichudiModel.swift; sourceTree = "<group>"; };
 		701621D12B66CBB6003054AF /* AthichudiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthichudiViewModel.swift; sourceTree = "<group>"; };
 		702240552B69653C00EF072B /* WrapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapView.swift; sourceTree = "<group>"; };
+		702BCA3B2C313EC70051D8C2 /* Explanation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Explanation+CoreDataClass.swift"; sourceTree = "<group>"; };
+		702BCA3C2C313EC70051D8C2 /* Explanation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Explanation+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		702BCA3D2C313EC70051D8C2 /* Book+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataClass.swift"; sourceTree = "<group>"; };
+		702BCA3E2C313EC70051D8C2 /* Book+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		702BCA3F2C313EC70051D8C2 /* MainCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
+		702BCA402C313EC70051D8C2 /* MainCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		702BCA412C313EC70051D8C2 /* SubCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
+		702BCA422C313EC70051D8C2 /* SubCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		702BCA452C313EC70051D8C2 /* Poem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Poem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		702BCA462C313EC70051D8C2 /* Poem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Poem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		702BCA542C313F1F0051D8C2 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		702BCA562C31446B0051D8C2 /* SectionListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionListView.swift; sourceTree = "<group>"; };
+		702BCA572C31446B0051D8C2 /* MainCategoryListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCategoryListView.swift; sourceTree = "<group>"; };
+		702BCA582C31446B0051D8C2 /* SubCategoryListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCategoryListView.swift; sourceTree = "<group>"; };
 		7058F2672BB0723600D957B0 /* naaladiyar.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = naaladiyar.json; sourceTree = "<group>"; };
 		7058F2682BB085DC00D957B0 /* naaladiyar-category.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "naaladiyar-category.json"; sourceTree = "<group>"; };
 		7058F26B2BB08CF600D957B0 /* NaaladiyarCategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaaladiyarCategoryModel.swift; sourceTree = "<group>"; };
@@ -76,18 +103,6 @@
 		7058F2752BB091EC00D957B0 /* NaaladiyarListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaaladiyarListView.swift; sourceTree = "<group>"; };
 		7058F2772BB0920600D957B0 /* NaaladiyarCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaaladiyarCategoryView.swift; sourceTree = "<group>"; };
 		7058F2792BB0922A00D957B0 /* NaaladiyarDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaaladiyarDetailView.swift; sourceTree = "<group>"; };
-		70626FB22C23D53D00055E77 /* SubCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
-		70626FB32C23D53D00055E77 /* SubCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		70626FB42C23D53D00055E77 /* MainCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
-		70626FB52C23D53D00055E77 /* MainCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		70626FB62C23D53D00055E77 /* Book+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataClass.swift"; sourceTree = "<group>"; };
-		70626FB72C23D53D00055E77 /* Book+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		70626FB82C23D53D00055E77 /* Section+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Section+CoreDataClass.swift"; sourceTree = "<group>"; };
-		70626FB92C23D53D00055E77 /* Section+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Section+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		70626FBA2C23D53D00055E77 /* Explanation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Explanation+CoreDataClass.swift"; sourceTree = "<group>"; };
-		70626FBB2C23D53D00055E77 /* Explanation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Explanation+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		70626FBC2C23D53D00055E77 /* Poem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Poem+CoreDataClass.swift"; sourceTree = "<group>"; };
-		70626FBD2C23D53D00055E77 /* Poem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Poem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		70685E402B664467001EB657 /* KuralDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuralDetailView.swift; sourceTree = "<group>"; };
 		70685E422B66453E001EB657 /* KuralHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuralHomeView.swift; sourceTree = "<group>"; };
 		70685E442B669161001EB657 /* KuralViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuralViewModel.swift; sourceTree = "<group>"; };
@@ -101,6 +116,17 @@
 		70AFD0EC2C213E2500EB7351 /* Thirikadukam.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Thirikadukam.json; sourceTree = "<group>"; };
 		70C50C612B6BC8F400D30338 /* HomeViewOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewOld.swift; sourceTree = "<group>"; };
 		70E729812C230C7D00DE5977 /* TamilLitDB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TamilLitDB.xcdatamodel; sourceTree = "<group>"; };
+		70E739232C314A5F00A4CF0E /* PoemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemListView.swift; sourceTree = "<group>"; };
+		70E739252C314C3400A4CF0E /* Section+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Section+CoreDataClass.swift"; sourceTree = "<group>"; };
+		70E739262C314C3400A4CF0E /* Section+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Section+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		70E739292C31528500A4CF0E /* MainCategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCategoryListViewModel.swift; sourceTree = "<group>"; };
+		70E7392B2C3152B500A4CF0E /* SubCategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubCategoryListViewModel.swift; sourceTree = "<group>"; };
+		70E7392D2C3152DC00A4CF0E /* SectionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionListViewModel.swift; sourceTree = "<group>"; };
+		70E7392F2C31530000A4CF0E /* PoemListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemListViewModel.swift; sourceTree = "<group>"; };
+		70E739312C31555400A4CF0E /* PoemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemView.swift; sourceTree = "<group>"; };
+		70E739332C31559C00A4CF0E /* ExplanationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplanationListViewModel.swift; sourceTree = "<group>"; };
+		70E739352C316D8700A4CF0E /* CategoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListViewModel.swift; sourceTree = "<group>"; };
+		70E739372C316DBA00A4CF0E /* CategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListView.swift; sourceTree = "<group>"; };
 		70EAE0692B663CD800E4930D /* Tamil Lit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tamil Lit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70EAE06C2B663CD800E4930D /* Tamil_LitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tamil_LitApp.swift; sourceTree = "<group>"; };
 		70EAE0722B663CDA00E4930D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -181,6 +207,20 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		702BCA532C313EF50051D8C2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				702BCA542C313F1F0051D8C2 /* CoreDataManager.swift */,
+				70E739292C31528500A4CF0E /* MainCategoryListViewModel.swift */,
+				70E7392B2C3152B500A4CF0E /* SubCategoryListViewModel.swift */,
+				70E7392D2C3152DC00A4CF0E /* SectionListViewModel.swift */,
+				70E7392F2C31530000A4CF0E /* PoemListViewModel.swift */,
+				70E739332C31559C00A4CF0E /* ExplanationListViewModel.swift */,
+				70E739352C316D8700A4CF0E /* CategoryListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		7058F2692BB08CC500D957B0 /* Naaladiyar */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,18 +254,18 @@
 		70626FCA2C23D54A00055E77 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				70626FB22C23D53D00055E77 /* SubCategory+CoreDataClass.swift */,
-				70626FB32C23D53D00055E77 /* SubCategory+CoreDataProperties.swift */,
-				70626FB42C23D53D00055E77 /* MainCategory+CoreDataClass.swift */,
-				70626FB52C23D53D00055E77 /* MainCategory+CoreDataProperties.swift */,
-				70626FB62C23D53D00055E77 /* Book+CoreDataClass.swift */,
-				70626FB72C23D53D00055E77 /* Book+CoreDataProperties.swift */,
-				70626FB82C23D53D00055E77 /* Section+CoreDataClass.swift */,
-				70626FB92C23D53D00055E77 /* Section+CoreDataProperties.swift */,
-				70626FBA2C23D53D00055E77 /* Explanation+CoreDataClass.swift */,
-				70626FBB2C23D53D00055E77 /* Explanation+CoreDataProperties.swift */,
-				70626FBC2C23D53D00055E77 /* Poem+CoreDataClass.swift */,
-				70626FBD2C23D53D00055E77 /* Poem+CoreDataProperties.swift */,
+				702BCA3B2C313EC70051D8C2 /* Explanation+CoreDataClass.swift */,
+				702BCA3C2C313EC70051D8C2 /* Explanation+CoreDataProperties.swift */,
+				702BCA3D2C313EC70051D8C2 /* Book+CoreDataClass.swift */,
+				702BCA3E2C313EC70051D8C2 /* Book+CoreDataProperties.swift */,
+				702BCA3F2C313EC70051D8C2 /* MainCategory+CoreDataClass.swift */,
+				702BCA402C313EC70051D8C2 /* MainCategory+CoreDataProperties.swift */,
+				702BCA412C313EC70051D8C2 /* SubCategory+CoreDataClass.swift */,
+				702BCA422C313EC70051D8C2 /* SubCategory+CoreDataProperties.swift */,
+				70E739252C314C3400A4CF0E /* Section+CoreDataClass.swift */,
+				70E739262C314C3400A4CF0E /* Section+CoreDataProperties.swift */,
+				702BCA452C313EC70051D8C2 /* Poem+CoreDataClass.swift */,
+				702BCA462C313EC70051D8C2 /* Poem+CoreDataProperties.swift */,
 				70E729802C230C7D00DE5977 /* TamilLitDB.xcdatamodeld */,
 			);
 			path = Model;
@@ -234,6 +274,12 @@
 		70E7297F2C2309EF00DE5977 /* GenericUI */ = {
 			isa = PBXGroup;
 			children = (
+				702BCA572C31446B0051D8C2 /* MainCategoryListView.swift */,
+				702BCA562C31446B0051D8C2 /* SectionListView.swift */,
+				702BCA582C31446B0051D8C2 /* SubCategoryListView.swift */,
+				70E739232C314A5F00A4CF0E /* PoemListView.swift */,
+				70E739312C31555400A4CF0E /* PoemView.swift */,
+				70E739372C316DBA00A4CF0E /* CategoryListView.swift */,
 			);
 			path = GenericUI;
 			sourceTree = "<group>";
@@ -257,6 +303,7 @@
 		70EAE06B2B663CD800E4930D /* Tamil Lit */ = {
 			isa = PBXGroup;
 			children = (
+				702BCA532C313EF50051D8C2 /* ViewModel */,
 				70E7297F2C2309EF00DE5977 /* GenericUI */,
 				70626FCA2C23D54A00055E77 /* Model */,
 				702240542B69652000EF072B /* Helper */,
@@ -391,38 +438,51 @@
 			buildActionMask = 2147483647;
 			files = (
 				70EAE08A2B6643F100E4930D /* KuralListView.swift in Sources */,
+				70E739322C31555400A4CF0E /* PoemView.swift in Sources */,
 				70160F6B2C0B20E20053B4A9 /* MainView.swift in Sources */,
+				70E739272C314C3400A4CF0E /* Section+CoreDataClass.swift in Sources */,
+				70E739282C314C3400A4CF0E /* Section+CoreDataProperties.swift in Sources */,
 				701621CA2B66C30B003054AF /* AthichudiHomeView.swift in Sources */,
 				701621D02B66C434003054AF /* AthichudiModel.swift in Sources */,
 				70C50C622B6BC8F400D30338 /* HomeViewOld.swift in Sources */,
+				702BCA5B2C31446B0051D8C2 /* SubCategoryListView.swift in Sources */,
 				70A4357A2B6916210019DBEC /* KuralCategoryModel.swift in Sources */,
 				70E729822C230C7D00DE5977 /* TamilLitDB.xcdatamodeld in Sources */,
+				702BCA472C313EC70051D8C2 /* Explanation+CoreDataClass.swift in Sources */,
+				702BCA482C313EC70051D8C2 /* Explanation+CoreDataProperties.swift in Sources */,
+				702BCA492C313EC70051D8C2 /* Book+CoreDataClass.swift in Sources */,
+				702BCA4A2C313EC70051D8C2 /* Book+CoreDataProperties.swift in Sources */,
+				702BCA4B2C313EC70051D8C2 /* MainCategory+CoreDataClass.swift in Sources */,
+				702BCA4C2C313EC70051D8C2 /* MainCategory+CoreDataProperties.swift in Sources */,
+				702BCA592C31446B0051D8C2 /* SectionListView.swift in Sources */,
+				702BCA4D2C313EC70051D8C2 /* SubCategory+CoreDataClass.swift in Sources */,
+				702BCA5A2C31446B0051D8C2 /* MainCategoryListView.swift in Sources */,
+				702BCA4E2C313EC70051D8C2 /* SubCategory+CoreDataProperties.swift in Sources */,
+				702BCA512C313EC70051D8C2 /* Poem+CoreDataClass.swift in Sources */,
+				702BCA522C313EC70051D8C2 /* Poem+CoreDataProperties.swift in Sources */,
 				70685E452B669161001EB657 /* KuralViewModel.swift in Sources */,
+				70E739382C316DBA00A4CF0E /* CategoryListView.swift in Sources */,
+				70E739362C316D8700A4CF0E /* CategoryListViewModel.swift in Sources */,
 				70EAE0882B66434000E4930D /* KuralModel.swift in Sources */,
 				70685E412B664467001EB657 /* KuralDetailView.swift in Sources */,
+				702BCA552C313F1F0051D8C2 /* CoreDataManager.swift in Sources */,
 				7058F2762BB091EC00D957B0 /* NaaladiyarListView.swift in Sources */,
+				70E7392E2C3152DC00A4CF0E /* SectionListViewModel.swift in Sources */,
 				7058F2702BB090B300D957B0 /* NaaladiyarPoemModel.swift in Sources */,
 				70F7709F2C08BBAD00D329C3 /* HomeView.swift in Sources */,
 				701621CE2B66C424003054AF /* AthichudiDetailView.swift in Sources */,
 				7058F2732BB091C500D957B0 /* NaaladiyarHomeView.swift in Sources */,
 				701621CC2B66C40C003054AF /* AthichudiListView.swift in Sources */,
+				70E7392A2C31528500A4CF0E /* MainCategoryListViewModel.swift in Sources */,
+				70E7392C2C3152B500A4CF0E /* SubCategoryListViewModel.swift in Sources */,
+				70E739342C31559C00A4CF0E /* ExplanationListViewModel.swift in Sources */,
 				7058F26E2BB08EC600D957B0 /* NaaladiyarViewModel.swift in Sources */,
+				70E739242C314A5F00A4CF0E /* PoemListView.swift in Sources */,
 				70685E432B66453E001EB657 /* KuralHomeView.swift in Sources */,
 				7058F2782BB0920600D957B0 /* NaaladiyarCategoryView.swift in Sources */,
-				70626FBE2C23D53D00055E77 /* SubCategory+CoreDataClass.swift in Sources */,
-				70626FBF2C23D53D00055E77 /* SubCategory+CoreDataProperties.swift in Sources */,
-				70626FC02C23D53D00055E77 /* MainCategory+CoreDataClass.swift in Sources */,
-				70626FC12C23D53D00055E77 /* MainCategory+CoreDataProperties.swift in Sources */,
-				70626FC22C23D53D00055E77 /* Book+CoreDataClass.swift in Sources */,
-				70626FC32C23D53D00055E77 /* Book+CoreDataProperties.swift in Sources */,
-				70626FC42C23D53D00055E77 /* Section+CoreDataClass.swift in Sources */,
-				70626FC52C23D53D00055E77 /* Section+CoreDataProperties.swift in Sources */,
-				70626FC62C23D53D00055E77 /* Explanation+CoreDataClass.swift in Sources */,
-				70626FC72C23D53D00055E77 /* Explanation+CoreDataProperties.swift in Sources */,
-				70626FC82C23D53D00055E77 /* Poem+CoreDataClass.swift in Sources */,
-				70626FC92C23D53D00055E77 /* Poem+CoreDataProperties.swift in Sources */,
 				702240562B69653C00EF072B /* WrapView.swift in Sources */,
 				70EAE06D2B663CD800E4930D /* Tamil_LitApp.swift in Sources */,
+				70E739302C31530000A4CF0E /* PoemListViewModel.swift in Sources */,
 				7058F26C2BB08CF600D957B0 /* NaaladiyarCategoryModel.swift in Sources */,
 				7058F27A2BB0922A00D957B0 /* NaaladiyarDetailView.swift in Sources */,
 				70A435762B6911F50019DBEC /* KuralCategoryView.swift in Sources */,

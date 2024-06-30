@@ -10,10 +10,15 @@ import SwiftData
 
 @main
 struct Tamil_LitApp: App {
+    let persistenceController = CoreDataManager.shared
     
     var body: some Scene {
         WindowGroup {
-            MainView()
+            CategoryListView()
+//            MainCategoryListView()
+                .environment(\.managedObjectContext, persistenceController.viewContext)
+            
+//            MainView()
                 .preferredColorScheme(ColorScheme.light)
         }
     }

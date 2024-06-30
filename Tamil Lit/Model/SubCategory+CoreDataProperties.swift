@@ -2,7 +2,7 @@
 //  SubCategory+CoreDataProperties.swift
 //  Tamil Lit
 //
-//  Created by Selvarajan on 20/06/24.
+//  Created by Selvarajan on 30/06/24.
 //
 //
 
@@ -16,9 +16,13 @@ extension SubCategory {
         return NSFetchRequest<SubCategory>(entityName: "SubCategory")
     }
 
+    @NSManaged public var bookname: String?
+    @NSManaged public var end: Int16
+    @NSManaged public var groupname: String?
     @NSManaged public var id: UUID?
     @NSManaged public var info: String?
-    @NSManaged public var order: Int16
+    @NSManaged public var number: Int16
+    @NSManaged public var start: Int16
     @NSManaged public var subtitle: String?
     @NSManaged public var title: String?
     @NSManaged public var mainCategory: MainCategory?

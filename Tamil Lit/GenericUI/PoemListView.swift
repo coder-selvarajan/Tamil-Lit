@@ -8,17 +8,33 @@
 import SwiftUI
 
 struct PoemListView: View {
-    var section: Section
+    let colorTheme: Color
+    let bookName: String
+    let section: Section
     @StateObject private var viewModel = PoemListViewModel()
 
     var body: some View {
-        List(viewModel.poems) { poem in
-            NavigationLink(destination: PoemView(poem: poem)) {
-                Text(poem.poem ?? "No Poem")
-            }
+        ZStack {
+            colorTheme.opacity(0.2).ignoresSafeArea()
             
+            VStack {
+                List(viewModel.poems) { poem in
+                    NavigationLink(destination: PoemView(colorTheme: colorTheme,
+                                                         bookName: bookName,
+                                                         poem: poem)) {
+                        Text(poem.poem ?? "No Poem")
+                    }
+                    
+                }
+                .scrollContentBackground(Visibility.hidden)
+                
+                VStack{
+                    Text(" ")
+                }.frame(height: 50.0)
+            }
         }
-        .navigationTitle(section.title ?? "Sections")
+        .navigationBarTitle(section.title ?? "")
+        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             viewModel.fetchPoems(for: section)
         }

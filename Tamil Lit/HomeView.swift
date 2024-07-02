@@ -77,20 +77,26 @@ struct HomeView: View {
                                                  footnote: "Quatrains",
                                                  color: Color.indigo)
                                 }
-                                BookTileView(bookTitle: "இனியவை நாற்பது",
-                                             iconName: "text.book.closed",
-                                             footnote: "Epic Poetry",
-                                             color: Color.purple)
+                                NavigationLink(value: "இனியவை நாற்பது") {
+                                    BookTileView(bookTitle: "இனியவை நாற்பது",
+                                                 iconName: "text.book.closed",
+                                                 footnote: "Epic Poetry",
+                                                 color: Color.purple)
+                                }
                             }
                             HStack(spacing: 16) {
-                                BookTileView(bookTitle: "ஆச்சாரக் கோவை",
-                                             iconName: "book",
-                                             footnote: "Sangam Poetry",
-                                             color: Color.red)
-                                BookTileView(bookTitle: "நான்மணிக் கடிகை",
-                                             iconName: "text.book.closed",
-                                             footnote: "Epic Poetry",
-                                             color: Color.orange)
+                                NavigationLink(value: "ஆச்சாரக் கோவை") {
+                                    BookTileView(bookTitle: "ஆச்சாரக் கோவை",
+                                                 iconName: "book",
+                                                 footnote: "Sangam Poetry",
+                                                 color: Color.red)
+                                }
+                                NavigationLink(value: "நான்மணிக் கடிகை") {
+                                    BookTileView(bookTitle: "நான்மணிக் கடிகை",
+                                                 iconName: "text.book.closed",
+                                                 footnote: "Epic Poetry",
+                                                 color: Color.orange)
+                                }
                                 
                             }
                             HStack(spacing: 16) {
@@ -102,9 +108,7 @@ struct HomeView: View {
                                              iconName: "text.book.closed",
                                              footnote: "Epic Poetry",
                                              color: Color.green)
-                                
                             }
-                            
                         }
                         .padding()
                         
@@ -135,12 +139,23 @@ struct HomeView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: String.self) { value in
                 if value == "Thirukural" {
-                    KuralHomeView()
+//                    KuralHomeView()
+                    BookHomeView(colorTheme: .blue, bookName: "திருக்குறள்")
                 } else if value == "Athichudi" {
                     AthichudiHomeView()
                 } else if value == "Naaladiyar" {
                     NaaladiyarHomeView()
+                } else if value == "இனியவை நாற்பது" {
+                    BookHomeView(colorTheme: .purple, bookName: "திருக்குறள்")
+                } else if value == "ஆச்சாரக் கோவை" {
+                    BookHomeView(colorTheme: .red, bookName: "திருக்குறள்")
+                } else if value == "நான்மணிக் கடிகை" {
+                    BookHomeView(colorTheme: .orange, bookName: "திருக்குறள்")
                 }
+                
+                //
+                //
+                //
             }
             .toolbar {
                 ToolbarItem(placement: .principal) {

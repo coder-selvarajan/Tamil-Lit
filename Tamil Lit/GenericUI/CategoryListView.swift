@@ -8,55 +8,92 @@
 import SwiftUI
 
 struct CategoryListView: View {
-    @StateObject private var viewModel = CategoryListViewModel()
+    let colorTheme: Color
+    let bookName: String
+    @StateObject private var viewModel = CategoryViewModel()
     
     var body: some View {
-        ScrollView {
-            VStack {
-                // Main Categories
-                
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading) {
+                Text("பால்:")
+                    .foregroundStyle(.black.opacity(0.8))
+                    .font(.caption)
+                    .fontWeight(.bold)
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        ForEach(viewModel.mainCategories) { mainCategory in
-                            Text(mainCategory.title ?? "No Title")
-                                .padding()
-                                .background(viewModel.selectedMainCategory == mainCategory ? Color.blue : Color.clear)
+                        ForEach(viewModel.mainCategories, id:\.id) { mainCategory in
+                            Text("\(mainCategory.title!)")
+                                .padding(10)
+                                .font(.subheadline)
+                                .foregroundColor(viewModel.selectedMainCategory == mainCategory ? .white : .black)
+                                .background(viewModel.selectedMainCategory == mainCategory ? colorTheme.opacity(0.8) : .white)
+                                .cornerRadius(10.0)
                                 .onTapGesture {
                                     viewModel.selectMainCategory(mainCategory)
                                 }
                         }
                     }
                 }
-                .frame(maxWidth: .infinity)
-                
-                // Sub Categories
-                
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        ForEach(viewModel.subCategories) { subCategory in
-                            Text(subCategory.title ?? "No Title")
-                                .padding()
-                                .background(viewModel.selectedSubCategory == subCategory ? Color.green : Color.clear)
-                                .onTapGesture {
-                                    viewModel.selectSubCategory(subCategory)
+            }
+            .padding(.bottom, 10)
+            Divider()
+            
+            VStack(alignment: .leading) {
+                Text("இயல்:")
+                    .foregroundStyle(.black.opacity(0.8))
+                    .font(.caption)
+                    .fontWeight(.bold)
+                WrapView(data: viewModel.filteredSubCategories, content: { subCategory in
+                    Button(action: {}) {
+                        Text(subCategory.title!)
+                            .padding(10)
+                            .font(.subheadline)
+                            .foregroundColor(viewModel.selectedSubCategory == subCategory ? .white : .black)
+                            .background(viewModel.selectedSubCategory == subCategory ? colorTheme.opacity(0.8) : .white)
+                            .cornerRadius(10.0)
+                            .onTapGesture {
+                                viewModel.selectSubCategory(subCategory)
+                            }
+                    }
+                })
+            }
+            .padding(.bottom, 10)
+            Divider()
+            
+            VStack(alignment: .leading) {
+                Text("அதிகாரம்:")
+                    .foregroundStyle(.black.opacity(0.8))
+                    .font(.caption)
+                    .fontWeight(.bold)
+                ScrollView {
+                    LazyVStack(alignment: .leading) {
+                        ForEach(viewModel.filteredSections, id:\.self) { section in
+                            NavigationLink(destination: PoemListView(colorTheme: colorTheme,
+                                                                     bookName: bookName,
+                                                                     section: section)) {
+                                HStack {
+                                    Text("\(section.title!)")
+                                        .padding(.vertical, 10)
+                                        .foregroundStyle(.black)
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                        .foregroundColor(.gray)
                                 }
+                            }
                         }
                     }
                 }
-                .frame(maxWidth: .infinity)
-                
-                // Sections
-                VStack {
-                    ForEach(viewModel.sections) { section in
-                        Text(section.title ?? "No Title")
-                            .padding()
-                    }
-                }
-                .frame(maxWidth: .infinity)
             }
+            
+            VStack{
+                Text(" ")
+            }.frame(height: 50.0)
         }
+        .padding(20)
+        .navigationBarTitle(bookName)
+        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            viewModel.fetchMainCategories()
+            viewModel.fetchAllData(bookname: bookName)
         }
     }
 }

@@ -99,3 +99,53 @@ class CoreDataManager {
         }
     }
 }
+
+extension CoreDataManager {
+    func fetchMainCategories(for bookname: String) -> [MainCategory] {
+        let fetchRequest: NSFetchRequest<MainCategory> = MainCategory.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "number", ascending: true)]
+        fetchRequest.predicate = NSPredicate(format: "bookname == %@", bookname)
+        do {
+            return try viewContext.fetch(fetchRequest)
+        } catch {
+            print("Error fetching main categories: \(error)")
+            return []
+        }
+    }
+
+    func fetchAllSubCategories(for bookname: String) -> [SubCategory] {
+        let fetchRequest: NSFetchRequest<SubCategory> = SubCategory.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "number", ascending: true)]
+        fetchRequest.predicate = NSPredicate(format: "bookname == %@", bookname)
+        do {
+            return try viewContext.fetch(fetchRequest)
+        } catch {
+            print("Error fetching subcategories: \(error)")
+            return []
+        }
+    }
+
+    func fetchAllSections(for bookname: String) -> [Section] {
+        let fetchRequest: NSFetchRequest<Section> = Section.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "number", ascending: true)]
+        fetchRequest.predicate = NSPredicate(format: "bookname == %@", bookname)
+        do {
+            return try viewContext.fetch(fetchRequest)
+        } catch {
+            print("Error fetching sections: \(error)")
+            return []
+        }
+    }
+
+    func fetchAllPoems(for bookname: String) -> [Poem] {
+        let fetchRequest: NSFetchRequest<Poem> = Poem.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "number", ascending: true)]
+        fetchRequest.predicate = NSPredicate(format: "book.name == %@", bookname)
+        do {
+            return try viewContext.fetch(fetchRequest)
+        } catch {
+            print("Error fetching poems: \(error)")
+            return []
+        }
+    }
+}

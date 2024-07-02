@@ -39,6 +39,7 @@
         <relationship name="subCategories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SubCategory" inverseName="mainCategory" inverseEntity="SubCategory"/>
     </entity>
     <entity name="Poem" representedClassName="Poem" syncable="YES">
+        <attribute name="bookname" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="poem" optional="YES" attributeType="String"/>

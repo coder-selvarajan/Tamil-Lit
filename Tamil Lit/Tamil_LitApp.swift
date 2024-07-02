@@ -14,11 +14,12 @@ struct Tamil_LitApp: App {
     
     var body: some Scene {
         WindowGroup {
-            CategoryListView()
+//            TempHomeView()
+//            CategoryListView()
 //            MainCategoryListView()
-                .environment(\.managedObjectContext, persistenceController.viewContext)
             
-//            MainView()
+            MainView()
+                .environment(\.managedObjectContext, persistenceController.viewContext)
                 .preferredColorScheme(ColorScheme.light)
         }
     }

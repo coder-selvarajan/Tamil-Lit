@@ -13,9 +13,9 @@ struct SectionListView: View {
 
     var body: some View {
         List(viewModel.sections) { section in
-            NavigationLink(destination: PoemListView(section: section)) {
-                Text(section.title ?? "No Title")
-            }
+//            NavigationLink(destination: PoemListView(section: section)) {
+//                Text(section.title ?? "No Title")
+//            }
         }
         .navigationTitle(subCategory.title ?? "Sections")
         .onAppear {

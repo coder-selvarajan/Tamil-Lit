@@ -70,6 +70,9 @@ struct CategoryListView: View {
                         ForEach(viewModel.filteredSections, id:\.self) { section in
                             NavigationLink(destination: PoemListView(colorTheme: colorTheme,
                                                                      bookName: bookName,
+                                                                     categoryLevel: 3,
+                                                                     mainCategory: viewModel.selectedMainCategory,
+                                                                     subCategory: viewModel.selectedSubCategory,
                                                                      section: section)) {
                                 HStack {
                                     Text("\(section.title!)")

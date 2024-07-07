@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
     <entity name="Book" representedClassName="Book" syncable="YES">
         <attribute name="author" optional="YES" attributeType="String"/>
+        <attribute name="categoryLevel" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="color" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="image" optional="YES" attributeType="String"/>
@@ -15,6 +16,7 @@
     </entity>
     <entity name="Explanation" representedClassName="Explanation" syncable="YES">
         <attribute name="author" optional="YES" attributeType="String"/>
+        <attribute name="bookname" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="info" optional="YES" attributeType="String"/>
         <attribute name="language" optional="YES" attributeType="String"/>
@@ -44,7 +46,9 @@
         <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="poem" optional="YES" attributeType="String"/>
         <attribute name="poeminfo" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="transliteration" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
         <relationship name="book" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="poems" inverseEntity="Book"/>
         <relationship name="explanations" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Explanation" inverseName="poem" inverseEntity="Explanation"/>
         <relationship name="mainCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MainCategory" inverseName="poems" inverseEntity="MainCategory"/>

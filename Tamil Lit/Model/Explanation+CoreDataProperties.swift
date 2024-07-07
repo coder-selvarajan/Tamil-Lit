@@ -2,7 +2,7 @@
 //  Explanation+CoreDataProperties.swift
 //  Tamil Lit
 //
-//  Created by Selvarajan on 30/06/24.
+//  Created by Selvarajan on 06/07/24.
 //
 //
 
@@ -17,6 +17,7 @@ extension Explanation {
     }
 
     @NSManaged public var author: String?
+    @NSManaged public var bookname: String?
     @NSManaged public var id: UUID?
     @NSManaged public var info: String?
     @NSManaged public var language: String?

@@ -10,8 +10,31 @@ import SwiftUI
 struct PoemListView: View {
     let colorTheme: Color
     let bookName: String
-    let section: Section
+    let categoryLevel: Int
+    
+    var mainCategory: MainCategory?
+    var subCategory: SubCategory?
+    var section: Section?
+    
     @StateObject private var viewModel = PoemListViewModel()
+//    @State private var poems: [Poem]
+    
+    
+    func getTitle() -> String {
+        if let title = section?.title {
+            return title
+        }
+        
+        if let title = subCategory?.title {
+            return title
+        }
+        
+        if let title = mainCategory?.title {
+            return title
+        }
+        
+        return ""
+    }
 
     var body: some View {
         ZStack {
@@ -33,10 +56,14 @@ struct PoemListView: View {
                 }.frame(height: 50.0)
             }
         }
-        .navigationBarTitle(section.title ?? "")
+        .navigationBarTitle(getTitle())
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            viewModel.fetchPoems(for: section)
+            if section != nil {
+                viewModel.fetchPoemsBySection(section!)
+            } else if mainCategory != nil {
+                viewModel.fetchPoemsByCategory(mainCategory!)
+            }
         }
     }
 }

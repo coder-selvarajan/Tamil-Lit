@@ -85,13 +85,13 @@ struct HomeView: View {
                                 }
                             }
                             HStack(spacing: 16) {
-                                NavigationLink(value: "ஆச்சாரக் கோவை") {
-                                    BookTileView(bookTitle: "ஆச்சாரக் கோவை",
+                                NavigationLink(value: "ஆசாரக் கோவை") {
+                                    BookTileView(bookTitle: "ஆசாரக் கோவை",
                                                  iconName: "book",
                                                  footnote: "Sangam Poetry",
                                                  color: Color.red)
                                 }
-                                NavigationLink(value: "நான்மணிக் கடிகை") {
+                                NavigationLink(value: "நான்மணிக்கடிகை") {
                                     BookTileView(bookTitle: "நான்மணிக் கடிகை",
                                                  iconName: "text.book.closed",
                                                  footnote: "Epic Poetry",
@@ -100,14 +100,18 @@ struct HomeView: View {
                                 
                             }
                             HStack(spacing: 16) {
-                                BookTileView(bookTitle: "இன்னா நாற்பது",
-                                             iconName: "book",
-                                             footnote: "Sangam Poetry",
-                                             color: Color.yellow)
-                                BookTileView(bookTitle: "திரிகடுகம்",
-                                             iconName: "text.book.closed",
-                                             footnote: "Epic Poetry",
-                                             color: Color.green)
+                                NavigationLink(value: "இன்னா நாற்பது") {
+                                    BookTileView(bookTitle: "இன்னா நாற்பது",
+                                                 iconName: "book",
+                                                 footnote: "Sangam Poetry",
+                                                 color: Color.yellow)
+                                }
+                                NavigationLink(value: "திரிகடுகம்") {
+                                    BookTileView(bookTitle: "திரிகடுகம்",
+                                                 iconName: "text.book.closed",
+                                                 footnote: "Epic Poetry",
+                                                 color: Color.green)
+                                }
                             }
                         }
                         .padding()
@@ -142,15 +146,20 @@ struct HomeView: View {
 //                    KuralHomeView()
                     BookHomeView(colorTheme: .blue, bookName: "திருக்குறள்")
                 } else if value == "Athichudi" {
-                    AthichudiHomeView()
+                    BookHomeView(colorTheme: .cyan, bookName: "ஆத்திச்சூடி")
+//                    AthichudiHomeView()
                 } else if value == "Naaladiyar" {
                     NaaladiyarHomeView()
                 } else if value == "இனியவை நாற்பது" {
-                    BookHomeView(colorTheme: .purple, bookName: "திருக்குறள்")
-                } else if value == "ஆச்சாரக் கோவை" {
-                    BookHomeView(colorTheme: .red, bookName: "திருக்குறள்")
-                } else if value == "நான்மணிக் கடிகை" {
-                    BookHomeView(colorTheme: .orange, bookName: "திருக்குறள்")
+                    BookHomeView(colorTheme: .purple, bookName: "இனியவை நாற்பது")
+                } else if value == "ஆசாரக் கோவை" {
+                    BookHomeView(colorTheme: .red, bookName: "ஆசாரக் கோவை")
+                } else if value == "நான்மணிக்கடிகை" {
+                    BookHomeView(colorTheme: .orange, bookName: "நான்மணிக்கடிகை")
+                } else if value == "இன்னா நாற்பது" {
+                    BookHomeView(colorTheme: .yellow, bookName: "இன்னா நாற்பது")
+                } else if value == "திரிகடுகம்" {
+                    BookHomeView(colorTheme: .green, bookName: "திரிகடுகம்")
                 }
                 
                 //

@@ -73,11 +73,24 @@ class CoreDataManager {
         }
     }
     
-    func fetchPoems(for section: Section) -> [Poem] {
+    func fetchPoemsBySection(_ section: Section) -> [Poem] {
         let fetchRequest: NSFetchRequest<Poem> = Poem.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "number", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
         fetchRequest.predicate = NSPredicate(format: "section == %@", section)
+        do {
+            return try viewContext.fetch(fetchRequest)
+        } catch {
+            print("Error fetching poems: \(error)")
+            return []
+        }
+    }
+    
+    func fetchPoemsByCategory(_ category: MainCategory) -> [Poem] {
+        let fetchRequest: NSFetchRequest<Poem> = Poem.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "number", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        fetchRequest.predicate = NSPredicate(format: "mainCategory == %@", category)
         do {
             return try viewContext.fetch(fetchRequest)
         } catch {
@@ -101,6 +114,18 @@ class CoreDataManager {
 }
 
 extension CoreDataManager {
+    func fetchBook(for bookname: String) -> Book? {
+        let fetchRequest: NSFetchRequest<Book> = Book.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "name == %@", bookname)
+        do {
+            return try viewContext.fetch(fetchRequest).first!
+        } catch {
+            print("Error fetching book info: \(error)")
+        }
+        
+        return nil
+    }
+    
     func fetchMainCategories(for bookname: String) -> [MainCategory] {
         let fetchRequest: NSFetchRequest<MainCategory> = MainCategory.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "number", ascending: true)]

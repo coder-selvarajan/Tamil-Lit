@@ -10,12 +10,20 @@ import SwiftUI
 struct BookHomeView: View {
     let colorTheme: Color
     let bookName: String
+//    let book: Book?
+    @StateObject private var viewModel = CategoryViewModel()
+    
     
     var body: some View {
         ZStack {
             colorTheme.opacity(0.2).ignoresSafeArea()
-            
-            CategoryListView(colorTheme: colorTheme, bookName: bookName)
+            if viewModel.book?.categoryLevel == 1 {
+                SingleCategoryView(colorTheme: colorTheme, bookName: bookName)
+            } else {
+                CategoryListView(colorTheme: colorTheme, bookName: bookName)
+            }
+        }.onAppear {
+            viewModel.fetchAllData(bookname: bookName)
         }
         
     }

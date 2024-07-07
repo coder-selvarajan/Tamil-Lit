@@ -8,6 +8,7 @@
 import Foundation
 
 class CategoryViewModel: ObservableObject {
+    @Published var book: Book?
     @Published var mainCategories: [MainCategory] = []
     @Published var subCategories: [SubCategory] = []
     @Published var sections: [Section] = []
@@ -22,6 +23,8 @@ class CategoryViewModel: ObservableObject {
     @Published var filteredPoems: [Poem] = []
 
     func fetchAllData(bookname: String) {
+        
+        book = CoreDataManager.shared.fetchBook(for: bookname)
         mainCategories = CoreDataManager.shared.fetchMainCategories(for: bookname)
         subCategories = CoreDataManager.shared.fetchAllSubCategories(for: bookname)
         sections = CoreDataManager.shared.fetchAllSections(for: bookname)

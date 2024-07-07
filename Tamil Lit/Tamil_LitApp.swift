@@ -18,6 +18,7 @@ struct Tamil_LitApp: App {
 //            CategoryListView()
 //            MainCategoryListView()
             
+//            ImportDBView()
             MainView()
                 .environment(\.managedObjectContext, persistenceController.viewContext)
                 .preferredColorScheme(ColorScheme.light)

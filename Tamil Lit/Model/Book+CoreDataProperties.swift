@@ -2,7 +2,7 @@
 //  Book+CoreDataProperties.swift
 //  Tamil Lit
 //
-//  Created by Selvarajan on 30/06/24.
+//  Created by Selvarajan on 06/07/24.
 //
 //
 
@@ -17,6 +17,7 @@ extension Book {
     }
 
     @NSManaged public var author: String?
+    @NSManaged public var categoryLevel: Int16
     @NSManaged public var color: String?
     @NSManaged public var id: UUID?
     @NSManaged public var image: String?

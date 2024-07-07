@@ -10,7 +10,11 @@ import Foundation
 class PoemListViewModel: ObservableObject {
     @Published var poems: [Poem] = []
 
-    func fetchPoems(for section: Section) {
-        poems = CoreDataManager.shared.fetchPoems(for: section)
+    func fetchPoemsBySection(_ section: Section) {
+        poems = CoreDataManager.shared.fetchPoemsBySection(section)
+    }
+    
+    func fetchPoemsByCategory(_ mainCategory: MainCategory) {
+        poems = CoreDataManager.shared.fetchPoemsByCategory(mainCategory)
     }
 }

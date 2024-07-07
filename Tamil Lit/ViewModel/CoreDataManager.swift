@@ -21,6 +21,99 @@ class CoreDataManager {
         }
     }
     
+    
+    init() {
+        persistentContainer = NSPersistentContainer(name: "TamilLitDB") // Use the name of your Core Data model
+        
+        let description = persistentContainer.persistentStoreDescriptions.first
+        
+        // Ensure the URL for the existing database
+        if let url = existingDatabaseURL() {
+            description?.url = url
+        } else {
+            fatalError("Failed to locate the existing SQLite database.")
+        }
+        
+        persistentContainer.loadPersistentStores { description, error in
+            if let error = error {
+                fatalError("Failed to load Core Data stack: \(error)")
+            }
+        }
+        
+        CoreDataManager.printCoreDataStoreURL()
+    }
+    
+    private func existingDatabaseURL() -> URL? {
+        let fileManager = FileManager.default
+        let appSupportURL = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
+        let persistentStoreURL = appSupportURL.appendingPathComponent("TamilLitDB.sqlite") // Ensure the path matches your existing database
+        
+        if fileManager.fileExists(atPath: persistentStoreURL.path) {
+            return persistentStoreURL
+        } else {
+            // Attempt to copy from the bundle
+            if let bundleURL = Bundle.main.url(forResource: "TamilLitDB", withExtension: "sqlite") {
+                do {
+                    try fileManager.createDirectory(at: appSupportURL, withIntermediateDirectories: true, attributes: nil)
+                    try fileManager.copyItem(at: bundleURL, to: persistentStoreURL)
+                    
+                    // Copy -wal and -shm files if they exist
+                    if let walURL = Bundle.main.url(forResource: "TamilLitDB", withExtension: "sqlite-wal") {
+                        let destinationURL = appSupportURL.appendingPathComponent("TamilLitDB.sqlite-wal")
+                        try fileManager.copyItem(at: walURL, to: destinationURL)
+                    }
+                    if let shmURL = Bundle.main.url(forResource: "TamilLitDB", withExtension: "sqlite-shm") {
+                        let destinationURL = appSupportURL.appendingPathComponent("TamilLitDB.sqlite-shm")
+                        try fileManager.copyItem(at: shmURL, to: destinationURL)
+                    }
+                    
+                    return persistentStoreURL
+                } catch {
+                    fatalError("Error copying SQLite database: \(error)")
+                }
+            }
+        }
+        return nil
+    }
+    
+    /*
+    init() {
+        persistentContainer = NSPersistentContainer(name: "TamilLitDB")
+        
+        let description = persistentContainer.persistentStoreDescriptions.first
+        description?.url = existingDatabaseURL()
+        
+        persistentContainer.loadPersistentStores { description, error in
+            if let error = error {
+                fatalError("Failed to load Core Data stack: \(error)")
+            }
+        }
+        CoreDataManager.printCoreDataStoreURL()
+    }
+    
+    private func existingDatabaseURL() -> URL? {
+        let fileManager = FileManager.default
+        let appSupportURL = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
+        let persistentStoreURL = appSupportURL.appendingPathComponent("TamilBookDB.sqlite") // Ensure the path matches your existing database
+        
+        if fileManager.fileExists(atPath: persistentStoreURL.path) {
+            return persistentStoreURL
+        } else {
+            // Copy the existing database from the bundle to the documents directory if it doesn't exist
+            if let bundleURL = Bundle.main.url(forResource: "TamilLitDB", withExtension: "sqlite") {
+                do {
+                    try fileManager.copyItem(at: bundleURL, to: persistentStoreURL)
+                    return persistentStoreURL
+                } catch {
+                    fatalError("Error copying SQLite database: \(error)")
+                }
+            }
+        }
+        return nil
+    }
+    */
+    
+    /*
     private init() {
         persistentContainer = NSPersistentContainer(name: "TamilLitDB")
         persistentContainer.loadPersistentStores { (description, error) in
@@ -30,6 +123,7 @@ class CoreDataManager {
         }
         CoreDataManager.printCoreDataStoreURL()
     }
+    */
 
     var viewContext: NSManagedObjectContext {
         return persistentContainer.viewContext

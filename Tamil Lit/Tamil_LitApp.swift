@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
-import SwiftData
+//import SwiftData
 
 @main
 struct Tamil_LitApp: App {
     let persistenceController = CoreDataManager.shared
+    
+    @State private var loadingStatus: LoadingStatus  = .idle
     
     var body: some Scene {
         WindowGroup {
@@ -20,8 +22,16 @@ struct Tamil_LitApp: App {
             
 //            ImportDBView()
             MainView()
-                .environment(\.managedObjectContext, persistenceController.viewContext)
                 .preferredColorScheme(ColorScheme.light)
+                .environment(\.managedObjectContext, persistenceController.viewContext)
+                .environment(\.showLoading) { loadingStatus in
+                    self.loadingStatus = loadingStatus
+                }
+                .overlay(alignment: .center) {
+                    if loadingStatus == .loading {
+                        LoadingView()
+                    }
+                }
         }
     }
 }

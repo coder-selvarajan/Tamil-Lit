@@ -18,7 +18,11 @@ struct BookHomeView: View {
         ZStack {
             colorTheme.opacity(0.2).ignoresSafeArea()
             if viewModel.book?.categoryLevel == 1 {
-                SingleCategoryView(colorTheme: colorTheme, bookName: bookName)
+                if bookName == "ஆத்திச்சூடி" {
+                    SingleCategoryView(colorTheme: colorTheme, bookName: bookName)
+                } else {
+                    PoemListWithCategoryView(colorTheme: colorTheme, bookName: bookName)
+                }
             } else {
                 CategoryListView(colorTheme: colorTheme, bookName: bookName)
             }

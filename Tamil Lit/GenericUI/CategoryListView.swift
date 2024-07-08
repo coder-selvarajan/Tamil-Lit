@@ -65,7 +65,7 @@ struct CategoryListView: View {
                     .foregroundStyle(.black.opacity(0.8))
                     .font(.caption)
                     .fontWeight(.bold)
-                ScrollView {
+//                ScrollView {
                     LazyVStack(alignment: .leading) {
                         ForEach(viewModel.filteredSections, id:\.self) { section in
                             NavigationLink(destination: PoemListView(colorTheme: colorTheme,
@@ -85,12 +85,12 @@ struct CategoryListView: View {
                             }
                         }
                     }
-                }
+//                }
             }
             
-            VStack{
-                Text(" ")
-            }.frame(height: 50.0)
+//            VStack{
+//                Text(" ")
+//            }.frame(height: 50.0)
         }
         .padding(20)
         .navigationBarTitle(bookName)

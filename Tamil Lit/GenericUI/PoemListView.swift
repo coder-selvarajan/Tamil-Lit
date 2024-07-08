@@ -51,9 +51,9 @@ struct PoemListView: View {
                 }
                 .scrollContentBackground(Visibility.hidden)
                 
-                VStack{
-                    Text(" ")
-                }.frame(height: 50.0)
+//                VStack{
+//                    Text(" ")
+//                }.frame(height: 50.0)
             }
         }
         .navigationBarTitle(getTitle())

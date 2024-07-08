@@ -24,9 +24,8 @@ struct SingleCategoryView: View {
                         ForEach(viewModel.mainCategories, id:\.self) { category in
                             NavigationLink(destination: PoemListView(colorTheme: colorTheme,
                                                                      bookName: bookName,
-                                                                     categoryLevel: 1,
-                                                                     mainCategory: category)) {
-                                HStack {
+                                                                     categoryLevel: 1)) {
+                                 HStack {
                                     Text("\(category.title!)")
                                         .padding(.vertical, 10)
                                         .foregroundStyle(.black)
@@ -40,9 +39,9 @@ struct SingleCategoryView: View {
                 }
             }
             
-            VStack{
-                Text(" ")
-            }.frame(height: 50.0)
+//            VStack{
+//                Text(" ")
+//            }.frame(height: 50.0)
         }
         .padding(20)
         .navigationBarTitle(bookName)

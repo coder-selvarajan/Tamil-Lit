@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct MainView: View {
-    
     @State private var selectedTab = 0
+    @State private var navigationPath = NavigationPath()
+    @Environment(\.presentationMode) var presentationMode
+    
     
     init() {
         UITabBar.appearance().isHidden = true
@@ -17,30 +19,35 @@ struct MainView: View {
     
     var body: some View {
         ZStack {
-            
-            HomeView()
-            
-            VStack {
-                Spacer()
-                HStack {
+//            NavigationStack {
+                
+                HomeView()
+                
+                VStack {
                     Spacer()
-                    
-                    Button {
-                        // Go to home page
-                    } label: {
-                        Image(systemName: "house.fill")
-                            .font(.title2)
-                            .foregroundStyle(.black.opacity(0.8))
-                            .padding(15)
+                    HStack {
+                        Spacer()
+                        
+                        Button {
+                            // Go to home page
+                            print(navigationPath.count)
+//                            navigationPath.removeAll()
+//                            presentationMode.wrappedValue.dismiss()
+                        } label: {
+                            Image(systemName: "house.fill")
+                                .font(.title2)
+                                .foregroundStyle(.black.opacity(0.8))
+                                .padding(15)
+                        }
+                        .background(.white)
+                        .cornerRadius(10.0)
+                        .shadow(radius: 10)
+                        .padding(20)
+                        
                     }
-                    .background(.white)
-                    .cornerRadius(10.0)
-                    .shadow(radius: 10)
-                    .padding(20)
-
                 }
-            }
-            .edgesIgnoringSafeArea(.bottom)
+                .edgesIgnoringSafeArea(.bottom)
+//            }
             
 //            VStack(spacing: 0) {
 //                TabView(selection: $selectedTab) {

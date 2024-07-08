@@ -193,6 +193,19 @@ class CoreDataManager {
         }
     }
     
+    func fetchPoemsByBook(_ bookName: String) -> [Poem] {
+        let fetchRequest: NSFetchRequest<Poem> = Poem.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "number", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        fetchRequest.predicate = NSPredicate(format: "bookname == %@", bookName)
+        do {
+            return try viewContext.fetch(fetchRequest)
+        } catch {
+            print("Error fetching poems: \(error)")
+            return []
+        }
+    }
+    
     func fetchExplanations(for poem: Poem) -> [Explanation] {
         let fetchRequest: NSFetchRequest<Explanation> = Explanation.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "order", ascending: true)

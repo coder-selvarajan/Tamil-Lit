@@ -222,7 +222,7 @@ struct HomeView: View {
                     .padding(0)
                 }
             } // toolbar
-        }
+        } //NavigationStack
     }
 }
 

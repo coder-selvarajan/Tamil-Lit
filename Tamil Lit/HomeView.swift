@@ -9,10 +9,12 @@ import SwiftUI
 
 
 struct HomeView: View {
+    @Environment(\.showLoading) private var showLoading
+    
     var body: some View {
         NavigationStack {
             VStack {
-                ScrollView {
+                ScrollView(showsIndicators: false) {
                     VStack {
                         // Daily poem
                         VStack(alignment: .leading, spacing: 0) {
@@ -40,6 +42,40 @@ struct HomeView: View {
 //                        .background(Color.black.opacity(0.9))
                         .cornerRadius(8)
                         .padding()
+                        
+                        VStack (alignment: .leading) {
+                            HStack(spacing: 10) {
+                                Button {
+                                    Task {
+                                        showLoading(.loading)
+                                        try? await Task.sleep(nanoseconds: 1_000_000_000)
+                                        showLoading(.success)
+                                    }
+                                } label: {
+                                    Text(" 🪄 Random Poem") // 🌈
+                                        .foregroundStyle(.black)
+                                        .padding(10)
+                                        .background(.gray.opacity(0.15))
+                                        .cornerRadius(10.0)
+                                }
+
+                                Button {
+                                    Task {
+                                        showLoading(.loading)
+                                        try? await Task.sleep(nanoseconds: 2_000_000_000)
+                                        showLoading(.success)
+                                    }
+                                } label: {
+                                    Text(" ⭐️ Favourites")
+                                        .foregroundStyle(.black)
+                                        .padding(10)
+                                        .background(.gray.opacity(0.15))
+                                        .cornerRadius(10.0)
+                                }
+                                
+                                Spacer()
+                            }.padding(.horizontal, 20)
+                        }
                         
                         // Tiles
                         VStack(spacing: 16) {
@@ -117,9 +153,9 @@ struct HomeView: View {
                         }
                         .padding()
                         
-                        VStack{
-                            Text(" ")
-                        }.frame(height: 50.0)
+//                        VStack{
+//                            Text(" ")
+//                        }.frame(height: 50.0)
                         
                         Spacer()
                     }
@@ -140,7 +176,7 @@ struct HomeView: View {
 //                .cornerRadius(15)
 //                .padding(.horizontal)
             }
-            .padding(.bottom, 50)
+//            .padding(.bottom, 50)
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: String.self) { value in
                 if value == "Thirukural" {

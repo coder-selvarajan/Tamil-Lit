@@ -22,11 +22,13 @@ struct PoemView: View {
                 List(viewModel.explanations) { explanation in
                     Text("\(explanation.author ?? ""): \n\(explanation.meaning ?? "")")
                 }
+                .scrollContentBackground(Visibility.hidden)
+                .scrollIndicators(.hidden)
                 
-                VStack{
-                    Text(" ")
-                }.frame(height: 50.0)
-            }
+//                VStack{
+//                    Text(" ")
+//                }.frame(height: 50.0)
+            }.padding()
         }
         .navigationTitle(poem.section?.title ?? "")
         .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)

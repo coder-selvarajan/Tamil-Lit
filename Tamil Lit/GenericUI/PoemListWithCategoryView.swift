@@ -6,6 +6,20 @@
 //
 
 import SwiftUI
+struct SectionHeaderView: View {
+    let title: String
+    let id: UUID?
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(title)
+                .font(.footnote)
+                .foregroundStyle(.black)
+//                .padding(.leading, -10)
+                
+        }.id(id)
+    }
+}
 
 struct PoemListWithCategoryView: View {
     let colorTheme: Color
@@ -22,6 +36,8 @@ struct PoemListWithCategoryView: View {
         
         return category.title ?? ""
     }
+    
+    
     
     var body: some View {
         ZStack {
@@ -47,7 +63,8 @@ struct PoemListWithCategoryView: View {
                                     }
                                 } label: {
                                     Text(getShortTitle(category))
-                                        .padding(.horizontal)
+                                        .font(.subheadline)
+                                        .padding(.horizontal, 10)
                                         .padding(.vertical, 10)
                                         .foregroundColor(highlightedCategoryId == category.id ? .white : .black)
                                         .background(highlightedCategoryId == category.id ? colorTheme.opacity(0.8) : .white.opacity(0.8))
@@ -60,15 +77,26 @@ struct PoemListWithCategoryView: View {
                     }
                 }
                 
+                Divider().padding(.bottom, 0)
+                
                 VStack(alignment: .leading) {
                     ScrollViewReader { proxy in
                         List {
                             ForEach(viewModel.categories, id:\.id) { category in
                                 SwiftUI.Section(header: Text(category.title ?? "")
-                                    .font(.footnote)
-                                    .foregroundStyle(.black)
-                                    .padding(.leading, -10)
-                                    .id(category.id)) {
+                                                                .font(.footnote)
+                                                                .fontWeight(.semibold)
+                                                                .foregroundColor(.black)
+                                                                .padding(.leading, 0)
+                                                                .padding(.top, 0)
+                                                                .id(category.id)) {
+//                                SwiftUI.Section(header: SectionHeaderView(title: category.title ?? "",
+//                                                                          id: category.id)) {
+//                                SwiftUI.Section(header: Text(category.title ?? "")
+//                                    .font(.footnote)
+//                                    .foregroundStyle(.black)
+//                                    .padding(.leading, -10)
+//                                    .id(category.id)) {
                                         // fetch poems by category and display in a section
                                         ForEach(viewModel.fetchPoemsByCategory(category.title ?? ""), id: \.id) { poem in
                                             NavigationLink(destination: PoemView(colorTheme: colorTheme,
@@ -104,7 +132,9 @@ struct PoemListWithCategoryView: View {
                         .scrollIndicators(.hidden)
                         .onChange(of: highlightedCategoryId) { id in
                             if let id = id {
-                                proxy.scrollTo(id, anchor: .topTrailing)
+                                withAnimation {
+                                    proxy.scrollTo(id, anchor: .topLeading)
+                                }
                             }
                         }
                     }
@@ -120,6 +150,8 @@ struct PoemListWithCategoryView: View {
         .onAppear {
             viewModel.fetchCateoriesByBook(bookName)
             viewModel.fetchPoemsByBook(bookName)
+            
+            highlightedCategoryId = viewModel.selectedCategory?.id
             
 //            highlightedCategory = viewModel.selectedCategory?.title ?? ""
             

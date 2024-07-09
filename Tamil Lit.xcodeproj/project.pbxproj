@@ -283,11 +283,11 @@
 			isa = PBXGroup;
 			children = (
 				7068D7E22C33DCE700FAB1F6 /* BookHomeView.swift */,
+				7093B6742C398FFB00D38548 /* SingleCategoryView.swift */,
 				70E739372C316DBA00A4CF0E /* CategoryListView.swift */,
 				70E739232C314A5F00A4CF0E /* PoemListView.swift */,
 				70091FFF2C3BB1270049C60C /* PoemListWithCategoryView.swift */,
 				70E739312C31555400A4CF0E /* PoemView.swift */,
-				7093B6742C398FFB00D38548 /* SingleCategoryView.swift */,
 			);
 			path = GenericUI;
 			sourceTree = "<group>";

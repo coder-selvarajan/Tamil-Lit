@@ -19,7 +19,11 @@ struct HomeView: View {
                         // Daily poem
                         VStack(alignment: .leading, spacing: 0) {
                             HStack(alignment: .center) {
-                                Text("Poem of the day")
+                                Image(systemName: "deskclock")
+                                    .font(.headline)
+                                    .foregroundColor(.black)
+                                
+                                Text("தினம் ஒரு பாடல்:")
                                     .font(.headline)
                                     .fontWeight(.semibold)
                                 
@@ -44,37 +48,57 @@ struct HomeView: View {
                         .padding()
                         
                         VStack (alignment: .leading) {
-                            HStack(spacing: 10) {
-                                Button {
-                                    Task {
-                                        showLoading(.loading)
-                                        try? await Task.sleep(nanoseconds: 1_000_000_000)
-                                        showLoading(.success)
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(spacing: 15) {
+                                    Button {
+                                        Task {
+                                            showLoading(.loading)
+                                            try? await Task.sleep(nanoseconds: 1_000_000_000)
+                                            showLoading(.success)
+                                        }
+                                    } label: {
+                                        HStack {
+                                            Image(systemName: "wand.and.stars")
+                                                .font(.headline)
+                                                .foregroundColor(.pink)
+                                            Text("ஏதோ ஒரு பாடல்")
+                                                .lineLimit(1)
+                                                .foregroundStyle(.black)
+                                        }
+                                        .font(.body)
+                                        .fontWeight(.semibold)
+                                        .padding()
                                     }
-                                } label: {
-                                    Text(" 🪄 Random Poem") // 🌈
-                                        .foregroundStyle(.black)
-                                        .padding(10)
-                                        .background(.gray.opacity(0.15))
-                                        .cornerRadius(10.0)
-                                }
-
-                                Button {
-                                    Task {
-                                        showLoading(.loading)
-                                        try? await Task.sleep(nanoseconds: 2_000_000_000)
-                                        showLoading(.success)
+                                    .background(.gray.opacity(0.15))
+                                    .cornerRadius(10.0)
+                                    
+                                    
+                                    Button {
+                                        Task {
+                                            showLoading(.loading)
+                                            try? await Task.sleep(nanoseconds: 2_000_000_000)
+                                            showLoading(.success)
+                                        }
+                                    } label: {
+                                        HStack {
+                                            Image(systemName: "star.fill")
+                                                .font(.headline)
+                                                .foregroundColor(.yellow)
+                                            Text("சேமித்தவை")
+                                                .lineLimit(1)
+                                                .foregroundStyle(.black)
+                                        }
+                                        .font(.body)
+                                        .fontWeight(.semibold)
+                                        //                                    .foregroundColor(.black)
+                                        .padding()
                                     }
-                                } label: {
-                                    Text(" ⭐️ Favourites")
-                                        .foregroundStyle(.black)
-                                        .padding(10)
-                                        .background(.gray.opacity(0.15))
-                                        .cornerRadius(10.0)
+                                    .background(.gray.opacity(0.15))
+                                    .cornerRadius(10.0)
                                 }
+                            }
+                            .padding(.horizontal)
                                 
-                                Spacer()
-                            }.padding(.horizontal, 20)
                         }
                         
                         // Tiles
@@ -94,16 +118,16 @@ struct HomeView: View {
                             HStack(spacing: 16) {
                                 NavigationLink(value: "Thirukural") {
                                     BookTileView(bookTitle: "திருக்குறள்",
-                                                 imageName: "Thiruvalluvar3",
+                                                 imageName: "Murugan", //"Thiruvalluvar3",
 //                                                 iconName: "book",
-                                                 footnote: "1330 poems",
+                                                 footnote: "1330 பாடல்கள்",
                                                  color: Color.blue)
                                 }
                                 NavigationLink(value: "Athichudi") {
                                     BookTileView(bookTitle: "ஆத்தி சூடி",
                                                  imageName: "Avvaiyar3",
 //                                                 iconName: "character.book.closed",
-                                                 footnote: "100 proverbs",
+                                                 footnote: "109 பாடல்கள்",
                                                  color: Color.teal)
                                 }
                             }
@@ -111,27 +135,30 @@ struct HomeView: View {
                                 NavigationLink(value: "Naaladiyar") {
                                     BookTileView(bookTitle: "நாலடியார்",
                                                  imageName: "Jainmonk",
-                                                 footnote: "Quatrains",
+                                                 footnote: "400 பாடல்கள்",
                                                  color: Color.indigo)
                                 }
                                 NavigationLink(value: "இனியவை நாற்பது") {
                                     BookTileView(bookTitle: "இனியவை நாற்பது",
-                                                 iconName: "text.book.closed",
-                                                 footnote: "Epic Poetry",
+//                                                 iconName: "text.book.closed",
+                                                 imageName: "Balaji",
+                                                 footnote: "40 பாடல்கள்",
                                                  color: Color.purple)
                                 }
                             }
                             HStack(spacing: 16) {
                                 NavigationLink(value: "ஆசாரக் கோவை") {
                                     BookTileView(bookTitle: "ஆசாரக் கோவை",
-                                                 iconName: "book",
-                                                 footnote: "Sangam Poetry",
+//                                                 iconName: "book",
+                                                 imageName: "Ramar",
+                                                 footnote: "100 பாடல்கள்",
                                                  color: Color.red)
                                 }
                                 NavigationLink(value: "நான்மணிக்கடிகை") {
                                     BookTileView(bookTitle: "நான்மணிக் கடிகை",
-                                                 iconName: "text.book.closed",
-                                                 footnote: "Epic Poetry",
+//                                                 iconName: "text.book.closed",
+                                                 imageName: "Meenakshi",
+                                                 footnote: "101 பாடல்கள்",
                                                  color: Color.orange)
                                 }
                                 
@@ -139,14 +166,16 @@ struct HomeView: View {
                             HStack(spacing: 16) {
                                 NavigationLink(value: "இன்னா நாற்பது") {
                                     BookTileView(bookTitle: "இன்னா நாற்பது",
-                                                 iconName: "book",
-                                                 footnote: "Sangam Poetry",
+//                                                 iconName: "book",
+                                                 imageName: "Karuppusamy",
+                                                 footnote: "40 பாடல்கள்",
                                                  color: Color.yellow)
                                 }
                                 NavigationLink(value: "திரிகடுகம்") {
                                     BookTileView(bookTitle: "திரிகடுகம்",
-                                                 iconName: "text.book.closed",
-                                                 footnote: "Epic Poetry",
+//                                                 iconName: "text.book.closed",
+                                                 imageName: "Adiyogi",
+                                                 footnote: "102 பாடல்கள்",
                                                  color: Color.green)
                                 }
                             }
@@ -208,7 +237,7 @@ struct HomeView: View {
                     HStack {
                         // Search Bar
                         HStack {
-                            TextField("Search Poems...", text: .constant(""))
+                            TextField("பாடல் தேடுக...", text: .constant(""))
                                 .padding(.leading, 10)
                         }
                         .padding(10)
@@ -265,12 +294,10 @@ struct BookTileView: View {
                         Image(img)
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 70)
+                            .frame(height: 90)
                             .saturation(0.0)
                             .brightness(0.02)
-//                            .contrast(1.0)
-//                            .padding(10)
-                            .opacity(0.8)
+                            .opacity(0.6)
                     }
                     else {
                         Image("book-icon")
@@ -345,6 +372,6 @@ struct TabBarButton: View {
 //}
 
 
-#Preview {
-    HomeView()
-}
+//#Preview {
+//    HomeView()
+//}

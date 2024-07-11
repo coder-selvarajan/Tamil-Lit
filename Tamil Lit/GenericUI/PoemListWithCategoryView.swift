@@ -6,20 +6,8 @@
 //
 
 import SwiftUI
-struct SectionHeaderView: View {
-    let title: String
-    let id: UUID?
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text(title)
-                .font(.footnote)
-                .foregroundStyle(.black)
-//                .padding(.leading, -10)
-                
-        }.id(id)
-    }
-}
+
+
 
 struct PoemListWithCategoryView: View {
     let colorTheme: Color
@@ -27,6 +15,7 @@ struct PoemListWithCategoryView: View {
     //    let categoryLevel: Int
     
     @StateObject var viewModel = PoemListWithCategoryViewModel()
+    @State private var selectedCategoryId: UUID?
     @State private var highlightedCategoryId: UUID?
     
     func getShortTitle(_ category: MainCategory) -> String {
@@ -37,13 +26,13 @@ struct PoemListWithCategoryView: View {
         return category.title ?? ""
     }
     
-    
-    
     var body: some View {
         ZStack {
             colorTheme.opacity(0.2).ignoresSafeArea()
             
             VStack {
+                
+                
                 VStack(alignment: .leading) {
                     Text("வகைகள்: ")
                         .foregroundStyle(.black.opacity(0.8))
@@ -55,12 +44,18 @@ struct PoemListWithCategoryView: View {
                         HStack(spacing: 10) {
                             ForEach(viewModel.categories, id: \.id) { category in
                                 Button {
-//                                    highlightedCategory = category.title ?? ""
                                     viewModel.selectedCategory = category
+                                    highlightedCategoryId = category.id
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                        withAnimation {
+                                            highlightedCategoryId = nil
+                                        }
+                                    }
                                     
                                     withAnimation {
-                                        highlightedCategoryId = category.id
+                                        selectedCategoryId = category.id
                                     }
+                                    
                                 } label: {
                                     Text(getShortTitle(category))
                                         .font(.subheadline)
@@ -75,88 +70,94 @@ struct PoemListWithCategoryView: View {
                         .padding(.horizontal)
                         .padding(.bottom)
                     }
-                }
+                } // VStack
+                .padding(.top)
                 
-                Divider().padding(.bottom, 0)
+                Divider().padding(.bottom, 10)
                 
                 VStack(alignment: .leading) {
                     ScrollViewReader { proxy in
                         List {
                             ForEach(viewModel.categories, id:\.id) { category in
-                                SwiftUI.Section(header: Text(category.title ?? "")
-                                                                .font(.footnote)
-                                                                .fontWeight(.semibold)
-                                                                .foregroundColor(.black)
-                                                                .padding(.leading, 0)
-                                                                .padding(.top, 0)
-                                                                .id(category.id)) {
-//                                SwiftUI.Section(header: SectionHeaderView(title: category.title ?? "",
-//                                                                          id: category.id)) {
-//                                SwiftUI.Section(header: Text(category.title ?? "")
-//                                    .font(.footnote)
-//                                    .foregroundStyle(.black)
-//                                    .padding(.leading, -10)
-//                                    .id(category.id)) {
-                                        // fetch poems by category and display in a section
-                                        ForEach(viewModel.fetchPoemsByCategory(category.title ?? ""), id: \.id) { poem in
-                                            NavigationLink(destination: PoemView(colorTheme: colorTheme,
-                                                                                 bookName: bookName,
-                                                                                 poem: poem)) {
-                                                if let poemText = poem.poem {
-                                                    Text(poemText)
+                                SwiftUI.Section(header: Text("").id(category.id)) {
+                                    SwiftUI.Section(header: Text(category.title ?? "")
+                                        .font(.title3)
+                                        .fontWeight(.semibold)
+                                        .foregroundColor(colorTheme)
+                                        .padding(.leading, 0)
+                                        .padding(.top, 0)) {
+                                            // fetch poems by category and display in a section
+                                            ForEach(viewModel.fetchPoemsByCategory(category.title ?? ""), id: \.id) { poem in
+                                                NavigationLink(destination: PoemView(colorTheme: colorTheme,
+                                                                                     bookName: bookName,
+                                                                                     poem: poem)) {
+                                                    if let poemText = poem.poem {
+                                                        Text(poemText)
+                                                    }
                                                 }
                                             }
-                                        }
-                                    }
-//                                    .background(
-//                                        GeometryReader { geo in
-//                                            Color.clear
-//                                                .onAppear {
-//                                                    let frame = geo.frame(in: .global)
-//                                                    if frame.minY < UIScreen.main.bounds.height / 2 && frame.maxY > UIScreen.main.bounds.height / 2 {
-//                                                        highlightedCategoryId = category.id
+                                        } //Section2
+                                } //Section1
+//                                .background(
+//                                    GeometryReader { geo in
+//                                        Color.clear
+//                                            .onAppear {
+//                                                let frame = geo.frame(in: .global)
+//                                                if frame.minY < UIScreen.main.bounds.height / 2 && frame.maxY > UIScreen.main.bounds.height / 2 {
+//                                                    highlightedCategoryId = category.id
+//                                                }
+//                                            }
+//                                            .onChange(of: selectedCategoryId) { id in
+//                                                if let id = id {
+//                                                    withAnimation {
+//                                                        proxy.scrollTo(id, anchor: .top)
 //                                                    }
 //                                                }
-//                                                .onChange(of: highlightedCategoryId) { _ in
-//                                                    if let id = highlightedCategoryId {
-//                                                        withAnimation {
-//                                                            proxy.scrollTo(id, anchor: .top)
-//                                                        }
-//                                                    }
-//                                                }
-//                                        }
-//                                    )
+//                                            }
+//                                    }
+//                                )
                             }
-                        }
-                        .scrollContentBackground(Visibility.hidden)
-                        .scrollIndicators(.hidden)
-                        .onChange(of: highlightedCategoryId) { id in
-                            if let id = id {
-                                withAnimation {
-                                    proxy.scrollTo(id, anchor: .topLeading)
+                            .onChange(of: selectedCategoryId) { id in
+                                if let id = id {
+                                    withAnimation(.spring()) {
+                                        proxy.scrollTo(id, anchor: .top)
+                                    }
                                 }
                             }
-                        }
-                    }
-                    //                    VStack{
-                    //                        Text(" ")
-                    //                    }.frame(height: 50.0)
+                        } // List
+                        .scrollContentBackground(Visibility.hidden)
+                        .scrollIndicators(.hidden)
+                        
+                    } //ScrollViewReader
                 }
-                //                .padding(.horizontal)
-            }
+            } // VStack
         }
-        .navigationBarTitle(bookName)
-        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             viewModel.fetchCateoriesByBook(bookName)
             viewModel.fetchPoemsByBook(bookName)
-            
-            highlightedCategoryId = viewModel.selectedCategory?.id
-            
-//            highlightedCategory = viewModel.selectedCategory?.title ?? ""
+            selectedCategoryId = viewModel.selectedCategory?.id
             
             //viewModel.fetchPoemsByCategory()
         }
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                HStack {
+                    // Search Bar
+                    Image("Murugan")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 30)
+                        .padding(.trailing, 10)
+                    Text(bookName)
+                        .font(.body)
+                        .fontWeight(.semibold)
+                    
+                    Spacer()
+                    Image(systemName: "info.circle")
+                }
+                .padding(0)
+            }
+        } // toolbar
     }
 }
 

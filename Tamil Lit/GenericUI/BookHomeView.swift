@@ -16,7 +16,7 @@ struct BookHomeView: View {
     
     var body: some View {
         ZStack {
-            colorTheme.opacity(0.2).ignoresSafeArea()
+            colorTheme.opacity(0.25).ignoresSafeArea()
             if viewModel.book?.categoryLevel == 1 {
                 PoemListWithCategoryView(colorTheme: colorTheme, bookName: bookName)
                 

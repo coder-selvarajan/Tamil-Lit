@@ -61,43 +61,17 @@ struct KuralDetailView: View {
                                                 .frame(maxWidth: .infinity, alignment: .leading)
                                         }
                                         
-                                        //                                    Divider()
-                                        //                                        .overlay(Color.white)
-                                        //                                        .padding(.vertical, 10)
-                                        //
-                                        //                                    VStack(alignment: .leading, spacing: 2.0) {
-                                        //                                        Text("\(kural.transliteration1)")
-                                        //                                        Text("\(kural.transliteration2)")
-                                        //                                    }
-                                        //                                    .font(.subheadline)
-                                        
                                         Spacer()
                                     }
                                     .tag(kural)
                                     .padding(.bottom, 15)
                                     .frame(maxWidth: .infinity)
-                                    //                                .padding()
-                                    //.background(.blue.opacity(0.35))
-                                    //                    .background(.blue.opacity(0.5))
-                                    //.cornerRadius(10.0)
                                     .padding(.horizontal, 10)
                                 }
-                                
                             }
                             .frame(height: 160)
                             .tabViewStyle(.page)
                             .indexViewStyle(.page(backgroundDisplayMode: .never))
-                            
-//                            Text("SAVE")
-//                                .foregroundStyle(.red)
-                            
-//                            Image(systemName: "bookmark")
-//                                .font(.body)
-//                                .foregroundStyle(.white)
-//                                .padding([.top, .trailing])
-//                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
-//                                .offset(x: -5, y: -5)
-                                
                         }
                     }
                     .padding(.horizontal, 10)

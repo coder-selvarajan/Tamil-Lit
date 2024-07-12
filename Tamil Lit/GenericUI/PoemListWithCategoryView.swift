@@ -88,9 +88,10 @@ struct PoemListWithCategoryView: View {
                                         .padding(.top, 0)) {
                                             // fetch poems by category and display in a section
                                             ForEach(viewModel.fetchPoemsByCategory(category.title ?? ""), id: \.id) { poem in
-                                                NavigationLink(destination: PoemView(colorTheme: colorTheme,
+                                                NavigationLink(destination: PoemDetailView(colorTheme: colorTheme,
                                                                                      bookName: bookName,
-                                                                                     poem: poem)) {
+                                                                                           poems: viewModel.fetchPoemsByCategory(category.title ?? ""),
+                                                                                   selectedPoem: poem)) {
                                                     if let poemText = poem.poem {
                                                         Text(poemText)
                                                     }

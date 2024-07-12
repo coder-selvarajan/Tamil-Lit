@@ -209,8 +209,8 @@ struct HomeView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: String.self) { value in
                 if value == "Thirukural" {
-//                    KuralHomeView()
-                    BookHomeView(colorTheme: .blue, bookName: "திருக்குறள்")
+                    KuralHomeView()
+//                    BookHomeView(colorTheme: .blue, bookName: "திருக்குறள்")
                 } else if value == "Athichudi" {
                     BookHomeView(colorTheme: .cyan, bookName: "ஆத்திச்சூடி")
 //                    AthichudiHomeView()

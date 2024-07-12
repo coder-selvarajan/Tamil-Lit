@@ -42,9 +42,10 @@ struct PoemListView: View {
             
             VStack {
                 List(viewModel.poems) { poem in
-                    NavigationLink(destination: PoemView(colorTheme: colorTheme,
-                                                         bookName: bookName,
-                                                         poem: poem)) {
+                    NavigationLink(destination: PoemDetailView(colorTheme: colorTheme,
+                                                               bookName: bookName,
+                                                               poems: viewModel.poems,
+                                                               selectedPoem: poem)) {
                         Text(poem.poem ?? "No Poem")
                     }
                     

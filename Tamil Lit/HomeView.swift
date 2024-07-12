@@ -169,14 +169,14 @@ struct HomeView: View {
 //                                                 iconName: "book",
                                                  imageName: "Karuppusamy",
                                                  footnote: "40 பாடல்கள்",
-                                                 color: Color.yellow)
+                                                 color: Color.pink)
                                 }
                                 NavigationLink(value: "திரிகடுகம்") {
                                     BookTileView(bookTitle: "திரிகடுகம்",
 //                                                 iconName: "text.book.closed",
                                                  imageName: "Adiyogi",
                                                  footnote: "102 பாடல்கள்",
-                                                 color: Color.green)
+                                                 color: Color.brown)
                                 }
                             }
                         }
@@ -209,10 +209,10 @@ struct HomeView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: String.self) { value in
                 if value == "Thirukural" {
-                    KuralHomeView()
-//                    BookHomeView(colorTheme: .blue, bookName: "திருக்குறள்")
+//                    KuralHomeView()
+                    BookHomeView(colorTheme: .blue, bookName: "திருக்குறள்")
                 } else if value == "Athichudi" {
-                    BookHomeView(colorTheme: .cyan, bookName: "ஆத்திச்சூடி")
+                    BookHomeView(colorTheme: .teal, bookName: "ஆத்திச்சூடி")
 //                    AthichudiHomeView()
                 } else if value == "Naaladiyar" {
                     NaaladiyarHomeView()
@@ -223,14 +223,10 @@ struct HomeView: View {
                 } else if value == "நான்மணிக்கடிகை" {
                     BookHomeView(colorTheme: .orange, bookName: "நான்மணிக்கடிகை")
                 } else if value == "இன்னா நாற்பது" {
-                    BookHomeView(colorTheme: .yellow, bookName: "இன்னா நாற்பது")
+                    BookHomeView(colorTheme: .pink, bookName: "இன்னா நாற்பது")
                 } else if value == "திரிகடுகம்" {
-                    BookHomeView(colorTheme: .green, bookName: "திரிகடுகம்")
+                    BookHomeView(colorTheme: .brown, bookName: "திரிகடுகம்")
                 }
-                
-                //
-                //
-                //
             }
             .toolbar {
                 ToolbarItem(placement: .principal) {

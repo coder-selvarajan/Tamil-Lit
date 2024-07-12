@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-
-
 struct PoemListWithCategoryView: View {
     let colorTheme: Color
     let bookName: String
@@ -56,6 +54,9 @@ struct PoemListWithCategoryView: View {
                                         selectedCategoryId = category.id
                                     }
                                     
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                        selectedCategoryId = nil
+                                    }
                                 } label: {
                                     Text(getShortTitle(category))
                                         .font(.subheadline)
@@ -68,18 +69,18 @@ struct PoemListWithCategoryView: View {
                             }
                         }
                         .padding(.horizontal)
-                        .padding(.bottom)
+                        .padding(.bottom, 10)
                     }
                 } // VStack
                 .padding(.top)
                 
-                Divider().padding(.bottom, 10)
+                Divider().padding(.bottom, 10).padding(.top, 0)
                 
                 VStack(alignment: .leading) {
                     ScrollViewReader { proxy in
                         List {
                             ForEach(viewModel.categories, id:\.id) { category in
-                                SwiftUI.Section(header: Text("").id(category.id)) {
+                                SwiftUI.Section(header: EmptyView().frame(height: 0).id(category.id)) {
                                     SwiftUI.Section(header: Text(category.title ?? "")
                                         .font(.title3)
                                         .fontWeight(.semibold)
@@ -88,10 +89,15 @@ struct PoemListWithCategoryView: View {
                                         .padding(.top, 0)) {
                                             // fetch poems by category and display in a section
                                             ForEach(viewModel.fetchPoemsByCategory(category.title ?? ""), id: \.id) { poem in
-                                                NavigationLink(destination: PoemDetailView(colorTheme: colorTheme,
-                                                                                     bookName: bookName,
-                                                                                           poems: viewModel.fetchPoemsByCategory(category.title ?? ""),
-                                                                                   selectedPoem: poem)) {
+                                                NavigationLink(destination: 
+                                                                PoemDetailView(colorTheme: colorTheme,
+                                                                               bookName: bookName,
+                                                                               poems: viewModel.fetchPoemsByCategory(category.title ?? ""),
+                                                                               selectedPoem: poem,
+                                                                               mainCategory: category.title ?? "",
+                                                                               subCategory: "",
+                                                                               section: ""
+                                                                              )) {
                                                     if let poemText = poem.poem {
                                                         Text(poemText)
                                                     }
@@ -128,6 +134,7 @@ struct PoemListWithCategoryView: View {
                         } // List
                         .scrollContentBackground(Visibility.hidden)
                         .scrollIndicators(.hidden)
+                        .padding(.top, -5)
                         
                     } //ScrollViewReader
                 }
@@ -136,7 +143,7 @@ struct PoemListWithCategoryView: View {
         .onAppear {
             viewModel.fetchCateoriesByBook(bookName)
             viewModel.fetchPoemsByBook(bookName)
-            selectedCategoryId = viewModel.selectedCategory?.id
+//            selectedCategoryId = viewModel.selectedCategory?.id
             
             //viewModel.fetchPoemsByCategory()
         }
@@ -152,11 +159,16 @@ struct PoemListWithCategoryView: View {
                     Text(bookName)
                         .font(.body)
                         .fontWeight(.semibold)
-                    
-                    Spacer()
-                    Image(systemName: "info.circle")
                 }
                 .padding(0)
+            }
+            ToolbarItem {
+                Button {
+                    //
+                } label: {
+                    Image(systemName: "info.circle")
+                        .foregroundColor(.black)
+                }
             }
         } // toolbar
     }

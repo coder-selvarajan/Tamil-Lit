@@ -13,9 +13,78 @@ struct PoemDetailView: View {
     
     var poems: [Poem] = []
     @State var selectedPoem: Poem
+    var mainCategory: String = ""
+    var subCategory: String = ""
+    var section: String = ""
     
     @StateObject private var viewModel = ExplanationListViewModel()
 
+    @State var poemViewHieght: CGFloat = 160.0
+    
+    func getCategoryText() -> String {
+        if section != "" {
+            return "\(mainCategory) › \(subCategory) › \(section)"
+        } else if subCategory != "" {
+            return "\(mainCategory) > \(subCategory)"
+        } else {
+            return "\(mainCategory)"
+        }
+    }
+    
+    func getPoemTitle() -> String {
+        if selectedPoem.number == 0 {
+            return ""
+        }
+        
+        let poemType = selectedPoem.book?.poemType ?? ""
+        
+        if let title = selectedPoem.title, title != "" {
+            return title + ":"
+        }
+        
+        return poemType + ": \(selectedPoem.number)"
+    }
+    
+    var poemTabView: some View {
+        VStack {
+            ZStack {
+                TabView(selection: $selectedPoem) {
+                    ForEach(poems, id: \.id) { poem in
+                        VStack(alignment: .leading, spacing: 10) {
+                            Spacer()
+                            Text("\(getPoemTitle())")
+                                .font(.callout)
+                                .fontWeight(Font.Weight.semibold)
+                                .foregroundStyle(.black)
+                            
+                            VStack(alignment: .leading, spacing: 2.0) {
+                                Text("\(poem.poem ?? "")")
+                                    .font(.subheadline)
+                                    .fontWeight(Font.Weight.semibold)
+                                    .foregroundStyle(.black)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                            
+                            Spacer()
+                        }
+                        .tag(poem)
+                        .padding(.bottom, 15)
+                        .frame(maxWidth: .infinity)
+                        .padding(.horizontal, 10)
+                    }
+                }
+                .frame(height: poemViewHieght) //getPoemViewHieght())
+                .tabViewStyle(.page)
+                .indexViewStyle(.page(backgroundDisplayMode: .never))
+            }
+        }
+        .padding(.horizontal, 10)
+        .background(colorTheme.opacity(0.35))
+        .cornerRadius(10.0)
+        .padding(.horizontal, 10)
+        .padding(.bottom, 20)
+    }
+    
     var body: some View {
         ZStack(alignment: .top) {
             colorTheme.opacity(0.2).ignoresSafeArea()
@@ -24,52 +93,20 @@ struct PoemDetailView: View {
                 VStack(alignment: .leading, spacing: 10.0) {
                     
                     HStack(spacing: 10) {
-                        Text("வகை: \(selectedPoem.mainCategory?.title ?? "")  \(selectedPoem.subCategory?.title ?? "")  \(selectedPoem.section?.title ?? "")")
+                        if section == "" {
+                            Spacer()
+                        }
+                        Text("\(getCategoryText())")
                             .fontWeight(.bold)
                             .foregroundStyle(.black.opacity(0.95))
+                        Spacer()
                     }
                     .font(.subheadline)
                     .padding(.bottom, 10)
                     .padding(.horizontal, 20)
                     
-                    VStack {
-                        ZStack {
-                            TabView(selection: $selectedPoem) {
-                                ForEach(poems, id: \.id) { poem in
-                                    VStack(alignment: .leading, spacing: 10) {
-                                        Spacer()
-                                        Text("பாடல்: \(poem.number)")
-                                            .font(.callout)
-                                            .fontWeight(Font.Weight.semibold)
-                                            .foregroundStyle(.black)
-                                        
-                                        VStack(alignment: .leading, spacing: 2.0) {
-                                            Text("\(poem.poem ?? "")")
-                                                .font(.subheadline)
-                                                .fontWeight(Font.Weight.semibold)
-                                                .foregroundStyle(.black)
-                                                .frame(maxWidth: .infinity, alignment: .leading)
-                                        }
-                                        
-                                        Spacer()
-                                    }
-                                    .tag(poem)
-                                    .padding(.bottom, 15)
-                                    .frame(maxWidth: .infinity)
-                                    .padding(.horizontal, 10)
-                                }
-                            }
-                            .frame(height: 160)
-                            .tabViewStyle(.page)
-                            .indexViewStyle(.page(backgroundDisplayMode: .never))
-                        }
-                    }
-                    .padding(.horizontal, 10)
-                    .background(colorTheme.opacity(0.35))
-                    .cornerRadius(10.0)
-                    .padding(.horizontal, 10)
-                    .padding(.bottom, 20)
-                    
+                    // Poems in a tab view
+                    poemTabView
                     
                     VStack(alignment: .leading) {
                         HStack {
@@ -77,28 +114,35 @@ struct PoemDetailView: View {
                             Button {
                                 //
                             } label: {
-                                Image(systemName: "bookmark")
-                                    .font(.title3)
-                                    .foregroundStyle(.black)
+                                HStack(spacing: 5) {
+                                    Image(systemName: "bookmark")
+                                    Text("சேமி")
+                                }
+                                .font(.subheadline)
+                                .foregroundStyle(.black)
                             }
 
                             Button {
                                 //
                             } label: {
-                                Image(systemName: "paperplane")
-                                    .font(.title3)
-                                    .foregroundStyle(.black)
-                            }.padding(.horizontal, 10)
+                                HStack(spacing: 5) {
+                                    Image(systemName: "paperplane")
+                                    Text("பகிர்")
+                                }
+                                .font(.subheadline)
+                                .foregroundStyle(.black)
+                            }.padding(.leading, 10)
                         }
                         .padding(.top, -20)
                         
                         ForEach(viewModel.explanations, id:\.self) { explanation in
                             VStack(alignment: .leading, spacing: 2.0) {
                                 if let title = explanation.title, title != "" {
-                                    Text("\(title)")
-                                        .font(.callout)
+                                    Text("\(title): ")
+                                        .font(.body)
                                         .fontWeight(.bold)
                                         .foregroundStyle(.black)
+                                        .padding(.bottom, 5)
                                 }
                                 Text("\(explanation.meaning ?? "")")
                                     .font(.body)
@@ -118,6 +162,11 @@ struct PoemDetailView: View {
             viewModel.fetchExplanations(for: newValue)
         })
         .onAppear {
+            if let poemContent = selectedPoem.poem {
+                let lines = poemContent.components(separatedBy: "\n")
+                poemViewHieght = (CGFloat(lines.count) * 40.0) + 80.0
+            }
+            
             viewModel.fetchExplanations(for: selectedPoem)
         }
     }

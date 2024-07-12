@@ -11,6 +11,7 @@
         <attribute name="noofpoems" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="period" optional="YES" attributeType="String"/>
+        <attribute name="poemType" optional="YES" attributeType="String"/>
         <relationship name="mainCategories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MainCategory" inverseName="book" inverseEntity="MainCategory"/>
         <relationship name="poems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Poem" inverseName="book" inverseEntity="Poem"/>
     </entity>

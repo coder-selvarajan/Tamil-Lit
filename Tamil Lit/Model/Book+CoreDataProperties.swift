@@ -2,7 +2,7 @@
 //  Book+CoreDataProperties.swift
 //  Tamil Lit
 //
-//  Created by Selvarajan on 06/07/24.
+//  Created by Selvarajan on 12/07/24.
 //
 //
 
@@ -26,6 +26,7 @@ extension Book {
     @NSManaged public var noofpoems: Int16
     @NSManaged public var order: Int16
     @NSManaged public var period: String?
+    @NSManaged public var poemType: String?
     @NSManaged public var mainCategories: NSSet?
     @NSManaged public var poems: NSSet?
 

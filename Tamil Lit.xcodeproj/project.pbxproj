@@ -34,20 +34,20 @@
 		7068D7E12C33DA4200FAB1F6 /* TempHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7068D7E02C33DA4200FAB1F6 /* TempHomeView.swift */; };
 		7068D7E32C33DCE700FAB1F6 /* BookHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7068D7E22C33DCE700FAB1F6 /* BookHomeView.swift */; };
 		7076CD042C350CF700816F28 /* athichudi-category.json in Resources */ = {isa = PBXBuildFile; fileRef = 7076CD032C350CF600816F28 /* athichudi-category.json */; };
+		707C55E92C416E2000B02FDB /* Book+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707C55DD2C416E2000B02FDB /* Book+CoreDataClass.swift */; };
+		707C55EA2C416E2000B02FDB /* Book+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707C55DE2C416E2000B02FDB /* Book+CoreDataProperties.swift */; };
+		707C55EB2C416E2000B02FDB /* Explanation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707C55DF2C416E2000B02FDB /* Explanation+CoreDataClass.swift */; };
+		707C55EC2C416E2000B02FDB /* Explanation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707C55E02C416E2000B02FDB /* Explanation+CoreDataProperties.swift */; };
+		707C55ED2C416E2000B02FDB /* MainCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707C55E12C416E2000B02FDB /* MainCategory+CoreDataClass.swift */; };
+		707C55EE2C416E2000B02FDB /* MainCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707C55E22C416E2000B02FDB /* MainCategory+CoreDataProperties.swift */; };
+		707C55EF2C416E2000B02FDB /* Section+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707C55E32C416E2000B02FDB /* Section+CoreDataClass.swift */; };
+		707C55F02C416E2000B02FDB /* Section+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707C55E42C416E2000B02FDB /* Section+CoreDataProperties.swift */; };
+		707C55F12C416E2000B02FDB /* Poem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707C55E52C416E2000B02FDB /* Poem+CoreDataClass.swift */; };
+		707C55F22C416E2000B02FDB /* Poem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707C55E62C416E2000B02FDB /* Poem+CoreDataProperties.swift */; };
+		707C55F32C416E2000B02FDB /* SubCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707C55E72C416E2000B02FDB /* SubCategory+CoreDataClass.swift */; };
+		707C55F42C416E2000B02FDB /* SubCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707C55E82C416E2000B02FDB /* SubCategory+CoreDataProperties.swift */; };
 		707FEF3F2C20580F00A33FA7 /* iniyavai-narpathu.json in Resources */ = {isa = PBXBuildFile; fileRef = 707FEF3E2C20580F00A33FA7 /* iniyavai-narpathu.json */; };
 		707FEF412C206AD400A33FA7 /* Inna-Naarpathu.json in Resources */ = {isa = PBXBuildFile; fileRef = 707FEF402C206AD400A33FA7 /* Inna-Naarpathu.json */; };
-		7093B6682C3987FC00D38548 /* Poem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093B65C2C3987FC00D38548 /* Poem+CoreDataClass.swift */; };
-		7093B6692C3987FC00D38548 /* Poem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093B65D2C3987FC00D38548 /* Poem+CoreDataProperties.swift */; };
-		7093B66A2C3987FC00D38548 /* Book+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093B65E2C3987FC00D38548 /* Book+CoreDataClass.swift */; };
-		7093B66B2C3987FC00D38548 /* Book+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093B65F2C3987FC00D38548 /* Book+CoreDataProperties.swift */; };
-		7093B66C2C3987FC00D38548 /* Section+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093B6602C3987FC00D38548 /* Section+CoreDataClass.swift */; };
-		7093B66D2C3987FC00D38548 /* Section+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093B6612C3987FC00D38548 /* Section+CoreDataProperties.swift */; };
-		7093B66E2C3987FC00D38548 /* SubCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093B6622C3987FC00D38548 /* SubCategory+CoreDataClass.swift */; };
-		7093B66F2C3987FC00D38548 /* SubCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093B6632C3987FC00D38548 /* SubCategory+CoreDataProperties.swift */; };
-		7093B6702C3987FC00D38548 /* Explanation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093B6642C3987FC00D38548 /* Explanation+CoreDataClass.swift */; };
-		7093B6712C3987FC00D38548 /* Explanation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093B6652C3987FC00D38548 /* Explanation+CoreDataProperties.swift */; };
-		7093B6722C3987FC00D38548 /* MainCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093B6662C3987FC00D38548 /* MainCategory+CoreDataClass.swift */; };
-		7093B6732C3987FC00D38548 /* MainCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093B6672C3987FC00D38548 /* MainCategory+CoreDataProperties.swift */; };
 		7093B6752C398FFB00D38548 /* SingleCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093B6742C398FFB00D38548 /* SingleCategoryView.swift */; };
 		70A435762B6911F50019DBEC /* KuralCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A435752B6911F50019DBEC /* KuralCategoryView.swift */; };
 		70A435782B6914F00019DBEC /* kural-category.json in Resources */ = {isa = PBXBuildFile; fileRef = 70A435772B6914F00019DBEC /* kural-category.json */; };
@@ -105,20 +105,20 @@
 		7068D7E02C33DA4200FAB1F6 /* TempHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempHomeView.swift; sourceTree = "<group>"; };
 		7068D7E22C33DCE700FAB1F6 /* BookHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookHomeView.swift; sourceTree = "<group>"; };
 		7076CD032C350CF600816F28 /* athichudi-category.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "athichudi-category.json"; sourceTree = "<group>"; };
+		707C55DD2C416E2000B02FDB /* Book+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataClass.swift"; sourceTree = "<group>"; };
+		707C55DE2C416E2000B02FDB /* Book+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		707C55DF2C416E2000B02FDB /* Explanation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Explanation+CoreDataClass.swift"; sourceTree = "<group>"; };
+		707C55E02C416E2000B02FDB /* Explanation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Explanation+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		707C55E12C416E2000B02FDB /* MainCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
+		707C55E22C416E2000B02FDB /* MainCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		707C55E32C416E2000B02FDB /* Section+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Section+CoreDataClass.swift"; sourceTree = "<group>"; };
+		707C55E42C416E2000B02FDB /* Section+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Section+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		707C55E52C416E2000B02FDB /* Poem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Poem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		707C55E62C416E2000B02FDB /* Poem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Poem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		707C55E72C416E2000B02FDB /* SubCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
+		707C55E82C416E2000B02FDB /* SubCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		707FEF3E2C20580F00A33FA7 /* iniyavai-narpathu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "iniyavai-narpathu.json"; sourceTree = "<group>"; };
 		707FEF402C206AD400A33FA7 /* Inna-Naarpathu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Inna-Naarpathu.json"; sourceTree = "<group>"; };
-		7093B65C2C3987FC00D38548 /* Poem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Poem+CoreDataClass.swift"; sourceTree = "<group>"; };
-		7093B65D2C3987FC00D38548 /* Poem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Poem+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		7093B65E2C3987FC00D38548 /* Book+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataClass.swift"; sourceTree = "<group>"; };
-		7093B65F2C3987FC00D38548 /* Book+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		7093B6602C3987FC00D38548 /* Section+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Section+CoreDataClass.swift"; sourceTree = "<group>"; };
-		7093B6612C3987FC00D38548 /* Section+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Section+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		7093B6622C3987FC00D38548 /* SubCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
-		7093B6632C3987FC00D38548 /* SubCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		7093B6642C3987FC00D38548 /* Explanation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Explanation+CoreDataClass.swift"; sourceTree = "<group>"; };
-		7093B6652C3987FC00D38548 /* Explanation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Explanation+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		7093B6662C3987FC00D38548 /* MainCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
-		7093B6672C3987FC00D38548 /* MainCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		7093B6742C398FFB00D38548 /* SingleCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCategoryView.swift; sourceTree = "<group>"; };
 		70A435752B6911F50019DBEC /* KuralCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KuralCategoryView.swift; sourceTree = "<group>"; };
 		70A435772B6914F00019DBEC /* kural-category.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "kural-category.json"; sourceTree = "<group>"; };
@@ -262,18 +262,18 @@
 		70626FCA2C23D54A00055E77 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7093B65C2C3987FC00D38548 /* Poem+CoreDataClass.swift */,
-				7093B65D2C3987FC00D38548 /* Poem+CoreDataProperties.swift */,
-				7093B65E2C3987FC00D38548 /* Book+CoreDataClass.swift */,
-				7093B65F2C3987FC00D38548 /* Book+CoreDataProperties.swift */,
-				7093B6602C3987FC00D38548 /* Section+CoreDataClass.swift */,
-				7093B6612C3987FC00D38548 /* Section+CoreDataProperties.swift */,
-				7093B6622C3987FC00D38548 /* SubCategory+CoreDataClass.swift */,
-				7093B6632C3987FC00D38548 /* SubCategory+CoreDataProperties.swift */,
-				7093B6642C3987FC00D38548 /* Explanation+CoreDataClass.swift */,
-				7093B6652C3987FC00D38548 /* Explanation+CoreDataProperties.swift */,
-				7093B6662C3987FC00D38548 /* MainCategory+CoreDataClass.swift */,
-				7093B6672C3987FC00D38548 /* MainCategory+CoreDataProperties.swift */,
+				707C55DD2C416E2000B02FDB /* Book+CoreDataClass.swift */,
+				707C55DE2C416E2000B02FDB /* Book+CoreDataProperties.swift */,
+				707C55DF2C416E2000B02FDB /* Explanation+CoreDataClass.swift */,
+				707C55E02C416E2000B02FDB /* Explanation+CoreDataProperties.swift */,
+				707C55E12C416E2000B02FDB /* MainCategory+CoreDataClass.swift */,
+				707C55E22C416E2000B02FDB /* MainCategory+CoreDataProperties.swift */,
+				707C55E32C416E2000B02FDB /* Section+CoreDataClass.swift */,
+				707C55E42C416E2000B02FDB /* Section+CoreDataProperties.swift */,
+				707C55E52C416E2000B02FDB /* Poem+CoreDataClass.swift */,
+				707C55E62C416E2000B02FDB /* Poem+CoreDataProperties.swift */,
+				707C55E72C416E2000B02FDB /* SubCategory+CoreDataClass.swift */,
+				707C55E82C416E2000B02FDB /* SubCategory+CoreDataProperties.swift */,
 				70E729802C230C7D00DE5977 /* TamilLitDB.xcdatamodeld */,
 			);
 			path = Model;
@@ -457,6 +457,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				70EAE08A2B6643F100E4930D /* KuralListView.swift in Sources */,
+				707C55E92C416E2000B02FDB /* Book+CoreDataClass.swift in Sources */,
+				707C55EA2C416E2000B02FDB /* Book+CoreDataProperties.swift in Sources */,
+				707C55EB2C416E2000B02FDB /* Explanation+CoreDataClass.swift in Sources */,
+				707C55EC2C416E2000B02FDB /* Explanation+CoreDataProperties.swift in Sources */,
+				707C55ED2C416E2000B02FDB /* MainCategory+CoreDataClass.swift in Sources */,
+				707C55EE2C416E2000B02FDB /* MainCategory+CoreDataProperties.swift in Sources */,
+				707C55EF2C416E2000B02FDB /* Section+CoreDataClass.swift in Sources */,
+				707C55F02C416E2000B02FDB /* Section+CoreDataProperties.swift in Sources */,
+				707C55F12C416E2000B02FDB /* Poem+CoreDataClass.swift in Sources */,
+				707C55F22C416E2000B02FDB /* Poem+CoreDataProperties.swift in Sources */,
+				707C55F32C416E2000B02FDB /* SubCategory+CoreDataClass.swift in Sources */,
+				707C55F42C416E2000B02FDB /* SubCategory+CoreDataProperties.swift in Sources */,
 				70E739322C31555400A4CF0E /* PoemDetailView.swift in Sources */,
 				70160F6B2C0B20E20053B4A9 /* MainView.swift in Sources */,
 				701621CA2B66C30B003054AF /* AthichudiHomeView.swift in Sources */,
@@ -486,19 +498,7 @@
 				7058F2782BB0920600D957B0 /* NaaladiyarCategoryView.swift in Sources */,
 				701BFAD62C33B1C2008D2805 /* CategoryViewModel.swift in Sources */,
 				702240562B69653C00EF072B /* WrapView.swift in Sources */,
-				7093B6682C3987FC00D38548 /* Poem+CoreDataClass.swift in Sources */,
-				7093B6692C3987FC00D38548 /* Poem+CoreDataProperties.swift in Sources */,
-				7093B66A2C3987FC00D38548 /* Book+CoreDataClass.swift in Sources */,
-				7093B66B2C3987FC00D38548 /* Book+CoreDataProperties.swift in Sources */,
-				7093B66C2C3987FC00D38548 /* Section+CoreDataClass.swift in Sources */,
-				7093B66D2C3987FC00D38548 /* Section+CoreDataProperties.swift in Sources */,
 				700920042C3BCDFE0049C60C /* PoemListWithCategoryViewModel.swift in Sources */,
-				7093B66E2C3987FC00D38548 /* SubCategory+CoreDataClass.swift in Sources */,
-				7093B66F2C3987FC00D38548 /* SubCategory+CoreDataProperties.swift in Sources */,
-				7093B6702C3987FC00D38548 /* Explanation+CoreDataClass.swift in Sources */,
-				7093B6712C3987FC00D38548 /* Explanation+CoreDataProperties.swift in Sources */,
-				7093B6722C3987FC00D38548 /* MainCategory+CoreDataClass.swift in Sources */,
-				7093B6732C3987FC00D38548 /* MainCategory+CoreDataProperties.swift in Sources */,
 				70EAE06D2B663CD800E4930D /* Tamil_LitApp.swift in Sources */,
 				700920022C3BC14D0049C60C /* LoadingView.swift in Sources */,
 				70E739302C31530000A4CF0E /* PoemListViewModel.swift in Sources */,

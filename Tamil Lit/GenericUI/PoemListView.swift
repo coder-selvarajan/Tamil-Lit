@@ -35,17 +35,41 @@ struct PoemListView: View {
         
         return ""
     }
-
+    
+    func getCategoryText() -> String {
+        if section != nil {
+            return "\(mainCategory?.title ?? "") › \(subCategory?.title ?? "") › \(section?.title ?? "")"
+        } else if subCategory != nil {
+            return "\(mainCategory?.title ?? "") › \(subCategory?.title ?? "")"
+        } else {
+            return "\(mainCategory?.title ?? "")"
+        }
+    }
+    
     var body: some View {
         ZStack {
             colorTheme.opacity(0.2).ignoresSafeArea()
             
             VStack {
+                HStack(spacing: 10) {
+                    Text("\(getCategoryText())")
+                        .fontWeight(.bold)
+                        .foregroundStyle(.black.opacity(0.95))
+                    Spacer()
+                }
+                .font(.subheadline)
+                .padding(.top, 10)
+                .padding(.horizontal, 20)
+                
                 List(viewModel.poems) { poem in
                     NavigationLink(destination: PoemDetailView(colorTheme: colorTheme,
                                                                bookName: bookName,
                                                                poems: viewModel.poems,
-                                                               selectedPoem: poem)) {
+                                                               selectedPoem: poem,
+                                                               mainCategory: mainCategory?.title ?? "",
+                                                               subCategory: subCategory?.title ?? "",
+                                                               section: section?.title ?? ""
+                                                              )) {
                         Text(poem.poem ?? "No Poem")
                     }
                     
@@ -57,8 +81,8 @@ struct PoemListView: View {
 //                }.frame(height: 50.0)
             }
         }
-        .navigationBarTitle(getTitle())
-        .navigationBarTitleDisplayMode(.inline)
+//        .navigationBarTitle(bookName) //getTitle())
+//        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             if section != nil {
                 viewModel.fetchPoemsBySection(section!)
@@ -66,6 +90,25 @@ struct PoemListView: View {
                 viewModel.fetchPoemsByCategory(mainCategory!)
             }
         }
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                HStack {
+                    // Search Bar
+                    Image("Murugan")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 30)
+                        .padding(.trailing, 10)
+                    Text(bookName)
+                        .font(.body)
+                        .fontWeight(.semibold)
+                    
+                    Spacer()
+                    Image(systemName: "info.circle")
+                }
+                .padding(0)
+            }
+        } // toolbar
     }
 }
 

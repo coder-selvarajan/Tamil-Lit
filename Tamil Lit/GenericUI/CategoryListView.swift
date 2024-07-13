@@ -65,32 +65,32 @@ struct CategoryListView: View {
                     .foregroundStyle(.black.opacity(0.8))
                     .font(.caption)
                     .fontWeight(.bold)
-//                ScrollView {
-                    LazyVStack(alignment: .leading) {
-                        ForEach(viewModel.filteredSections, id:\.self) { section in
-                            NavigationLink(destination: PoemListView(colorTheme: colorTheme,
-                                                                     bookName: bookName,
-                                                                     categoryLevel: 3,
-                                                                     mainCategory: viewModel.selectedMainCategory,
-                                                                     subCategory: viewModel.selectedSubCategory,
-                                                                     section: section)) {
-                                HStack {
-                                    Text("\(section.title!)")
-                                        .padding(.vertical, 10)
-                                        .foregroundStyle(.black)
-                                    Spacer()
-                                    Image(systemName: "chevron.right")
-                                        .foregroundColor(.gray)
-                                }
+                //                ScrollView {
+                LazyVStack(alignment: .leading) {
+                    ForEach(viewModel.filteredSections, id:\.self) { section in
+                        NavigationLink(destination: PoemListView(colorTheme: colorTheme,
+                                                                 bookName: bookName,
+                                                                 categoryLevel: 3,
+                                                                 mainCategory: viewModel.selectedMainCategory,
+                                                                 subCategory: viewModel.selectedSubCategory,
+                                                                 section: section)) {
+                            HStack {
+                                Text("\(section.title!)")
+                                    .padding(.vertical, 10)
+                                    .foregroundStyle(.black)
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.gray)
                             }
                         }
                     }
-//                }
+                }
+                //                }
             }
             
-//            VStack{
-//                Text(" ")
-//            }.frame(height: 50.0)
+            //            VStack{
+            //                Text(" ")
+            //            }.frame(height: 50.0)
         }
         .padding(20)
         .navigationBarTitle(bookName)

@@ -17,6 +17,8 @@ struct PoemDetailView: View {
     var subCategory: String = ""
     var section: String = ""
     
+    @Environment(\.presentationMode) var presentationMode
+    
     @StateObject private var viewModel = ExplanationListViewModel()
 
     @State var poemViewHieght: CGFloat = 160.0
@@ -155,6 +157,33 @@ struct PoemDetailView: View {
                     }.padding()
                 }
             }
+            
+            // Home Button
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    
+                    Button {
+                        // Go to home page
+//                        print(navigationPath.count)
+                        //                            navigationPath.removeAll()
+                        //                            presentationMode.wrappedValue.dismiss()
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Image(systemName: "house.fill")
+                            .font(.title3)
+                            .foregroundStyle(.black.opacity(0.8))
+                            .padding(15)
+                    }
+                    .background(.white)
+                    .cornerRadius(10.0)
+                    .shadow(radius: 10)
+                    .padding(20)
+                    
+                }
+            }
+            .edgesIgnoringSafeArea(.bottom)
         }
         .navigationTitle(bookName)
         .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)

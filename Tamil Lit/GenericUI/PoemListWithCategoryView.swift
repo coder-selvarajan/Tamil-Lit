@@ -26,11 +26,9 @@ struct PoemListWithCategoryView: View {
     
     var body: some View {
         ZStack {
-            colorTheme.opacity(0.2).ignoresSafeArea()
+//            colorTheme.opacity(0.2).ignoresSafeArea()
             
             VStack {
-                
-                
                 VStack(alignment: .leading) {
                     Text("வகைகள்: ")
                         .foregroundStyle(.black.opacity(0.8))
@@ -139,6 +137,7 @@ struct PoemListWithCategoryView: View {
                     } //ScrollViewReader
                 }
             } // VStack
+            
         }
         .onAppear {
             viewModel.fetchCateoriesByBook(bookName)

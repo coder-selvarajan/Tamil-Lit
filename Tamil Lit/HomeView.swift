@@ -209,13 +209,12 @@ struct HomeView: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: String.self) { value in
                 if value == "Thirukural" {
-//                    KuralHomeView()
                     BookHomeView(colorTheme: .blue, bookName: "திருக்குறள்")
                 } else if value == "Athichudi" {
                     BookHomeView(colorTheme: .teal, bookName: "ஆத்திச்சூடி")
-//                    AthichudiHomeView()
                 } else if value == "Naaladiyar" {
-                    NaaladiyarHomeView()
+//                    NaaladiyarHomeView()
+                    BookHomeView(colorTheme: .indigo, bookName: "நாலடியார்")
                 } else if value == "இனியவை நாற்பது" {
                     BookHomeView(colorTheme: .purple, bookName: "இனியவை நாற்பது")
                 } else if value == "ஆசாரக் கோவை" {

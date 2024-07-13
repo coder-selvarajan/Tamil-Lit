@@ -80,9 +80,33 @@ struct PoemListView: View {
 //                    Text(" ")
 //                }.frame(height: 50.0)
             }
+            
+            // Home Button
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    
+                    Button {
+                        // Go to home page
+//                        print(navigationPath.count)
+                        //                            navigationPath.removeAll()
+                        //                            presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Image(systemName: "house.fill")
+                            .font(.title3)
+                            .foregroundStyle(.black.opacity(0.8))
+                            .padding(15)
+                    }
+                    .background(.white)
+                    .cornerRadius(10.0)
+                    .shadow(radius: 10)
+                    .padding(20)
+                    
+                }
+            }
+            .edgesIgnoringSafeArea(.bottom)
         }
-//        .navigationBarTitle(bookName) //getTitle())
-//        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             if section != nil {
                 viewModel.fetchPoemsBySection(section!)

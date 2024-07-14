@@ -16,6 +16,17 @@ struct HomeView: View {
             VStack {
                 ScrollView(showsIndicators: false) {
                     VStack {
+//                        // Search Bar
+//                        HStack {
+//                            TextField("பாடல் தேடுக...", text: .constant(""))
+//                                .padding(.leading, 10)
+//                        }
+//                        .padding(10)
+//                        .background(Color(.systemGray5))
+//                        .cornerRadius(10)
+//                        .padding(.horizontal)
+//                        .padding(.top, 10)
+                        
                         // Daily poem
                         VStack(alignment: .leading, spacing: 0) {
                             HStack(alignment: .center) {
@@ -47,6 +58,7 @@ struct HomeView: View {
                         .cornerRadius(8)
                         .padding()
                         
+                        // Action Section
                         VStack (alignment: .leading) {
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 15) {
@@ -57,16 +69,21 @@ struct HomeView: View {
                                             showLoading(.success)
                                         }
                                     } label: {
-                                        HStack {
+                                        HStack(alignment: .top) {
                                             Image(systemName: "wand.and.stars")
                                                 .font(.headline)
                                                 .foregroundColor(.pink)
-                                            Text("ஏதோ ஒரு பாடல்")
-                                                .lineLimit(1)
-                                                .foregroundStyle(.black)
+                                            VStack(alignment: .leading) {
+                                                Text("ஏதோ ஒரு பாடல்")
+                                                    .lineLimit(1)
+                                                    .foregroundStyle(.black)
+                                                Text("(Random Poem)")
+                                                    .font(.footnote)
+                                                    .foregroundStyle(.gray)
+                                            }
                                         }
                                         .font(.body)
-                                        .fontWeight(.semibold)
+//                                        .fontWeight(.semibold)
                                         .padding()
                                     }
                                     .background(.gray.opacity(0.15))
@@ -80,16 +97,21 @@ struct HomeView: View {
                                             showLoading(.success)
                                         }
                                     } label: {
-                                        HStack {
+                                        HStack(alignment: .top) {
                                             Image(systemName: "star.fill")
                                                 .font(.headline)
                                                 .foregroundColor(.yellow)
-                                            Text("சேமித்தவை")
-                                                .lineLimit(1)
-                                                .foregroundStyle(.black)
+                                            VStack(alignment: .leading) {
+                                                Text("சேமித்தவை ")
+                                                    .lineLimit(1)
+                                                    .foregroundStyle(.black)
+                                                Text("(Favourites)")
+                                                    .font(.footnote)
+                                                    .foregroundStyle(.gray)
+                                            }
                                         }
                                         .font(.body)
-                                        .fontWeight(.semibold)
+//                                        .fontWeight(.semibold)
                                         //                                    .foregroundColor(.black)
                                         .padding()
                                     }
@@ -143,7 +165,7 @@ struct HomeView: View {
 //                                                 iconName: "text.book.closed",
                                                  imageName: "Balaji",
                                                  footnote: "40 பாடல்கள்",
-                                                 color: Color.purple)
+                                                 color: Color.purple.opacity(0.7))
                                 }
                             }
                             HStack(spacing: 16) {
@@ -152,14 +174,14 @@ struct HomeView: View {
 //                                                 iconName: "book",
                                                  imageName: "Ramar",
                                                  footnote: "100 பாடல்கள்",
-                                                 color: Color.red)
+                                                 color: Color.red.opacity(0.6))
                                 }
                                 NavigationLink(value: "நான்மணிக்கடிகை") {
                                     BookTileView(bookTitle: "நான்மணிக் கடிகை",
 //                                                 iconName: "text.book.closed",
                                                  imageName: "Meenakshi",
                                                  footnote: "101 பாடல்கள்",
-                                                 color: Color.orange)
+                                                 color: Color.orange.opacity(0.7))
                                 }
                                 
                             }
@@ -169,7 +191,7 @@ struct HomeView: View {
 //                                                 iconName: "book",
                                                  imageName: "Karuppusamy",
                                                  footnote: "40 பாடல்கள்",
-                                                 color: Color.pink)
+                                                 color: Color.pink.opacity(0.6))
                                 }
                                 NavigationLink(value: "திரிகடுகம்") {
                                     BookTileView(bookTitle: "திரிகடுகம்",
@@ -216,13 +238,13 @@ struct HomeView: View {
 //                    NaaladiyarHomeView()
                     BookHomeView(colorTheme: .indigo, bookName: "நாலடியார்")
                 } else if value == "இனியவை நாற்பது" {
-                    BookHomeView(colorTheme: .purple, bookName: "இனியவை நாற்பது")
+                    BookHomeView(colorTheme: .purple.opacity(0.7), bookName: "இனியவை நாற்பது")
                 } else if value == "ஆசாரக் கோவை" {
-                    BookHomeView(colorTheme: .red, bookName: "ஆசாரக் கோவை")
+                    BookHomeView(colorTheme: .red.opacity(0.6), bookName: "ஆசாரக் கோவை")
                 } else if value == "நான்மணிக்கடிகை" {
-                    BookHomeView(colorTheme: .orange, bookName: "நான்மணிக்கடிகை")
+                    BookHomeView(colorTheme: .orange.opacity(0.7), bookName: "நான்மணிக்கடிகை")
                 } else if value == "இன்னா நாற்பது" {
-                    BookHomeView(colorTheme: .pink, bookName: "இன்னா நாற்பது")
+                    BookHomeView(colorTheme: .pink.opacity(0.6), bookName: "இன்னா நாற்பது")
                 } else if value == "திரிகடுகம்" {
                     BookHomeView(colorTheme: .brown, bookName: "திரிகடுகம்")
                 }
@@ -230,20 +252,39 @@ struct HomeView: View {
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     HStack {
-                        // Search Bar
-                        HStack {
-                            TextField("பாடல் தேடுக...", text: .constant(""))
-                                .padding(.leading, 10)
-                        }
-                        .padding(10)
-                        .background(Color(.systemGray6))
-                        .cornerRadius(10)
+                        Image(systemName: "books.vertical")
+                            .font(.title3)
+                            .foregroundStyle(.black)
                         
-                        Image(systemName: "tengesign.circle")
-                            .font(.title)
-                            .foregroundStyle(.indigo)
+                        Text("Tamil Lit")
+                            .font(.title2)
+                        
+                        Spacer()
+                        
+                        // Search Bar
+//                        HStack {
+//                            TextField("பாடல் தேடுக...", text: .constant(""))
+//                                .padding(.leading, 10)
+//                        }
+//                        .padding(10)
+//                        .background(Color(.systemGray6))
+//                        .cornerRadius(10)
                     }
                     .padding(0)
+                }
+                
+                ToolbarItem {
+                    HStack {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundStyle(.black)
+                        
+                        Text("தேடுக").foregroundStyle(.gray)
+                    }.padding(.horizontal)
+                }
+                
+                ToolbarItem {
+                    Image(systemName: "gearshape")
+                        .foregroundStyle(.black)
                 }
             } // toolbar
         } //NavigationStack

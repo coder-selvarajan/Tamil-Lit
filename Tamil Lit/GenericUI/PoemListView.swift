@@ -72,7 +72,7 @@ struct PoemListView: View {
                                                               )) {
                         Text(poem.poem ?? "No Poem")
                     }
-                    
+                    .listRowBackground(colorTheme.opacity(0.2))
                 }
                 .scrollContentBackground(Visibility.hidden)
                 

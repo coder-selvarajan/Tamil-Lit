@@ -42,7 +42,7 @@ struct PoemListWithCategoryView: View {
                                 Button {
                                     viewModel.selectedCategory = category
                                     highlightedCategoryId = category.id
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                         withAnimation {
                                             highlightedCategoryId = nil
                                         }
@@ -60,8 +60,10 @@ struct PoemListWithCategoryView: View {
                                         .font(.subheadline)
                                         .padding(.horizontal, 10)
                                         .padding(.vertical, 10)
+//                                        .foregroundColor(.black)
+//                                        .background(.white.opacity(0.7))
                                         .foregroundColor(highlightedCategoryId == category.id ? .white : .black)
-                                        .background(highlightedCategoryId == category.id ? colorTheme.opacity(0.8) : .white.opacity(0.8))
+                                        .background(highlightedCategoryId == category.id ? colorTheme.opacity(0.7) : .white.opacity(0.7))
                                         .cornerRadius(8.0)
                                 }
                             }
@@ -82,7 +84,7 @@ struct PoemListWithCategoryView: View {
                                     SwiftUI.Section(header: Text(category.title ?? "")
                                         .font(.title3)
                                         .fontWeight(.semibold)
-                                        .foregroundColor(colorTheme)
+                                        .foregroundColor(.black)
                                         .padding(.leading, 0)
                                         .padding(.top, 0)) {
                                             // fetch poems by category and display in a section
@@ -122,6 +124,7 @@ struct PoemListWithCategoryView: View {
 //                                    }
 //                                )
                             }
+                            .listRowBackground(colorTheme.opacity(0.2))
                             .onChange(of: selectedCategoryId) { id in
                                 if let id = id {
                                     withAnimation(.spring()) {

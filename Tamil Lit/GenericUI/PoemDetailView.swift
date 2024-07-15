@@ -169,17 +169,19 @@ struct PoemDetailView: View {
 //                        print(navigationPath.count)
                         //                            navigationPath.removeAll()
                         //                            presentationMode.wrappedValue.dismiss()
-                        presentationMode.wrappedValue.dismiss()
                     } label: {
                         Image(systemName: "house.fill")
                             .font(.title3)
                             .foregroundStyle(.black.opacity(0.8))
-                            .padding(15)
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 15)
+                            .padding(.trailing, 20)
                     }
                     .background(.white)
                     .cornerRadius(10.0)
                     .shadow(radius: 10)
-                    .padding(20)
+                    .padding(.bottom, 30)
+                    .padding(.trailing, -20)
                     
                 }
             }

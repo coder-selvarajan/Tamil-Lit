@@ -142,14 +142,14 @@ struct HomeView: View {
                                     BookTileView(bookTitle: "திருக்குறள்",
                                                  imageName: "Murugan", //"Thiruvalluvar3",
 //                                                 iconName: "book",
-                                                 footnote: "1330 பாடல்கள்",
+                                                 footnote: "1330 குறள்கள்",
                                                  color: Color.blue)
                                 }
                                 NavigationLink(value: "Athichudi") {
                                     BookTileView(bookTitle: "ஆத்தி சூடி",
                                                  imageName: "Avvaiyar3",
 //                                                 iconName: "character.book.closed",
-                                                 footnote: "109 பாடல்கள்",
+                                                 footnote: "109 வாக்கியங்கள்",
                                                  color: Color.teal)
                                 }
                             }
@@ -191,15 +191,32 @@ struct HomeView: View {
 //                                                 iconName: "book",
                                                  imageName: "Karuppusamy",
                                                  footnote: "40 பாடல்கள்",
-                                                 color: Color.pink.opacity(0.6))
+                                                 color: Color.brown)
+//                                                 color: Color.pink.opacity(0.6))
                                 }
                                 NavigationLink(value: "திரிகடுகம்") {
                                     BookTileView(bookTitle: "திரிகடுகம்",
 //                                                 iconName: "text.book.closed",
                                                  imageName: "Adiyogi",
                                                  footnote: "102 பாடல்கள்",
-                                                 color: Color.brown)
+                                                 color: Color.gray)
                                 }
+                            }
+                            HStack(spacing: 16) {
+                                NavigationLink(value: "முதுமொழிக் காஞ்சி") {
+                                    BookTileView(bookTitle: "முதுமொழிக் காஞ்சி",
+                                                 imageName: "Murugan",
+                                                 footnote: "100 பழமொழிகள்",
+                                                 color: Color.cyan)
+                                }
+                                NavigationLink(value: "பழமொழி நானூறு") {
+                                    BookTileView(bookTitle: "பழமொழி நானூறு",
+//                                                 iconName: "text.book.closed",
+                                                 imageName: "Balaji",
+                                                 footnote: "400 பழமொழிகள்",
+                                                 color: Color.green.opacity(0.7))
+                                }
+                                
                             }
                         }
                         .padding()
@@ -244,9 +261,13 @@ struct HomeView: View {
                 } else if value == "நான்மணிக்கடிகை" {
                     BookHomeView(colorTheme: .orange.opacity(0.7), bookName: "நான்மணிக்கடிகை")
                 } else if value == "இன்னா நாற்பது" {
-                    BookHomeView(colorTheme: .pink.opacity(0.6), bookName: "இன்னா நாற்பது")
+                    BookHomeView(colorTheme: .brown, bookName: "இன்னா நாற்பது")
                 } else if value == "திரிகடுகம்" {
-                    BookHomeView(colorTheme: .brown, bookName: "திரிகடுகம்")
+                    BookHomeView(colorTheme: .gray, bookName: "திரிகடுகம்")
+                } else if value == "முதுமொழிக் காஞ்சி" {
+                    BookHomeView(colorTheme: .cyan, bookName: "முதுமொழிக் காஞ்சி")
+                } else if value == "பழமொழி நானூறு" {
+                    BookHomeView(colorTheme: Color.green.opacity(0.7), bookName: "பழமொழி நானூறு")
                 }
             }
             .toolbar {
@@ -311,6 +332,7 @@ struct BookTileView: View {
                         .font(.headline)
                         .foregroundStyle(.black)
                         .fontWeight(Font.Weight.semibold)
+                        .multilineTextAlignment(.leading)
                         //.lineLimit(1)
                     Text(footnote)
                         .font(.footnote)

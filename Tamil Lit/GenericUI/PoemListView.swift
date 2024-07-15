@@ -52,6 +52,9 @@ struct PoemListView: View {
             
             VStack {
                 HStack(spacing: 10) {
+                    if section == nil {
+                        Spacer()
+                    }
                     Text("\(getCategoryText())")
                         .fontWeight(.bold)
                         .foregroundStyle(.black.opacity(0.95))
@@ -96,12 +99,15 @@ struct PoemListView: View {
                         Image(systemName: "house.fill")
                             .font(.title3)
                             .foregroundStyle(.black.opacity(0.8))
-                            .padding(15)
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 15)
+                            .padding(.trailing, 20)
                     }
                     .background(.white)
                     .cornerRadius(10.0)
                     .shadow(radius: 10)
-                    .padding(20)
+                    .padding(.bottom, 30)
+                    .padding(.trailing, -20)
                     
                 }
             }
@@ -117,7 +123,10 @@ struct PoemListView: View {
         .toolbar {
             ToolbarItem(placement: .principal) {
                 HStack {
-                    // Search Bar
+                    if section == nil {
+                        Spacer()
+                    }
+                    
                     Image("Murugan")
                         .resizable()
                         .scaledToFit()

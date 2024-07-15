@@ -17,8 +17,9 @@ struct BookHomeView: View {
     var body: some View {
         ZStack {
             colorTheme.opacity(0.3).ignoresSafeArea()
-            
-            if viewModel.book?.categoryLevel == 1 {
+            if viewModel.book?.name == "பழமொழி நானூறு" {
+                SingleCategoryView(colorTheme: colorTheme, bookName: bookName)
+            } else if viewModel.book?.categoryLevel == 1 {
                 PoemListWithCategoryView(colorTheme: colorTheme, bookName: bookName)
             } else {
                 CategoryListView(colorTheme: colorTheme, bookName: bookName)
@@ -38,12 +39,15 @@ struct BookHomeView: View {
                         Image(systemName: "house.fill")
                             .font(.title3)
                             .foregroundStyle(.black.opacity(0.8))
-                            .padding(15)
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 15)
+                            .padding(.trailing, 20)
                     }
                     .background(.white)
                     .cornerRadius(10.0)
                     .shadow(radius: 10)
-                    .padding(20)
+                    .padding(.bottom, 30)
+                    .padding(.trailing, -20)
                     
                 }
             }

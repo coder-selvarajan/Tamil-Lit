@@ -31,7 +31,9 @@ class CategoryViewModel: ObservableObject {
         poems = CoreDataManager.shared.fetchAllPoems(for: bookname)
         
         if let firstMainCategory = mainCategories.first {
-            selectMainCategory(firstMainCategory)
+            if selectedMainCategory == nil {
+                selectMainCategory(firstMainCategory)
+            }
         }
     }
 

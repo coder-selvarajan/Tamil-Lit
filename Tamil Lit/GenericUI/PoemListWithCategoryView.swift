@@ -60,8 +60,6 @@ struct PoemListWithCategoryView: View {
                                         .font(.subheadline)
                                         .padding(.horizontal, 10)
                                         .padding(.vertical, 10)
-//                                        .foregroundColor(.black)
-//                                        .background(.white.opacity(0.7))
                                         .foregroundColor(highlightedCategoryId == category.id ? .white : .black)
                                         .background(highlightedCategoryId == category.id ? colorTheme.opacity(0.7) : .white.opacity(0.7))
                                         .cornerRadius(8.0)
@@ -90,14 +88,10 @@ struct PoemListWithCategoryView: View {
                                             // fetch poems by category and display in a section
                                             ForEach(viewModel.fetchPoemsByCategory(category.title ?? ""), id: \.id) { poem in
                                                 NavigationLink(destination: 
-                                                                PoemDetailView(colorTheme: colorTheme,
-                                                                               bookName: bookName,
-                                                                               poems: viewModel.fetchPoemsByCategory(category.title ?? ""),
-                                                                               selectedPoem: poem,
-                                                                               mainCategory: category.title ?? "",
-                                                                               subCategory: "",
-                                                                               section: ""
-                                                                              )) {
+                                                PoemDetailView(colorTheme: colorTheme,
+                                                               bookName: bookName,
+                                                               poems: viewModel.fetchPoemsByCategory(category.title ?? ""),
+                                                               selectedPoem: poem)) {
                                                     if let poemText = poem.poem {
                                                         Text(poemText)
                                                     }

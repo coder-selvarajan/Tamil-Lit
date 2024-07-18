@@ -295,12 +295,14 @@ struct HomeView: View {
                 }
                 
                 ToolbarItem {
-                    HStack {
-                        Image(systemName: "magnifyingglass")
-                            .foregroundStyle(.black)
-                        
-                        Text("தேடுக").foregroundStyle(.gray)
-                    }.padding(.horizontal)
+                    NavigationLink(destination: SearchView()) {
+                        HStack {
+                            Image(systemName: "magnifyingglass")
+                                .foregroundStyle(.black)
+                            
+                            Text("தேடுக").foregroundStyle(.gray)
+                        }.padding(.horizontal)
+                    }
                 }
                 
                 ToolbarItem {

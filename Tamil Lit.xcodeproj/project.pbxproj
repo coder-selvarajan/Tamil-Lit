@@ -16,18 +16,6 @@
 		702BCA552C313F1F0051D8C2 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BCA542C313F1F0051D8C2 /* CoreDataManager.swift */; };
 		703E18B52C458E890032298E /* SingleCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703E18B42C458E890032298E /* SingleCategoryViewModel.swift */; };
 		7068D7E32C33DCE700FAB1F6 /* BookHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7068D7E22C33DCE700FAB1F6 /* BookHomeView.swift */; };
-		707C55E92C416E2000B02FDB /* Book+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707C55DD2C416E2000B02FDB /* Book+CoreDataClass.swift */; };
-		707C55EA2C416E2000B02FDB /* Book+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707C55DE2C416E2000B02FDB /* Book+CoreDataProperties.swift */; };
-		707C55EB2C416E2000B02FDB /* Explanation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707C55DF2C416E2000B02FDB /* Explanation+CoreDataClass.swift */; };
-		707C55EC2C416E2000B02FDB /* Explanation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707C55E02C416E2000B02FDB /* Explanation+CoreDataProperties.swift */; };
-		707C55ED2C416E2000B02FDB /* MainCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707C55E12C416E2000B02FDB /* MainCategory+CoreDataClass.swift */; };
-		707C55EE2C416E2000B02FDB /* MainCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707C55E22C416E2000B02FDB /* MainCategory+CoreDataProperties.swift */; };
-		707C55EF2C416E2000B02FDB /* Section+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707C55E32C416E2000B02FDB /* Section+CoreDataClass.swift */; };
-		707C55F02C416E2000B02FDB /* Section+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707C55E42C416E2000B02FDB /* Section+CoreDataProperties.swift */; };
-		707C55F12C416E2000B02FDB /* Poem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707C55E52C416E2000B02FDB /* Poem+CoreDataClass.swift */; };
-		707C55F22C416E2000B02FDB /* Poem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707C55E62C416E2000B02FDB /* Poem+CoreDataProperties.swift */; };
-		707C55F32C416E2000B02FDB /* SubCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707C55E72C416E2000B02FDB /* SubCategory+CoreDataClass.swift */; };
-		707C55F42C416E2000B02FDB /* SubCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707C55E82C416E2000B02FDB /* SubCategory+CoreDataProperties.swift */; };
 		7093B6752C398FFB00D38548 /* SingleCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093B6742C398FFB00D38548 /* SingleCategoryView.swift */; };
 		70B5EBD32C3AD6FB00471451 /* ImportDBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B5EBD22C3AD6FB00471451 /* ImportDBView.swift */; };
 		70B5EBD92C3AF73500471451 /* TamilLitDB.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 70B5EBD62C3AF73500471451 /* TamilLitDB.sqlite-wal */; };
@@ -44,6 +32,21 @@
 		70EAE0762B663CDA00E4930D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70EAE0752B663CDA00E4930D /* Preview Assets.xcassets */; };
 		70EAE0842B66420400E4930D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 70EAE0832B66420400E4930D /* README.md */; };
 		70F7709F2C08BBAD00D329C3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F7709E2C08BBAD00D329C3 /* HomeView.swift */; };
+		70F86D3C2C490C8600799435 /* Book+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F86D2E2C490C8600799435 /* Book+CoreDataClass.swift */; };
+		70F86D3D2C490C8600799435 /* Book+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F86D2F2C490C8600799435 /* Book+CoreDataProperties.swift */; };
+		70F86D3E2C490C8600799435 /* SubCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F86D302C490C8600799435 /* SubCategory+CoreDataClass.swift */; };
+		70F86D3F2C490C8600799435 /* SubCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F86D312C490C8600799435 /* SubCategory+CoreDataProperties.swift */; };
+		70F86D402C490C8600799435 /* Section+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F86D322C490C8600799435 /* Section+CoreDataClass.swift */; };
+		70F86D412C490C8600799435 /* Section+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F86D332C490C8600799435 /* Section+CoreDataProperties.swift */; };
+		70F86D422C490C8600799435 /* Explanation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F86D342C490C8600799435 /* Explanation+CoreDataClass.swift */; };
+		70F86D432C490C8600799435 /* Explanation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F86D352C490C8600799435 /* Explanation+CoreDataProperties.swift */; };
+		70F86D442C490C8600799435 /* Settings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F86D362C490C8600799435 /* Settings+CoreDataClass.swift */; };
+		70F86D452C490C8600799435 /* Settings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F86D372C490C8600799435 /* Settings+CoreDataProperties.swift */; };
+		70F86D462C490C8600799435 /* MainCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F86D382C490C8600799435 /* MainCategory+CoreDataClass.swift */; };
+		70F86D472C490C8600799435 /* MainCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F86D392C490C8600799435 /* MainCategory+CoreDataProperties.swift */; };
+		70F86D482C490C8600799435 /* Poem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F86D3A2C490C8600799435 /* Poem+CoreDataClass.swift */; };
+		70F86D492C490C8600799435 /* Poem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F86D3B2C490C8600799435 /* Poem+CoreDataProperties.swift */; };
+		70F86D4B2C49899300799435 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F86D4A2C49899300799435 /* SearchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,18 +59,6 @@
 		702BCA542C313F1F0051D8C2 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		703E18B42C458E890032298E /* SingleCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCategoryViewModel.swift; sourceTree = "<group>"; };
 		7068D7E22C33DCE700FAB1F6 /* BookHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookHomeView.swift; sourceTree = "<group>"; };
-		707C55DD2C416E2000B02FDB /* Book+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataClass.swift"; sourceTree = "<group>"; };
-		707C55DE2C416E2000B02FDB /* Book+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		707C55DF2C416E2000B02FDB /* Explanation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Explanation+CoreDataClass.swift"; sourceTree = "<group>"; };
-		707C55E02C416E2000B02FDB /* Explanation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Explanation+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		707C55E12C416E2000B02FDB /* MainCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
-		707C55E22C416E2000B02FDB /* MainCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		707C55E32C416E2000B02FDB /* Section+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Section+CoreDataClass.swift"; sourceTree = "<group>"; };
-		707C55E42C416E2000B02FDB /* Section+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Section+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		707C55E52C416E2000B02FDB /* Poem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Poem+CoreDataClass.swift"; sourceTree = "<group>"; };
-		707C55E62C416E2000B02FDB /* Poem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Poem+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		707C55E72C416E2000B02FDB /* SubCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
-		707C55E82C416E2000B02FDB /* SubCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		7093B6742C398FFB00D38548 /* SingleCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCategoryView.swift; sourceTree = "<group>"; };
 		70B5EBD22C3AD6FB00471451 /* ImportDBView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportDBView.swift; sourceTree = "<group>"; };
 		70B5EBD62C3AF73500471451 /* TamilLitDB.sqlite-wal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "TamilLitDB.sqlite-wal"; sourceTree = "<group>"; };
@@ -85,6 +76,21 @@
 		70EAE0752B663CDA00E4930D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		70EAE0832B66420400E4930D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		70F7709E2C08BBAD00D329C3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		70F86D2E2C490C8600799435 /* Book+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataClass.swift"; sourceTree = "<group>"; };
+		70F86D2F2C490C8600799435 /* Book+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		70F86D302C490C8600799435 /* SubCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
+		70F86D312C490C8600799435 /* SubCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		70F86D322C490C8600799435 /* Section+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Section+CoreDataClass.swift"; sourceTree = "<group>"; };
+		70F86D332C490C8600799435 /* Section+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Section+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		70F86D342C490C8600799435 /* Explanation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Explanation+CoreDataClass.swift"; sourceTree = "<group>"; };
+		70F86D352C490C8600799435 /* Explanation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Explanation+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		70F86D362C490C8600799435 /* Settings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataClass.swift"; sourceTree = "<group>"; };
+		70F86D372C490C8600799435 /* Settings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		70F86D382C490C8600799435 /* MainCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
+		70F86D392C490C8600799435 /* MainCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		70F86D3A2C490C8600799435 /* Poem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Poem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		70F86D3B2C490C8600799435 /* Poem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Poem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		70F86D4A2C49899300799435 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,18 +128,20 @@
 		70626FCA2C23D54A00055E77 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				707C55DD2C416E2000B02FDB /* Book+CoreDataClass.swift */,
-				707C55DE2C416E2000B02FDB /* Book+CoreDataProperties.swift */,
-				707C55DF2C416E2000B02FDB /* Explanation+CoreDataClass.swift */,
-				707C55E02C416E2000B02FDB /* Explanation+CoreDataProperties.swift */,
-				707C55E12C416E2000B02FDB /* MainCategory+CoreDataClass.swift */,
-				707C55E22C416E2000B02FDB /* MainCategory+CoreDataProperties.swift */,
-				707C55E32C416E2000B02FDB /* Section+CoreDataClass.swift */,
-				707C55E42C416E2000B02FDB /* Section+CoreDataProperties.swift */,
-				707C55E52C416E2000B02FDB /* Poem+CoreDataClass.swift */,
-				707C55E62C416E2000B02FDB /* Poem+CoreDataProperties.swift */,
-				707C55E72C416E2000B02FDB /* SubCategory+CoreDataClass.swift */,
-				707C55E82C416E2000B02FDB /* SubCategory+CoreDataProperties.swift */,
+				70F86D2E2C490C8600799435 /* Book+CoreDataClass.swift */,
+				70F86D2F2C490C8600799435 /* Book+CoreDataProperties.swift */,
+				70F86D302C490C8600799435 /* SubCategory+CoreDataClass.swift */,
+				70F86D312C490C8600799435 /* SubCategory+CoreDataProperties.swift */,
+				70F86D322C490C8600799435 /* Section+CoreDataClass.swift */,
+				70F86D332C490C8600799435 /* Section+CoreDataProperties.swift */,
+				70F86D342C490C8600799435 /* Explanation+CoreDataClass.swift */,
+				70F86D352C490C8600799435 /* Explanation+CoreDataProperties.swift */,
+				70F86D362C490C8600799435 /* Settings+CoreDataClass.swift */,
+				70F86D372C490C8600799435 /* Settings+CoreDataProperties.swift */,
+				70F86D382C490C8600799435 /* MainCategory+CoreDataClass.swift */,
+				70F86D392C490C8600799435 /* MainCategory+CoreDataProperties.swift */,
+				70F86D3A2C490C8600799435 /* Poem+CoreDataClass.swift */,
+				70F86D3B2C490C8600799435 /* Poem+CoreDataProperties.swift */,
 				70E729802C230C7D00DE5977 /* TamilLitDB.xcdatamodeld */,
 			);
 			path = Model;
@@ -148,6 +156,7 @@
 				70E739232C314A5F00A4CF0E /* PoemListView.swift */,
 				70091FFF2C3BB1270049C60C /* PoemListWithCategoryView.swift */,
 				70E739312C31555400A4CF0E /* PoemDetailView.swift */,
+				70F86D4A2C49899300799435 /* SearchView.swift */,
 			);
 			path = GenericUI;
 			sourceTree = "<group>";
@@ -280,27 +289,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				707C55E92C416E2000B02FDB /* Book+CoreDataClass.swift in Sources */,
-				707C55EA2C416E2000B02FDB /* Book+CoreDataProperties.swift in Sources */,
-				707C55EB2C416E2000B02FDB /* Explanation+CoreDataClass.swift in Sources */,
-				707C55EC2C416E2000B02FDB /* Explanation+CoreDataProperties.swift in Sources */,
-				707C55ED2C416E2000B02FDB /* MainCategory+CoreDataClass.swift in Sources */,
-				707C55EE2C416E2000B02FDB /* MainCategory+CoreDataProperties.swift in Sources */,
-				707C55EF2C416E2000B02FDB /* Section+CoreDataClass.swift in Sources */,
-				707C55F02C416E2000B02FDB /* Section+CoreDataProperties.swift in Sources */,
-				707C55F12C416E2000B02FDB /* Poem+CoreDataClass.swift in Sources */,
-				707C55F22C416E2000B02FDB /* Poem+CoreDataProperties.swift in Sources */,
-				707C55F32C416E2000B02FDB /* SubCategory+CoreDataClass.swift in Sources */,
-				707C55F42C416E2000B02FDB /* SubCategory+CoreDataProperties.swift in Sources */,
 				703E18B52C458E890032298E /* SingleCategoryViewModel.swift in Sources */,
 				70E739322C31555400A4CF0E /* PoemDetailView.swift in Sources */,
 				70160F6B2C0B20E20053B4A9 /* MainView.swift in Sources */,
 				7068D7E32C33DCE700FAB1F6 /* BookHomeView.swift in Sources */,
 				70E729822C230C7D00DE5977 /* TamilLitDB.xcdatamodeld in Sources */,
 				700920002C3BB1270049C60C /* PoemListWithCategoryView.swift in Sources */,
+				70F86D4B2C49899300799435 /* SearchView.swift in Sources */,
 				70B5EBD32C3AD6FB00471451 /* ImportDBView.swift in Sources */,
 				70E739382C316DBA00A4CF0E /* CategoryListView.swift in Sources */,
 				702BCA552C313F1F0051D8C2 /* CoreDataManager.swift in Sources */,
+				70F86D3C2C490C8600799435 /* Book+CoreDataClass.swift in Sources */,
+				70F86D3D2C490C8600799435 /* Book+CoreDataProperties.swift in Sources */,
+				70F86D3E2C490C8600799435 /* SubCategory+CoreDataClass.swift in Sources */,
+				70F86D3F2C490C8600799435 /* SubCategory+CoreDataProperties.swift in Sources */,
+				70F86D402C490C8600799435 /* Section+CoreDataClass.swift in Sources */,
+				70F86D412C490C8600799435 /* Section+CoreDataProperties.swift in Sources */,
+				70F86D422C490C8600799435 /* Explanation+CoreDataClass.swift in Sources */,
+				70F86D432C490C8600799435 /* Explanation+CoreDataProperties.swift in Sources */,
+				70F86D442C490C8600799435 /* Settings+CoreDataClass.swift in Sources */,
+				70F86D452C490C8600799435 /* Settings+CoreDataProperties.swift in Sources */,
+				70F86D462C490C8600799435 /* MainCategory+CoreDataClass.swift in Sources */,
+				70F86D472C490C8600799435 /* MainCategory+CoreDataProperties.swift in Sources */,
+				70F86D482C490C8600799435 /* Poem+CoreDataClass.swift in Sources */,
+				70F86D492C490C8600799435 /* Poem+CoreDataProperties.swift in Sources */,
 				70F7709F2C08BBAD00D329C3 /* HomeView.swift in Sources */,
 				7093B6752C398FFB00D38548 /* SingleCategoryView.swift in Sources */,
 				70E739342C31559C00A4CF0E /* ExplanationListViewModel.swift in Sources */,

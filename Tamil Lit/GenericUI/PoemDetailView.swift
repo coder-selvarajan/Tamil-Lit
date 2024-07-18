@@ -8,29 +8,30 @@
 import SwiftUI
 
 struct PoemDetailView: View {
+    @Environment(\.presentationMode) var presentationMode
+    @StateObject private var viewModel = ExplanationListViewModel()
+    
     let colorTheme: Color
     let bookName: String
-    
     var poems: [Poem] = []
+    
     @State var selectedPoem: Poem
-    var mainCategory: String = ""
-    var subCategory: String = ""
-    var section: String = ""
-    
-    @Environment(\.presentationMode) var presentationMode
-    
-    @StateObject private var viewModel = ExplanationListViewModel()
-
     @State var poemViewHieght: CGFloat = 160.0
     
     func getCategoryText() -> String {
-        if section != "" {
-            return "\(mainCategory) › \(subCategory) › \(section)"
-        } else if subCategory != "" {
-            return "\(mainCategory) > \(subCategory)"
-        } else {
-            return "\(mainCategory)"
+        if poems.count > 0 {
+            let firstPoem = poems.first!
+            
+            if firstPoem.sectionname != nil {
+                return "\(firstPoem.maincategoryname ?? "")  ›  \(firstPoem.subcategoryname ?? "")  ›  \(firstPoem.sectionname ?? "")"
+            } else if firstPoem.subcategoryname != nil {
+                return "\(firstPoem.maincategoryname ?? "")  ›  \(firstPoem.subcategoryname ?? "")"
+            } else {
+                return "\(firstPoem.maincategoryname ?? "")"
+            }
         }
+        
+        return ""
     }
     
     func getPoemTitle() -> String {
@@ -95,7 +96,7 @@ struct PoemDetailView: View {
                 VStack(alignment: .leading, spacing: 10.0) {
                     
                     HStack(spacing: 10) {
-                        if section == "" {
+                        if let firstPoem = poems.first, firstPoem.sectionname == "" {
                             Spacer()
                         }
                         Text("\(getCategoryText())")

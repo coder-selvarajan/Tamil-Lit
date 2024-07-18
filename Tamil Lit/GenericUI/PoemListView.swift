@@ -68,11 +68,7 @@ struct PoemListView: View {
                     NavigationLink(destination: PoemDetailView(colorTheme: colorTheme,
                                                                bookName: bookName,
                                                                poems: viewModel.poems,
-                                                               selectedPoem: poem,
-                                                               mainCategory: mainCategory?.title ?? "",
-                                                               subCategory: subCategory?.title ?? "",
-                                                               section: section?.title ?? ""
-                                                              )) {
+                                                               selectedPoem: poem)) {
                         Text(poem.poem ?? "No Poem")
                     }
                     .listRowBackground(colorTheme.opacity(0.2))

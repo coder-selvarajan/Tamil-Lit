@@ -7,25 +7,18 @@
 
 import SwiftUI
 
-
 struct HomeView: View {
     @Environment(\.showLoading) private var showLoading
+    @StateObject var vm = HomeViewModel()
+    
+    @State var bookDisplayAsGrid: Bool = true
+    @State private var showRandomPoemPopup = false
     
     var body: some View {
         NavigationStack {
             VStack {
                 ScrollView(showsIndicators: false) {
                     VStack {
-//                        // Search Bar
-//                        HStack {
-//                            TextField("பாடல் தேடுக...", text: .constant(""))
-//                                .padding(.leading, 10)
-//                        }
-//                        .padding(10)
-//                        .background(Color(.systemGray5))
-//                        .cornerRadius(10)
-//                        .padding(.horizontal)
-//                        .padding(.top, 10)
                         
                         // Daily poem
                         VStack(alignment: .leading, spacing: 0) {
@@ -53,74 +46,69 @@ struct HomeView: View {
 //                        .foregroundStyle(.white)
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color(.systemGray5))
+                        .background(.gray.opacity(0.15))
+//                        .background(Color(.systemGray5))
 //                        .background(Color.black.opacity(0.9))
                         .cornerRadius(8)
                         .padding()
                         
                         // Action Section
                         VStack (alignment: .leading) {
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                HStack(spacing: 15) {
-                                    Button {
-                                        Task {
-                                            showLoading(.loading)
-                                            try? await Task.sleep(nanoseconds: 1_000_000_000)
-                                            showLoading(.success)
-                                        }
-                                    } label: {
-                                        HStack(alignment: .top) {
-                                            Image(systemName: "wand.and.stars")
-                                                .font(.headline)
-                                                .foregroundColor(.pink)
-                                            VStack(alignment: .leading) {
-                                                Text("ஏதோ ஒரு பாடல்")
-                                                    .lineLimit(1)
-                                                    .foregroundStyle(.black)
-                                                Text("(Random Poem)")
-                                                    .font(.footnote)
-                                                    .foregroundStyle(.gray)
-                                            }
-                                        }
-                                        .font(.body)
-//                                        .fontWeight(.semibold)
-                                        .padding()
+//                            ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 15) {
+                                Button {
+                                    Task {
+                                        showLoading(.loading)
+                                        vm.getRandomPoem()
+                                        showLoading(.success)
+                                        
+                                        showRandomPoemPopup = true
                                     }
-                                    .background(.gray.opacity(0.15))
-                                    .cornerRadius(10.0)
-                                    
-                                    
-                                    Button {
-                                        Task {
-                                            showLoading(.loading)
-                                            try? await Task.sleep(nanoseconds: 2_000_000_000)
-                                            showLoading(.success)
+                                } label: {
+                                    VStack(alignment: .center, spacing: 10) {
+                                        Image(systemName: "wand.and.stars")
+                                            .font(.title)
+                                            .foregroundColor(.pink)
+                                        VStack(alignment: .leading) {
+                                            Text("ஏதோ ஒரு பாடல்")
+                                                .lineLimit(1)
+                                                .foregroundStyle(.black)
                                         }
-                                    } label: {
-                                        HStack(alignment: .top) {
-                                            Image(systemName: "star.fill")
-                                                .font(.headline)
-                                                .foregroundColor(.yellow)
-                                            VStack(alignment: .leading) {
-                                                Text("சேமித்தவை ")
-                                                    .lineLimit(1)
-                                                    .foregroundStyle(.black)
-                                                Text("(Favourites)")
-                                                    .font(.footnote)
-                                                    .foregroundStyle(.gray)
-                                            }
-                                        }
-                                        .font(.body)
-//                                        .fontWeight(.semibold)
-                                        //                                    .foregroundColor(.black)
-                                        .padding()
                                     }
-                                    .background(.gray.opacity(0.15))
-                                    .cornerRadius(10.0)
+                                    .font(.body)
+                                    .padding()
+                                    .frame(maxWidth: .infinity)
                                 }
-                            }
-                            .padding(.horizontal)
+                                .background(.gray.opacity(0.15))
+                                .cornerRadius(10.0)
                                 
+                                Button {
+                                    Task {
+                                        showLoading(.loading)
+                                        try? await Task.sleep(nanoseconds: 2_000_000_000)
+                                        showLoading(.success)
+                                    }
+                                } label: {
+                                    VStack(alignment: .center, spacing: 10) {
+                                        Image(systemName: "star.fill")
+                                            .font(.title)
+                                            .foregroundColor(.yellow)
+                                        Text("சேமித்தவை ")
+                                            .lineLimit(1)
+                                            .foregroundStyle(.black)
+                                    }
+                                    .font(.body)
+                                    .padding()
+                                    .frame(maxWidth: .infinity)
+                                }
+                                .background(.gray.opacity(0.15))
+                                .cornerRadius(10.0)
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding(.horizontal)
+//                            }
+//                            .padding(.horizontal)
+                            
                         }
                         
                         // Tiles
@@ -134,7 +122,13 @@ struct HomeView: View {
                                     .font(.headline)
                                 
                                 Spacer()
-                                Image(systemName: "gearshape")
+                                Image(systemName: bookDisplayAsGrid ? "list.bullet" :
+                                      "square.grid.2x2" )
+                                .font(.title)
+                                    .onTapGesture {
+                                        bookDisplayAsGrid = !bookDisplayAsGrid
+                                    }
+                                
                             }
                             
                             HStack(spacing: 16) {
@@ -143,14 +137,16 @@ struct HomeView: View {
                                                  imageName: "Murugan", //"Thiruvalluvar3",
 //                                                 iconName: "book",
                                                  footnote: "1330 குறள்கள்",
-                                                 color: Color.blue)
+                                                 color: Color.blue,
+                                                 bookDisplayAsGrid: $bookDisplayAsGrid)
                                 }
                                 NavigationLink(value: "Athichudi") {
                                     BookTileView(bookTitle: "ஆத்தி சூடி",
                                                  imageName: "Avvaiyar3",
 //                                                 iconName: "character.book.closed",
                                                  footnote: "109 வாக்கியங்கள்",
-                                                 color: Color.teal)
+                                                 color: Color.teal,
+                                                 bookDisplayAsGrid: $bookDisplayAsGrid)
                                 }
                             }
                             HStack(spacing: 16) {
@@ -158,14 +154,16 @@ struct HomeView: View {
                                     BookTileView(bookTitle: "நாலடியார்",
                                                  imageName: "Jainmonk",
                                                  footnote: "400 பாடல்கள்",
-                                                 color: Color.indigo)
+                                                 color: Color.indigo,
+                                                 bookDisplayAsGrid: $bookDisplayAsGrid)
                                 }
                                 NavigationLink(value: "இனியவை நாற்பது") {
                                     BookTileView(bookTitle: "இனியவை நாற்பது",
 //                                                 iconName: "text.book.closed",
                                                  imageName: "Balaji",
                                                  footnote: "40 பாடல்கள்",
-                                                 color: Color.purple.opacity(0.7))
+                                                 color: Color.purple.opacity(0.7),
+                                                 bookDisplayAsGrid: $bookDisplayAsGrid)
                                 }
                             }
                             HStack(spacing: 16) {
@@ -174,14 +172,16 @@ struct HomeView: View {
 //                                                 iconName: "book",
                                                  imageName: "Ramar",
                                                  footnote: "100 பாடல்கள்",
-                                                 color: Color.red.opacity(0.6))
+                                                 color: Color.red.opacity(0.6),
+                                                 bookDisplayAsGrid: $bookDisplayAsGrid)
                                 }
                                 NavigationLink(value: "நான்மணிக்கடிகை") {
                                     BookTileView(bookTitle: "நான்மணிக் கடிகை",
 //                                                 iconName: "text.book.closed",
                                                  imageName: "Meenakshi",
                                                  footnote: "101 பாடல்கள்",
-                                                 color: Color.orange.opacity(0.7))
+                                                 color: Color.orange.opacity(0.7),
+                                                 bookDisplayAsGrid: $bookDisplayAsGrid)
                                 }
                                 
                             }
@@ -191,7 +191,8 @@ struct HomeView: View {
 //                                                 iconName: "book",
                                                  imageName: "Karuppusamy",
                                                  footnote: "40 பாடல்கள்",
-                                                 color: Color.brown)
+                                                 color: Color.brown,
+                                                 bookDisplayAsGrid: $bookDisplayAsGrid)
 //                                                 color: Color.pink.opacity(0.6))
                                 }
                                 NavigationLink(value: "திரிகடுகம்") {
@@ -199,7 +200,8 @@ struct HomeView: View {
 //                                                 iconName: "text.book.closed",
                                                  imageName: "Adiyogi",
                                                  footnote: "102 பாடல்கள்",
-                                                 color: Color.gray)
+                                                 color: Color.gray,
+                                                 bookDisplayAsGrid: $bookDisplayAsGrid)
                                 }
                             }
                             HStack(spacing: 16) {
@@ -207,14 +209,16 @@ struct HomeView: View {
                                     BookTileView(bookTitle: "முதுமொழிக் காஞ்சி",
                                                  imageName: "Murugan",
                                                  footnote: "100 பழமொழிகள்",
-                                                 color: Color.cyan)
+                                                 color: Color.cyan,
+                                                 bookDisplayAsGrid: $bookDisplayAsGrid)
                                 }
                                 NavigationLink(value: "பழமொழி நானூறு") {
                                     BookTileView(bookTitle: "பழமொழி நானூறு",
 //                                                 iconName: "text.book.closed",
                                                  imageName: "Balaji",
                                                  footnote: "400 பழமொழிகள்",
-                                                 color: Color.green.opacity(0.7))
+                                                 color: Color.green.opacity(0.7),
+                                                 bookDisplayAsGrid: $bookDisplayAsGrid)
                                 }
                                 
                             }
@@ -270,6 +274,11 @@ struct HomeView: View {
                     BookHomeView(colorTheme: Color.green.opacity(0.7), bookName: "பழமொழி நானூறு")
                 }
             }
+            .sheet(isPresented: $showRandomPoemPopup) {
+                if let poem = vm.randomPoem {
+                    SimplePoemDetailView(selectedPoem: poem, randomPoemPickEnabled: true)
+                }
+            }
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     HStack {
@@ -322,6 +331,8 @@ struct BookTileView: View {
     var footnote: String
     var color: Color = Color.clear
     
+    @Binding var bookDisplayAsGrid: Bool
+    
     var body: some View {
         ZStack(alignment: .topLeading) {
             RoundedRectangle(cornerRadius: 10)
@@ -346,37 +357,39 @@ struct BookTileView: View {
                 Spacer()
             }
             
-            VStack {
-                Spacer()
-                HStack {
+            if bookDisplayAsGrid {
+                VStack {
                     Spacer()
-                    if let img = imageName {
-                        Image(img)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 90)
-                            .saturation(0.0)
-                            .brightness(0.02)
-                            .opacity(0.6)
-                    }
-                    else {
-                        Image("book-icon")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 50)
-                            .saturation(0.0)
-                            .opacity(0.6)
-                            .padding()
-                        
-//                        Image(systemName: iconName)
-//                            .font(.title)
-//                            .foregroundStyle(.black.opacity(0.35))
-//                            .padding()
-                    }
+                    HStack {
+                        Spacer()
+                        if let img = imageName {
+                            Image(img)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 90)
+                                .saturation(0.0)
+                                .brightness(0.02)
+                                .opacity(0.6)
+                        }
+                        else {
+                            Image("book-icon")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 50)
+                                .saturation(0.0)
+                                .opacity(0.6)
+                                .padding()
+                            
+                            //                        Image(systemName: iconName)
+                            //                            .font(.title)
+                            //                            .foregroundStyle(.black.opacity(0.35))
+                            //                            .padding()
+                        }
+                    }.padding(0)
                 }.padding(0)
-            }.padding(0)
+            }
         }
-        .frame(height: 150)
+        .frame(height: bookDisplayAsGrid ? 150 : 90)
         
 //        ZStack {
 //            VStack(alignment: .leading, spacing: 5) {

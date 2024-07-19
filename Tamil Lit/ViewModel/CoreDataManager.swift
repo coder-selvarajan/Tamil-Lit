@@ -280,4 +280,51 @@ extension CoreDataManager {
             return []
         }
     }
+    
+    func performSearch(searchText: String) -> [Poem] {
+        let request: NSFetchRequest<Poem> = Poem.fetchRequest()
+        
+        // Create predicates for searching in poem, title, and meaning
+        let poemPredicate = NSPredicate(format: "poem CONTAINS[cd] %@", searchText)
+        let titlePredicate = NSPredicate(format: "title CONTAINS[cd] %@", searchText)
+//        let meaningPredicate = NSPredicate(format: "ANY explanations.meaning CONTAINS[cd] %@", searchText)
+        
+        // Combine predicates using OR
+//        request.predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [poemPredicate, titlePredicate, meaningPredicate])
+        request.predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [poemPredicate, titlePredicate])
+        
+        // Sort by bookname
+        request.sortDescriptors = [NSSortDescriptor(key: "bookname", ascending: true)]
+        
+        do {
+            return try viewContext.fetch(request)
+        } catch {
+            print("Failed to fetch data: \(error)")
+        }
+        
+        return []
+    }
+    
+    func fetchRandomPoem() -> Poem? {
+        let request: NSFetchRequest<Poem> = Poem.fetchRequest()
+        request.fetchLimit = 1
+        
+        let countRequest: NSFetchRequest<NSNumber> = NSFetchRequest<NSNumber>(entityName: "Poem")
+        countRequest.resultType = .countResultType
+        
+        do {
+            let count = try viewContext.count(for: countRequest)
+            if count > 0 {
+                let randomOffset = Int.random(in: 0..<count)
+                request.fetchOffset = randomOffset
+                if let randomPoem = try viewContext.fetch(request).first {
+                    return randomPoem
+                }
+            }
+        } catch {
+            print("Failed to fetch random poem: \(error)")
+        }
+        
+        return nil
+    }
 }

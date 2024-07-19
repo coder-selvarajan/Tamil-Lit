@@ -13,11 +13,15 @@ struct SimplePoemDetailView: View {
     @StateObject private var vm = SinglePoemDetailViewModel()
     
     let colorTheme: Color = Color.gray
-    @State var selectedPoem: Poem
+    @State var selectedPoem: Poem?
     @State var poemViewHieght: CGFloat = 160.0
     @State var randomPoemPickEnabled: Bool = false
     
     func getCategoryText() -> String {
+        guard let selectedPoem = selectedPoem else {
+            return ""
+        }
+        
         if selectedPoem.sectionname != nil {
             return "வகை: \n\(selectedPoem.maincategoryname ?? "")  ›  \(selectedPoem.subcategoryname ?? "")  ›  \(selectedPoem.sectionname ?? "")"
         } else if selectedPoem.subcategoryname != nil {
@@ -28,6 +32,10 @@ struct SimplePoemDetailView: View {
     }
     
     func getPoemTitle() -> String {
+        guard let selectedPoem = selectedPoem else {
+            return ""
+        }
+        
         if selectedPoem.number == 0 {
             return ""
         }
@@ -53,7 +61,7 @@ struct SimplePoemDetailView: View {
                         .foregroundStyle(.black)
                     
                     VStack(alignment: .leading, spacing: 2.0) {
-                        Text("\(selectedPoem.poem ?? "")")
+                        Text("\(selectedPoem?.poem ?? "")")
                             .font(.subheadline)
                             .fontWeight(Font.Weight.semibold)
                             .foregroundStyle(.black)
@@ -82,27 +90,29 @@ struct SimplePoemDetailView: View {
             
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 10.0) {
-                    HStack {
-                        Text(selectedPoem.bookname ?? "")
-                            .font(.title2)
-                            .fontWeight(.semibold)
-                        Spacer()
+                    if !randomPoemPickEnabled {
+                        HStack {
+                            Text(selectedPoem?.bookname ?? "")
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                            Spacer()
+                            
+                            Image(systemName: "xmark.app.fill")
+                                .font(.largeTitle)
+                                .foregroundColor(.red.opacity(0.7))
+                                .onTapGesture {
+                                    presentationMode.wrappedValue.dismiss()
+                                }
+                        }
+                        .padding(.horizontal)
+                        .padding(.top)
+                        .padding(.bottom, 10)
                         
-                        Image(systemName: "xmark.app.fill")
-                            .font(.largeTitle)
-                            .foregroundColor(.red.opacity(0.7))
-                            .onTapGesture {
-                                presentationMode.wrappedValue.dismiss()
-                            }
+                        Divider().padding(.bottom)
                     }
-                    .padding(.horizontal)
-                    .padding(.top)
-                    .padding(.bottom, 10)
-                    
-                    Divider().padding(.bottom)
                     
                     HStack(spacing: 10) {
-                        if selectedPoem.sectionname == "" {
+                        if selectedPoem?.sectionname == "" {
                             Spacer()
                         }
                         Text("\(getCategoryText())")
@@ -206,15 +216,17 @@ struct SimplePoemDetailView: View {
                 }
             }
         }
-        .navigationTitle(selectedPoem.bookname ?? "")
+        .navigationTitle(selectedPoem?.bookname ?? "")
         .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
         .onAppear {
-            if let poemContent = selectedPoem.poem {
-                let lines = poemContent.components(separatedBy: "\n")
-                poemViewHieght = (CGFloat(lines.count) * 40.0) + 80.0
+            if let selectedPoem = selectedPoem {
+                if let poemContent = selectedPoem.poem {
+                    let lines = poemContent.components(separatedBy: "\n")
+                    poemViewHieght = (CGFloat(lines.count) * 40.0) + 80.0
+                }
+                
+                vmExplanation.fetchExplanations(for: selectedPoem)
             }
-            
-            vmExplanation.fetchExplanations(for: selectedPoem)
         }
     }
 }

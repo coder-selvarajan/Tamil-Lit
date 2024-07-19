@@ -56,31 +56,29 @@ struct HomeView: View {
                         VStack (alignment: .leading) {
 //                            ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 15) {
-                                Button {
-                                    Task {
-                                        showLoading(.loading)
+                                NavigationLink(destination: SimplePoemDetailView(selectedPoem: vm.randomPoem, randomPoemPickEnabled: true),
+                                               isActive: $showRandomPoemPopup) {
+                                    Button {
                                         vm.getRandomPoem()
-                                        showLoading(.success)
-                                        
                                         showRandomPoemPopup = true
-                                    }
-                                } label: {
-                                    VStack(alignment: .center, spacing: 10) {
-                                        Image(systemName: "wand.and.stars")
-                                            .font(.title)
-                                            .foregroundColor(.pink)
-                                        VStack(alignment: .leading) {
-                                            Text("ஏதோ ஒரு பாடல்")
-                                                .lineLimit(1)
-                                                .foregroundStyle(.black)
+                                    } label: {
+                                        VStack(alignment: .center, spacing: 10) {
+                                            Image(systemName: "wand.and.stars")
+                                                .font(.title)
+                                                .foregroundColor(.pink)
+                                            VStack(alignment: .leading) {
+                                                Text("ஏதோ ஒரு பாடல்")
+                                                    .lineLimit(1)
+                                                    .foregroundStyle(.black)
+                                            }
                                         }
+                                        .font(.body)
+                                        .padding()
+                                        .frame(maxWidth: .infinity)
                                     }
-                                    .font(.body)
-                                    .padding()
-                                    .frame(maxWidth: .infinity)
+                                    .background(.gray.opacity(0.15))
+                                    .cornerRadius(10.0)
                                 }
-                                .background(.gray.opacity(0.15))
-                                .cornerRadius(10.0)
                                 
                                 Button {
                                     Task {
@@ -274,11 +272,11 @@ struct HomeView: View {
                     BookHomeView(colorTheme: Color.green.opacity(0.7), bookName: "பழமொழி நானூறு")
                 }
             }
-            .sheet(isPresented: $showRandomPoemPopup) {
-                if let poem = vm.randomPoem {
-                    SimplePoemDetailView(selectedPoem: poem, randomPoemPickEnabled: true)
-                }
-            }
+//            .sheet(isPresented: $showRandomPoemPopup) {
+//                if let poem = vm.randomPoem {
+//                    SimplePoemDetailView(selectedPoem: poem, randomPoemPickEnabled: true)
+//                }
+//            }
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     HStack {

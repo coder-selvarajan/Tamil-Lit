@@ -60,7 +60,6 @@ extension String {
     }
 }
 
-
 func getColorByBook(_ value: String) -> Color {
     var color: Color = .blue
     
@@ -112,11 +111,10 @@ struct SearchView: View {
         VStack(alignment: HorizontalAlignment.leading) {
             // Search textbox
             HStack {
-                TextField("Search words in dictionary...",
+                TextField("வார்த்தைகள்...",
                           text: $searchText,
                           onEditingChanged: { editingChanged in
                     SearchEditChanged = editingChanged
-                    print("editingChanged: \(editingChanged)")
                 })
                 .modifier(ClearButton(text: $searchText, searchIsFocused: _searchIsFocused))
                 .font(.headline)
@@ -149,11 +147,15 @@ struct SearchView: View {
                 }
                 
                 Button {
-                    presentationMode.wrappedValue.dismiss()
+//                    presentationMode.wrappedValue.dismiss()
                 } label: {
-                    Text("Cancel")
+                    Image(systemName: "checklist")
+                        .foregroundColor(.black)
                 }
-                .padding(.leading, 10)
+                .padding()
+                .background(.gray.opacity(0.2))
+                .cornerRadius(10.0)
+//                .padding(.leading, 10)
             }
             .padding(.horizontal)
             .padding(.vertical, 10)
@@ -162,43 +164,30 @@ struct SearchView: View {
             List {
                 if (searchState == .initial) {
                     SwiftUI.Section(header: Text("Recent Searches")) {
-                        Text("இனிது")
+                        ForEach(vm.getRecentSearch(), id: \.self) { recentText in
+                            HStack {
+                                Text(recentText)
+                                Spacer()
+                            }
                             .onTapGesture {
-                                searchText = "இனிது"
+                                searchText = recentText
                                 showLoading(.loading)
                                 searchState = .submitted
                                 vm.search(searchText)
                                 showLoading(.success)
                                 searchIsFocused = false
                             }
-                        Text("துறவு")
-                            .onTapGesture {
-                                searchText = "துறவு"
-                                showLoading(.loading)
-                                searchState = .submitted
-                                vm.search(searchText)
-                                showLoading(.success)
-                                searchIsFocused = false
-                            }
-                        Text("வீரம்")
-                            .onTapGesture {
-                                searchText = "வீரம்"
-                                showLoading(.loading)
-                                searchState = .submitted
-                                vm.search(searchText)
-                                showLoading(.success)
-                                searchIsFocused = false
-                            }
+                        }
                     }
                 }
                 
-                if (searchState == .typing) {
-                    SwiftUI.Section(header: Text("Suggestions")) {
-                        Text("Suggestion one")
-                        Text("Suggestion two")
-                        Text("Suggestion three")
-                    }
-                }
+//                if (searchState == .typing) {
+//                    SwiftUI.Section(header: Text("Suggestions")) {
+//                        Text("Suggestion one")
+//                        Text("Suggestion two")
+//                        Text("Suggestion three")
+//                    }
+//                }
                 
                 if (searchState == .submitted) {
                     ForEach(vm.searchResults.keys.sorted(), id: \.self) { bookname in
@@ -244,9 +233,10 @@ struct SearchView: View {
             SimplePoemDetailView(selectedPoem: $selectedPoem, popupMode: true)
         }
         .toolbar {
-            ToolbarItem {
-                Image(systemName: "gearshape")
-            }
+            
+//            ToolbarItem {
+//                Image(systemName: "gearshape")
+//            }
         }
         
     }

@@ -16,11 +16,11 @@ class HomeViewModel: ObservableObject {
         poemOftheDay = CoreDataManager.shared.fetchRandomPoem()
         
         if let section = poemOftheDay?.sectionname, section != "", !section.starts(with: "பாடல்") {
-            categoryDisplay = section
+            categoryDisplay = " - " + section
         } else if let subCat = poemOftheDay?.subcategoryname, subCat != "", !subCat.starts(with: "பாடல்") {
-            categoryDisplay = subCat
+            categoryDisplay = " - " + subCat
         } else if let mainCat = poemOftheDay?.maincategoryname, mainCat != "", !mainCat.starts(with: "பாடல்") {
-            categoryDisplay = mainCat
+            categoryDisplay = " - " + mainCat
         } else {
             categoryDisplay = ""
         }

@@ -16,6 +16,7 @@
 		702BCA552C313F1F0051D8C2 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702BCA542C313F1F0051D8C2 /* CoreDataManager.swift */; };
 		703E18B52C458E890032298E /* SingleCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703E18B42C458E890032298E /* SingleCategoryViewModel.swift */; };
 		7068D7E32C33DCE700FAB1F6 /* BookHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7068D7E22C33DCE700FAB1F6 /* BookHomeView.swift */; };
+		708FB19C2C4C1C6F00553498 /* Quicksand.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 708FB19B2C4C1C6F00553498 /* Quicksand.ttf */; };
 		7093B6752C398FFB00D38548 /* SingleCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093B6742C398FFB00D38548 /* SingleCategoryView.swift */; };
 		70A1E9432C4A565F00264AC8 /* SimplePoemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A1E9422C4A565F00264AC8 /* SimplePoemDetailView.swift */; };
 		70A1E9452C4A9B0300264AC8 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A1E9442C4A9B0300264AC8 /* HomeViewModel.swift */; };
@@ -64,6 +65,8 @@
 		702BCA542C313F1F0051D8C2 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		703E18B42C458E890032298E /* SingleCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCategoryViewModel.swift; sourceTree = "<group>"; };
 		7068D7E22C33DCE700FAB1F6 /* BookHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookHomeView.swift; sourceTree = "<group>"; };
+		708FB19B2C4C1C6F00553498 /* Quicksand.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Quicksand.ttf; sourceTree = "<group>"; };
+		708FB19E2C4C290B00553498 /* Tamil-Lit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Tamil-Lit-Info.plist"; sourceTree = SOURCE_ROOT; };
 		7093B6742C398FFB00D38548 /* SingleCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCategoryView.swift; sourceTree = "<group>"; };
 		70A1E9422C4A565F00264AC8 /* SimplePoemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePoemDetailView.swift; sourceTree = "<group>"; };
 		70A1E9442C4A9B0300264AC8 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -160,6 +163,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		708FB19D2C4C1C9000553498 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				708FB19B2C4C1C6F00553498 /* Quicksand.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		70E7297F2C2309EF00DE5977 /* GenericUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +206,7 @@
 		70EAE06B2B663CD800E4930D /* Tamil Lit */ = {
 			isa = PBXGroup;
 			children = (
+				708FB19E2C4C290B00553498 /* Tamil-Lit-Info.plist */,
 				70EAE0742B663CDA00E4930D /* Preview Content */,
 				70626FCA2C23D54A00055E77 /* Model */,
 				702BCA532C313EF50051D8C2 /* ViewModel */,
@@ -207,6 +219,7 @@
 				70B5EBD22C3AD6FB00471451 /* ImportDBView.swift */,
 				700920012C3BC14D0049C60C /* LoadingView.swift */,
 				70EAE0722B663CDA00E4930D /* Assets.xcassets */,
+				708FB19D2C4C1C9000553498 /* Fonts */,
 				70EAE0832B66420400E4930D /* README.md */,
 			);
 			path = "Tamil Lit";
@@ -294,6 +307,7 @@
 				70EAE0842B66420400E4930D /* README.md in Resources */,
 				70B5EBD92C3AF73500471451 /* TamilLitDB.sqlite-wal in Resources */,
 				70EAE0732B663CDA00E4930D /* Assets.xcassets in Resources */,
+				708FB19C2C4C1C6F00553498 /* Quicksand.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,6 +493,7 @@
 				DEVELOPMENT_TEAM = G6KL98HCPY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Tamil-Lit-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -508,6 +523,7 @@
 				DEVELOPMENT_TEAM = G6KL98HCPY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Tamil-Lit-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

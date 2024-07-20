@@ -95,18 +95,37 @@ struct PoemDetailView: View {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 10.0) {
                     
-                    HStack(spacing: 10) {
-                        if let firstPoem = poems.first, firstPoem.sectionname == "" {
-                            Spacer()
-                        }
+//                    HStack(spacing: 10) {
+//                        if let firstPoem = poems.first, firstPoem.sectionname == "" {
+//                            Spacer()
+//                        }
+//                        Text("\(getCategoryText())")
+//                            .fontWeight(.bold)
+//                            .foregroundStyle(.black.opacity(0.95))
+//                        Spacer()
+//                    }
+//                    .font(.subheadline)
+//                    .padding(.bottom, 10)
+//                    .padding(.horizontal, 20)
+                    
+                    HStack(alignment: .top, spacing: 5) {
+                        Text("வகை : ")
+                            .padding(3)
+                            .frame(width: 60)
+                            .multilineTextAlignment(.trailing)
+                            .background(.white)
+                            .cornerRadius(5)
+                            .padding(.trailing, 5)
                         Text("\(getCategoryText())")
                             .fontWeight(.bold)
                             .foregroundStyle(.black.opacity(0.95))
                         Spacer()
                     }
                     .font(.subheadline)
-                    .padding(.bottom, 10)
-                    .padding(.horizontal, 20)
+                    .padding(.vertical)
+                    .padding(.leading, 20)
+                    .padding(.trailing, 5)
+                    
                     
                     // Poems in a tab view
                     poemTabView

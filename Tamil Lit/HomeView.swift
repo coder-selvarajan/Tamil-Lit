@@ -12,7 +12,19 @@ struct HomeView: View {
     @StateObject var vm = HomeViewModel()
     
     @State var bookDisplayAsGrid: Bool = true
-    @State private var showRandomPoemPopup = false
+    @State private var showPoemPopup = false
+    @State private var currentDate: Date = Date()
+    
+    private var formattedDate: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM dd"
+        return formatter.string(from: currentDate)
+    }
+    
+    private var isTodayOrAfter: Bool {
+        let now = Date()
+        return currentDate >= Calendar.current.startOfDay(for: now)
+    }
     
     var body: some View {
         NavigationStack {
@@ -21,34 +33,76 @@ struct HomeView: View {
                     VStack {
                         
                         // Daily poem
+                        
                         VStack(alignment: .leading, spacing: 0) {
                             HStack(alignment: .center) {
-                                Image(systemName: "deskclock")
-                                    .font(.headline)
-                                    .foregroundColor(.black)
-                                
-                                Text("தினம் ஒரு பாடல்:")
+                                Text("தினம் ஒரு பாடல்")
                                     .font(.headline)
                                     .fontWeight(.semibold)
                                 
                                 Spacer()
                                 
-                                Image(systemName: "star")
-                                    .padding(.horizontal, 10)
-                                    .foregroundStyle(.black)
-                                Image(systemName: "info.circle")
-                                    .foregroundStyle(.black)
+                                Button {
+                                    currentDate = Calendar.current.date(byAdding: .day, value: -1, to: currentDate) ?? currentDate
+                                    vm.getPoemOftheDay()
+                                } label: {
+                                    Image(systemName: "arrowtriangle.left.circle")
+                                        .font(.title3)
+                                        .foregroundColor(.black)
+                                }
+                                
+                                Text(formattedDate)
+                                    .font(.subheadline)
+                                    .foregroundStyle(.black.opacity(0.85))
+//                                    .padding(.horizontal, 5)
+                                
+                                Button {
+                                    currentDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate) ?? currentDate
+                                    vm.getPoemOftheDay()
+                                } label: {
+                                    Image(systemName: "arrowtriangle.right.circle")
+                                        .font(.title3)
+                                        .foregroundColor(.black)
+                                }
+                                .disabled(isTodayOrAfter)
+                                .opacity(isTodayOrAfter ? 0.3 : 1.0)
+                                
                             }
-                            .padding(.bottom)
-                            Text("இருள்சேர் இருவினையும் சேரா இறைவன்")
-                            Text("பொருள்சேர் புகழ்புரிந்தார் மாட்டு.")
+                            .padding(.bottom, 5)
+                            
+                            Divider().padding(.vertical, 10) //.padding(.bottom, 10)
+                            
+//                            Spacer()
+                            
+                            // Book and Category display
+                            HStack(alignment: .top) {
+                                Text(vm.poemOftheDay?.bookname ?? "")
+                                    .font(.footnote)
+                                    .fontWeight(.semibold)
+                                    .padding(.bottom, 10)
+                                
+                                if vm.categoryDisplay != "" {
+                                    Text("- " + vm.categoryDisplay)
+                                        .font(.footnote)
+                                        .fontWeight(.semibold)
+                                        .padding(.bottom, 10)
+                                }
+                                Spacer()
+                            }
+                            
+                            // Daily poem display
+                            Text(vm.poemOftheDay?.poem ?? "")
+                                .lineLimit(3)
+                                .onTapGesture {
+                                    showPoemPopup = true
+                                }
+                            
+//                            Spacer()
                         }
-//                        .foregroundStyle(.white)
                         .frame(maxWidth: .infinity)
                         .padding()
+//                        .frame(height: 190)
                         .background(.gray.opacity(0.15))
-//                        .background(Color(.systemGray5))
-//                        .background(Color.black.opacity(0.9))
                         .cornerRadius(8)
                         .padding()
                         
@@ -56,26 +110,20 @@ struct HomeView: View {
                         VStack (alignment: .leading) {
 //                            ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 15) {
-                                NavigationLink(destination: SimplePoemDetailView(selectedPoem: vm.randomPoem, randomPoemPickEnabled: true),
-                                               isActive: $showRandomPoemPopup) {
-                                    Button {
-                                        vm.getRandomPoem()
-                                        showRandomPoemPopup = true
-                                    } label: {
-                                        VStack(alignment: .center, spacing: 10) {
-                                            Image(systemName: "wand.and.stars")
-                                                .font(.title)
-                                                .foregroundColor(.pink)
-                                            VStack(alignment: .leading) {
-                                                Text("ஏதோ ஒரு பாடல்")
-                                                    .lineLimit(1)
-                                                    .foregroundStyle(.black)
-                                            }
+                                NavigationLink(value: "RandomPoemView") {
+                                    VStack(alignment: .center, spacing: 10) {
+                                        Image(systemName: "wand.and.stars")
+                                            .font(.title)
+                                            .foregroundColor(.pink)
+                                        VStack(alignment: .leading) {
+                                            Text("ஏதோ ஒரு பாடல்")
+                                                .lineLimit(1)
+                                                .foregroundStyle(.black)
                                         }
-                                        .font(.body)
-                                        .padding()
-                                        .frame(maxWidth: .infinity)
                                     }
+                                    .font(.body)
+                                    .padding()
+                                    .frame(maxWidth: .infinity)
                                     .background(.gray.opacity(0.15))
                                     .cornerRadius(10.0)
                                 }
@@ -230,23 +278,7 @@ struct HomeView: View {
                         Spacer()
                     }
                 }
-                
-//                // Tab Bar
-//                HStack {
-//                    Spacer()
-//                    TabBarButton(iconName: "house", label: "Home")
-//                    Spacer()
-//                    TabBarButton(iconName: "star", label: "Favourites")
-//                    Spacer()
-//                    TabBarButton(iconName: "gearshape", label: "Settings")
-//                    Spacer()
-//                }
-//                .padding(.vertical, 15)
-//                .background(Color(.systemGray6))
-//                .cornerRadius(15)
-//                .padding(.horizontal)
             }
-//            .padding(.bottom, 50)
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: String.self) { value in
                 if value == "Thirukural" {
@@ -271,12 +303,19 @@ struct HomeView: View {
                 } else if value == "பழமொழி நானூறு" {
                     BookHomeView(colorTheme: Color.green.opacity(0.7), bookName: "பழமொழி நானூறு")
                 }
+                
+                // Random Poem View
+                if value == "RandomPoemView" {
+                    RandomPoemView()
+                }
             }
-//            .sheet(isPresented: $showRandomPoemPopup) {
-//                if let poem = vm.randomPoem {
-//                    SimplePoemDetailView(selectedPoem: poem, randomPoemPickEnabled: true)
-//                }
-//            }
+            .onAppear() {
+                // Fetch the poem of the day
+                vm.getPoemOftheDay()
+            }
+            .sheet(isPresented: $showPoemPopup) {
+                SimplePoemDetailView(selectedPoem: $vm.poemOftheDay, popupMode: true)
+            }
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     HStack {
@@ -288,15 +327,6 @@ struct HomeView: View {
                             .font(.title2)
                         
                         Spacer()
-                        
-                        // Search Bar
-//                        HStack {
-//                            TextField("பாடல் தேடுக...", text: .constant(""))
-//                                .padding(.leading, 10)
-//                        }
-//                        .padding(10)
-//                        .background(Color(.systemGray6))
-//                        .cornerRadius(10)
                     }
                     .padding(0)
                 }
@@ -388,38 +418,6 @@ struct BookTileView: View {
             }
         }
         .frame(height: bookDisplayAsGrid ? 150 : 90)
-        
-//        ZStack {
-//            VStack(alignment: .leading, spacing: 5) {
-////                Image(systemName: iconName)
-////                    .font(.title2)
-//                Text(bookTitle)
-//                    .font(.subheadline)
-//                    .fontWeight(Font.Weight.semibold)
-//                    .lineLimit(1)
-//                Text(footnote)
-//                    .font(.caption2)
-//                    .foregroundColor(.black.opacity(0.7))
-//    //                .padding(.bottom)
-//            }
-//            .foregroundStyle(.black)
-//            .padding(20)
-//            .frame(maxWidth: .infinity)
-//            .background(color != Color.clear ? color.opacity(0.25) : colors.randomElement()?.opacity(0.25))
-//            .cornerRadius(10)
-//            
-//            VStack {
-//                Spacer()
-//                HStack {
-//                    Spacer()
-//                    Image(systemName: iconName)
-//                        .font(.title2)
-//                        .foregroundStyle(.black)
-//                        .padding(10)
-//                }
-//            }
-//        }
-        
     }
 }
 
@@ -435,13 +433,6 @@ struct TabBarButton: View {
         }
     }
 }
-
-//struct HomeView2_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HomeView2()
-//    }
-//}
-
 
 //#Preview {
 //    HomeView()

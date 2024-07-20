@@ -92,7 +92,6 @@ func getColorByBook(_ value: String) -> Color {
 struct SearchView: View {
     @StateObject var vm = SearchViewModel()
     
-    
     @State var filteredItems: [String] = []
     @State private var searchText = ""
     
@@ -129,7 +128,7 @@ struct SearchView: View {
                 .focused($searchIsFocused)
                 .submitLabel(SubmitLabel.search)
                 .disableAutocorrection(true)
-                .onChange(of: searchText) { searchTerm in
+                .onChange(of: searchText) {
                     if SearchEditChanged  { // means the cursor is on the search field
                         searchState = searchText == "" ? .initial : .typing
                     }
@@ -242,9 +241,7 @@ struct SearchView: View {
         .navigationTitle(Text("பாடல் தேடு"))
         .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
         .sheet(isPresented: $isShowingDetail) {
-            if let poem = selectedPoem {
-                SimplePoemDetailView(selectedPoem: poem)
-            }
+            SimplePoemDetailView(selectedPoem: $selectedPoem, popupMode: true)
         }
         .toolbar {
             ToolbarItem {

@@ -10,12 +10,10 @@ import SwiftUI
 struct SimplePoemDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject private var vmExplanation = ExplanationListViewModel()
-    @StateObject private var vm = SinglePoemDetailViewModel()
     
     let colorTheme: Color = Color.gray
-    @State var selectedPoem: Poem?
-    @State var poemViewHieght: CGFloat = 160.0
-    @State var randomPoemPickEnabled: Bool = false
+    @Binding var selectedPoem: Poem?
+    @State var popupMode: Bool = false
     
     func getCategoryText() -> String {
         guard let selectedPoem = selectedPoem else {
@@ -23,11 +21,11 @@ struct SimplePoemDetailView: View {
         }
         
         if selectedPoem.sectionname != nil {
-            return "வகை: \n\(selectedPoem.maincategoryname ?? "")  ›  \(selectedPoem.subcategoryname ?? "")  ›  \(selectedPoem.sectionname ?? "")"
+            return "\(selectedPoem.maincategoryname ?? "")  ›  \(selectedPoem.subcategoryname ?? "")  ›  \(selectedPoem.sectionname ?? "")"
         } else if selectedPoem.subcategoryname != nil {
-            return "வகை: \n\(selectedPoem.maincategoryname ?? "")  ›  \(selectedPoem.subcategoryname ?? "")"
+            return "\(selectedPoem.maincategoryname ?? "")  ›  \(selectedPoem.subcategoryname ?? "")"
         } else {
-            return "வகை:  \(selectedPoem.maincategoryname ?? "")"
+            return "\(selectedPoem.maincategoryname ?? "")"
         }
     }
     
@@ -49,84 +47,85 @@ struct SimplePoemDetailView: View {
         return poemType + ": \(selectedPoem.number)"
     }
     
-    var poemTabView: some View {
-        VStack {
-            ZStack {
-                
-                VStack(alignment: .leading, spacing: 10) {
-                    Spacer()
-                    Text("\(getPoemTitle())")
-                        .font(.callout)
-                        .fontWeight(Font.Weight.semibold)
-                        .foregroundStyle(.black)
-                    
-                    VStack(alignment: .leading, spacing: 2.0) {
-                        Text("\(selectedPoem?.poem ?? "")")
-                            .font(.subheadline)
-                            .fontWeight(Font.Weight.semibold)
-                            .foregroundStyle(.black)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                    }
-                    
-                    Spacer()
-                }
-                .tag(selectedPoem)
-                .padding(.bottom, 15)
-                .frame(maxWidth: .infinity)
-                .padding(.horizontal, 10)
-                    
-            }
-        }
-        .padding(.horizontal, 10)
-        .background(colorTheme.opacity(0.35))
-        .cornerRadius(10.0)
-        .padding(.horizontal, 10)
-        .padding(.bottom, 20)
-    }
-    
     var body: some View {
         ZStack(alignment: .top) {
             colorTheme.opacity(0.2).ignoresSafeArea()
             
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 10.0) {
-                    if !randomPoemPickEnabled {
-                        HStack {
-                            Text(selectedPoem?.bookname ?? "")
-                                .font(.title2)
-                                .fontWeight(.semibold)
+                    
+                    // Book and Category titles
+                    VStack {
+                        HStack(alignment: .top, spacing: 5) {
+                            Text("நூல் : ")
+                                .padding(3)
+                                .frame(width: 60)
+                                .multilineTextAlignment(.trailing)
+                                .background(.white)
+                                .cornerRadius(5)
+                                .padding(.trailing, 5)
+                            Text("\(selectedPoem?.bookname ?? "")")
+                                .font(.title3)
+                                .fontWeight(.bold)
+                                .foregroundStyle(.black.opacity(0.95))
                             Spacer()
-                            
-                            Image(systemName: "xmark.app.fill")
-                                .font(.largeTitle)
-                                .foregroundColor(.red.opacity(0.7))
-                                .onTapGesture {
-                                    presentationMode.wrappedValue.dismiss()
-                                }
                         }
-                        .padding(.horizontal)
-                        .padding(.top)
+                        .font(.subheadline)
                         .padding(.bottom, 10)
+                        .padding(.leading, 20)
+                        .padding(.trailing, 5)
                         
-                        Divider().padding(.bottom)
-                    }
-                    
-                    HStack(spacing: 10) {
-                        if selectedPoem?.sectionname == "" {
+                        HStack(alignment: .top, spacing: 5) {
+                            Text("வகை : ")
+                                .padding(3)
+                                .frame(width: 60)
+                                .multilineTextAlignment(.trailing)
+                                .background(.white)
+                                .cornerRadius(5)
+                                .padding(.trailing, 5)
+                            Text("\(getCategoryText())")
+                                .fontWeight(.bold)
+                                .foregroundStyle(.black.opacity(0.95))
                             Spacer()
                         }
-                        Text("\(getCategoryText())")
-                            .fontWeight(.bold)
-                            .foregroundStyle(.black.opacity(0.95))
-                        Spacer()
+                        .font(.subheadline)
+                        .padding(.bottom, 10)
+                        .padding(.leading, 20)
+                        .padding(.trailing, 5)
                     }
-                    .font(.subheadline)
-                    .padding(.bottom, 10)
-                    .padding(.horizontal, 20)
+                    .padding(.top, 30)
+                    .padding(.bottom)
                     
-                    // Poems in a tab view
-                    poemTabView
+                    // Poem box
+                    VStack {
+                        VStack(alignment: .leading, spacing: 10) {
+                            Spacer()
+                            Text("\(getPoemTitle())")
+                                .font(.callout)
+                                .fontWeight(Font.Weight.semibold)
+                                .foregroundStyle(.black)
+                            
+                            VStack(alignment: .leading, spacing: 2.0) {
+                                Text("\(selectedPoem?.poem ?? "")")
+                                    .font(.subheadline)
+                                    .fontWeight(Font.Weight.semibold)
+                                    .foregroundStyle(.black)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                            
+                            Spacer()
+                        }
+                        .padding(.bottom, 15)
+                        .frame(maxWidth: .infinity)
+                        .padding(.horizontal, 10)
+                    }
+                    .padding(.horizontal, 10)
+                    .background(colorTheme.opacity(0.35))
+                    .cornerRadius(10.0)
+                    .padding(.horizontal, 10)
+                    .padding(.bottom, 20)
                     
+                    // Explanation section
                     VStack(alignment: .leading) {
                         HStack {
                             Spacer()
@@ -175,56 +174,31 @@ struct SimplePoemDetailView: View {
                 }
             }
             
-            // Random poem - action button
-            if randomPoemPickEnabled {
+            if popupMode {
                 VStack {
-                    Spacer()
                     HStack {
                         Spacer()
                         
-                        Button {
-                            if let poem = vm.getRandomPoem() {
-                                selectedPoem = poem
-                                
-                                if let poemContent = poem.poem {
-                                    let lines = poemContent.components(separatedBy: "\n")
-                                    poemViewHieght = (CGFloat(lines.count) * 40.0) + 80.0
-                                }
-                                
-                                vmExplanation.fetchExplanations(for: poem)
+                        Image(systemName: "xmark.app.fill")
+                            .font(.largeTitle)
+                            .foregroundColor(.red.opacity(0.7))
+                            .padding()
+                            .onTapGesture {
+                                presentationMode.wrappedValue.dismiss()
                             }
-                        } label: {
-                            HStack(spacing: 10) {
-                                Image(systemName: "wand.and.rays")
-                                    .foregroundColor(.red)
-                                    .font(.title3)
-                                
-                                Text("Next")
-                                    .font(.body)
-                                    .fontWeight(.bold)
-                                    .foregroundStyle(.black)
-                                    .padding(.trailing, 10)
-                                
-                            }
-                        }
-                        .padding()
-                        .background(.white)
-                        .cornerRadius(10.0)
-                        .shadow(radius: 10)
-                        .padding(.trailing, -10)
                     }
+                    
+                    Spacer()
                 }
             }
         }
-        .navigationTitle(selectedPoem?.bookname ?? "")
-        .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
+        .onChange(of: selectedPoem, { oldValue, newValue in
+            if let poem = newValue {
+                vmExplanation.fetchExplanations(for: poem)
+            }
+        })
         .onAppear {
             if let selectedPoem = selectedPoem {
-                if let poemContent = selectedPoem.poem {
-                    let lines = poemContent.components(separatedBy: "\n")
-                    poemViewHieght = (CGFloat(lines.count) * 40.0) + 80.0
-                }
-                
                 vmExplanation.fetchExplanations(for: selectedPoem)
             }
         }

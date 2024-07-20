@@ -8,10 +8,9 @@
 import SwiftUI
 import CoreData
 
-class SinglePoemDetailViewModel: ObservableObject {
+class SimplePoemDetailViewModel: ObservableObject {
     
     func getRandomPoem() -> Poem? {
         return  CoreDataManager.shared.fetchRandomPoem()
     }
 }
-

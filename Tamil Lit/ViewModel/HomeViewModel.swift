@@ -13,7 +13,7 @@ class HomeViewModel: ObservableObject {
     @Published var categoryDisplay: String = ""
     
     func getPoemOftheDay() {
-        poemOftheDay = CoreDataManager.shared.fetchRandomPoem()
+        poemOftheDay = CoreDataManager.shared.fetchRandomPoem(excludingBookNames: [])
         
         if let section = poemOftheDay?.sectionname, section != "", !section.starts(with: "பாடல்") {
             categoryDisplay = " - " + section

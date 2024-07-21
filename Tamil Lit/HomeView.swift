@@ -80,12 +80,6 @@ struct HomeView: View {
                                     .fontWeight(.semibold)
                                     .padding(.bottom, 10)
                                 
-//                                if vm.categoryDisplay != "" {
-//                                    Text("- " + vm.categoryDisplay)
-//                                        .font(.subheadline)
-//                                        .fontWeight(.semibold)
-//                                        .padding(.bottom, 10)
-//                                }
                                 Spacer()
                             }
                             
@@ -343,7 +337,6 @@ struct BookTileView: View {
     var colors = [Color.blue, Color.green, Color.red, Color.cyan, Color.indigo, Color.orange, Color.purple, Color.brown, Color.teal, Color.pink, Color.gray, Color.yellow]
     var bookTitle: String
     var imageName: String?
-    var iconName: String = ""
     var footnote: String
     var color: Color = Color.clear
     
@@ -409,18 +402,18 @@ struct BookTileView: View {
     }
 }
 
-struct TabBarButton: View {
-    var iconName: String
-    var label: String
-    
-    var body: some View {
-        VStack(spacing: 5) {
-            Image(systemName: iconName)
-            Text(label)
-                .font(.footnote)
-        }
-    }
-}
+//struct TabBarButton: View {
+//    var iconName: String
+//    var label: String
+//    
+//    var body: some View {
+//        VStack(spacing: 5) {
+//            Image(systemName: iconName)
+//            Text(label)
+//                .font(.footnote)
+//        }
+//    }
+//}
 
 //#Preview {
 //    HomeView()

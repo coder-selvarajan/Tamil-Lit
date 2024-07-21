@@ -281,17 +281,48 @@ extension CoreDataManager {
         }
     }
     
-    func performSearch(searchText: String) -> [Poem] {
+//    func performSearch(searchText: String, excludingBookNames excludedBookNames: [String]) -> [Poem] {
+//        let request: NSFetchRequest<Poem> = Poem.fetchRequest()
+//        
+//        // Create predicates for searching in poem, title, and meaning
+//        let poemPredicate = NSPredicate(format: "poem CONTAINS[cd] %@", searchText)
+//        let titlePredicate = NSPredicate(format: "title CONTAINS[cd] %@", searchText)
+////        let meaningPredicate = NSPredicate(format: "ANY explanations.meaning CONTAINS[cd] %@", searchText)
+//        
+//        // Combine predicates using OR
+////        request.predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [poemPredicate, titlePredicate, meaningPredicate])
+//        request.predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [poemPredicate, titlePredicate])
+//        
+//        // Sort by bookname
+//        request.sortDescriptors = [NSSortDescriptor(key: "bookname", ascending: true)]
+//        
+//        do {
+//            return try viewContext.fetch(request)
+//        } catch {
+//            print("Failed to fetch data: \(error)")
+//        }
+//        
+//        return []
+//    }
+    
+    func performSearch(searchText: String, excludingBookNames excludedBookNames: [String]) -> [Poem] {
         let request: NSFetchRequest<Poem> = Poem.fetchRequest()
         
-        // Create predicates for searching in poem, title, and meaning
+        // Create predicates for searching in poem and title
         let poemPredicate = NSPredicate(format: "poem CONTAINS[cd] %@", searchText)
         let titlePredicate = NSPredicate(format: "title CONTAINS[cd] %@", searchText)
-//        let meaningPredicate = NSPredicate(format: "ANY explanations.meaning CONTAINS[cd] %@", searchText)
+        let searchPredicates = NSCompoundPredicate(orPredicateWithSubpredicates: [poemPredicate, titlePredicate])
         
-        // Combine predicates using OR
-//        request.predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [poemPredicate, titlePredicate, meaningPredicate])
-        request.predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [poemPredicate, titlePredicate])
+        // let meaningPredicate = NSPredicate(format: "ANY explanations.meaning CONTAINS[cd] %@", searchText)
+        // request.predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [searchPredicates, meaningPredicate])
+        
+        // Create the exclusion predicate if the array is not empty
+        if !excludedBookNames.isEmpty {
+            let excludedPredicate = NSPredicate(format: "NOT (bookname IN %@)", excludedBookNames)
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [searchPredicates, excludedPredicate])
+        } else {
+            request.predicate = searchPredicates
+        }
         
         // Sort by bookname
         request.sortDescriptors = [NSSortDescriptor(key: "bookname", ascending: true)]
@@ -305,13 +336,21 @@ extension CoreDataManager {
         return []
     }
     
-    func fetchRandomPoem() -> Poem? {
+    func fetchRandomPoem(excludingBookNames excludedBookNames: [String]) -> Poem? {
         let request: NSFetchRequest<Poem> = Poem.fetchRequest()
         request.fetchLimit = 1
-        
+
+        // Create the count request
         let countRequest: NSFetchRequest<NSNumber> = NSFetchRequest<NSNumber>(entityName: "Poem")
         countRequest.resultType = .countResultType
-        
+
+        // Add predicate to exclude specific book names if the array is not empty
+        if !excludedBookNames.isEmpty {
+            let excludedPredicate = NSPredicate(format: "NOT (bookname IN %@)", excludedBookNames)
+            request.predicate = excludedPredicate
+            countRequest.predicate = excludedPredicate
+        }
+
         do {
             let count = try viewContext.count(for: countRequest)
             if count > 0 {
@@ -324,7 +363,9 @@ extension CoreDataManager {
         } catch {
             print("Failed to fetch random poem: \(error)")
         }
-        
+
         return nil
     }
+
+
 }

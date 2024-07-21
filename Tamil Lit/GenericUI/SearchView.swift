@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PopupView
 
 enum SearchState {
     case initial
@@ -89,12 +90,14 @@ func getColorByBook(_ value: String) -> Color {
 }
 
 struct SearchView: View {
+    @AppStorage("BooksOptedForSearch") private var bookOptionsData: Data = Data()
+    @State private var bookOptions: [BookInfo] = []
+    
     @StateObject var vm = SearchViewModel()
     
     @State var filteredItems: [String] = []
     @State private var searchText = ""
     
-    //    @ObservedObject var vmDict: vmDictionary
     @FocusState private var searchIsFocused: Bool
     
     @State private var searchState: SearchState = .initial
@@ -106,6 +109,8 @@ struct SearchView: View {
     
     @State private var selectedPoem: Poem? = nil
     @State private var isShowingDetail = false
+    
+    @State private var showOptions = false
     
     var body: some View {
         VStack(alignment: HorizontalAlignment.leading) {
@@ -134,7 +139,7 @@ struct SearchView: View {
                 .onSubmit {
                     showLoading(.loading)
                     searchState = .submitted
-                    vm.search(searchText)
+                    vm.search(searchText, bookOptions: bookOptions)
                     showLoading(.success)
                 }
                 .toolbar {
@@ -147,7 +152,7 @@ struct SearchView: View {
                 }
                 
                 Button {
-//                    presentationMode.wrappedValue.dismiss()
+                    showOptions = true
                 } label: {
                     Image(systemName: "checklist")
                         .foregroundColor(.black)
@@ -173,7 +178,7 @@ struct SearchView: View {
                                 searchText = recentText
                                 showLoading(.loading)
                                 searchState = .submitted
-                                vm.search(searchText)
+                                vm.search(searchText, bookOptions: bookOptions)
                                 showLoading(.success)
                                 searchIsFocused = false
                             }
@@ -190,7 +195,7 @@ struct SearchView: View {
 //                }
                 
                 if (searchState == .submitted) {
-                    ForEach(vm.searchResults.keys.sorted(), id: \.self) { bookname in
+                    ForEach(vm.sortedKeys, id: \.self) { bookname in
                         SwiftUI.Section(header:
                                             HStack {
                             Image(systemName: "book.closed.fill") // Replace with your image name
@@ -232,13 +237,40 @@ struct SearchView: View {
         .sheet(isPresented: $isShowingDetail) {
             SimplePoemDetailView(selectedPoem: $selectedPoem, popupMode: true)
         }
-        .toolbar {
-            
-//            ToolbarItem {
-//                Image(systemName: "gearshape")
-//            }
+        .onAppear(perform: loadBookOptions) // To load book options for search from user-defaults
+        .popup(isPresented: $showOptions) {
+            BookSelectorView(showModal: $showOptions, booksInfo: $bookOptions) {
+                // This will be called for each book selection/deselection
+                saveBookOptions()
+            }
+        } customize: {
+            $0
+                .type(.floater())
+                .position(.center)
+                .animation(.spring())
+                .closeOnTapOutside(true)
+                .closeOnTap(false)
+                .backgroundColor(.black.opacity(0.5))
+                .autohideIn(50)
+        }
+    }
+    
+    private func loadBookOptions() {
+        if !bookOptionsData.isEmpty {
+            if let decodedOptions = try? JSONDecoder().decode([BookInfo].self, from: bookOptionsData) {
+                bookOptions = decodedOptions
+                return
+            }
         }
         
+        bookOptions = _books
+        saveBookOptions()
+    }
+    
+    private func saveBookOptions() {
+        if let encodedOptions = try? JSONEncoder().encode(bookOptions) {
+            bookOptionsData = encodedOptions
+        }
     }
 }
 

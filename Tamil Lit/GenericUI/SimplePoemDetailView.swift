@@ -182,7 +182,8 @@ struct SimplePoemDetailView: View {
                         Image(systemName: "xmark.app.fill")
                             .font(.largeTitle)
                             .foregroundColor(.red.opacity(0.7))
-                            .padding()
+                            .padding(10)
+                            .padding(.top, 5)
                             .onTapGesture {
                                 presentationMode.wrappedValue.dismiss()
                             }

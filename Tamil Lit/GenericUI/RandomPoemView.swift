@@ -6,10 +6,16 @@
 //
 
 import SwiftUI
+import PopupView
 
 struct RandomPoemView: View {
-    @StateObject private var vm = SimplePoemDetailViewModel()
+    @AppStorage("BooksOptedForRandomPoems") private var bookOptionsData: Data = Data()
+    @State private var bookOptions: [BookInfo] = []
+    
+    @StateObject private var vm = RandomPoemViewModel()
     @State var randomPoem: Poem?
+    
+    @State private var showOptions = false
     
     var body: some View {
         ZStack {
@@ -21,7 +27,7 @@ struct RandomPoemView: View {
                 HStack {
                     Spacer()
                     Button {
-                        if let poem = vm.getRandomPoem() {
+                        if let poem = vm.getRandomPoem(bookOptions: bookOptions) {
                             randomPoem = poem
                         }
                     } label: {
@@ -42,42 +48,53 @@ struct RandomPoemView: View {
         .navigationTitle(Text("ஏதோ ஒரு பாடல்"))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-//            ToolbarItem(placement: .principal) {
-//                HStack {
-//                    Text("ஏதோ ஒரு பாடல்")
-//                        .font(.body)
-//                        .fontWeight(.semibold)
-//                    
-//                    Spacer()
-//                }
-//                .padding(0)
-//            }
-//            
-//            ToolbarItem {
-//                // Random poem - action button
-//                Button {
-//                    if let poem = vm.getRandomPoem() {
-//                        randomPoem = poem
-//                    }
-//                } label: {
-//                    Text("அடுத்தது")
-//                        .font(.body)
-//                        .foregroundStyle(.black)
-//                        .padding(.horizontal)
-//                        .padding(.vertical, 8)
-//                        .background(.yellow)
-//                        .cornerRadius(5.0)
-//                }
-//            }
-            
             ToolbarItem {
-                Image(systemName: "gearshape")
+                Button {
+                    showOptions = true
+                } label: {
+                    Image(systemName: "checklist")
+                        .foregroundColor(.black)
+                }
             }
         }
         .onAppear {
-            if let poem = vm.getRandomPoem() {
+            loadBookOptions()
+            
+            if let poem = vm.getRandomPoem(bookOptions: bookOptions) {
                 randomPoem = poem
             }
+        }
+        .popup(isPresented: $showOptions) {
+            BookSelectorView(showModal: $showOptions, booksInfo: $bookOptions) {
+                saveBookOptions()
+            }
+        } customize: {
+            $0
+                .type(.floater())
+                .position(.center)
+                .animation(.spring())
+                .closeOnTapOutside(true)
+                .closeOnTap(false)
+                .backgroundColor(.black.opacity(0.5))
+                .autohideIn(50)
+        }
+    }
+    
+    private func loadBookOptions() {
+        if !bookOptionsData.isEmpty {
+            if let decodedOptions = try? JSONDecoder().decode([BookInfo].self, from: bookOptionsData) {
+                bookOptions = decodedOptions
+                return
+            }
+        }
+        
+        bookOptions = _books
+        saveBookOptions()
+    }
+    
+    private func saveBookOptions() {
+        if let encodedOptions = try? JSONEncoder().encode(bookOptions) {
+            bookOptionsData = encodedOptions
         }
     }
 }

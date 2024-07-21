@@ -10,16 +10,32 @@ import CoreData
 
 class SearchViewModel: ObservableObject {
     @Published var searchResults: [String: [Poem]] = [:]
+    @Published var sortedKeys: [String] = []
     
-    func search(_ searchText: String) {
+    func search(_ searchText: String, bookOptions: [BookInfo]) {
         saveRecentSearch(searchText)
         
-        let poems = CoreDataManager.shared.performSearch(searchText: searchText)
-        searchResults = Dictionary(grouping: poems, by: { $0.bookname ?? "Unknown Book" })
-    }
-    
-    func getRandomPoem() -> Poem? {
-        return CoreDataManager.shared.fetchRandomPoem()
+        let excludedBookNames: [String] = bookOptions.filter { !$0.selected }.map { $0.title }
+        let poems = CoreDataManager.shared.performSearch(searchText: searchText, excludingBookNames: excludedBookNames)
+        let dictResults = Dictionary(grouping: poems, by: { $0.bookname ?? "Unknown Book" })
+        
+        let bookOrderMapping = _books.reduce(into: [String: Int]()) { (dict, book) in
+            dict[book.title] = book.order
+        }
+        
+        sortedKeys = dictResults.keys.sorted { (key1, key2) -> Bool in
+            let order1 = bookOrderMapping[key1] ?? Int.max
+            let order2 = bookOrderMapping[key2] ?? Int.max
+            return order1 < order2
+        }
+        
+        let orderedSearchResults = sortedKeys.reduce(into: [String: [Poem]]()) { (dict, key) in
+            if let value = dictResults[key] {
+                dict[key] = value
+            }
+        }
+        
+        searchResults = orderedSearchResults
     }
     
     // Saving the search texts in user defaults

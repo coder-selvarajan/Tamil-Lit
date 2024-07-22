@@ -11,6 +11,9 @@ struct BookSelectorView: View {
     @Binding var showModal: Bool
     @Binding var booksInfo: [BookInfo]
     
+    var title: AttributedString = ""
+    var subTitle: AttributedString = ""
+    
     let closeCallBack: (() -> Void)?
     
     var body: some View {
@@ -18,17 +21,22 @@ struct BookSelectorView: View {
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading) {
                     
-                    Text("Books to include: ")
-                        .font(.body)
-                        .fontWeight(.bold)
-                        .padding(.bottom)
+                    VStack(alignment: .leading) {
+                        Text(title)
+                            .font(.body)
+                        if subTitle != "" {
+                            Text(subTitle)
+                                .font(.body)
+                        }
+                    }
+                    .padding(.bottom, 20)
                     
                     ForEach($booksInfo, id:\.id) { $bookInfo in
                         VStack {
                             HStack {
                                 Image(systemName: "checkmark.circle.fill")
                                     .font(.title3)
-                                    .foregroundColor(bookInfo.selected ? .yellow : .gray.opacity(0.7))
+                                    .foregroundColor(bookInfo.selected ? .yellow : .gray.opacity(0.5))
                                     .padding(.trailing)
                                 
                                 Text(bookInfo.title)

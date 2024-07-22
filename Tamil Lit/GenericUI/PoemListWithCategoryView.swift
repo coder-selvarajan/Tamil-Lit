@@ -16,6 +16,8 @@ struct PoemListWithCategoryView: View {
     @State private var selectedCategoryId: UUID?
     @State private var highlightedCategoryId: UUID?
     
+    @State private var showBookInfo: Bool = false
+    
     func getShortTitle(_ category: MainCategory) -> String {
         if let title = category.title, title.starts(with: "பாடல்கள்") {
             return String(describing: category.start) + " - " + String(describing: category.end)
@@ -143,6 +145,9 @@ struct PoemListWithCategoryView: View {
             
             //viewModel.fetchPoemsByCategory()
         }
+        .sheet(isPresented: $showBookInfo) {
+            BookDetailsView(bookName: bookName)
+        }
         .toolbar {
             ToolbarItem(placement: .principal) {
                 HStack {
@@ -155,18 +160,27 @@ struct PoemListWithCategoryView: View {
                     Text(bookName)
                         .font(.body)
                         .fontWeight(.semibold)
+                    
+                    Spacer()
+                    
                 }
                 .padding(0)
             }
+            
             ToolbarItem {
                 Button {
-                    //
+                    showBookInfo = true
                 } label: {
-                    Image(systemName: "info.circle")
-                        .foregroundColor(.black)
+                    Text("நூல் பற்றி")
+                        .font(.subheadline)
+                        .foregroundStyle(.black)
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, 10)
+                        .background(colorTheme.opacity(0.3))
+                        .cornerRadius(8)
                 }
             }
-        } // toolbar
+        }
     }
 }
 

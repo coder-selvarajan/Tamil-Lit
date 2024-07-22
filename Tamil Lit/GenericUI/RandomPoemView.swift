@@ -65,7 +65,15 @@ struct RandomPoemView: View {
             }
         }
         .popup(isPresented: $showOptions) {
-            BookSelectorView(showModal: $showOptions, booksInfo: $bookOptions) {
+            let titleString = "Books to include for "
+            let subTitleString = "**Random poem pickup** :"
+            let attributedTitle = try! AttributedString(markdown: titleString)
+            let attributedSubTitle = try! AttributedString(markdown: subTitleString)
+            
+            BookSelectorView(showModal: $showOptions,
+                             booksInfo: $bookOptions, 
+                             title: attributedTitle,
+                             subTitle: attributedSubTitle) {
                 saveBookOptions()
             }
         } customize: {

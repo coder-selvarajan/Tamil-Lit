@@ -10,6 +10,7 @@ import SwiftUI
 struct PoemDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject private var viewModel = ExplanationListViewModel()
+    @StateObject private var vmFavPoem = FavouritePoemViewModel()
     
     let colorTheme: Color
     let bookName: String
@@ -134,7 +135,9 @@ struct PoemDetailView: View {
                         HStack {
                             Spacer()
                             Button {
-                                //
+                                vmFavPoem.saveFavPoem(selectedPoem)
+                                
+                                print("Poem successfully bookmarked!")
                             } label: {
                                 HStack(spacing: 5) {
                                     Image(systemName: "bookmark")
@@ -215,7 +218,9 @@ struct PoemDetailView: View {
         .onAppear {
             if let poemContent = selectedPoem.poem {
                 let lines = poemContent.components(separatedBy: "\n")
-                poemViewHieght = (CGFloat(lines.count) * 40.0) + 80.0
+                poemViewHieght = (CGFloat(lines.count) * 30.0) + 110.0
+                
+                
             }
             
             viewModel.fetchExplanations(for: selectedPoem)

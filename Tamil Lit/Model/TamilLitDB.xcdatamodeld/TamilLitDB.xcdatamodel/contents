@@ -27,6 +27,16 @@
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="poem" maxCount="1" deletionRule="Nullify" destinationEntity="Poem" inverseName="explanations" inverseEntity="Poem"/>
     </entity>
+    <entity name="FavouritePoem" representedClassName="FavouritePoem" syncable="YES">
+        <attribute name="bookname" attributeType="String"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="maincategoryname" optional="YES" attributeType="String"/>
+        <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="poem" attributeType="String"/>
+        <attribute name="sectionname" optional="YES" attributeType="String"/>
+        <attribute name="subcategoryname" optional="YES" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+    </entity>
     <entity name="MainCategory" representedClassName="MainCategory" syncable="YES">
         <attribute name="bookname" optional="YES" attributeType="String"/>
         <attribute name="end" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>

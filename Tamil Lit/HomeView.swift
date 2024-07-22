@@ -117,13 +117,16 @@ struct HomeView: View {
                                     .cornerRadius(10.0)
                                 }
                                 
-                                Button {
-                                    Task {
-                                        showLoading(.loading)
-                                        try? await Task.sleep(nanoseconds: 2_000_000_000)
-                                        showLoading(.success)
-                                    }
-                                } label: {
+                                
+//                                Button {
+//                                    Task {
+//                                        showLoading(.loading)
+//                                        try? await Task.sleep(nanoseconds: 2_000_000_000)
+//                                        showLoading(.success)
+//                                    }
+//                                } label: {
+                                
+                                NavigationLink(value: "FavouritePoemView") {
                                     VStack(alignment: .center, spacing: 10) {
                                         Image(systemName: "bookmark.fill")
                                             .font(.title)
@@ -135,9 +138,11 @@ struct HomeView: View {
                                     .font(.body)
                                     .padding()
                                     .frame(maxWidth: .infinity)
+                                    //                                }
+                                    .background(.gray.opacity(0.15))
+                                    .cornerRadius(10.0)
                                 }
-                                .background(.gray.opacity(0.15))
-                                .cornerRadius(10.0)
+                                
                             }
                             .frame(maxWidth: .infinity)
                             .padding(.horizontal)
@@ -276,6 +281,8 @@ struct HomeView: View {
                     BookHomeView(colorTheme: book.color, bookName: book.title)
                 } else if value == "RandomPoemView" {
                     RandomPoemView()
+                } else if value == "FavouritePoemView" {
+                    FavouritePoemListView()
                 }
             }
 //            .navigationDestination(for: String.self) { value in

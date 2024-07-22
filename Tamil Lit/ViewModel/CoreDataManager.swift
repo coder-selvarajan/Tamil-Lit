@@ -21,10 +21,8 @@ class CoreDataManager {
         }
     }
     
-    
     init() {
-        persistentContainer = NSPersistentContainer(name: "TamilLitDB") // Use the name of your Core Data model
-        
+        persistentContainer = NSPersistentContainer(name: "TamilLitDB")
         let description = persistentContainer.persistentStoreDescriptions.first
         
         // Ensure the URL for the existing database
@@ -76,55 +74,6 @@ class CoreDataManager {
         return nil
     }
     
-    /*
-    init() {
-        persistentContainer = NSPersistentContainer(name: "TamilLitDB")
-        
-        let description = persistentContainer.persistentStoreDescriptions.first
-        description?.url = existingDatabaseURL()
-        
-        persistentContainer.loadPersistentStores { description, error in
-            if let error = error {
-                fatalError("Failed to load Core Data stack: \(error)")
-            }
-        }
-        CoreDataManager.printCoreDataStoreURL()
-    }
-    
-    private func existingDatabaseURL() -> URL? {
-        let fileManager = FileManager.default
-        let appSupportURL = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
-        let persistentStoreURL = appSupportURL.appendingPathComponent("TamilBookDB.sqlite") // Ensure the path matches your existing database
-        
-        if fileManager.fileExists(atPath: persistentStoreURL.path) {
-            return persistentStoreURL
-        } else {
-            // Copy the existing database from the bundle to the documents directory if it doesn't exist
-            if let bundleURL = Bundle.main.url(forResource: "TamilLitDB", withExtension: "sqlite") {
-                do {
-                    try fileManager.copyItem(at: bundleURL, to: persistentStoreURL)
-                    return persistentStoreURL
-                } catch {
-                    fatalError("Error copying SQLite database: \(error)")
-                }
-            }
-        }
-        return nil
-    }
-    */
-    
-    /*
-    private init() {
-        persistentContainer = NSPersistentContainer(name: "TamilLitDB")
-        persistentContainer.loadPersistentStores { (description, error) in
-            if let error = error {
-                fatalError("Unable to load persistent stores: \(error)")
-            }
-        }
-        CoreDataManager.printCoreDataStoreURL()
-    }
-    */
-
     var viewContext: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
@@ -281,29 +230,55 @@ extension CoreDataManager {
         }
     }
     
-//    func performSearch(searchText: String, excludingBookNames excludedBookNames: [String]) -> [Poem] {
-//        let request: NSFetchRequest<Poem> = Poem.fetchRequest()
-//        
-//        // Create predicates for searching in poem, title, and meaning
-//        let poemPredicate = NSPredicate(format: "poem CONTAINS[cd] %@", searchText)
-//        let titlePredicate = NSPredicate(format: "title CONTAINS[cd] %@", searchText)
-////        let meaningPredicate = NSPredicate(format: "ANY explanations.meaning CONTAINS[cd] %@", searchText)
-//        
-//        // Combine predicates using OR
-////        request.predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [poemPredicate, titlePredicate, meaningPredicate])
-//        request.predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [poemPredicate, titlePredicate])
-//        
-//        // Sort by bookname
-//        request.sortDescriptors = [NSSortDescriptor(key: "bookname", ascending: true)]
-//        
-//        do {
-//            return try viewContext.fetch(request)
-//        } catch {
-//            print("Failed to fetch data: \(error)")
-//        }
-//        
-//        return []
-//    }
+    func fetchAllFavPoems() -> [FavouritePoem] {
+        let fetchRequest: NSFetchRequest<FavouritePoem> = FavouritePoem.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "number", ascending: true)]
+        do {
+            return try viewContext.fetch(fetchRequest)
+        } catch {
+            print("Error fetching poems: \(error)")
+            return []
+        }
+    }
+    
+    func fetchFavPoemsByBook(for bookname: String) -> [FavouritePoem] {
+        let fetchRequest: NSFetchRequest<FavouritePoem> = FavouritePoem.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "number", ascending: true)]
+        fetchRequest.predicate = NSPredicate(format: "book.name == %@", bookname)
+        do {
+            return try viewContext.fetch(fetchRequest)
+        } catch {
+            print("Error fetching poems: \(error)")
+            return []
+        }
+    }
+    
+    func saveFavPoem(bookname: String, number: Int16, 
+                     poem: String, title: String,
+                     mainCategory: String, subCategory: String, section: String) {
+        
+        // Create a new Poem entity
+        let entity = NSEntityDescription.entity(forEntityName: "FavouritePoem", in: viewContext)!
+        let favPoem = NSManagedObject(entity: entity, insertInto: viewContext)
+        
+        // Set the attributes
+        favPoem.setValue(UUID(), forKey: "id")
+        favPoem.setValue(bookname, forKeyPath: "bookname")
+        favPoem.setValue(number, forKey: "number")
+        favPoem.setValue(poem, forKey: "poem")
+        favPoem.setValue(title, forKey: "title")
+        favPoem.setValue(mainCategory, forKey: "maincategoryname")
+        favPoem.setValue(subCategory, forKey: "subcategoryname")
+        favPoem.setValue(section, forKey: "sectionname")
+        
+        // Save the context
+        do {
+            try viewContext.save()
+            print("Poem bookmarked successfully")
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
     
     func performSearch(searchText: String, excludingBookNames excludedBookNames: [String]) -> [Poem] {
         let request: NSFetchRequest<Poem> = Poem.fetchRequest()
@@ -366,6 +341,4 @@ extension CoreDataManager {
 
         return nil
     }
-
-
 }

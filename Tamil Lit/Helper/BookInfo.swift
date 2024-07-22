@@ -95,8 +95,9 @@ struct BookInfo: Identifiable, Codable, Hashable {
 
 let _books = [
     BookInfo(id: UUID(), order: 1, title: "திருக்குறள்", subtitle: "1330 குறள்கள்", image: "Murugan", color: .blue, selected: true),
-    BookInfo(id: UUID(), order: 2, title: "நாலடியார்", subtitle: "400 பாடல்கள்", image: "Jainmonk", color: .cyan, selected: true),
-    BookInfo(id: UUID(), order: 3, title: "ஆத்திசூடி", subtitle: "109 வாக்கியங்கள்", image: "Avvaiyar3", color: .indigo, selected: true),
+    BookInfo(id: UUID(), order: 2, title: "ஆத்திசூடி", subtitle: "109 வாக்கியங்கள்", image: "Avvaiyar3", color: .cyan, selected: true),
+    BookInfo(id: UUID(), order: 3, title: "நாலடியார்", subtitle: "400 பாடல்கள்", image: "Jainmonk", color: .indigo, selected: true),
+    
     BookInfo(id: UUID(), order: 4, title: "ஆசாரக் கோவை", subtitle: "100 பாடல்கள்", image: "Ramar", color: .purple.opacity(0.7), selected: true),
     BookInfo(id: UUID(), order: 5, title: "இனியவை நாற்பது", subtitle: "40 பாடல்கள்", image: "Balaji", color: .red.opacity(0.6), selected: true),
     BookInfo(id: UUID(), order: 6, title: "இன்னா நாற்பது", subtitle: "40 பாடல்கள்", image: "Karuppusamy", color: .orange.opacity(0.7), selected: true),

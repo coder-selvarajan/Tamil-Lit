@@ -45,7 +45,7 @@ extension Color {
     }
 }
 
-struct BookInfo: Identifiable, Codable {
+struct BookInfo: Identifiable, Codable, Hashable {
     var id: UUID
     var order: Int
     var title: String
@@ -95,13 +95,31 @@ struct BookInfo: Identifiable, Codable {
 
 let _books = [
     BookInfo(id: UUID(), order: 1, title: "திருக்குறள்", subtitle: "1330 குறள்கள்", image: "Murugan", color: .blue, selected: true),
-    BookInfo(id: UUID(), order: 2, title: "ஆத்திசூடி", subtitle: "109 வாக்கியங்கள்", image: "Avvaiyar3", color: .teal, selected: true),
-    BookInfo(id: UUID(), order: 3, title: "நாலடியார்", subtitle: "400 பாடல்கள்", image: "Jainmonk", color: .indigo, selected: true),
-    BookInfo(id: UUID(), order: 4, title: "இனியவை நாற்பது", subtitle: "40 பாடல்கள்", image: "Balaji", color: .purple.opacity(0.7), selected: true),
-    BookInfo(id: UUID(), order: 5, title: "ஆசாரக் கோவை", subtitle: "100 பாடல்கள்", image: "Ramar", color: .red.opacity(0.6), selected: true),
-    BookInfo(id: UUID(), order: 6, title: "நான்மணிக்கடிகை", subtitle: "101 பாடல்கள்", image: "Meenakshi", color: .orange.opacity(0.7), selected: true),
-    BookInfo(id: UUID(), order: 7, title: "இன்னா நாற்பது", subtitle: "40 பாடல்கள்", image: "Karuppusamy", color: .brown, selected: true),
+    BookInfo(id: UUID(), order: 2, title: "நாலடியார்", subtitle: "400 பாடல்கள்", image: "Jainmonk", color: .cyan, selected: true),
+    BookInfo(id: UUID(), order: 3, title: "ஆத்திசூடி", subtitle: "109 வாக்கியங்கள்", image: "Avvaiyar3", color: .indigo, selected: true),
+    BookInfo(id: UUID(), order: 4, title: "ஆசாரக் கோவை", subtitle: "100 பாடல்கள்", image: "Ramar", color: .purple.opacity(0.7), selected: true),
+    BookInfo(id: UUID(), order: 5, title: "இனியவை நாற்பது", subtitle: "40 பாடல்கள்", image: "Balaji", color: .red.opacity(0.6), selected: true),
+    BookInfo(id: UUID(), order: 6, title: "இன்னா நாற்பது", subtitle: "40 பாடல்கள்", image: "Karuppusamy", color: .orange.opacity(0.7), selected: true),
+    BookInfo(id: UUID(), order: 7, title: "நான்மணிக்கடிகை", subtitle: "101 பாடல்கள்", image: "Meenakshi", color: .brown, selected: true),
     BookInfo(id: UUID(), order: 8, title: "திரிகடுகம்", subtitle: "102 பாடல்கள்", image: "Adiyogi", color: .gray, selected: true),
-    BookInfo(id: UUID(), order: 9, title: "முதுமொழிக் காஞ்சி", subtitle: "100 பழமொழிகள்", image: "Murugan", color: .cyan, selected: true),
+    BookInfo(id: UUID(), order: 9, title: "முதுமொழிக் காஞ்சி", subtitle: "100 பழமொழிகள்", image: "Murugan", color: .teal, selected: true),
     BookInfo(id: UUID(), order: 10, title: "பழமொழி நானூறு", subtitle: "400 பழமொழிகள்", image: "Balaji", color: .green.opacity(0.7), selected: true)
 ]
+
+func getColorByBook(_ value: String) -> Color {
+    if let bookColor = _books.filter({ $0.title == value }).first?.color {
+        return bookColor
+    }
+    
+    return .blue
+}
+
+// Helper function to chunk array into smaller arrays
+extension Array {
+    func chunked(into size: Int) -> [[Element]] {
+        stride(from: 0, to: count, by: size).map {
+            Array(self[$0..<Swift.min($0 + size, count)])
+        }
+    }
+}
+

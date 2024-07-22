@@ -19,6 +19,7 @@ struct PoemListView: View {
     @StateObject private var viewModel = PoemListViewModel()
 //    @State private var poems: [Poem]
     
+    @State private var showBookInfo: Bool = false
     
     func getTitle() -> String {
         if let title = section?.title {
@@ -116,6 +117,9 @@ struct PoemListView: View {
                 viewModel.fetchPoemsByCategory(mainCategory!)
             }
         }
+        .sheet(isPresented: $showBookInfo) {
+            BookDetailsView(bookName: bookName)
+        }
         .toolbar {
             ToolbarItem(placement: .principal) {
                 HStack {
@@ -133,9 +137,21 @@ struct PoemListView: View {
                         .fontWeight(.semibold)
                     
                     Spacer()
-                    Image(systemName: "info.circle")
                 }
                 .padding(0)
+            }
+            ToolbarItem {
+                Button {
+                    showBookInfo = true
+                } label: {
+                    Text("நூல் பற்றி")
+                        .font(.subheadline)
+                        .foregroundStyle(.black)
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, 10)
+                        .background(colorTheme.opacity(0.3))
+                        .cornerRadius(8)
+                }
             }
         } // toolbar
     }

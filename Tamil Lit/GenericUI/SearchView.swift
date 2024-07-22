@@ -11,7 +11,6 @@ import PopupView
 enum SearchState {
     case initial
     case typing
-    //    case submitted
     case submitted
 }
 
@@ -59,34 +58,6 @@ extension String {
         
         return attributedString
     }
-}
-
-func getColorByBook(_ value: String) -> Color {
-    var color: Color = .blue
-    
-    if value == "திருக்குறள்" {
-        color = .blue
-    } else if value == "ஆத்திச்சூடி" {
-        color =  .teal
-    } else if value == "நாலடியார்" {
-        color =  .indigo
-    } else if value == "இனியவை நாற்பது" {
-        color =  .purple.opacity(0.7)
-    } else if value == "ஆசாரக் கோவை" {
-        color =  .red.opacity(0.6)
-    } else if value == "நான்மணிக்கடிகை" {
-        color =  .orange.opacity(0.7)
-    } else if value == "இன்னா நாற்பது" {
-        color =  .brown
-    } else if value == "திரிகடுகம்" {
-        color =  .gray
-    } else if value == "முதுமொழிக் காஞ்சி" {
-        color =  .cyan
-    } else if value == "பழமொழி நானூறு" {
-        color =  Color.green.opacity(0.7)
-    }
-    
-    return color
 }
 
 struct SearchView: View {
@@ -239,7 +210,12 @@ struct SearchView: View {
         }
         .onAppear(perform: loadBookOptions) // To load book options for search from user-defaults
         .popup(isPresented: $showOptions) {
-            BookSelectorView(showModal: $showOptions, booksInfo: $bookOptions) {
+            let titleString = "Books to include for **Search** : "
+            let attributedTitle = try! AttributedString(markdown: titleString)
+            
+            BookSelectorView(showModal: $showOptions, 
+                             booksInfo: $bookOptions,
+                             title: attributedTitle) {
                 // This will be called for each book selection/deselection
                 saveBookOptions()
             }

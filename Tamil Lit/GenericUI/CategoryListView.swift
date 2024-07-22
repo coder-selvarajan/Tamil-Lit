@@ -11,6 +11,7 @@ struct CategoryListView: View {
     let colorTheme: Color
     let bookName: String
     @StateObject private var viewModel = CategoryViewModel()
+    @State private var showBookInfo: Bool = false
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -93,11 +94,46 @@ struct CategoryListView: View {
             //            }.frame(height: 50.0)
         }
         .padding(20)
-        .navigationBarTitle(bookName)
-        .navigationBarTitleDisplayMode(.inline)
+//        .navigationBarTitle(bookName)
+//        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             viewModel.fetchAllData(bookname: bookName)
         }
+        .sheet(isPresented: $showBookInfo) {
+            BookDetailsView(bookName: bookName)
+        }
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                HStack {
+                    Image("Murugan")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 30)
+                        .padding(.trailing, 10)
+                    Text(bookName)
+                        .font(.body)
+                        .fontWeight(.semibold)
+                    
+                    Spacer()
+                }
+                .padding(0)
+            }
+            
+            ToolbarItem {
+                Button {
+                    showBookInfo = true
+                } label: {
+                    Text("நூல் பற்றி")
+                        .font(.subheadline)
+                        .foregroundStyle(.black)
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, 10)
+                        .background(colorTheme.opacity(0.3))
+                        .cornerRadius(8)
+                }
+            }
+        }
+        
     }
 }
 

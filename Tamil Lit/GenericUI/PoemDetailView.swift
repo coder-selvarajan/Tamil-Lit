@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PopupView
 
 struct PoemDetailView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -18,6 +19,8 @@ struct PoemDetailView: View {
     
     @State var selectedPoem: Poem
     @State var poemViewHieght: CGFloat = 160.0
+    @State private var showAlert: (Bool, String) = (false, "")
+    @State private var poemBookmarked: Bool = false
     
     func getCategoryText() -> String {
         if poems.count > 0 {
@@ -95,20 +98,6 @@ struct PoemDetailView: View {
             
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 10.0) {
-                    
-//                    HStack(spacing: 10) {
-//                        if let firstPoem = poems.first, firstPoem.sectionname == "" {
-//                            Spacer()
-//                        }
-//                        Text("\(getCategoryText())")
-//                            .fontWeight(.bold)
-//                            .foregroundStyle(.black.opacity(0.95))
-//                        Spacer()
-//                    }
-//                    .font(.subheadline)
-//                    .padding(.bottom, 10)
-//                    .padding(.horizontal, 20)
-                    
                     HStack(alignment: .top, spacing: 5) {
                         Text("வகை : ")
                             .padding(3)
@@ -135,12 +124,24 @@ struct PoemDetailView: View {
                         HStack {
                             Spacer()
                             Button {
-                                vmFavPoem.saveFavPoem(selectedPoem)
-                                
-                                print("Poem successfully bookmarked!")
+                                if poemBookmarked {
+                                    if vmFavPoem.removeFavPoem(selectedPoem) {
+                                        poemBookmarked = false
+                                        showAlert = (true, "\(selectedPoem.book?.poemType ?? "") நீக்கப்பட்டது!")
+                                    } else {
+                                        showAlert = (true, "Operation failed!")
+                                    }
+                                } else {
+                                    if vmFavPoem.saveFavPoem(selectedPoem) {
+                                        poemBookmarked = true
+                                        showAlert = (true, "\(selectedPoem.book?.poemType ?? "") சேமிக்கப்பட்டது!")
+                                    } else {
+                                        showAlert = (true, "Operation failed!")
+                                    }
+                                }
                             } label: {
                                 HStack(spacing: 5) {
-                                    Image(systemName: "bookmark")
+                                    Image(systemName: poemBookmarked ? "bookmark.fill" : "bookmark")
                                     Text("சேமி")
                                 }
                                 .font(.subheadline)
@@ -213,16 +214,31 @@ struct PoemDetailView: View {
         .navigationTitle(bookName)
         .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
         .onChange(of: selectedPoem, { oldValue, newValue in
+            poemBookmarked = vmFavPoem.isPoemBookmarked(newValue)
             viewModel.fetchExplanations(for: newValue)
         })
+        .popup(isPresented: $showAlert.0) {
+            Text("\(showAlert.1)")
+                .padding()
+                .background(.white)
+                .cornerRadius(15.0)
+                .shadow(radius: 15.0)
+        } customize: {
+            $0
+                .type(.floater())
+                .position(.top)
+                .isOpaque(true)
+                .animation(.spring())
+                .closeOnTapOutside(true)
+                .autohideIn(1.5)
+        }
         .onAppear {
             if let poemContent = selectedPoem.poem {
                 let lines = poemContent.components(separatedBy: "\n")
                 poemViewHieght = (CGFloat(lines.count) * 30.0) + 110.0
-                
-                
             }
             
+            poemBookmarked = vmFavPoem.isPoemBookmarked(selectedPoem)
             viewModel.fetchExplanations(for: selectedPoem)
         }
     }

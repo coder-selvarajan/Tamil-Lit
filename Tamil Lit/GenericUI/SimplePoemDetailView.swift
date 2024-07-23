@@ -6,14 +6,18 @@
 //
 
 import SwiftUI
+import PopupView
 
 struct SimplePoemDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject private var vmExplanation = ExplanationListViewModel()
+    @StateObject private var vmFavPoem = FavouritePoemViewModel()
     
     let colorTheme: Color = Color.gray
     @Binding var selectedPoem: Poem?
     @State var popupMode: Bool = false
+    @State private var showAlert: (Bool, String) = (false, "")
+    @State private var poemBookmarked: Bool = false
     
     func getCategoryText() -> String {
         guard let selectedPoem = selectedPoem else {
@@ -130,16 +134,32 @@ struct SimplePoemDetailView: View {
                         HStack {
                             Spacer()
                             Button {
-                                //
+                                if let selectedPoem = selectedPoem {
+                                    if poemBookmarked {
+                                        if vmFavPoem.removeFavPoem(selectedPoem) {
+                                            poemBookmarked = false
+                                            showAlert = (true, "\(selectedPoem.book?.poemType ?? "") நீக்கப்பட்டது!")
+                                        } else {
+                                            showAlert = (true, "Operation failed!")
+                                        }
+                                    } else {
+                                        if vmFavPoem.saveFavPoem(selectedPoem) {
+                                            poemBookmarked = true
+                                            showAlert = (true, "\(selectedPoem.book?.poemType ?? "") சேமிக்கப்பட்டது!")
+                                        } else {
+                                            showAlert = (true, "Operation failed!")
+                                        }
+                                    }
+                                }
                             } label: {
                                 HStack(spacing: 5) {
-                                    Image(systemName: "bookmark")
+                                    Image(systemName: poemBookmarked ? "bookmark.fill" : "bookmark")
                                     Text("சேமி")
                                 }
                                 .font(.subheadline)
                                 .foregroundStyle(.black)
                             }
-
+                            
                             Button {
                                 //
                             } label: {
@@ -193,13 +213,30 @@ struct SimplePoemDetailView: View {
                 }
             }
         }
+        .popup(isPresented: $showAlert.0) {
+            Text("\(showAlert.1)")
+                .padding()
+                .background(.white)
+                .cornerRadius(15.0)
+                .shadow(radius: 15.0)
+        } customize: {
+            $0
+                .type(.floater())
+                .position(.top)
+                .isOpaque(true)
+                .animation(.spring())
+                .closeOnTapOutside(true)
+                .autohideIn(1.5)
+        }
         .onChange(of: selectedPoem, { oldValue, newValue in
             if let poem = newValue {
+                poemBookmarked = vmFavPoem.isPoemBookmarked(poem)
                 vmExplanation.fetchExplanations(for: poem)
             }
         })
         .onAppear {
             if let selectedPoem = selectedPoem {
+                poemBookmarked = vmFavPoem.isPoemBookmarked(selectedPoem)
                 vmExplanation.fetchExplanations(for: selectedPoem)
             }
         }

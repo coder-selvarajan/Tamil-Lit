@@ -35,6 +35,7 @@
         <attribute name="poem" attributeType="String"/>
         <attribute name="sectionname" optional="YES" attributeType="String"/>
         <attribute name="subcategoryname" optional="YES" attributeType="String"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" defaultDateTimeInterval="743395500" usesScalarValueType="NO"/>
         <attribute name="title" attributeType="String"/>
     </entity>
     <entity name="MainCategory" representedClassName="MainCategory" syncable="YES">

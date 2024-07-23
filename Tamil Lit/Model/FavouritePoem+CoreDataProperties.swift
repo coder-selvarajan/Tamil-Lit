@@ -2,7 +2,7 @@
 //  FavouritePoem+CoreDataProperties.swift
 //  Tamil Lit
 //
-//  Created by Selvarajan on 22/07/24.
+//  Created by Selvarajan on 23/07/24.
 //
 //
 
@@ -24,6 +24,7 @@ extension FavouritePoem {
     @NSManaged public var sectionname: String?
     @NSManaged public var subcategoryname: String?
     @NSManaged public var title: String?
+    @NSManaged public var timestamp: Date?
 
 }
 

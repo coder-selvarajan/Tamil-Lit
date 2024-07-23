@@ -148,16 +148,17 @@ struct PoemDetailView: View {
                                 .foregroundStyle(.black)
                             }
 
-                            Button {
-                                //
-                            } label: {
-                                HStack(spacing: 5) {
-                                    Image(systemName: "paperplane")
-                                    Text("பகிர்")
-                                }
-                                .font(.subheadline)
-                                .foregroundStyle(.black)
-                            }.padding(.leading, 10)
+                            SharePoem(poem: selectedPoem)
+//                            Button {
+//                                //
+//                            } label: {
+//                                HStack(spacing: 5) {
+//                                    Image(systemName: "paperplane")
+//                                    Text("பகிர்")
+//                                }
+//                                .font(.subheadline)
+//                                .foregroundStyle(.black)
+//                            }.padding(.leading, 10)
                         }
                         .padding(.top, -20)
                         

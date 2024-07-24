@@ -16,11 +16,6 @@ struct Tamil_LitApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            TempHomeView()
-//            CategoryListView()
-//            MainCategoryListView()
-            
-//            ImportDBView()
             MainView()
                 .preferredColorScheme(ColorScheme.light)
                 .environment(\.managedObjectContext, persistenceController.viewContext)

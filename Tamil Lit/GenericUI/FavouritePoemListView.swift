@@ -121,7 +121,9 @@ struct FavouritePoemListView: View {
                 }
                 .listStyle(InsetGroupedListStyle())
                 .sheet(isPresented: $isShowingDetail) {
-                    SimplePoemDetailView(selectedPoem: $selectedPoem, popupMode: true)
+                    if selectedPoem != nil {
+                        SimplePoemDetailView(selectedPoem: Binding($selectedPoem)!, popupMode: true)
+                    }
                 }
             }
         }

@@ -87,7 +87,7 @@ struct SearchView: View {
         VStack(alignment: HorizontalAlignment.leading) {
             // Search textbox
             HStack {
-                TextField("வார்த்தைகள்...",
+                TextField("தமிழில் தேடவும்...",
                           text: $searchText,
                           onEditingChanged: { editingChanged in
                     SearchEditChanged = editingChanged
@@ -206,7 +206,9 @@ struct SearchView: View {
         .navigationTitle(Text("பாடல் தேடு"))
         .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
         .sheet(isPresented: $isShowingDetail) {
-            SimplePoemDetailView(selectedPoem: $selectedPoem, popupMode: true)
+            if selectedPoem != nil {
+                SimplePoemDetailView(selectedPoem: Binding($selectedPoem)!, popupMode: true)
+            }
         }
         .onAppear(perform: loadBookOptions) // To load book options for search from user-defaults
         .popup(isPresented: $showOptions) {

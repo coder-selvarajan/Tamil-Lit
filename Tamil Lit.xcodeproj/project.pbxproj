@@ -22,6 +22,7 @@
 		703CD63B2C4E46E900509F46 /* BookDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703CD63A2C4E46E900509F46 /* BookDetailsView.swift */; };
 		703CD63D2C4E470800509F46 /* BookDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703CD63C2C4E470800509F46 /* BookDetailsViewModel.swift */; };
 		703E18B52C458E890032298E /* SingleCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703E18B42C458E890032298E /* SingleCategoryViewModel.swift */; };
+		704641092C50F8B100447FF4 /* SaveAsImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704641082C50F8B100447FF4 /* SaveAsImage.swift */; };
 		7068D7E32C33DCE700FAB1F6 /* BookHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7068D7E22C33DCE700FAB1F6 /* BookHomeView.swift */; };
 		708FB19C2C4C1C6F00553498 /* Quicksand.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 708FB19B2C4C1C6F00553498 /* Quicksand.ttf */; };
 		7093B6752C398FFB00D38548 /* SingleCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093B6742C398FFB00D38548 /* SingleCategoryView.swift */; };
@@ -80,6 +81,7 @@
 		703CD63A2C4E46E900509F46 /* BookDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsView.swift; sourceTree = "<group>"; };
 		703CD63C2C4E470800509F46 /* BookDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsViewModel.swift; sourceTree = "<group>"; };
 		703E18B42C458E890032298E /* SingleCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCategoryViewModel.swift; sourceTree = "<group>"; };
+		704641082C50F8B100447FF4 /* SaveAsImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveAsImage.swift; sourceTree = "<group>"; };
 		7068D7E22C33DCE700FAB1F6 /* BookHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookHomeView.swift; sourceTree = "<group>"; };
 		708FB19B2C4C1C6F00553498 /* Quicksand.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Quicksand.ttf; sourceTree = "<group>"; };
 		708FB19E2C4C290B00553498 /* Tamil-Lit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Tamil-Lit-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -142,6 +144,7 @@
 			children = (
 				702240552B69653C00EF072B /* WrapView.swift */,
 				70206A6F2C4D592400B55EE6 /* BookInfo.swift */,
+				704641082C50F8B100447FF4 /* SaveAsImage.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				704641092C50F8B100447FF4 /* SaveAsImage.swift in Sources */,
 				703E18B52C458E890032298E /* SingleCategoryViewModel.swift in Sources */,
 				70E93A412C4A3B500057E8B5 /* SearchViewModel.swift in Sources */,
 				701FA7AA2C4F5139002851C3 /* FavouritePoem+CoreDataClass.swift in Sources */,
@@ -538,6 +542,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Tamil-Lit-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "To save poem screenshots to your photo library.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -568,6 +574,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Tamil-Lit-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "To save poem screenshots to your photo library.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -19,8 +19,9 @@ struct RandomPoemView: View {
     
     var body: some View {
         ZStack {
-            
-            SimplePoemDetailView(selectedPoem: $randomPoem)
+            if randomPoem != nil {
+                SimplePoemDetailView(selectedPoem: Binding($randomPoem)!)
+            }
             
             VStack {
                 Spacer()

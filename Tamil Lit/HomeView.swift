@@ -318,7 +318,9 @@ struct HomeView: View {
                 vm.getPoemOftheDay()
             }
             .sheet(isPresented: $showPoemPopup) {
-                SimplePoemDetailView(selectedPoem: $vm.poemOftheDay, popupMode: true)
+                if vm.poemOftheDay != nil {
+                    SimplePoemDetailView(selectedPoem: Binding($vm.poemOftheDay)!, popupMode: true)
+                }
             }
             .toolbar {
                 ToolbarItem(placement: .principal) {

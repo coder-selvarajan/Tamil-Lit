@@ -23,7 +23,7 @@ struct PoemDetailView: View {
 //    @State private var showAlert: (Bool, String) = (false, "")
     
     @State private var showAlert: Bool = false
-    @State private var alertMessage: String = ""
+    @State private var alertMessage: String = "படம் Photo Library-ல்  சேமிக்கப்பட்டது!"
     
     @State private var poemBookmarked: Bool = false
     
@@ -97,94 +97,6 @@ struct PoemDetailView: View {
         .padding(.bottom, 20)
     }
     
-    var poemScreenshotView: some View {
-        VStack(alignment: .leading, spacing: 10.0) {
-            HStack(alignment: .top, spacing: 5) {
-                Text("நூல் : ")
-                    .padding(3)
-                    .foregroundStyle(.black)
-                    .frame(width: 60)
-                    .multilineTextAlignment(.trailing)
-                    .background(.white)
-                    .cornerRadius(5)
-                    .padding(.trailing, 5)
-                Text("\(bookName)")
-                    .fontWeight(.bold)
-                    .foregroundStyle(.black.opacity(0.95))
-                Spacer()
-            }
-            .font(.subheadline)
-            .padding(.vertical, 5)
-            .padding(.leading, 20)
-            .padding(.trailing, 5)
-            
-            HStack(alignment: .top, spacing: 5) {
-                Text("வகை : ")
-                    .padding(3)
-                    .foregroundStyle(.black)
-                    .frame(width: 60)
-                    .multilineTextAlignment(.trailing)
-                    .background(.white)
-                    .cornerRadius(5)
-                    .padding(.trailing, 5)
-                Text("\(getCategoryText())")
-                    .fontWeight(.bold)
-                    .foregroundStyle(.black.opacity(0.95))
-                Spacer()
-            }
-            .font(.subheadline)
-            .padding(.vertical)
-            .padding(.leading, 20)
-            .padding(.trailing, 5)
-            
-            // Poem view
-            VStack(alignment: .leading, spacing: 10) {
-                Text("\(getPoemTitle())")
-                    .font(.callout)
-                    .fontWeight(Font.Weight.semibold)
-                    .foregroundStyle(.black)
-                
-                VStack(alignment: .leading, spacing: 2.0) {
-                    Text("\(selectedPoem.poem ?? "")")
-                        .font(.subheadline)
-                        .fontWeight(Font.Weight.semibold)
-                        .foregroundStyle(.black)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                }
-            }
-            .padding()
-            .background(colorTheme.opacity(0.5))
-            .cornerRadius(10.0)
-            .padding(.horizontal, 10)
-            
-            
-            VStack(alignment: .leading) {
-                ForEach(viewModel.explanations.prefix(3), id:\.self) { explanation in
-                    VStack(alignment: .leading, spacing: 2.0) {
-                        if let title = explanation.title, title != "" {
-                            Text("\(title): ")
-                                .font(.body)
-                                .fontWeight(.bold)
-                                .foregroundStyle(.black)
-                                .padding(.bottom, 5)
-                        }
-                        Text("\(explanation.meaning ?? "")")
-                            .font(.body)
-                            .foregroundStyle(.black)
-                        
-                        Divider().background(.gray)
-                            .padding(.vertical)
-                    }
-                    .padding(.top, 10)
-                }
-            }.padding()
-        }
-        .padding(.horizontal, 20)
-        .padding(.vertical, 40)
-        .background(colorTheme.opacity(0.35))
-        .frame(width: UIScreen.main.bounds.width)
-    }
-    
     var body: some View {
         ZStack(alignment: .top) {
             colorTheme.opacity(0.2).ignoresSafeArea()
@@ -250,22 +162,11 @@ struct PoemDetailView: View {
                             SharePoem(poem: $selectedPoem, explanations: $viewModel.explanations)
                             
                             // Save as image icon
-                            Button(action: {
-                                let renderer = ImageRenderer(content: poemScreenshotView)
-                                if let image = renderer.uiImage {
-                                    let imageSaver = ImageSever()
-                                    imageSaver.writeToPhotoAlbum(image: image)
-                                    
-                                    alertMessage = "படம் சேமிக்கப்பட்டது!"
-                                    showAlert = true
-                                }
-                            }) {
-                                HStack(spacing: 5) {
-                                    Image(systemName: "camera")
-                                    Text("படம்")
-                                }
-                                .font(.subheadline)
-                                .foregroundStyle(.black)
+                            PoemScreenshotView(poem: $selectedPoem, 
+                                               explanations: $viewModel.explanations,
+                                               colorTheme: colorTheme) {
+                                alertMessage = "படம் Photo Library-ல்  சேமிக்கப்பட்டது!"
+                                showAlert = true
                             }
                         }
                         .padding(.top, -20)
@@ -330,7 +231,7 @@ struct PoemDetailView: View {
             viewModel.fetchExplanations(for: newValue)
         })
         .popup(isPresented: $showAlert) {
-            Text("\(alertMessage)")
+            Text(alertMessage)
                 .padding()
                 .background(.white)
                 .cornerRadius(15.0)

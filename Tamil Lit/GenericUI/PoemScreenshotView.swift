@@ -1,0 +1,150 @@
+//
+//  PoemScreenshotView.swift
+//  Tamil Lit
+//
+//  Created by Selvarajan on 25/07/24.
+//
+
+import SwiftUI
+
+struct PoemScreenshotView: View {
+    @Binding var poem: Poem
+    @Binding var explanations: [Explanation]
+    let colorTheme: Color
+    let completionCallBack: (() -> Void)?
+    
+    func getCategoryText() -> String {
+        if poem.sectionname != nil {
+            return "\(poem.maincategoryname ?? "")  ›  \(poem.subcategoryname ?? "")  ›  \(poem.sectionname ?? "")"
+        } else if poem.subcategoryname != nil {
+            return "\(poem.maincategoryname ?? "")  ›  \(poem.subcategoryname ?? "")"
+        } else {
+            return "\(poem.maincategoryname ?? "")"
+        }
+    }
+    
+    func getPoemTitle() -> String {
+        if poem.number == 0 {
+            return ""
+        }
+        let poemType = poem.book?.poemType ?? ""
+        if let title = poem.title, title != "" {
+            return title + ":"
+        }
+        return poemType + ": \(poem.number)"
+    }
+    
+    var getPoemScreenshotView: some View {
+        VStack(alignment: .leading, spacing: 10.0) {
+            HStack(alignment: .top, spacing: 5) {
+                Text("நூல் : ")
+                    .padding(3)
+                    .foregroundStyle(.black)
+                    .frame(width: 60)
+                    .multilineTextAlignment(.trailing)
+                    .background(.white)
+                    .cornerRadius(5)
+                    .padding(.trailing, 5)
+                Text("\(poem.bookname ?? "")")
+                    .fontWeight(.bold)
+                    .foregroundStyle(.black.opacity(0.95))
+                Spacer()
+            }
+            .font(.subheadline)
+            .padding(.vertical)
+            .padding(.leading, 20)
+            .padding(.trailing, 5)
+            
+            if !getCategoryText().starts(with: "பாடல்") {
+                HStack(alignment: .top, spacing: 5) {
+                    Text("வகை : ")
+                        .padding(3)
+                        .foregroundStyle(.black)
+                        .frame(width: 60)
+                        .multilineTextAlignment(.trailing)
+                        .background(.white)
+                        .cornerRadius(5)
+                        .padding(.trailing, 5)
+                    Text("\(getCategoryText())")
+                        .fontWeight(.bold)
+                        .foregroundStyle(.black.opacity(0.95))
+                    Spacer()
+                }
+                .font(.subheadline)
+                .padding(.bottom)
+                .padding(.leading, 20)
+                .padding(.trailing, 5)
+            }
+            
+            // Poem view
+            VStack(alignment: .leading, spacing: 10) {
+                Text("\(getPoemTitle())")
+                    .font(.callout)
+                    .fontWeight(Font.Weight.semibold)
+                    .foregroundStyle(.black)
+                
+                VStack(alignment: .leading, spacing: 2.0) {
+                    Text("\(poem.poem ?? "")")
+                        .font(.subheadline)
+                        .fontWeight(Font.Weight.semibold)
+                        .foregroundStyle(.black)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            }
+            .padding()
+            .background(colorTheme.opacity(0.5))
+            .cornerRadius(10.0)
+            .padding(.horizontal, 10)
+            
+            
+            VStack(alignment: .leading) {
+                ForEach(explanations.prefix(3), id:\.self) { explanation in
+                    VStack(alignment: .leading, spacing: 2.0) {
+                        if let title = explanation.title, title != "" {
+                            Text("\(title): ")
+                                .font(.body)
+                                .fontWeight(.bold)
+                                .foregroundStyle(.black)
+                                .padding(.bottom, 5)
+                        }
+                        Text("\(explanation.meaning ?? "")")
+                            .font(.body)
+                            .foregroundStyle(.black)
+                        
+//                        Divider().background(.gray)
+//                            .padding(.vertical)
+                    }
+                    .padding(.top, 10)
+                }
+            }.padding()
+        }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 40)
+        .background(colorTheme.opacity(0.35))
+        .frame(width: UIScreen.main.bounds.width)
+    }
+    
+    var body: some View {
+        // Save as image icon
+        Button(action: {
+            let renderer = ImageRenderer(content: getPoemScreenshotView)
+            if let image = renderer.uiImage {
+                let imageSaver = ImageSever()
+                imageSaver.writeToPhotoAlbum(image: image)
+                
+                completionCallBack!()
+            }
+        }) {
+            HStack(spacing: 5) {
+                Image(systemName: "camera")
+                Text("நகல்")
+            }
+            .font(.subheadline)
+            .foregroundStyle(.black)
+        }
+    }
+}
+
+//#Preview {
+//    PoemScreenshotView()
+//}

@@ -117,15 +117,6 @@ struct HomeView: View {
                                     .cornerRadius(10.0)
                                 }
                                 
-                                
-//                                Button {
-//                                    Task {
-//                                        showLoading(.loading)
-//                                        try? await Task.sleep(nanoseconds: 2_000_000_000)
-//                                        showLoading(.success)
-//                                    }
-//                                } label: {
-                                
                                 NavigationLink(value: "FavouritePoemView") {
                                     VStack(alignment: .center, spacing: 10) {
                                         Image(systemName: "bookmark.fill")
@@ -160,12 +151,12 @@ struct HomeView: View {
                                 
                                 Spacer()
                                 
-                                Picker("View", selection: $bookDisplayAsGrid) {
-                                    Image(systemName: "list.dash").tag(false)
-                                    Image(systemName: "square.grid.2x2").tag(true)
-                                }
-                                .pickerStyle(SegmentedPickerStyle())
-                                .frame(width: 60)
+//                                Picker("View", selection: $bookDisplayAsGrid) {
+//                                    Image(systemName: "list.dash").tag(false)
+//                                    Image(systemName: "square.grid.2x2").tag(true)
+//                                }
+//                                .pickerStyle(SegmentedPickerStyle())
+//                                .frame(width: 60)
                             }
                             
                             ForEach(_books.chunked(into: 2), id: \.self) { bookPair in
@@ -181,89 +172,6 @@ struct HomeView: View {
                                     }
                                 }
                             }
-                            
-//                            HStack(spacing: 16) {
-//                                NavigationLink(value: "திருக்குறள்") {
-//                                    BookTileView(bookTitle: "திருக்குறள்",
-//                                                 imageName: "Murugan", //"Thiruvalluvar3",
-//                                                 footnote: "1330 குறள்கள்",
-//                                                 color: Color.blue,
-//                                                 bookDisplayAsGrid: $bookDisplayAsGrid)
-//                                }
-//                                NavigationLink(value: "ஆத்திசூடி") {
-//                                    BookTileView(bookTitle: "ஆத்திசூடி",
-//                                                 imageName: "Avvaiyar3",
-//                                                 footnote: "109 வாக்கியங்கள்",
-//                                                 color: Color.teal,
-//                                                 bookDisplayAsGrid: $bookDisplayAsGrid)
-//                                }
-//                            }
-//                            HStack(spacing: 16) {
-//                                NavigationLink(value: "நாலடியார்") {
-//                                    BookTileView(bookTitle: "நாலடியார்",
-//                                                 imageName: "Jainmonk",
-//                                                 footnote: "400 பாடல்கள்",
-//                                                 color: Color.indigo,
-//                                                 bookDisplayAsGrid: $bookDisplayAsGrid)
-//                                }
-//                                NavigationLink(value: "இனியவை நாற்பது") {
-//                                    BookTileView(bookTitle: "இனியவை நாற்பது",
-//                                                 imageName: "Balaji",
-//                                                 footnote: "40 பாடல்கள்",
-//                                                 color: Color.purple.opacity(0.7),
-//                                                 bookDisplayAsGrid: $bookDisplayAsGrid)
-//                                }
-//                            }
-//                            HStack(spacing: 16) {
-//                                NavigationLink(value: "ஆசாரக் கோவை") {
-//                                    BookTileView(bookTitle: "ஆசாரக் கோவை",
-//                                                 imageName: "Ramar",
-//                                                 footnote: "100 பாடல்கள்",
-//                                                 color: Color.red.opacity(0.6),
-//                                                 bookDisplayAsGrid: $bookDisplayAsGrid)
-//                                }
-//                                NavigationLink(value: "நான்மணிக்கடிகை") {
-//                                    BookTileView(bookTitle: "நான்மணிக் கடிகை",
-//                                                 imageName: "Meenakshi",
-//                                                 footnote: "101 பாடல்கள்",
-//                                                 color: Color.orange.opacity(0.7),
-//                                                 bookDisplayAsGrid: $bookDisplayAsGrid)
-//                                }
-//                                
-//                            }
-//                            HStack(spacing: 16) {
-//                                NavigationLink(value: "இன்னா நாற்பது") {
-//                                    BookTileView(bookTitle: "இன்னா நாற்பது",
-//                                                 imageName: "Karuppusamy",
-//                                                 footnote: "40 பாடல்கள்",
-//                                                 color: Color.brown,
-//                                                 bookDisplayAsGrid: $bookDisplayAsGrid)
-//                                }
-//                                NavigationLink(value: "திரிகடுகம்") {
-//                                    BookTileView(bookTitle: "திரிகடுகம்",
-//                                                 imageName: "Adiyogi",
-//                                                 footnote: "102 பாடல்கள்",
-//                                                 color: Color.gray,
-//                                                 bookDisplayAsGrid: $bookDisplayAsGrid)
-//                                }
-//                            }
-//                            HStack(spacing: 16) {
-//                                NavigationLink(value: "முதுமொழிக் காஞ்சி") {
-//                                    BookTileView(bookTitle: "முதுமொழிக் காஞ்சி",
-//                                                 imageName: "Murugan",
-//                                                 footnote: "100 பழமொழிகள்",
-//                                                 color: Color.cyan,
-//                                                 bookDisplayAsGrid: $bookDisplayAsGrid)
-//                                }
-//                                NavigationLink(value: "பழமொழி நானூறு") {
-//                                    BookTileView(bookTitle: "பழமொழி நானூறு",
-//                                                 imageName: "Balaji",
-//                                                 footnote: "400 பழமொழிகள்",
-//                                                 color: Color.green.opacity(0.7),
-//                                                 bookDisplayAsGrid: $bookDisplayAsGrid)
-//                                }
-//                                
-//                            }
                         }
                         .padding()
                         
@@ -285,34 +193,6 @@ struct HomeView: View {
                     FavouritePoemListView()
                 }
             }
-//            .navigationDestination(for: String.self) { value in
-//                if value == "திருக்குறள்" {
-//                    BookHomeView(colorTheme: .blue, bookName: "திருக்குறள்")
-//                } else if value == "ஆத்திசூடி" {
-//                    BookHomeView(colorTheme: .teal, bookName: "ஆத்திசூடி")
-//                } else if value == "நாலடியார்" {
-//                    BookHomeView(colorTheme: .indigo, bookName: "நாலடியார்")
-//                } else if value == "இனியவை நாற்பது" {
-//                    BookHomeView(colorTheme: .purple.opacity(0.7), bookName: "இனியவை நாற்பது")
-//                } else if value == "ஆசாரக் கோவை" {
-//                    BookHomeView(colorTheme: .red.opacity(0.6), bookName: "ஆசாரக் கோவை")
-//                } else if value == "நான்மணிக்கடிகை" {
-//                    BookHomeView(colorTheme: .orange.opacity(0.7), bookName: "நான்மணிக்கடிகை")
-//                } else if value == "இன்னா நாற்பது" {
-//                    BookHomeView(colorTheme: .brown, bookName: "இன்னா நாற்பது")
-//                } else if value == "திரிகடுகம்" {
-//                    BookHomeView(colorTheme: .gray, bookName: "திரிகடுகம்")
-//                } else if value == "முதுமொழிக் காஞ்சி" {
-//                    BookHomeView(colorTheme: .cyan, bookName: "முதுமொழிக் காஞ்சி")
-//                } else if value == "பழமொழி நானூறு" {
-//                    BookHomeView(colorTheme: Color.green.opacity(0.7), bookName: "பழமொழி நானூறு")
-//                }
-//                
-//                // Random Poem View
-//                if value == "RandomPoemView" {
-//                    RandomPoemView()
-//                }
-//            }
             .onAppear() {
                 // Fetch the poem of the day
                 vm.getPoemOftheDay()
@@ -329,10 +209,6 @@ struct HomeView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 40)
-                        
-//                        Image(systemName: "books.vertical")
-//                            .font(.title3)
-//                            .foregroundStyle(.black)
                         
                         Text("Tamil Lit")
                             .font(.custom("Quicksand", size: 22))
@@ -355,8 +231,10 @@ struct HomeView: View {
                 }
                 
                 ToolbarItem {
-                    Image(systemName: "gearshape")
-                        .foregroundStyle(.black)
+                    NavigationLink(destination: SettingsView()) {
+                        Image(systemName: "gearshape")
+                            .foregroundStyle(.black)
+                    }
                 }
             } // toolbar
         } //NavigationStack

@@ -15,6 +15,8 @@ struct HomeView: View {
     @State private var showPoemPopup = false
     @State private var currentDate: Date = Date()
     
+    let paddingSize: CGFloat = UIScreen.main.bounds.size.width * 0.055 // aprox 20 for 375 screen size..
+    
     private var formattedDate: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM dd"

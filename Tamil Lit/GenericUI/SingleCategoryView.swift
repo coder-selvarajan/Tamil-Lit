@@ -63,13 +63,14 @@ struct SingleCategoryView: View {
                 Button {
                     showBookInfo = true
                 } label: {
-                    Text("நூல் பற்றி")
-                        .font(.subheadline)
-                        .foregroundStyle(.black)
-                        .padding(.vertical, 5)
-                        .padding(.horizontal, 10)
-                        .background(colorTheme.opacity(0.3))
-                        .cornerRadius(8)
+                   Text("நூல் பற்றி")
+                    .font(.subheadline)
+                    .foregroundStyle(.black)
+                    .padding(.vertical, 7)
+                    .padding(.horizontal, 10)
+                    .background(colorTheme.opacity(0.3))
+                    .cornerRadius(8)
+                    
                 }
             }
         }

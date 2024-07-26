@@ -63,14 +63,14 @@ struct PoemListView: View {
                 }
                 .font(.subheadline)
                 .padding(.top, 10)
-                .padding(.horizontal, 20)
+                .padding(.horizontal, paddingSize)
                 
                 List(viewModel.poems) { poem in
                     NavigationLink(destination: PoemDetailView(colorTheme: colorTheme,
                                                                bookName: bookName,
                                                                poems: viewModel.poems,
                                                                selectedPoem: poem)) {
-                        Text(poem.poem ?? "No Poem")
+                        Text("\(poem.number). \(poem.poem ?? "No Poem")")
                     }
                     .listRowBackground(colorTheme.opacity(0.2))
                 }
@@ -96,15 +96,15 @@ struct PoemListView: View {
                         Image(systemName: "house.fill")
                             .font(.title3)
                             .foregroundStyle(.black.opacity(0.8))
-                            .padding(.horizontal, 20)
+                            .padding(.horizontal, paddingSize)
                             .padding(.vertical, 15)
-                            .padding(.trailing, 20)
+                            .padding(.trailing, paddingSize)
                     }
                     .background(.white)
                     .cornerRadius(10.0)
                     .shadow(radius: 10)
                     .padding(.bottom, 30)
-                    .padding(.trailing, -20)
+                    .padding(.trailing, -paddingSize)
                     
                 }
             }

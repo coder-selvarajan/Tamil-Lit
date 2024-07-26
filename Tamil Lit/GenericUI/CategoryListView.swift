@@ -93,7 +93,7 @@ struct CategoryListView: View {
             //                Text(" ")
             //            }.frame(height: 50.0)
         }
-        .padding(20)
+        .padding(paddingSize)
 //        .navigationBarTitle(bookName)
 //        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
@@ -126,7 +126,7 @@ struct CategoryListView: View {
                     Text("நூல் பற்றி")
                         .font(.subheadline)
                         .foregroundStyle(.black)
-                        .padding(.vertical, 5)
+                        .padding(.vertical, 7)
                         .padding(.horizontal, 10)
                         .background(colorTheme.opacity(0.3))
                         .cornerRadius(8)

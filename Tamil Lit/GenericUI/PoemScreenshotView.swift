@@ -52,7 +52,7 @@ struct PoemScreenshotView: View {
             }
             .font(.subheadline)
             .padding(.vertical)
-            .padding(.leading, 20)
+            .padding(.leading, paddingSize)
             .padding(.trailing, 5)
             
             if !getCategoryText().starts(with: "பாடல்") {
@@ -72,7 +72,7 @@ struct PoemScreenshotView: View {
                 }
                 .font(.subheadline)
                 .padding(.bottom)
-                .padding(.leading, 20)
+                .padding(.leading, paddingSize)
                 .padding(.trailing, 5)
             }
             
@@ -118,7 +118,7 @@ struct PoemScreenshotView: View {
                 }
             }.padding()
         }
-        .padding(.horizontal, 20)
+        .padding(.horizontal, paddingSize)
         .padding(.vertical, 40)
         .background(colorTheme.opacity(0.35))
         .frame(width: UIScreen.main.bounds.width)

@@ -171,7 +171,7 @@ struct SearchView: View {
                                             HStack {
                             Image(systemName: "book.closed.fill") // Replace with your image name
                                 .resizable()
-                                .frame(width: 20, height: 20)
+                                .frame(width: paddingSize, height: paddingSize)
                                 .foregroundColor(getColorByBook(bookname))
                             Text(bookname)
                                 .font(.headline)

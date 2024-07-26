@@ -29,7 +29,7 @@ struct BookSelectorView: View {
                                 .font(.body)
                         }
                     }
-                    .padding(.bottom, 20)
+                    .padding(.bottom, paddingSize)
                     
                     ForEach($booksInfo, id:\.id) { $bookInfo in
                         VStack {
@@ -54,7 +54,7 @@ struct BookSelectorView: View {
                     }
                     
                 } //VStack
-                .padding(20)
+                .padding(paddingSize)
                 .background(.white)
                 .foregroundColor(.black)
                 .cornerRadius(15)

@@ -71,7 +71,7 @@ struct SimplePoemDetailView: View {
                         }
                         .font(.subheadline)
                         .padding(.bottom, 10)
-                        .padding(.leading, 20)
+                        .padding(.leading, paddingSize)
                         .padding(.trailing, 5)
                         
                         HStack(alignment: .top, spacing: 5) {
@@ -89,7 +89,7 @@ struct SimplePoemDetailView: View {
                         }
                         .font(.subheadline)
                         .padding(.bottom, 10)
-                        .padding(.leading, 20)
+                        .padding(.leading, paddingSize)
                         .padding(.trailing, 5)
                     }
                     .padding(.top, 30)
@@ -122,7 +122,7 @@ struct SimplePoemDetailView: View {
                     .background(colorTheme.opacity(0.35))
                     .cornerRadius(10.0)
                     .padding(.horizontal, 10)
-                    .padding(.bottom, 20)
+                    .padding(.bottom, paddingSize)
                     
                     // Explanation section
                     VStack(alignment: .leading) {
@@ -168,7 +168,7 @@ struct SimplePoemDetailView: View {
                                 showAlert = true
                             }
                         }
-                        .padding(.top, -20)
+                        .padding(.top, -paddingSize)
                         
                         ForEach(vmExplanation.explanations, id:\.self) { explanation in
                             VStack(alignment: .leading, spacing: 2.0) {
@@ -182,13 +182,20 @@ struct SimplePoemDetailView: View {
                                 Text("\(explanation.meaning ?? "")")
                                     .font(.body)
                                 
-                                Divider().background(.gray)
-                                    .padding(.vertical)
+                                if vmExplanation.explanations.last != explanation {
+                                    Divider().background(.gray)
+                                        .padding(.vertical)
+                                }
+                                else {
+                                    Text(" ")
+                                        .padding(.bottom, paddingSize)
+                                }
                             }.padding(.top, 10)
                         }
                         
-                    }.padding().padding(.bottom, 20)
+                    }.padding().padding(.bottom, paddingSize)
                 }
+//                .padding(paddingSize)
             }
             
             if popupMode {

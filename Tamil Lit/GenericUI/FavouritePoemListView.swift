@@ -7,8 +7,13 @@
 
 import SwiftUI
 
-enum PoemListingOrder {
-    case ByDate, ByBook
+//enum PoemListingOrder {
+//    case ByDate, ByBook
+//}
+
+enum PoemListingOrder: String, CaseIterable {
+    case ByDate = "Date"
+    case ByBook = "Book"
 }
 
 struct FavouritePoemListView: View {
@@ -20,8 +25,10 @@ struct FavouritePoemListView: View {
     @State private var isShowingDetail: Bool = false
     
     @State private var listingOrder: PoemListingOrder = .ByBook
-    
     @State private var showOptions = false
+    
+//    @State private var selectedSegment = 1
+//    private let segments = ["By Date", "By Book"]
     
     func getCategoryDisplay(_ poem: FavouritePoem) -> String {
         if let section = poem.sectionname, section != "", !section.starts(with: "பாடல்") {
@@ -41,6 +48,25 @@ struct FavouritePoemListView: View {
     var body: some View {
         ZStack {
             VStack {
+                
+                HStack {
+                    Text("Show Poems By:")
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundStyle(.gray)
+                    Spacer()
+                    
+                    Picker("Segments", selection: $listingOrder) {
+                        ForEach(PoemListingOrder.allCases, id: \.self) { order in
+                            Text(order.rawValue).tag(order)
+                        }
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .tint(.yellow)
+                    .frame(width: UIScreen.main.bounds.width * 0.5)
+                }
+                .padding()
+                
                 List {
                     if (listingOrder == .ByBook) { //order by book
                         ForEach(vm.sortedKeys, id: \.self) { bookname in
@@ -48,7 +74,7 @@ struct FavouritePoemListView: View {
                                                 HStack {
                                 Image(systemName: "book.closed.fill") // Replace with your image name
                                     .resizable()
-                                    .frame(width: 20, height: 20)
+                                    .frame(width: paddingSize, height: paddingSize)
                                     .foregroundColor(getColorByBook(bookname))
                                 Text(bookname)
                                     .font(.headline)
@@ -88,7 +114,7 @@ struct FavouritePoemListView: View {
                                                 HStack {
                                 Image(systemName: "calendar") // Replace with your image name
                                     .resizable()
-                                    .frame(width: 20, height: 20)
+                                    .frame(width: paddingSize, height: paddingSize)
 //                                    .foregroundColor(getColorByBook(bookname))
                                 Text(day)
                                     .font(.headline)
@@ -163,38 +189,37 @@ struct FavouritePoemListView: View {
             }
             
             ToolbarItem {
-                Menu {
-                    Button(action: {
-                        listingOrder = .ByBook
-                    }) {
-                        Text("Order by Book")
-                    }
-                    Button(action: {
-                        listingOrder = .ByDate
-                    }) {
-                        Text("Order by Date")
-                    }
-                    
-                } label: {
-                    HStack {
-//                        Text("Order ")
-//                            .font(.subheadline)
-//                            .foregroundColor(.gray)
-                        Image(systemName: "arrow.up.arrow.down.square")
-                            .font(.title3)
-                            .foregroundColor(.black)
-                    }
-                }
-            }
-            
-            ToolbarItem {
                 Button {
                     showOptions = true
                 } label: {
-                    Image(systemName: "checklist")
-                        .foregroundColor(.black)
+                    HStack {
+                        Image(systemName: "checklist")
+                            .font(.footnote)
+                            .foregroundColor(.black)
+                        
+                        Text("Filter")
+                    }
+                    .font(.subheadline)
+                    .foregroundStyle(.black)
+                    .padding(.vertical, 7)
+                    .padding(.horizontal, 10)
+                    .background(.gray.opacity(0.2))
+                    .cornerRadius(8)
                 }
             }
+            
+//            ToolbarItem {
+//                Button {
+//                    showOptions = true
+//                } label: {
+//                    HStack {
+//                        Text("Sort")
+//                            .foregroundStyle(.gray)
+//                        Image(systemName: "checklist")
+//                            .foregroundColor(.black)
+//                    }
+//                }
+//            }
             
         }
         .onAppear(){

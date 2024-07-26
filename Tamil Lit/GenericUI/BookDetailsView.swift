@@ -65,7 +65,7 @@ struct BookDetailsView: View {
 
                     // book description
                     Text(vm.book?.info ?? "")
-                        .padding(20)
+                        .padding(paddingSize)
                 }
                 
             }

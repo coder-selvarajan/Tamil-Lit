@@ -42,21 +42,46 @@ struct RandomPoemView: View {
                             .background(.yellow)
                             .cornerRadius(10.0)
                             .shadow(radius: 10)
-                    }.padding(.trailing, -15)
+                    }
+                    .padding(.trailing, -15)
+                    .padding(.bottom)
                 }
             }
         }
-        .navigationTitle(Text("ஏதோ ஒரு பாடல்"))
-        .navigationBarTitleDisplayMode(.inline)
+//        .navigationTitle(Text("ஏதோ ஒரு பாடல்"))
+//        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
+            ToolbarItem(placement: .principal) {
+                HStack {
+                    Text("ஏதோ ஒரு பாடல்")
+                        .font(.body)
+                        .fontWeight(.semibold)
+                    
+                    Spacer()
+                }
+                .padding(0)
+            }
+            
             ToolbarItem {
                 Button {
                     showOptions = true
                 } label: {
-                    Image(systemName: "checklist")
-                        .foregroundColor(.black)
+                    HStack {
+                        Image(systemName: "checklist")
+                            .font(.footnote)
+                            .foregroundColor(.black)
+                        
+                        Text("Filter")
+                    }
+                    .font(.subheadline)
+                    .foregroundStyle(.black)
+                    .padding(.vertical, 7)
+                    .padding(.horizontal, 10)
+                    .background(.gray.opacity(0.2))
+                    .cornerRadius(8)
                 }
             }
+            
         }
         .onAppear {
             loadBookOptions()

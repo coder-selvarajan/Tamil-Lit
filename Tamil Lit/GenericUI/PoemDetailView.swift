@@ -94,7 +94,7 @@ struct PoemDetailView: View {
         .background(colorTheme.opacity(0.35))
         .cornerRadius(10.0)
         .padding(.horizontal, 10)
-        .padding(.bottom, 20)
+        .padding(.bottom, paddingSize)
     }
     
     var body: some View {
@@ -119,7 +119,7 @@ struct PoemDetailView: View {
                     }
                     .font(.subheadline)
                     .padding(.vertical)
-                    .padding(.leading, 20)
+                    .padding(.leading, paddingSize)
                     .padding(.trailing, 5)
                     
                     
@@ -169,7 +169,7 @@ struct PoemDetailView: View {
                                 showAlert = true
                             }
                         }
-                        .padding(.top, -20)
+                        .padding(.top, -paddingSize)
                         
                         
                         ForEach(viewModel.explanations, id:\.self) { explanation in
@@ -185,10 +185,17 @@ struct PoemDetailView: View {
                                     .font(.body)
                                     .foregroundStyle(.black)
                                 
-                                Divider().background(.gray)
-                                    .padding(.vertical)
+                                if viewModel.explanations.last != explanation {
+                                    Divider().background(.gray)
+                                        .padding(.vertical)
+                                }
+                                else {
+                                    Text(" ")
+                                        .padding(.bottom, paddingSize)
+                                }
                             }
                             .padding(.top, 10)
+                            .padding(.bottom, paddingSize)
                         }
                         
                     }.padding()
@@ -210,15 +217,15 @@ struct PoemDetailView: View {
                         Image(systemName: "house.fill")
                             .font(.title3)
                             .foregroundStyle(.black.opacity(0.8))
-                            .padding(.horizontal, 20)
+                            .padding(.horizontal, paddingSize)
                             .padding(.vertical, 15)
-                            .padding(.trailing, 20)
+                            .padding(.trailing, paddingSize)
                     }
                     .background(.white)
                     .cornerRadius(10.0)
                     .shadow(radius: 10)
-                    .padding(.bottom, 30)
-                    .padding(.trailing, -20)
+                    .padding(.bottom, paddingSize)
+                    .padding(.trailing, -paddingSize)
                     
                 }
             }

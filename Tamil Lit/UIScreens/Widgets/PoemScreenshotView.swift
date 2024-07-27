@@ -39,15 +39,15 @@ struct PoemScreenshotView: View {
             HStack(alignment: .top, spacing: 5) {
                 Text("நூல் : ")
                     .padding(3)
-                    .foregroundStyle(.black)
+                    .foregroundStyle(Color("TextColor"))
                     .frame(width: 60)
                     .multilineTextAlignment(.trailing)
-                    .background(.white)
+                    .background(Color("TextColorWhite"))
                     .cornerRadius(5)
                     .padding(.trailing, 5)
                 Text("\(poem.bookname ?? "")")
                     .fontWeight(.bold)
-                    .foregroundStyle(.black.opacity(0.95))
+                    .foregroundStyle(Color("TextColor").opacity(0.95))
                 Spacer()
             }
             .font(.subheadline)
@@ -59,15 +59,15 @@ struct PoemScreenshotView: View {
                 HStack(alignment: .top, spacing: 5) {
                     Text("வகை : ")
                         .padding(3)
-                        .foregroundStyle(.black)
+                        .foregroundStyle(Color("TextColor"))
                         .frame(width: 60)
                         .multilineTextAlignment(.trailing)
-                        .background(.white)
+                        .background(Color("TextColorWhite"))
                         .cornerRadius(5)
                         .padding(.trailing, 5)
                     Text("\(getCategoryText())")
                         .fontWeight(.bold)
-                        .foregroundStyle(.black.opacity(0.95))
+                        .foregroundStyle(Color("TextColor").opacity(0.95))
                     Spacer()
                 }
                 .font(.subheadline)
@@ -81,13 +81,13 @@ struct PoemScreenshotView: View {
                 Text("\(getPoemTitle())")
                     .font(.callout)
                     .fontWeight(Font.Weight.semibold)
-                    .foregroundStyle(.black)
+                    .foregroundStyle(Color("TextColor"))
                 
                 VStack(alignment: .leading, spacing: 2.0) {
                     Text("\(poem.poem ?? "")")
                         .font(.subheadline)
                         .fontWeight(Font.Weight.semibold)
-                        .foregroundStyle(.black)
+                        .foregroundStyle(Color("TextColor"))
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
@@ -104,12 +104,12 @@ struct PoemScreenshotView: View {
                             Text("\(title): ")
                                 .font(.body)
                                 .fontWeight(.bold)
-                                .foregroundStyle(.black)
+                                .foregroundStyle(Color("TextColor"))
                                 .padding(.bottom, 5)
                         }
                         Text("\(explanation.meaning ?? "")")
                             .font(.body)
-                            .foregroundStyle(.black)
+                            .foregroundStyle(Color("TextColor"))
                         
 //                        Divider().background(.gray)
 //                            .padding(.vertical)
@@ -140,7 +140,7 @@ struct PoemScreenshotView: View {
                 Text("நகல்")
             }
             .font(.subheadline)
-            .foregroundStyle(.black)
+            .foregroundStyle(Color("TextColor"))
         }
     }
 }

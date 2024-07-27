@@ -69,7 +69,7 @@ struct AboutView: View {
                             .foregroundColor(.blue)
                         Text(" | ")
                             .font(.footnote)
-                            .foregroundStyle(.white.opacity(0.7))
+                            .foregroundStyle(Color("TextColorWhite").opacity(0.7))
                         Link("Github Profile", destination: URL(string: "https://github.com/coder-selvarajan")!)
                             .font(.caption)
                             .foregroundColor(.blue)
@@ -81,14 +81,14 @@ struct AboutView: View {
             .padding()
         }
         .padding(.horizontal)
-        .background(Color.white.opacity(0.20))
+        .background(Color("TextColorWhite").opacity(0.20))
         .navigationTitle("About")
         .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
         .toolbar {
             ToolbarItem(placement: .principal) {
                 HStack {
                     Text("About").font(.title3)
-                        .foregroundColor(Color.white)
+                        .foregroundColor(Color("TextColorWhite"))
                         .padding(.horizontal, 10)
                     Spacer()
                 }

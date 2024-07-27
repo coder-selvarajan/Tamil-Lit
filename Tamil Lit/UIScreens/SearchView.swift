@@ -126,7 +126,7 @@ struct SearchView: View {
                     showOptions = true
                 } label: {
                     Image(systemName: "checklist")
-                        .foregroundColor(.black)
+                        .foregroundColor(Color("TextColor"))
                 }
                 .padding()
                 .background(.gray.opacity(0.2))
@@ -228,7 +228,7 @@ struct SearchView: View {
                 .animation(.spring())
                 .closeOnTapOutside(true)
                 .closeOnTap(false)
-                .backgroundColor(.black.opacity(0.5))
+                .backgroundColor(Color("TextColor").opacity(0.5))
                 .autohideIn(50)
         }
     }

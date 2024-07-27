@@ -60,13 +60,13 @@ struct SimplePoemDetailView: View {
                                 .padding(3)
                                 .frame(width: 60)
                                 .multilineTextAlignment(.trailing)
-                                .background(.white)
+                                .background(Color("TextColorWhite"))
                                 .cornerRadius(5)
                                 .padding(.trailing, 5)
                             Text("\(selectedPoem.bookname ?? "")")
                                 .font(.title3)
                                 .fontWeight(.bold)
-                                .foregroundStyle(.black.opacity(0.95))
+                                .foregroundStyle(Color("TextColor").opacity(0.95))
                             Spacer()
                         }
                         .font(.subheadline)
@@ -79,12 +79,12 @@ struct SimplePoemDetailView: View {
                                 .padding(3)
                                 .frame(width: 60)
                                 .multilineTextAlignment(.trailing)
-                                .background(.white)
+                                .background(Color("TextColorWhite"))
                                 .cornerRadius(5)
                                 .padding(.trailing, 5)
                             Text("\(getCategoryText())")
                                 .fontWeight(.bold)
-                                .foregroundStyle(.black.opacity(0.95))
+                                .foregroundStyle(Color("TextColor").opacity(0.95))
                             Spacer()
                         }
                         .font(.subheadline)
@@ -102,13 +102,13 @@ struct SimplePoemDetailView: View {
                             Text("\(getPoemTitle())")
                                 .font(.callout)
                                 .fontWeight(Font.Weight.semibold)
-                                .foregroundStyle(.black)
+                                .foregroundStyle(Color("TextColor"))
                             
                             VStack(alignment: .leading, spacing: 2.0) {
                                 Text("\(selectedPoem.poem ?? "")")
                                     .font(.subheadline)
                                     .fontWeight(Font.Weight.semibold)
-                                    .foregroundStyle(.black)
+                                    .foregroundStyle(Color("TextColor"))
                                     .frame(maxWidth: .infinity, alignment: .leading)
                             }
                             
@@ -154,7 +154,7 @@ struct SimplePoemDetailView: View {
                                     Text("சேமி")
                                 }
                                 .font(.subheadline)
-                                .foregroundStyle(.black)
+                                .foregroundStyle(Color("TextColor"))
                             }
                             
                             // Share poem icon
@@ -170,32 +170,35 @@ struct SimplePoemDetailView: View {
                         }
                         .padding(.top, -paddingSize)
                         
-                        ForEach(vmExplanation.explanations, id:\.self) { explanation in
-                            VStack(alignment: .leading, spacing: 2.0) {
-                                if let title = explanation.title, title != "" {
-                                    Text("\(title): ")
+                        VStack {
+                            ForEach(vmExplanation.explanations, id:\.self) { explanation in
+                                VStack(alignment: .leading, spacing: 2.0) {
+                                    if let title = explanation.title, title != "" {
+                                        Text("\(title): ")
+                                            .font(.body)
+                                            .fontWeight(.bold)
+                                            .foregroundStyle(Color("TextColor"))
+                                            .padding(.bottom, 5)
+                                    }
+                                    Text("\(explanation.meaning ?? "")")
                                         .font(.body)
-                                        .fontWeight(.bold)
-                                        .foregroundStyle(.black)
-                                        .padding(.bottom, 5)
+                                    
+                                    if vmExplanation.explanations.last != explanation {
+                                        Divider().background(.gray)
+                                            .padding(.vertical)
+                                    } else {
+                                        Divider().background(Color.clear)
+                                            .padding(.vertical)
+                                    }
                                 }
-                                Text("\(explanation.meaning ?? "")")
-                                    .font(.body)
-                                
-                                if vmExplanation.explanations.last != explanation {
-                                    Divider().background(.gray)
-                                        .padding(.vertical)
-                                }
-                                else {
-                                    Text(" ")
-                                        .padding(.bottom, paddingSize)
-                                }
-                            }.padding(.top, 10)
+                            }
                         }
+                        .padding(.top, paddingSize)
                         
-                    }.padding().padding(.bottom, paddingSize)
+                    }
+                    .padding(paddingSize)
+                    .padding(.bottom, paddingSize)
                 }
-//                .padding(paddingSize)
             }
             
             if popupMode {
@@ -220,7 +223,7 @@ struct SimplePoemDetailView: View {
         .popup(isPresented: $showAlert) {
             Text("\(alertMessage)")
                 .padding()
-                .background(.white)
+                .background(Color("TextColorWhite"))
                 .cornerRadius(15.0)
                 .shadow(radius: 15.0)
         } customize: {

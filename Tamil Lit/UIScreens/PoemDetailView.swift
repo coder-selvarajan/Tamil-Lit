@@ -67,13 +67,13 @@ struct PoemDetailView: View {
                             Text("\(getPoemTitle())")
                                 .font(.callout)
                                 .fontWeight(Font.Weight.semibold)
-                                .foregroundStyle(.black)
+                                .foregroundStyle(Color("TextColor"))
                             
                             VStack(alignment: .leading, spacing: 2.0) {
                                 Text("\(poem.poem ?? "")")
                                     .font(.subheadline)
                                     .fontWeight(Font.Weight.semibold)
-                                    .foregroundStyle(.black)
+                                    .foregroundStyle(Color("TextColor"))
                                     .frame(maxWidth: .infinity, alignment: .leading)
                             }
                             
@@ -106,15 +106,15 @@ struct PoemDetailView: View {
                     HStack(alignment: .top, spacing: 5) {
                         Text("வகை : ")
                             .padding(3)
-                            .foregroundStyle(.black)
+                            .foregroundStyle(Color("TextColor"))
                             .frame(width: 60)
                             .multilineTextAlignment(.trailing)
-                            .background(.white)
+                            .background(Color("TextColorWhite"))
                             .cornerRadius(5)
                             .padding(.trailing, 5)
                         Text("\(getCategoryText())")
                             .fontWeight(.bold)
-                            .foregroundStyle(.black.opacity(0.95))
+                            .foregroundStyle(Color("TextColor").opacity(0.95))
                         Spacer()
                     }
                     .font(.subheadline)
@@ -155,7 +155,7 @@ struct PoemDetailView: View {
                                     Text("சேமி")
                                 }
                                 .font(.subheadline)
-                                .foregroundStyle(.black)
+                                .foregroundStyle(Color("TextColor"))
                             }
 
                             // Share icon
@@ -171,32 +171,32 @@ struct PoemDetailView: View {
                         }
                         .padding(.top, -paddingSize)
                         
-                        
-                        ForEach(viewModel.explanations, id:\.self) { explanation in
-                            VStack(alignment: .leading, spacing: 2.0) {
-                                if let title = explanation.title, title != "" {
-                                    Text("\(title): ")
+                        VStack {
+                            ForEach(viewModel.explanations, id:\.self) { explanation in
+                                VStack(alignment: .leading, spacing: 2.0) {
+                                    if let title = explanation.title, title != "" {
+                                        Text("\(title): ")
+                                            .font(.body)
+                                            .fontWeight(.bold)
+                                            .foregroundStyle(Color("TextColor"))
+                                            .padding(.bottom, 5)
+                                    }
+                                    Text("\(explanation.meaning ?? "")")
                                         .font(.body)
-                                        .fontWeight(.bold)
-                                        .foregroundStyle(.black)
-                                        .padding(.bottom, 5)
-                                }
-                                Text("\(explanation.meaning ?? "")")
-                                    .font(.body)
-                                    .foregroundStyle(.black)
-                                
-                                if viewModel.explanations.last != explanation {
-                                    Divider().background(.gray)
-                                        .padding(.vertical)
-                                }
-                                else {
-                                    Text(" ")
-                                        .padding(.bottom, paddingSize)
+                                        .foregroundStyle(Color("TextColor"))
+                                    
+                                    if viewModel.explanations.last != explanation {
+                                        Divider().background(.gray)
+                                            .padding(.vertical)
+                                    } else {
+                                        Divider().background(Color.clear)
+                                            .padding(.vertical)
+                                    }
                                 }
                             }
-                            .padding(.top, 10)
-                            .padding(.bottom, paddingSize)
                         }
+                        .padding(.vertical, paddingSize)
+//                        .padding(.bottom, paddingSize)
                         
                     }.padding()
                 }
@@ -216,12 +216,12 @@ struct PoemDetailView: View {
                     } label: {
                         Image(systemName: "house.fill")
                             .font(.title3)
-                            .foregroundStyle(.black.opacity(0.8))
+                            .foregroundStyle(Color("TextColor").opacity(0.8))
                             .padding(.horizontal, paddingSize)
                             .padding(.vertical, 15)
                             .padding(.trailing, paddingSize)
                     }
-                    .background(.white)
+                    .background(Color("TextColorWhite"))
                     .cornerRadius(10.0)
                     .shadow(radius: 10)
                     .padding(.bottom, paddingSize)
@@ -240,7 +240,7 @@ struct PoemDetailView: View {
         .popup(isPresented: $showAlert) {
             Text(alertMessage)
                 .padding()
-                .background(.white)
+                .background(Color("TextColorWhite"))
                 .cornerRadius(15.0)
                 .shadow(radius: 15.0)
         } customize: {

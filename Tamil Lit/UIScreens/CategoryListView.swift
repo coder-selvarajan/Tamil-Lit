@@ -17,7 +17,7 @@ struct CategoryListView: View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading) {
                 Text("பால்:")
-                    .foregroundStyle(.black.opacity(0.8))
+                    .foregroundStyle(Color("TextColor").opacity(0.8))
                     .font(.caption)
                     .fontWeight(.bold)
                 ScrollView(.horizontal, showsIndicators: false) {
@@ -26,8 +26,8 @@ struct CategoryListView: View {
                             Text("\(mainCategory.title!)")
                                 .padding(10)
                                 .font(.subheadline)
-                                .foregroundColor(viewModel.selectedMainCategory == mainCategory ? .white : .black)
-                                .background(viewModel.selectedMainCategory == mainCategory ? colorTheme.opacity(0.8) : .white)
+                                .foregroundColor(viewModel.selectedMainCategory == mainCategory ? Color("TextColorWhite") : Color("TextColor"))
+                                .background(viewModel.selectedMainCategory == mainCategory ? colorTheme.opacity(0.8) : Color("TextColorWhite"))
                                 .cornerRadius(10.0)
                                 .onTapGesture {
                                     viewModel.selectMainCategory(mainCategory)
@@ -41,7 +41,7 @@ struct CategoryListView: View {
             
             VStack(alignment: .leading) {
                 Text("இயல்:")
-                    .foregroundStyle(.black.opacity(0.8))
+                    .foregroundStyle(Color("TextColor").opacity(0.8))
                     .font(.caption)
                     .fontWeight(.bold)
                 WrapView(data: viewModel.filteredSubCategories, content: { subCategory in
@@ -49,8 +49,8 @@ struct CategoryListView: View {
                         Text(subCategory.title!)
                             .padding(10)
                             .font(.subheadline)
-                            .foregroundColor(viewModel.selectedSubCategory == subCategory ? .white : .black)
-                            .background(viewModel.selectedSubCategory == subCategory ? colorTheme.opacity(0.8) : .white)
+                            .foregroundColor(viewModel.selectedSubCategory == subCategory ? Color("TextColorWhite") : Color("TextColor"))
+                            .background(viewModel.selectedSubCategory == subCategory ? colorTheme.opacity(0.8) : Color("TextColorWhite"))
                             .cornerRadius(10.0)
                             .onTapGesture {
                                 viewModel.selectSubCategory(subCategory)
@@ -63,7 +63,7 @@ struct CategoryListView: View {
             
             VStack(alignment: .leading) {
                 Text("அதிகாரம்:")
-                    .foregroundStyle(.black.opacity(0.8))
+                    .foregroundStyle(Color("TextColor").opacity(0.8))
                     .font(.caption)
                     .fontWeight(.bold)
                 //                ScrollView {
@@ -78,7 +78,7 @@ struct CategoryListView: View {
                             HStack {
                                 Text("\(section.title!)")
                                     .padding(.vertical, 10)
-                                    .foregroundStyle(.black)
+                                    .foregroundStyle(Color("TextColor"))
                                 Spacer()
                                 Image(systemName: "chevron.right")
                                     .foregroundColor(.gray)
@@ -125,7 +125,7 @@ struct CategoryListView: View {
                 } label: {
                     Text("நூல் பற்றி")
                         .font(.subheadline)
-                        .foregroundStyle(.black)
+                        .foregroundStyle(Color("TextColor"))
                         .padding(.vertical, 7)
                         .padding(.horizontal, 10)
                         .background(colorTheme.opacity(0.3))

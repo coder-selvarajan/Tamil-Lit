@@ -39,7 +39,7 @@ struct SharePoem: View {
                 Text("பகிர்")
             }
             .font(.subheadline)
-            .foregroundStyle(.black)
+            .foregroundStyle(Color("TextColor"))
         }
         .padding(.horizontal, 10)
         .sheet(isPresented: $isSharing, onDismiss: {

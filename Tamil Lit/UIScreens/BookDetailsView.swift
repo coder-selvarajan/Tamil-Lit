@@ -42,7 +42,7 @@ struct BookDetailsView: View {
                             
                             if vm.book?.author! != "" || vm.book?.period! != "" {
                                 Divider()
-                                    .background(.black)
+                                    .background(Color("TextColor"))
                                     .padding(.bottom, 5)
                             }
                             
@@ -80,7 +80,7 @@ struct BookDetailsView: View {
                         
                         Image(systemName: "xmark.app.fill")
                             .font(.largeTitle)
-                            .foregroundColor(.black.opacity(0.60))
+                            .foregroundColor(Color("TextColor").opacity(0.60))
                             .padding(10)
                             .padding(.top, 5)
                             .onTapGesture {

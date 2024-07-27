@@ -33,7 +33,7 @@ struct PoemListWithCategoryView: View {
             VStack {
                 VStack(alignment: .leading) {
                     Text("வகைகள்: ")
-                        .foregroundStyle(.black.opacity(0.8))
+                        .foregroundStyle(Color("TextColor").opacity(0.8))
                         .font(.footnote)
                         .fontWeight(.bold)
                         .padding(.horizontal)
@@ -62,8 +62,8 @@ struct PoemListWithCategoryView: View {
                                         .font(.subheadline)
                                         .padding(.horizontal, 10)
                                         .padding(.vertical, 10)
-                                        .foregroundColor(highlightedCategoryId == category.id ? .white : .black)
-                                        .background(highlightedCategoryId == category.id ? colorTheme.opacity(0.7) : .white.opacity(0.7))
+                                        .foregroundColor(highlightedCategoryId == category.id ? Color("TextColorWhite") : Color("TextColor"))
+                                        .background(highlightedCategoryId == category.id ? colorTheme.opacity(0.7) : Color("TextColorWhite").opacity(0.7))
                                         .cornerRadius(8.0)
                                 }
                             }
@@ -84,7 +84,7 @@ struct PoemListWithCategoryView: View {
                                     SwiftUI.Section(header: Text(category.title ?? "")
                                         .font(.title3)
                                         .fontWeight(.semibold)
-                                        .foregroundColor(.black)
+                                        .foregroundColor(Color("TextColor"))
                                         .padding(.leading, 0)
                                         .padding(.top, 0)) {
                                             // fetch poems by category and display in a section
@@ -173,7 +173,7 @@ struct PoemListWithCategoryView: View {
                 } label: {
                     Text("நூல் பற்றி")
                         .font(.subheadline)
-                        .foregroundStyle(.black)
+                        .foregroundStyle(Color("TextColor"))
                         .padding(.vertical, 5)
                         .padding(.horizontal, 10)
                         .background(colorTheme.opacity(0.3))

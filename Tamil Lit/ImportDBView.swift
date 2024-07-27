@@ -28,7 +28,7 @@ struct ImportDBView: View {
                 showMainView = true
             } label: {
                 Text("Go to - Home View")
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color("TextColorWhite"))
                     .padding()
                     .background(.blue)
                     .cornerRadius(10.0)

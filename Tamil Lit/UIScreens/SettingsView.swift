@@ -6,16 +6,21 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct SettingsView: View {
-    @State private var dailyPoemEnabled = false
-    @State private var darkMode = false
-
+    @EnvironmentObject var userSettings: UserSettings
+    @EnvironmentObject var notificationHandler: NotificationHandler
+//    @State private var notificationsEnabled: Bool = UserDefaults.standard.bool(forKey: "notificationsEnabled")
+    
+//    @State private var darkMode = false
+    @State private var showSettingsAlert = false
+    
     var body: some View {
         VStack {
             List {
                 SwiftUI.Section {
-                    Toggle(isOn: $dailyPoemEnabled) {
+                    Toggle(isOn: $userSettings.notificationsEnabled) {
                         VStack(alignment: .leading) {
                             Text("தினம் ஒரு பாடல் அறிவிப்பு")
                                 .font(.headline)
@@ -24,8 +29,22 @@ struct SettingsView: View {
 //                                .foregroundColor(.gray)
                         }
                     }
+                    .onChange(of: userSettings.notificationsEnabled) { oldValue, value in
+                        if value {
+                            // checking if the user allow the notification from this app.
+                            notificationHandler.requestNotificationPermission { granted in
+                                if granted {
+                                    notificationHandler.scheduleDailyNotification()
+                                } else {
+                                    showSettingsAlert = true
+                                }
+                            }
+                        } else {
+                            notificationHandler.cancelDailyNotification()
+                        }
+                    }
                     
-                    Toggle(isOn: $darkMode) {
+                    Toggle(isOn: $userSettings.darkMode) {
                         VStack(alignment: .leading) {
                             Text("கரும் திரை")
                                 .font(.headline)
@@ -53,14 +72,17 @@ struct SettingsView: View {
                     VStack{
                         Button(action: {
                             // Action to redirect to App Store for rating
+                            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                                SKStoreReviewController.requestReview(in: windowScene)
+                            }
                         }) {
                             VStack(alignment: .center) {
                                 Text("செயலியை மதிப்பிடு")
                                     .font(.headline)
-                                    .foregroundStyle(.black)
+                                    .foregroundStyle(Color("TextColor"))
                                 Text("Rate this app")
                                     .font(.subheadline)
-                                    .foregroundColor(.black.opacity(0.75))
+                                    .foregroundColor(Color("TextColor").opacity(0.75))
                             }
                         }
                         .padding()
@@ -74,11 +96,11 @@ struct SettingsView: View {
                         }) {
                             HStack(alignment: .center, spacing: 10) {
                                 Image(systemName: "square.and.pencil")
-                                    .foregroundColor(.black)
+                                    .foregroundColor(Color("TextColor"))
                                 
                                 Text("கருத்துக்களை பகிரவும்")
                                     .font(.headline)
-                                    .foregroundStyle(.black)
+                                    .foregroundStyle(Color("TextColor"))
                                 
 //                                Text("Share your thoughts")
 //                                    .font(.subheadline)
@@ -96,11 +118,11 @@ struct SettingsView: View {
                         }) {
                             HStack(alignment: .center, spacing: 10) {
                                 Image(systemName: "paperplane")
-                                    .foregroundColor(.black)
+                                    .foregroundColor(Color("TextColor"))
                                 
                                 Text("செயலியை பகிரவும்")
                                     .font(.headline)
-                                    .foregroundStyle(.black)
+                                    .foregroundStyle(Color("TextColor"))
                                 
 //                                Text("Share with friends")
 //                                    .font(.subheadline)
@@ -118,7 +140,25 @@ struct SettingsView: View {
                 
             }
             .navigationBarTitle("Settings")
-//            .navigationBarTitleDisplayMode(.inline)
+            .alert(isPresented: $showSettingsAlert) {
+                Alert(
+                    title: Text("Enable Notifications"),
+                    message: Text("Notifications are disabled. Please go to Settings to enable them."),
+                    primaryButton: .default(Text("Settings")) {
+                        openAppSettings()
+                    },
+                    secondaryButton: .cancel()
+                )
+            }
+        }
+    }
+    
+    private func openAppSettings() {
+        guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else {
+            return
+        }
+        if UIApplication.shared.canOpenURL(settingsURL) {
+            UIApplication.shared.open(settingsURL)
         }
     }
 }

@@ -28,7 +28,7 @@ struct LoadingView: View {
             ProgressView("Loading...")
                 .padding(25)
         }
-        .background(.white)
+        .background(Color("TextColorWhite"))
         .cornerRadius(10.0)
         .shadow(radius: 5)
     }

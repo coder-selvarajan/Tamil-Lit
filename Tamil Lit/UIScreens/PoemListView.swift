@@ -58,7 +58,7 @@ struct PoemListView: View {
                     }
                     Text("\(getCategoryText())")
                         .fontWeight(.bold)
-                        .foregroundStyle(.black.opacity(0.95))
+                        .foregroundStyle(Color("TextColor").opacity(0.95))
                     Spacer()
                 }
                 .font(.subheadline)
@@ -95,12 +95,12 @@ struct PoemListView: View {
                     } label: {
                         Image(systemName: "house.fill")
                             .font(.title3)
-                            .foregroundStyle(.black.opacity(0.8))
+                            .foregroundStyle(Color("TextColor").opacity(0.8))
                             .padding(.horizontal, paddingSize)
                             .padding(.vertical, 15)
                             .padding(.trailing, paddingSize)
                     }
-                    .background(.white)
+                    .background(Color("TextColorWhite"))
                     .cornerRadius(10.0)
                     .shadow(radius: 10)
                     .padding(.bottom, 30)
@@ -146,7 +146,7 @@ struct PoemListView: View {
                 } label: {
                     Text("நூல் பற்றி")
                         .font(.subheadline)
-                        .foregroundStyle(.black)
+                        .foregroundStyle(Color("TextColor"))
                         .padding(.vertical, 5)
                         .padding(.horizontal, 10)
                         .background(colorTheme.opacity(0.3))

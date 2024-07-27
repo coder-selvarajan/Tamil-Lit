@@ -35,7 +35,7 @@ struct RandomPoemView: View {
                         Text("அடுத்து...")
                             .font(.body)
                             .fontWeight(.bold)
-                            .foregroundStyle(.black)
+                            .foregroundStyle(Color("TextColor"))
                             .padding(.horizontal)
                             .padding(.vertical, 10)
                             .padding(.trailing, 15)
@@ -69,12 +69,12 @@ struct RandomPoemView: View {
                     HStack {
                         Image(systemName: "checklist")
                             .font(.footnote)
-                            .foregroundColor(.black)
+                            .foregroundColor(Color("TextColor"))
                         
                         Text("Filter")
                     }
                     .font(.subheadline)
-                    .foregroundStyle(.black)
+                    .foregroundStyle(Color("TextColor"))
                     .padding(.vertical, 7)
                     .padding(.horizontal, 10)
                     .background(.gray.opacity(0.2))
@@ -109,7 +109,7 @@ struct RandomPoemView: View {
                 .animation(.spring())
                 .closeOnTapOutside(true)
                 .closeOnTap(false)
-                .backgroundColor(.black.opacity(0.5))
+                .backgroundColor(Color("TextColor").opacity(0.5))
                 .autohideIn(50)
         }
     }

@@ -65,7 +65,7 @@ struct SingleCategoryView: View {
                 } label: {
                    Text("நூல் பற்றி")
                     .font(.subheadline)
-                    .foregroundStyle(.black)
+                    .foregroundStyle(Color("TextColor"))
                     .padding(.vertical, 7)
                     .padding(.horizontal, 10)
                     .background(colorTheme.opacity(0.3))

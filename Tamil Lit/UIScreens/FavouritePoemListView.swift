@@ -173,7 +173,7 @@ struct FavouritePoemListView: View {
                 .animation(.spring())
                 .closeOnTapOutside(true)
                 .closeOnTap(false)
-                .backgroundColor(.black.opacity(0.5))
+                .backgroundColor(Color("TextColor").opacity(0.5))
                 .autohideIn(50)
         }
         .toolbar {
@@ -195,12 +195,12 @@ struct FavouritePoemListView: View {
                     HStack {
                         Image(systemName: "checklist")
                             .font(.footnote)
-                            .foregroundColor(.black)
+                            .foregroundColor(Color("TextColor"))
                         
                         Text("Filter")
                     }
                     .font(.subheadline)
-                    .foregroundStyle(.black)
+                    .foregroundStyle(Color("TextColor"))
                     .padding(.vertical, 7)
                     .padding(.horizontal, 10)
                     .background(.gray.opacity(0.2))
@@ -216,7 +216,7 @@ struct FavouritePoemListView: View {
 //                        Text("Sort")
 //                            .foregroundStyle(.gray)
 //                        Image(systemName: "checklist")
-//                            .foregroundColor(.black)
+//                            .foregroundColor(Color("TextColor"))
 //                    }
 //                }
 //            }

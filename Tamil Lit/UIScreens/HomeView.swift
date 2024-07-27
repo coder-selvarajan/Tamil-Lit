@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject var notificationHandler: NotificationHandler
     @Environment(\.showLoading) private var showLoading
     @StateObject var vm = HomeViewModel()
     
@@ -49,12 +50,12 @@ struct HomeView: View {
                                 } label: {
                                     Image(systemName: "arrowtriangle.left.circle")
                                         .font(.title3)
-                                        .foregroundColor(.black)
+                                        .foregroundColor(Color("TextColor"))
                                 }
                                 
                                 Text(formattedDate)
                                     .font(.subheadline)
-                                    .foregroundStyle(.black.opacity(0.85))
+                                    .foregroundStyle(Color("TextColor").opacity(0.85))
 //                                    .padding(.horizontal, 5)
                                 
                                 Button {
@@ -63,7 +64,7 @@ struct HomeView: View {
                                 } label: {
                                     Image(systemName: "arrowtriangle.right.circle")
                                         .font(.title3)
-                                        .foregroundColor(.black)
+                                        .foregroundColor(Color("TextColor"))
                                 }
                                 .disabled(isTodayOrAfter)
                                 .opacity(isTodayOrAfter ? 0.3 : 1.0)
@@ -105,11 +106,11 @@ struct HomeView: View {
                                     VStack(alignment: .center, spacing: 10) {
                                         Image(systemName: "wand.and.stars")
                                             .font(.title)
-                                            .foregroundColor(.pink)
+                                            .foregroundColor(.yellow)
                                         VStack(alignment: .leading) {
                                             Text("ஏதோ ஒரு பாடல்")
                                                 .lineLimit(1)
-                                                .foregroundStyle(.black)
+                                                .foregroundStyle(Color("TextColor"))
                                         }
                                     }
                                     .font(.body)
@@ -121,12 +122,12 @@ struct HomeView: View {
                                 
                                 NavigationLink(value: "FavouritePoemView") {
                                     VStack(alignment: .center, spacing: 10) {
-                                        Image(systemName: "bookmark.fill")
+                                        Image(systemName: "bookmark")
                                             .font(.title)
                                             .foregroundColor(.yellow)
                                         Text("சேமித்தவை ")
                                             .lineLimit(1)
-                                            .foregroundStyle(.black)
+                                            .foregroundStyle(Color("TextColor"))
                                     }
                                     .font(.body)
                                     .padding()
@@ -198,6 +199,19 @@ struct HomeView: View {
             .onAppear() {
                 // Fetch the poem of the day
                 vm.getPoemOftheDay()
+                
+                // Open the daily poem popup when the user comes from the daily notification message..
+                if notificationHandler.appOpenedFromNotification {
+                    notificationHandler.appOpenedFromNotification = false
+                    showPoemPopup = true
+                }
+            }
+            .onChange(of: notificationHandler.appOpenedFromNotification) { oldValue, newValue in
+                // this code is added since the app is open and the onAppear event would n't trigger..
+                if newValue {
+                    print("App opened from notification")
+                    showPoemPopup = true
+                }
             }
             .sheet(isPresented: $showPoemPopup) {
                 if vm.poemOftheDay != nil {
@@ -225,7 +239,7 @@ struct HomeView: View {
                     NavigationLink(destination: SearchView()) {
                         HStack {
                             Image(systemName: "magnifyingglass")
-                                .foregroundStyle(.black)
+                                .foregroundStyle(Color("TextColor"))
                             
                             Text("தேடுக").foregroundStyle(.gray)
                         }.padding(.horizontal)
@@ -235,7 +249,7 @@ struct HomeView: View {
                 ToolbarItem {
                     NavigationLink(destination: SettingsView()) {
                         Image(systemName: "gearshape")
-                            .foregroundStyle(.black)
+                            .foregroundStyle(Color("TextColor"))
                     }
                 }
             } // toolbar
@@ -262,13 +276,13 @@ struct BookTileView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     Text(bookTitle)
                         .font(.headline)
-                        .foregroundStyle(.black)
+                        .foregroundStyle(Color("TextColor"))
                         .fontWeight(Font.Weight.semibold)
                         .multilineTextAlignment(.leading)
                         //.lineLimit(1)
                     Text(footnote)
                         .font(.footnote)
-                        .foregroundColor(.black.opacity(0.7))
+                        .foregroundColor(Color("TextColor").opacity(0.7))
                 }
 //                .frame(maxWidth: .infinity)
                 .padding()
@@ -298,11 +312,6 @@ struct BookTileView: View {
                                 .saturation(0.0)
                                 .opacity(0.6)
                                 .padding()
-                            
-                            //                        Image(systemName: iconName)
-                            //                            .font(.title)
-                            //                            .foregroundStyle(.black.opacity(0.35))
-                            //                            .padding()
                         }
                     }.padding(0)
                 }.padding(0)
@@ -311,19 +320,6 @@ struct BookTileView: View {
         .frame(height: bookDisplayAsGrid ? 150 : 90)
     }
 }
-
-//struct TabBarButton: View {
-//    var iconName: String
-//    var label: String
-//    
-//    var body: some View {
-//        VStack(spacing: 5) {
-//            Image(systemName: iconName)
-//            Text(label)
-//                .font(.footnote)
-//        }
-//    }
-//}
 
 //#Preview {
 //    HomeView()

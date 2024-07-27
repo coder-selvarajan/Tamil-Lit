@@ -40,7 +40,7 @@ struct BookSelectorView: View {
                                     .padding(.trailing)
                                 
                                 Text(bookInfo.title)
-                                    .foregroundColor(bookInfo.selected ? .black : .gray.opacity(0.7))
+                                    .foregroundColor(bookInfo.selected ? Color("TextColor") : .gray.opacity(0.7))
                                 Spacer()
                             }
                             Divider().padding(.bottom, 5)
@@ -55,8 +55,8 @@ struct BookSelectorView: View {
                     
                 } //VStack
                 .padding(paddingSize)
-                .background(.white)
-                .foregroundColor(.black)
+                .background(Color("TextColorWhite"))
+                .foregroundColor(Color("TextColor"))
                 .cornerRadius(15)
                 .frame(width: UIScreen.main.bounds.size.width - 60)
                 .overlay(

@@ -6,21 +6,29 @@
 //
 
 import SwiftUI
-//import SwiftData
 
 @main
 struct Tamil_LitApp: App {
-    let persistenceController = CoreDataManager.shared
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @StateObject private var userSettings = UserSettings()
+    @StateObject private var notificationHandler = NotificationHandler(userSettings: UserSettings())
     
+    let persistenceController = CoreDataManager.shared
     @State private var loadingStatus: LoadingStatus  = .idle
     
     var body: some Scene {
         WindowGroup {
             MainView()
-                .preferredColorScheme(ColorScheme.light)
+                .environmentObject(userSettings)
+                .preferredColorScheme(userSettings.darkMode ? .dark : .light)
                 .environment(\.managedObjectContext, persistenceController.viewContext)
                 .environment(\.showLoading) { loadingStatus in
                     self.loadingStatus = loadingStatus
+                }
+                
+                .environmentObject(notificationHandler)
+                .onAppear {
+                    notificationHandler.checkFirstLaunch()
                 }
                 .overlay(alignment: .center) {
                     if loadingStatus == .loading {

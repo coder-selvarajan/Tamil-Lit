@@ -334,6 +334,8 @@ struct HomeView: View {
 }
 
 struct BookTileView: View {
+    @EnvironmentObject var userSettings: UserSettings
+    
     var colors = [Color.blue, Color.green, Color.red, Color.cyan, Color.indigo, Color.orange, Color.purple, Color.brown, Color.teal, Color.pink, Color.gray, Color.yellow]
     var bookTitle: String
     var imageName: String?
@@ -346,8 +348,8 @@ struct BookTileView: View {
     var body: some View {
         ZStack(alignment: .topLeading) {
             RoundedRectangle(cornerRadius: 10)
-                .fill(Color(bannerColor))
-//                .fill((color != Color.clear ? color.opacity(0.25) : colors.randomElement()?.opacity(0.25))!)
+//                .fill(Color(bannerColor))
+                .fill(userSettings.darkMode ? color.opacity(0.3) : color.opacity(0.25)) //.opacity(userSettings.darkMode ? 0.9 : 0.25))
 //                .shadow(radius: 5)
             
             HStack(alignment: .top) {
@@ -381,7 +383,8 @@ struct BookTileView: View {
                                 .scaledToFit()
                                 .frame(height: 90)
                                 .saturation(0.1)
-//                                .brightness(0.02)
+//                                .brightness(0.0)
+//                                .contrast(0.5)
                                 .opacity(0.8)
                         }
                         else {

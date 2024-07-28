@@ -75,13 +75,32 @@ struct CategoryListView: View {
                                                                  mainCategory: viewModel.selectedMainCategory,
                                                                  subCategory: viewModel.selectedSubCategory,
                                                                  section: section)) {
-                            HStack {
-                                Text("\(section.title!)")
-                                    .padding(.vertical, 10)
-                                    .foregroundStyle(Color("TextColor"))
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                                    .foregroundColor(.gray)
+                            VStack {
+                                HStack(alignment: .center) {
+                                 
+                                    VStack(alignment: .leading) {
+                                        Text("\(section.title ?? "")")
+                                            .foregroundStyle(Color("TextColor"))
+                                            .fontWeight(.semibold)
+                                        
+                                        Text("\(viewModel.book?.poemType ?? ""): \(section.start)..\(section.end)")
+                                            .foregroundStyle(Color("TextColor").opacity(0.5))
+                                            .font(.footnote)
+                                    }
+//                                    VStack(alignment: .leading) {
+//                                        Text("\(section.title ?? "")")
+//                                            .foregroundStyle(Color("TextColor"))
+//                                        Text("(\(section.start)-\(section.end))")
+//                                            .foregroundStyle(Color("TextColor").opacity(0.5))
+//                                            .font(.footnote)
+//                                    }
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                        .foregroundColor(.gray)
+                                }
+//                                .padding(.vertical, 5)
+                                
+                                Divider()
                             }
                         }
                     }

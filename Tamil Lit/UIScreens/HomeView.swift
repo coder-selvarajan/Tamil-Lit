@@ -170,6 +170,7 @@ struct HomeView: View {
                                                          imageName: book.image,
                                                          footnote: book.subtitle,
                                                          color: book.color,
+                                                         bannerColor: book.bannerColor,
                                                          bookDisplayAsGrid: $bookDisplayAsGrid)
                                         }
                                     }
@@ -177,6 +178,78 @@ struct HomeView: View {
                             }
                         }
                         .padding()
+                        
+                        // Tamil Articles Links
+                        VStack(spacing: 16) {
+                            HStack {
+                                
+                                Image(systemName: "square.text.square")
+                                    .font(.title2)
+                                    .padding(.trailing, 5)
+//                                Text("வரலாற்று தகவல்கள்")
+//                                    .font(.title3)
+                                Text("தகவல்கள்")
+                                    .font(.title3)
+                                
+                                Spacer()
+                            }
+                            
+                            VStack {
+                                VStack {
+                                    NavigationLink(value: "Article") {
+                                        HStack {
+                                            Text("தமிழ் இலக்கியம்")
+                                                .foregroundColor(Color("TextColor"))
+                                            
+                                            Spacer()
+                                            Image(systemName: "chevron.right")
+                                                .foregroundColor(.gray)
+                                        }
+                                        .padding(.vertical, 5)
+                                    }
+                                    Divider()
+                                }
+                                
+                                VStack {
+                                    NavigationLink(value: "Article") {
+                                        HStack {
+                                            Text("சங்க இலக்கியம்")
+                                                .foregroundColor(Color("TextColor"))
+                                            
+                                            Spacer()
+                                            Image(systemName: "chevron.right")
+                                                .foregroundColor(.gray)
+                                        }
+                                        .padding(.vertical, 5)
+                                    }
+                                    
+                                    Divider()
+                                    
+                                }
+                                
+                                
+                                VStack {
+                                    NavigationLink(value: "Article") {
+                                        HStack {
+                                            Text("தற்கால இலக்கியம்")
+                                                .foregroundColor(Color("TextColor"))
+                                            
+                                            Spacer()
+                                            Image(systemName: "chevron.right")
+                                                .foregroundColor(.gray)
+                                        }
+                                        .padding(.vertical, 5)
+                                    }
+//                                    Divider()
+                                }
+                            }
+                            .padding()
+                            .background(.gray.opacity(0.1))
+                            .cornerRadius(10)
+                            
+                        }
+                        .padding()
+                        
                         
                         VStack{
                             Text(" ")
@@ -186,6 +259,7 @@ struct HomeView: View {
                     }
                 }
             }
+            .navigationTitle("Home")
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: String.self) { value in
                 if let book = _books.first(where: { $0.title == value }) {
@@ -194,6 +268,8 @@ struct HomeView: View {
                     RandomPoemView()
                 } else if value == "FavouritePoemView" {
                     FavouritePoemListView()
+                } else if value == "Article" {
+                    ArticleView()
                 }
             }
             .onAppear() {
@@ -263,26 +339,30 @@ struct BookTileView: View {
     var imageName: String?
     var footnote: String
     var color: Color = Color.clear
+    var bannerColor: String
     
     @Binding var bookDisplayAsGrid: Bool
     
     var body: some View {
         ZStack(alignment: .topLeading) {
             RoundedRectangle(cornerRadius: 10)
-                .fill((color != Color.clear ? color.opacity(0.25) : colors.randomElement()?.opacity(0.25))!)
-                .shadow(radius: 5)
+                .fill(Color(bannerColor))
+//                .fill((color != Color.clear ? color.opacity(0.25) : colors.randomElement()?.opacity(0.25))!)
+//                .shadow(radius: 5)
             
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 10) {
                     Text(bookTitle)
                         .font(.headline)
-                        .foregroundStyle(Color("TextColor"))
+                        .foregroundStyle(.black)
+//                        .foregroundStyle(Color("TextColor"))
                         .fontWeight(Font.Weight.semibold)
                         .multilineTextAlignment(.leading)
                         //.lineLimit(1)
                     Text(footnote)
                         .font(.footnote)
-                        .foregroundColor(Color("TextColor").opacity(0.7))
+                        .foregroundStyle(.black.opacity(0.7))
+//                        .foregroundColor(Color("TextColor").opacity(0.7))
                 }
 //                .frame(maxWidth: .infinity)
                 .padding()
@@ -300,9 +380,9 @@ struct BookTileView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(height: 90)
-                                .saturation(0.0)
-                                .brightness(0.02)
-                                .opacity(0.6)
+                                .saturation(0.1)
+//                                .brightness(0.02)
+                                .opacity(0.8)
                         }
                         else {
                             Image("book-icon")

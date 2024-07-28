@@ -35,7 +35,7 @@ struct RandomPoemView: View {
                         Text("அடுத்து...")
                             .font(.body)
                             .fontWeight(.bold)
-                            .foregroundStyle(Color("TextColor"))
+                            .foregroundStyle(.black)
                             .padding(.horizontal)
                             .padding(.vertical, 10)
                             .padding(.trailing, 15)

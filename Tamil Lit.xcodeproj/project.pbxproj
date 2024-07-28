@@ -27,6 +27,10 @@
 		703E18B52C458E890032298E /* SingleCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703E18B42C458E890032298E /* SingleCategoryViewModel.swift */; };
 		704641092C50F8B100447FF4 /* SaveAsImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704641082C50F8B100447FF4 /* SaveAsImage.swift */; };
 		7068D7E32C33DCE700FAB1F6 /* BookHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7068D7E22C33DCE700FAB1F6 /* BookHomeView.swift */; };
+		70824FBF2C56240900088810 /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70824FBE2C56240900088810 /* ArticleView.swift */; };
+		70824FC12C56558300088810 /* HTMLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70824FC02C56558300088810 /* HTMLView.swift */; };
+		70824FC32C565FE400088810 /* HTMLLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70824FC22C565FE400088810 /* HTMLLabel.swift */; };
+		70824FC62C569FF600088810 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 70824FC52C569FF600088810 /* MarkdownUI */; };
 		708FB19C2C4C1C6F00553498 /* Quicksand.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 708FB19B2C4C1C6F00553498 /* Quicksand.ttf */; };
 		7093B6752C398FFB00D38548 /* SingleCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7093B6742C398FFB00D38548 /* SingleCategoryView.swift */; };
 		709EFAE72C4ED0320018DB5C /* FavouritePoemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709EFAE62C4ED0320018DB5C /* FavouritePoemViewModel.swift */; };
@@ -35,8 +39,6 @@
 		70A1E9452C4A9B0300264AC8 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A1E9442C4A9B0300264AC8 /* HomeViewModel.swift */; };
 		70A1E9472C4AA12900264AC8 /* RandomPoemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A1E9462C4AA12900264AC8 /* RandomPoemViewModel.swift */; };
 		70B5EBD32C3AD6FB00471451 /* ImportDBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B5EBD22C3AD6FB00471451 /* ImportDBView.swift */; };
-		70B5EBD92C3AF73500471451 /* TamilLitDB.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 70B5EBD62C3AF73500471451 /* TamilLitDB.sqlite-wal */; };
-		70B5EBDA2C3AF73500471451 /* TamilLitDB.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 70B5EBD72C3AF73500471451 /* TamilLitDB.sqlite-shm */; };
 		70B5EBDB2C3AF73500471451 /* TamilLitDB.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 70B5EBD82C3AF73500471451 /* TamilLitDB.sqlite */; };
 		70BA907A2C501E3F0003CAA5 /* SharePoem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BA90792C501E3F0003CAA5 /* SharePoem.swift */; };
 		70C057D42C54EB3200C10ABA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C057D32C54EB3200C10ABA /* AppDelegate.swift */; };
@@ -93,6 +95,9 @@
 		703E18B42C458E890032298E /* SingleCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCategoryViewModel.swift; sourceTree = "<group>"; };
 		704641082C50F8B100447FF4 /* SaveAsImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveAsImage.swift; sourceTree = "<group>"; };
 		7068D7E22C33DCE700FAB1F6 /* BookHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookHomeView.swift; sourceTree = "<group>"; };
+		70824FBE2C56240900088810 /* ArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
+		70824FC02C56558300088810 /* HTMLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLView.swift; sourceTree = "<group>"; };
+		70824FC22C565FE400088810 /* HTMLLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLLabel.swift; sourceTree = "<group>"; };
 		708FB19B2C4C1C6F00553498 /* Quicksand.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Quicksand.ttf; sourceTree = "<group>"; };
 		708FB19E2C4C290B00553498 /* Tamil-Lit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Tamil-Lit-Info.plist"; sourceTree = SOURCE_ROOT; };
 		7093B6742C398FFB00D38548 /* SingleCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCategoryView.swift; sourceTree = "<group>"; };
@@ -102,8 +107,6 @@
 		70A1E9442C4A9B0300264AC8 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		70A1E9462C4AA12900264AC8 /* RandomPoemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomPoemViewModel.swift; sourceTree = "<group>"; };
 		70B5EBD22C3AD6FB00471451 /* ImportDBView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportDBView.swift; sourceTree = "<group>"; };
-		70B5EBD62C3AF73500471451 /* TamilLitDB.sqlite-wal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "TamilLitDB.sqlite-wal"; sourceTree = "<group>"; };
-		70B5EBD72C3AF73500471451 /* TamilLitDB.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TamilLitDB.sqlite-shm"; sourceTree = "<group>"; };
 		70B5EBD82C3AF73500471451 /* TamilLitDB.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = TamilLitDB.sqlite; sourceTree = "<group>"; };
 		70BA90792C501E3F0003CAA5 /* SharePoem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePoem.swift; sourceTree = "<group>"; };
 		70C057D02C54BEE000C10ABA /* Tamil Lit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Tamil Lit.entitlements"; sourceTree = "<group>"; };
@@ -148,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70206A6C2C4D421900B55EE6 /* PopupView in Frameworks */,
+				70824FC62C569FF600088810 /* MarkdownUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,6 +167,8 @@
 				70DEF9592C5402A800E72152 /* Constants.swift */,
 				70C057D52C54EF2300C10ABA /* NotificationHandler.swift */,
 				70C057D72C5535CE00C10ABA /* UserSettings.swift */,
+				70824FC02C56558300088810 /* HTMLView.swift */,
+				70824FC22C565FE400088810 /* HTMLLabel.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -209,6 +215,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		70824FBD2C56238D00088810 /* ArticleScreens */ = {
+			isa = PBXGroup;
+			children = (
+				70824FBE2C56240900088810 /* ArticleView.swift */,
+			);
+			path = ArticleScreens;
+			sourceTree = "<group>";
+		};
 		708FB19D2C4C1C9000553498 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +245,8 @@
 		70E7297F2C2309EF00DE5977 /* UIScreens */ = {
 			isa = PBXGroup;
 			children = (
+				70824FBD2C56238D00088810 /* ArticleScreens */,
+				70C057D92C554A1A00C10ABA /* Widgets */,
 				70160F6A2C0B20E20053B4A9 /* MainView.swift */,
 				70F7709E2C08BBAD00D329C3 /* HomeView.swift */,
 				7068D7E22C33DCE700FAB1F6 /* BookHomeView.swift */,
@@ -246,7 +262,6 @@
 				70E739232C314A5F00A4CF0E /* PoemListView.swift */,
 				70E739312C31555400A4CF0E /* PoemDetailView.swift */,
 				70A1E9422C4A565F00264AC8 /* SimplePoemDetailView.swift */,
-				70C057D92C554A1A00C10ABA /* Widgets */,
 			);
 			path = UIScreens;
 			sourceTree = "<group>";
@@ -300,8 +315,6 @@
 			children = (
 				708FB19D2C4C1C9000553498 /* Fonts */,
 				70B5EBD82C3AF73500471451 /* TamilLitDB.sqlite */,
-				70B5EBD72C3AF73500471451 /* TamilLitDB.sqlite-shm */,
-				70B5EBD62C3AF73500471451 /* TamilLitDB.sqlite-wal */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -324,6 +337,7 @@
 			name = "Tamil Lit";
 			packageProductDependencies = (
 				70206A6B2C4D421900B55EE6 /* PopupView */,
+				70824FC52C569FF600088810 /* MarkdownUI */,
 			);
 			productName = "Tamil Lit";
 			productReference = 70EAE0692B663CD800E4930D /* Tamil Lit.app */;
@@ -355,6 +369,7 @@
 			mainGroup = 70EAE0602B663CD800E4930D;
 			packageReferences = (
 				70206A6A2C4D421900B55EE6 /* XCRemoteSwiftPackageReference "PopupView" */,
+				70824FC42C569FF600088810 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 			);
 			productRefGroup = 70EAE06A2B663CD800E4930D /* Products */;
 			projectDirPath = "";
@@ -370,11 +385,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70B5EBDA2C3AF73500471451 /* TamilLitDB.sqlite-shm in Resources */,
 				70B5EBDB2C3AF73500471451 /* TamilLitDB.sqlite in Resources */,
 				70EAE0762B663CDA00E4930D /* Preview Assets.xcassets in Resources */,
 				70EAE0842B66420400E4930D /* README.md in Resources */,
-				70B5EBD92C3AF73500471451 /* TamilLitDB.sqlite-wal in Resources */,
 				70EAE0732B663CDA00E4930D /* Assets.xcassets in Resources */,
 				708FB19C2C4C1C6F00553498 /* Quicksand.ttf in Resources */,
 			);
@@ -421,6 +434,7 @@
 				702DF7A82C5210A10037D0BD /* PoemScreenshotView.swift in Sources */,
 				70F86D452C490C8600799435 /* Settings+CoreDataProperties.swift in Sources */,
 				70C057D42C54EB3200C10ABA /* AppDelegate.swift in Sources */,
+				70824FBF2C56240900088810 /* ArticleView.swift in Sources */,
 				70206A6E2C4D566000B55EE6 /* BookSelectorView.swift in Sources */,
 				70F86D462C490C8600799435 /* MainCategory+CoreDataClass.swift in Sources */,
 				70F86D472C490C8600799435 /* MainCategory+CoreDataProperties.swift in Sources */,
@@ -433,6 +447,7 @@
 				70E739342C31559C00A4CF0E /* ExplanationListViewModel.swift in Sources */,
 				70E739242C314A5F00A4CF0E /* PoemListView.swift in Sources */,
 				701BFAD62C33B1C2008D2805 /* CategoryViewModel.swift in Sources */,
+				70824FC12C56558300088810 /* HTMLView.swift in Sources */,
 				702240562B69653C00EF072B /* WrapView.swift in Sources */,
 				700920042C3BCDFE0049C60C /* PoemListWithCategoryViewModel.swift in Sources */,
 				70EAE06D2B663CD800E4930D /* Tamil_LitApp.swift in Sources */,
@@ -441,6 +456,7 @@
 				70E739302C31530000A4CF0E /* PoemListViewModel.swift in Sources */,
 				70DEF95A2C5402A800E72152 /* Constants.swift in Sources */,
 				70C057D82C5535CE00C10ABA /* UserSettings.swift in Sources */,
+				70824FC32C565FE400088810 /* HTMLLabel.swift in Sources */,
 				70BA907A2C501E3F0003CAA5 /* SharePoem.swift in Sources */,
 				70206A702C4D592400B55EE6 /* BookInfo.swift in Sources */,
 			);
@@ -666,6 +682,14 @@
 				minimumVersion = 3.0.4;
 			};
 		};
+		70824FC42C569FF600088810 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -673,6 +697,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 70206A6A2C4D421900B55EE6 /* XCRemoteSwiftPackageReference "PopupView" */;
 			productName = PopupView;
+		};
+		70824FC52C569FF600088810 /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 70824FC42C569FF600088810 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 

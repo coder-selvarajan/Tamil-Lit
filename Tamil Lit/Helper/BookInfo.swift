@@ -52,20 +52,22 @@ struct BookInfo: Identifiable, Codable, Hashable {
     var subtitle: String
     var image: String
     var color: Color
+    var bannerColor: String
     var selected: Bool
 
     enum CodingKeys: String, CodingKey {
-        case id, order, title, subtitle, image, selected
+        case id, order, title, subtitle, image, bannerColor, selected
         case colorHex
     }
 
-    init(id: UUID, order: Int, title: String, subtitle: String, image: String, color: Color, selected: Bool) {
+    init(id: UUID, order: Int, title: String, subtitle: String, image: String, color: Color, bannerColor: String, selected: Bool) {
         self.id = id
         self.order = order
         self.title = title
         self.subtitle = subtitle
         self.image = image
         self.color = color
+        self.bannerColor = bannerColor
         self.selected = selected
     }
 
@@ -76,6 +78,7 @@ struct BookInfo: Identifiable, Codable, Hashable {
         title = try container.decode(String.self, forKey: .title)
         subtitle = try container.decode(String.self, forKey: .subtitle)
         image = try container.decode(String.self, forKey: .image)
+        bannerColor = try container.decode(String.self, forKey: .bannerColor)
         selected = try container.decode(Bool.self, forKey: .selected)
         let colorHex = try container.decode(String.self, forKey: .colorHex)
         color = Color(hex: colorHex)
@@ -88,24 +91,129 @@ struct BookInfo: Identifiable, Codable, Hashable {
         try container.encode(title, forKey: .title)
         try container.encode(subtitle, forKey: .subtitle)
         try container.encode(image, forKey: .image)
+        try container.encode(bannerColor, forKey: .bannerColor)
         try container.encode(selected, forKey: .selected)
         try container.encode(color.hexString, forKey: .colorHex)
     }
 }
 
+//let _books = [
+//    BookInfo(id: UUID(), order: 1, title: "திருக்குறள்", subtitle: "1330 குறள்கள்", image: "Thiruvalluvar", color: .blue, selected: true),
+//    BookInfo(id: UUID(), order: 2, title: "ஆத்திசூடி", subtitle: "109 வாக்கியங்கள்", image: "Avvaiyar3", color: .cyan, selected: true),
+//    BookInfo(id: UUID(), order: 3, title: "நாலடியார்", subtitle: "400 பாடல்கள்", image: "Jainmonk", color: .indigo, selected: true),
+//    
+//    BookInfo(id: UUID(), order: 4, title: "ஆசாரக் கோவை", subtitle: "100 பாடல்கள்", image: "Ramar", color: .purple.opacity(0.7), selected: true),
+//    BookInfo(id: UUID(), order: 5, title: "இனியவை நாற்பது", subtitle: "40 பாடல்கள்", image: "Balaji", color: .red.opacity(0.6), selected: true),
+//    BookInfo(id: UUID(), order: 6, title: "இன்னா நாற்பது", subtitle: "40 பாடல்கள்", image: "Karuppusamy", color: .orange.opacity(0.7), selected: true),
+//    BookInfo(id: UUID(), order: 7, title: "நான்மணிக்கடிகை", subtitle: "101 பாடல்கள்", image: "Meenakshi", color: .brown, selected: true),
+//    BookInfo(id: UUID(), order: 8, title: "திரிகடுகம்", subtitle: "102 பாடல்கள்", image: "Adiyogi", color: .gray, selected: true),
+//    BookInfo(id: UUID(), order: 9, title: "முதுமொழிக் காஞ்சி", subtitle: "100 பழமொழிகள்", image: "Murugan", color: .teal, selected: true),
+//    BookInfo(id: UUID(), order: 10, title: "பழமொழி நானூறு", subtitle: "400 பழமொழிகள்", image: "Balaji", color: .green.opacity(0.7), selected: true)
+//]
+
 let _books = [
-    BookInfo(id: UUID(), order: 1, title: "திருக்குறள்", subtitle: "1330 குறள்கள்", image: "Murugan", color: .blue, selected: true),
-    BookInfo(id: UUID(), order: 2, title: "ஆத்திசூடி", subtitle: "109 வாக்கியங்கள்", image: "Avvaiyar3", color: .cyan, selected: true),
-    BookInfo(id: UUID(), order: 3, title: "நாலடியார்", subtitle: "400 பாடல்கள்", image: "Jainmonk", color: .indigo, selected: true),
-    
-    BookInfo(id: UUID(), order: 4, title: "ஆசாரக் கோவை", subtitle: "100 பாடல்கள்", image: "Ramar", color: .purple.opacity(0.7), selected: true),
-    BookInfo(id: UUID(), order: 5, title: "இனியவை நாற்பது", subtitle: "40 பாடல்கள்", image: "Balaji", color: .red.opacity(0.6), selected: true),
-    BookInfo(id: UUID(), order: 6, title: "இன்னா நாற்பது", subtitle: "40 பாடல்கள்", image: "Karuppusamy", color: .orange.opacity(0.7), selected: true),
-    BookInfo(id: UUID(), order: 7, title: "நான்மணிக்கடிகை", subtitle: "101 பாடல்கள்", image: "Meenakshi", color: .brown, selected: true),
-    BookInfo(id: UUID(), order: 8, title: "திரிகடுகம்", subtitle: "102 பாடல்கள்", image: "Adiyogi", color: .gray, selected: true),
-    BookInfo(id: UUID(), order: 9, title: "முதுமொழிக் காஞ்சி", subtitle: "100 பழமொழிகள்", image: "Murugan", color: .teal, selected: true),
-    BookInfo(id: UUID(), order: 10, title: "பழமொழி நானூறு", subtitle: "400 பழமொழிகள்", image: "Balaji", color: .green.opacity(0.7), selected: true)
+    BookInfo(
+        id: UUID(),
+        order: 1,
+        title: "திருக்குறள்",
+        subtitle: "1330 குறள்கள்",
+        image: "Thiruvalluvar",
+        color: .blue,
+        bannerColor: "colorThirukural",
+        selected: true
+    ),
+    BookInfo(
+        id: UUID(),
+        order: 2,
+        title: "ஆத்திசூடி",
+        subtitle: "109 வாக்கியங்கள்",
+        image: "Avvaiyar3",
+        color: .cyan,
+        bannerColor: "colorAthichudi",
+        selected: true
+    ),
+    BookInfo(
+        id: UUID(),
+        order: 3,
+        title: "நாலடியார்",
+        subtitle: "400 பாடல்கள்",
+        image: "Jainmonk",
+        color: .indigo,
+        bannerColor: "colorNaaladiyar",
+        selected: true
+    ),
+    BookInfo(
+        id: UUID(),
+        order: 4,
+        title: "ஆசாரக் கோவை",
+        subtitle: "100 பாடல்கள்",
+        image: "Ramar",
+        color: .purple.opacity(0.7),
+        bannerColor: "colorAcharakovai",
+        selected: true
+    ),
+    BookInfo(
+        id: UUID(),
+        order: 5,
+        title: "இனியவை நாற்பது",
+        subtitle: "40 பாடல்கள்",
+        image: "Balaji",
+        color: .red.opacity(0.6),
+        bannerColor: "colorIniyavaiNaarpathu",
+        selected: true
+    ),
+    BookInfo(
+        id: UUID(),
+        order: 6,
+        title: "இன்னா நாற்பது",
+        subtitle: "40 பாடல்கள்",
+        image: "Karuppusamy",
+        color: .orange.opacity(0.7),
+        bannerColor: "colorInnaNaarpathu",
+        selected: true
+    ),
+    BookInfo(
+        id: UUID(),
+        order: 7,
+        title: "நான்மணிக்கடிகை",
+        subtitle: "101 பாடல்கள்",
+        image: "Meenakshi",
+        color: .brown,
+        bannerColor: "colorNaanmanikadikai",
+        selected: true
+    ),
+    BookInfo(
+        id: UUID(),
+        order: 8,
+        title: "திரிகடுகம்",
+        subtitle: "102 பாடல்கள்",
+        image: "Adiyogi",
+        color: .gray,
+        bannerColor: "colorThirikadukam",
+        selected: true
+    ),
+    BookInfo(
+        id: UUID(),
+        order: 9,
+        title: "முதுமொழிக் காஞ்சி",
+        subtitle: "100 பழமொழிகள்",
+        image: "Murugan",
+        color: .teal,
+        bannerColor: "colorMothumozhikanchi",
+        selected: true
+    ),
+    BookInfo(
+        id: UUID(),
+        order: 10,
+        title: "பழமொழி நானூறு",
+        subtitle: "400 பழமொழிகள்",
+        image: "Balaji",
+        color: .green.opacity(0.7),
+        bannerColor: "colorPazhamozhiNaanuru",
+        selected: true
+    )
 ]
+
 
 func getColorByBook(_ value: String) -> Color {
     if let bookColor = _books.filter({ $0.title == value }).first?.color {

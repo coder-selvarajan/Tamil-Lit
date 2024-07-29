@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PoemListView: View {
+    @EnvironmentObject var userSettings: UserSettings
+    
     let colorTheme: Color
     let bookName: String
     let categoryLevel: Int
@@ -49,7 +51,9 @@ struct PoemListView: View {
     
     var body: some View {
         ZStack {
-            colorTheme.opacity(0.2).ignoresSafeArea()
+            Color.white.ignoresSafeArea()
+//            colorTheme.opacity(0.2).ignoresSafeArea()
+            colorTheme.opacity(userSettings.darkMode ? 0.5 : 0.3).ignoresSafeArea()
             
             VStack {
                 HStack(spacing: 10) {
@@ -58,7 +62,7 @@ struct PoemListView: View {
                     }
                     Text("\(getCategoryText())")
                         .fontWeight(.bold)
-                        .foregroundStyle(Color("TextColor").opacity(0.95))
+                        .foregroundStyle(.black.opacity(0.95))
                     Spacer()
                 }
                 .font(.subheadline)
@@ -71,6 +75,7 @@ struct PoemListView: View {
                                                                poems: viewModel.poems,
                                                                selectedPoem: poem)) {
                         Text("\(poem.number). \(poem.poem ?? "No Poem")")
+                            .foregroundStyle(.black)
                     }
                     .listRowBackground(colorTheme.opacity(0.2))
                 }
@@ -95,12 +100,12 @@ struct PoemListView: View {
                     } label: {
                         Image(systemName: "house.fill")
                             .font(.title3)
-                            .foregroundStyle(Color("TextColor").opacity(0.8))
+                            .foregroundStyle(.black.opacity(0.8))
                             .padding(.horizontal, paddingSize)
                             .padding(.vertical, 15)
                             .padding(.trailing, paddingSize)
                     }
-                    .background(Color("TextColorWhite"))
+                    .background(.white)
                     .cornerRadius(10.0)
                     .shadow(radius: 10)
                     .padding(.bottom, 30)
@@ -127,7 +132,7 @@ struct PoemListView: View {
                         Spacer()
                     }
                     
-                    Image("Murugan")
+                    Image("Thiruvalluvar")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 30)
@@ -135,6 +140,7 @@ struct PoemListView: View {
                     Text(bookName)
                         .font(.body)
                         .fontWeight(.semibold)
+                        .foregroundStyle(.black)
                     
                     Spacer()
                 }
@@ -146,7 +152,7 @@ struct PoemListView: View {
                 } label: {
                     Text("நூல் பற்றி")
                         .font(.subheadline)
-                        .foregroundStyle(Color("TextColor"))
+                        .foregroundStyle(.black)
                         .padding(.vertical, 5)
                         .padding(.horizontal, 10)
                         .background(colorTheme.opacity(0.3))

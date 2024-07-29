@@ -47,7 +47,7 @@ struct PoemScreenshotView: View {
                     .padding(.trailing, 5)
                 Text("\(poem.bookname ?? "")")
                     .fontWeight(.bold)
-                    .foregroundStyle(Color("TextColor").opacity(0.95))
+                    .foregroundStyle(.black.opacity(0.95))
                 Spacer()
             }
             .font(.subheadline)
@@ -140,7 +140,7 @@ struct PoemScreenshotView: View {
                 Text("நகல்")
             }
             .font(.subheadline)
-            .foregroundStyle(Color("TextColor"))
+            .foregroundStyle(.black)
         }
     }
 }

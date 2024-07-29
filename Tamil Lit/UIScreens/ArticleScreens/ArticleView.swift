@@ -9,21 +9,27 @@ import SwiftUI
 import MarkdownUI
 
 struct ArticleView: View {
-    let markdownContent = """
-    ## இலக்கியம்
-    
-    **சங்க இலக்கியம் (Sangam literature)** எனப்படுவது தமிழில் பொ.ஊ.மு. 500-இல் இருந்து பொ.ஊ. 200 வரை உள்ள[1] காலப்பகுதியில் எழுதப்பட்ட செவ்வியல் இலக்கியங்கள் ஆகும். சங்க இலக்கியம் தற்போது கண்டுபிடிக்கப்பட்ட வரை 473 புலவர்களால் எழுதப்பட்ட 2381 பாடல்களைக் கொண்டுள்ளது. இப்புலவர்களுள் பலதரப்பட்ட தொழில் நிலையில் உள்ளோரும் பெண்களும், நாடாளும் மன்னரும் உண்டு. சங்க இலக்கியங்கள் அக்காலகட்டத்தில் வாழ்ந்த தமிழர்களின் அன்றாட வாழ்க்கை நிலைகளைப் படம்பிடித்துக் காட்டுவதாய் உள்ளன.சங்ககால மக்களின் வாழ்க்கை நிலை இரண்டு பிரிவுகளாக சங்க இலக்கியங்கள் வழி அறியலாம். இல்லற வாழ்க்கை பற்றிய செய்திகளை அகம் என்றும், கொடை, போர், வீரம், ஆட்சி, முதலியவற்றை பற்றிய செய்திகளை புறம் என்றும் சங்க இலக்கியங்கள் பிரித்துக் காட்டுகின்றன.
-    
-    ### சங்கம்
-    19 ஆம் நூற்றாண்டில் வாழ்ந்த தமிழ் அறிஞர்களான **சி. வை. தாமோதரம்பிள்ளை, உ. வே. சாமிநாத ஐயர்** ஆகியோரின் முயற்சியினால் சங்க இலக்கியங்கள் அச்சுருப் பெற்றன. எட்டுத்தொகையும், பத்துப்பாட்டும் தான் சங்க இலக்கிய நூல்கள். இவை பதினெண்மேற்கணக்கு நூல்கள் எனவும்; சங்கமருவிய நூல்கள் பதினெண்கீழ்க்கணக்கு நூல்கள் எனவும் பெரும்பிரிவுகளாகத் தொகுக்கப்பட்டுள்ளன.
-    """
+    @State var markdownContent: String = ""
+    @State var fileName: String = ""
+
+    // Function to load markdown file content
+    func loadMarkdownFile(named fileName: String) -> String? {
+        if let fileURL = Bundle.main.url(forResource: fileName, withExtension: "md"),
+           let fileContents = try? String(contentsOf: fileURL) {
+            return fileContents
+        }
+        return nil
+    }
     
     var body: some View {
         ScrollView {
             Markdown(markdownContent)
                 .padding()
         }
-        .navigationTitle("Article")
+        .onAppear() {
+            markdownContent = loadMarkdownFile(named: fileName) ?? ""
+        }
+        .navigationTitle("")
         .navigationBarTitleDisplayMode(.inline)
     }
 }

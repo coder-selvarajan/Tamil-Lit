@@ -17,7 +17,7 @@ struct SingleCategoryView: View {
 //        ScrollView(showsIndicators: false) {
             VStack(alignment: .leading) {
                 List {
-                    SwiftUI.Section(header: Text("வகைகள்: ").fontWeight(.bold)) {
+                    SwiftUI.Section(header: Text("வகைகள்: ").fontWeight(.bold).foregroundStyle(.black)) {
                         ForEach(viewModel.categories, id:\.self) { category in
                             if let title = category.title {
                                 NavigationLink(destination:
@@ -26,6 +26,7 @@ struct SingleCategoryView: View {
                                                              categoryLevel: 1,
                                                              mainCategory: category)) {
                                     Text(title)
+                                        .foregroundStyle(.black)
                                 }
                             }
                         }
@@ -45,7 +46,7 @@ struct SingleCategoryView: View {
         .toolbar {
             ToolbarItem(placement: .principal) {
                 HStack {
-                    Image("Murugan")
+                    Image("Thiruvalluvar")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 30)
@@ -53,6 +54,7 @@ struct SingleCategoryView: View {
                     Text(bookName)
                         .font(.body)
                         .fontWeight(.semibold)
+                        .foregroundStyle(.black)
                     
                     Spacer()
                 }
@@ -65,7 +67,7 @@ struct SingleCategoryView: View {
                 } label: {
                    Text("நூல் பற்றி")
                     .font(.subheadline)
-                    .foregroundStyle(Color("TextColor"))
+                    .foregroundStyle(.black)
                     .padding(.vertical, 7)
                     .padding(.horizontal, 10)
                     .background(colorTheme.opacity(0.3))

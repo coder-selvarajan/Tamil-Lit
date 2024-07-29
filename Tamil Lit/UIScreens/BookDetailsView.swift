@@ -18,6 +18,7 @@ struct BookDetailsView: View {
     
     var body: some View {
         ZStack {
+            Color.white.ignoresSafeArea()
             bookInfo.color.opacity(0.2).ignoresSafeArea()
             
             ScrollView(showsIndicators: false) {
@@ -42,7 +43,7 @@ struct BookDetailsView: View {
                             
                             if vm.book?.author! != "" || vm.book?.period! != "" {
                                 Divider()
-                                    .background(Color("TextColor"))
+                                    .background(.black)
                                     .padding(.bottom, 5)
                             }
                             
@@ -80,7 +81,7 @@ struct BookDetailsView: View {
                         
                         Image(systemName: "xmark.app.fill")
                             .font(.largeTitle)
-                            .foregroundColor(Color("TextColor").opacity(0.60))
+                            .foregroundColor(.black.opacity(0.60))
                             .padding(10)
                             .padding(.top, 5)
                             .onTapGesture {

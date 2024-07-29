@@ -188,7 +188,7 @@ struct HomeView: View {
                                     .padding(.trailing, 5)
 //                                Text("வரலாற்று தகவல்கள்")
 //                                    .font(.title3)
-                                Text("தகவல்கள்")
+                                Text("வரலாற்று தகவல்கள்")
                                     .font(.title3)
                                 
                                 Spacer()
@@ -196,9 +196,9 @@ struct HomeView: View {
                             
                             VStack {
                                 VStack {
-                                    NavigationLink(value: "Article") {
+                                    NavigationLink(destination: ArticleView(fileName: "TamilLiterature")) {
                                         HStack {
-                                            Text("தமிழ் இலக்கியம்")
+                                            Text("தமிழ் இலக்கிய வரலாறு")
                                                 .foregroundColor(Color("TextColor"))
                                             
                                             Spacer()
@@ -211,7 +211,7 @@ struct HomeView: View {
                                 }
                                 
                                 VStack {
-                                    NavigationLink(value: "Article") {
+                                    NavigationLink(destination: ArticleView(fileName: "SangaIlakkiyam")) {
                                         HStack {
                                             Text("சங்க இலக்கியம்")
                                                 .foregroundColor(Color("TextColor"))
@@ -227,11 +227,40 @@ struct HomeView: View {
                                     
                                 }
                                 
+                                VStack {
+                                    NavigationLink(destination: ArticleView(fileName: "SangaIlakkiyaNoolkal")) {
+                                        HStack {
+                                            Text("சங்க இலக்கிய நூல்கள்")
+                                                .foregroundColor(Color("TextColor"))
+                                            
+                                            Spacer()
+                                            Image(systemName: "chevron.right")
+                                                .foregroundColor(.gray)
+                                        }
+                                        .padding(.vertical, 5)
+                                    }
+                                    Divider()
+                                }
                                 
                                 VStack {
-                                    NavigationLink(value: "Article") {
+                                    NavigationLink(destination: ArticleView(fileName: "Idaikaala-Ilakkiyam")) {
                                         HStack {
-                                            Text("தற்கால இலக்கியம்")
+                                            Text("இடைக்கால இலக்கியம்")
+                                                .foregroundColor(Color("TextColor"))
+                                            
+                                            Spacer()
+                                            Image(systemName: "chevron.right")
+                                                .foregroundColor(.gray)
+                                        }
+                                        .padding(.vertical, 5)
+                                    }
+                                    Divider()
+                                }
+                                
+                                VStack {
+                                    NavigationLink(destination: ArticleView(fileName: "Naveena-Yugam")) {
+                                        HStack {
+                                            Text("நவீன யுகம்")
                                                 .foregroundColor(Color("TextColor"))
                                             
                                             Spacer()
@@ -242,6 +271,7 @@ struct HomeView: View {
                                     }
 //                                    Divider()
                                 }
+                                
                             }
                             .padding()
                             .background(.gray.opacity(0.1))
@@ -348,9 +378,8 @@ struct BookTileView: View {
     var body: some View {
         ZStack(alignment: .topLeading) {
             RoundedRectangle(cornerRadius: 10)
-//                .fill(Color(bannerColor))
-                .fill(userSettings.darkMode ? color.opacity(0.3) : color.opacity(0.25)) //.opacity(userSettings.darkMode ? 0.9 : 0.25))
-//                .shadow(radius: 5)
+                .fill(userSettings.darkMode ? .white : .clear)
+                .fill(userSettings.darkMode ? color.opacity(0.45) : color.opacity(0.25))
             
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 10) {

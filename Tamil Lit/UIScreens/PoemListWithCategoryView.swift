@@ -33,7 +33,7 @@ struct PoemListWithCategoryView: View {
             VStack {
                 VStack(alignment: .leading) {
                     Text("வகைகள்: ")
-                        .foregroundStyle(Color("TextColor").opacity(0.8))
+                        .foregroundStyle(.black.opacity(0.8))
                         .font(.footnote)
                         .fontWeight(.bold)
                         .padding(.horizontal)
@@ -62,8 +62,8 @@ struct PoemListWithCategoryView: View {
                                         .font(.subheadline)
                                         .padding(.horizontal, 10)
                                         .padding(.vertical, 10)
-                                        .foregroundColor(highlightedCategoryId == category.id ? Color("TextColorWhite") : Color("TextColor"))
-                                        .background(highlightedCategoryId == category.id ? colorTheme.opacity(0.7) : Color("TextColorWhite").opacity(0.7))
+                                        .foregroundColor(highlightedCategoryId == category.id ? .white : .black)
+                                        .background(highlightedCategoryId == category.id ? colorTheme.opacity(0.7) : .white.opacity(0.7))
                                         .cornerRadius(8.0)
                                 }
                             }
@@ -84,7 +84,7 @@ struct PoemListWithCategoryView: View {
                                     SwiftUI.Section(header: Text(category.title ?? "")
                                         .font(.title3)
                                         .fontWeight(.semibold)
-                                        .foregroundColor(Color("TextColor"))
+                                        .foregroundColor(.black)
                                         .padding(.leading, 0)
                                         .padding(.top, 0)) {
                                             // fetch poems by category and display in a section
@@ -96,6 +96,7 @@ struct PoemListWithCategoryView: View {
                                                                selectedPoem: poem)) {
                                                     if let poemText = poem.poem {
                                                         Text(poemText)
+                                                            .foregroundStyle(.black)
                                                     }
                                                 }
                                             }
@@ -152,7 +153,7 @@ struct PoemListWithCategoryView: View {
             ToolbarItem(placement: .principal) {
                 HStack {
                     // Search Bar
-                    Image("Murugan")
+                    Image("Thiruvalluvar")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 30)
@@ -160,6 +161,7 @@ struct PoemListWithCategoryView: View {
                     Text(bookName)
                         .font(.body)
                         .fontWeight(.semibold)
+                        .foregroundStyle(.black)
                     
                     Spacer()
                     
@@ -173,7 +175,7 @@ struct PoemListWithCategoryView: View {
                 } label: {
                     Text("நூல் பற்றி")
                         .font(.subheadline)
-                        .foregroundStyle(Color("TextColor"))
+                        .foregroundStyle(.black)
                         .padding(.vertical, 5)
                         .padding(.horizontal, 10)
                         .background(colorTheme.opacity(0.3))

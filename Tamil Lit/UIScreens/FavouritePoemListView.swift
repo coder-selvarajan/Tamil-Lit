@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-//enum PoemListingOrder {
-//    case ByDate, ByBook
-//}
-
 enum PoemListingOrder: String, CaseIterable {
     case ByDate = "Date"
     case ByBook = "Book"
@@ -21,14 +17,11 @@ struct FavouritePoemListView: View {
     @AppStorage("BooksOptedForFavouritePoems") private var bookOptionsData: Data = Data()
     @State private var bookOptions: [BookInfo] = []
     
-    @State private var selectedPoem: Poem? = nil
     @State private var isShowingDetail: Bool = false
+    @State private var selectedPoem: Poem?
     
     @State private var listingOrder: PoemListingOrder = .ByBook
     @State private var showOptions = false
-    
-//    @State private var selectedSegment = 1
-//    private let segments = ["By Date", "By Book"]
     
     func getCategoryDisplay(_ poem: FavouritePoem) -> String {
         if let section = poem.sectionname, section != "", !section.starts(with: "பாடல்") {
@@ -99,8 +92,8 @@ struct FavouritePoemListView: View {
                                     .onTapGesture {
                                         if let poem = vm.getPoemFromFavPoem(favPoem: favPoem) {
                                             selectedPoem = poem
+                                            isShowingDetail = true
                                         }
-                                        isShowingDetail = true
                                     }
                                 }
                             }
@@ -119,7 +112,7 @@ struct FavouritePoemListView: View {
                                 Text(day)
                                     .font(.headline)
                             }) {
-                                ForEach(vm.favPoemsByDate[day] ?? [], id: \.self) { favPoem in
+                                ForEach(vm.favPoemsByDate[day] ?? [], id: \.id) { favPoem in
                                     VStack(alignment: .leading) {
                                         
                                         Text("\(favPoem.bookname ?? "")\(getCategoryDisplay(favPoem))")
@@ -137,8 +130,8 @@ struct FavouritePoemListView: View {
                                     .onTapGesture {
                                         if let poem = vm.getPoemFromFavPoem(favPoem: favPoem) {
                                             selectedPoem = poem
+                                            isShowingDetail = true
                                         }
-                                        isShowingDetail = true
                                     }
                                 }
                             }
@@ -146,11 +139,12 @@ struct FavouritePoemListView: View {
                     }
                 }
                 .listStyle(InsetGroupedListStyle())
-                .sheet(isPresented: $isShowingDetail) {
-                    if selectedPoem != nil {
-                        SimplePoemDetailView(selectedPoem: Binding($selectedPoem)!, popupMode: true)
-                    }
-                }
+                
+            }
+        }
+        .sheet(isPresented: $isShowingDetail) {
+            if selectedPoem != nil {
+                SimplePoemDetailView(selectedPoem: Binding($selectedPoem)!, popupMode: true)
             }
         }
         .popup(isPresented: $showOptions) {
@@ -207,25 +201,15 @@ struct FavouritePoemListView: View {
                     .cornerRadius(8)
                 }
             }
-            
-//            ToolbarItem {
-//                Button {
-//                    showOptions = true
-//                } label: {
-//                    HStack {
-//                        Text("Sort")
-//                            .foregroundStyle(.gray)
-//                        Image(systemName: "checklist")
-//                            .foregroundColor(Color("TextColor"))
-//                    }
-//                }
-//            }
-            
         }
         .onAppear(){
             loadBookOptions()
             
             vm.getAllFavPoemsCategoried(bookOptions: bookOptions)
+            
+            if let poem = vm.getRandomPoem() {
+                selectedPoem = poem
+            }
         }
     }
     

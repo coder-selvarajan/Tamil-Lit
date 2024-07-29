@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct BookHomeView: View {
+    @EnvironmentObject var userSettings: UserSettings
+    
     let colorTheme: Color
     let bookName: String
 //    let book: Book?
@@ -16,7 +18,9 @@ struct BookHomeView: View {
     
     var body: some View {
         ZStack {
-            colorTheme.opacity(0.3).ignoresSafeArea()
+            Color.white.ignoresSafeArea()
+            colorTheme.opacity(userSettings.darkMode ? 0.5 : 0.3).ignoresSafeArea()
+            
             if viewModel.book?.name == "பழமொழி நானூறு" {
                 SingleCategoryView(colorTheme: colorTheme, bookName: bookName)
             } else if viewModel.book?.categoryLevel == 1 {
@@ -38,12 +42,12 @@ struct BookHomeView: View {
                     } label: {
                         Image(systemName: "house.fill")
                             .font(.title3)
-                            .foregroundStyle(Color("TextColor").opacity(0.8))
+                            .foregroundStyle(.black.opacity(0.8))
                             .padding(.horizontal, paddingSize)
                             .padding(.vertical, 15)
                             .padding(.trailing, paddingSize)
                     }
-                    .background(Color("TextColorWhite"))
+                    .background(.white)
                     .cornerRadius(10.0)
                     .shadow(radius: 10)
                     .padding(.bottom, 30)

@@ -20,6 +20,14 @@ class FavouritePoemViewModel : ObservableObject {
 //        favPoems = CoreDataManager.shared.fetchAllFavPoems()
 //    }
     
+    func getRandomPoem() -> Poem? {
+        if let randomPoem = CoreDataManager.shared.fetchRandomPoem(excludingBookNames: []) {
+            return randomPoem
+        }
+        
+        return nil
+    }
+    
     func getPoemFromFavPoem(favPoem: FavouritePoem) -> Poem? {
         return CoreDataManager.shared.fetchPoemByBookNumber(favPoem.bookname ?? "", Int(favPoem.number))
     }

@@ -17,7 +17,7 @@ struct CategoryListView: View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading) {
                 Text("பால்:")
-                    .foregroundStyle(Color("TextColor").opacity(0.8))
+                    .foregroundStyle(.black.opacity(0.8))
                     .font(.caption)
                     .fontWeight(.bold)
                 ScrollView(.horizontal, showsIndicators: false) {
@@ -26,8 +26,8 @@ struct CategoryListView: View {
                             Text("\(mainCategory.title!)")
                                 .padding(10)
                                 .font(.subheadline)
-                                .foregroundColor(viewModel.selectedMainCategory == mainCategory ? Color("TextColorWhite") : Color("TextColor"))
-                                .background(viewModel.selectedMainCategory == mainCategory ? colorTheme.opacity(0.8) : Color("TextColorWhite"))
+                                .foregroundColor(viewModel.selectedMainCategory == mainCategory ? .white : .black)
+                                .background(viewModel.selectedMainCategory == mainCategory ? colorTheme.opacity(0.8) : .white)
                                 .cornerRadius(10.0)
                                 .onTapGesture {
                                     viewModel.selectMainCategory(mainCategory)
@@ -41,7 +41,7 @@ struct CategoryListView: View {
             
             VStack(alignment: .leading) {
                 Text("இயல்:")
-                    .foregroundStyle(Color("TextColor").opacity(0.8))
+                    .foregroundStyle(.black.opacity(0.8))
                     .font(.caption)
                     .fontWeight(.bold)
                 WrapView(data: viewModel.filteredSubCategories, content: { subCategory in
@@ -49,8 +49,8 @@ struct CategoryListView: View {
                         Text(subCategory.title!)
                             .padding(10)
                             .font(.subheadline)
-                            .foregroundColor(viewModel.selectedSubCategory == subCategory ? Color("TextColorWhite") : Color("TextColor"))
-                            .background(viewModel.selectedSubCategory == subCategory ? colorTheme.opacity(0.8) : Color("TextColorWhite"))
+                            .foregroundColor(viewModel.selectedSubCategory == subCategory ? .white : .black)
+                            .background(viewModel.selectedSubCategory == subCategory ? colorTheme.opacity(0.8) : .white)
                             .cornerRadius(10.0)
                             .onTapGesture {
                                 viewModel.selectSubCategory(subCategory)
@@ -63,7 +63,7 @@ struct CategoryListView: View {
             
             VStack(alignment: .leading) {
                 Text("அதிகாரம்:")
-                    .foregroundStyle(Color("TextColor").opacity(0.8))
+                    .foregroundStyle(.black.opacity(0.8))
                     .font(.caption)
                     .fontWeight(.bold)
                 //                ScrollView {
@@ -80,25 +80,17 @@ struct CategoryListView: View {
                                  
                                     VStack(alignment: .leading) {
                                         Text("\(section.title ?? "")")
-                                            .foregroundStyle(Color("TextColor"))
+                                            .foregroundStyle(.black)
                                             .fontWeight(.semibold)
                                         
                                         Text("\(viewModel.book?.poemType ?? ""): \(section.start)..\(section.end)")
-                                            .foregroundStyle(Color("TextColor").opacity(0.5))
+                                            .foregroundStyle(.black.opacity(0.5))
                                             .font(.footnote)
                                     }
-//                                    VStack(alignment: .leading) {
-//                                        Text("\(section.title ?? "")")
-//                                            .foregroundStyle(Color("TextColor"))
-//                                        Text("(\(section.start)-\(section.end))")
-//                                            .foregroundStyle(Color("TextColor").opacity(0.5))
-//                                            .font(.footnote)
-//                                    }
                                     Spacer()
                                     Image(systemName: "chevron.right")
                                         .foregroundColor(.gray)
                                 }
-//                                .padding(.vertical, 5)
                                 
                                 Divider()
                             }
@@ -108,13 +100,8 @@ struct CategoryListView: View {
                 //                }
             }
             
-            //            VStack{
-            //                Text(" ")
-            //            }.frame(height: 50.0)
         }
         .padding(paddingSize)
-//        .navigationBarTitle(bookName)
-//        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             viewModel.fetchAllData(bookname: bookName)
         }
@@ -124,7 +111,7 @@ struct CategoryListView: View {
         .toolbar {
             ToolbarItem(placement: .principal) {
                 HStack {
-                    Image("Murugan")
+                    Image("Thiruvalluvar")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 30)
@@ -132,6 +119,7 @@ struct CategoryListView: View {
                     Text(bookName)
                         .font(.body)
                         .fontWeight(.semibold)
+                        .foregroundStyle(.black)
                     
                     Spacer()
                 }
@@ -144,7 +132,7 @@ struct CategoryListView: View {
                 } label: {
                     Text("நூல் பற்றி")
                         .font(.subheadline)
-                        .foregroundStyle(Color("TextColor"))
+                        .foregroundStyle(.black)
                         .padding(.vertical, 7)
                         .padding(.horizontal, 10)
                         .background(colorTheme.opacity(0.3))

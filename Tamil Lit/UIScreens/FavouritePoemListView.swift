@@ -13,6 +13,8 @@ enum PoemListingOrder: String, CaseIterable {
 }
 
 struct FavouritePoemListView: View {
+    @EnvironmentObject var userSettings: UserSettings
+    
     @StateObject private var vm = FavouritePoemViewModel()
     @AppStorage("BooksOptedForFavouritePoems") private var bookOptionsData: Data = Data()
     @State private var bookOptions: [BookInfo] = []
@@ -55,7 +57,7 @@ struct FavouritePoemListView: View {
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())
-                    .tint(.yellow)
+                    .tint(Color("colorYellow"))
                     .frame(width: UIScreen.main.bounds.width * 0.5)
                 }
                 .padding()
@@ -167,7 +169,8 @@ struct FavouritePoemListView: View {
                 .animation(.spring())
                 .closeOnTapOutside(true)
                 .closeOnTap(false)
-                .backgroundColor(Color("TextColor").opacity(0.5))
+//                .backgroundColor(.black.opacity(0.5))
+                .backgroundColor(userSettings.darkMode ? .white.opacity(0.25) : .black.opacity(0.65))
                 .autohideIn(50)
         }
         .toolbar {

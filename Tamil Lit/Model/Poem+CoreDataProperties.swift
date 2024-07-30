@@ -2,7 +2,7 @@
 //  Poem+CoreDataProperties.swift
 //  Tamil Lit
 //
-//  Created by Selvarajan on 18/07/24.
+//  Created by Selvarajan on 30/07/24.
 //
 //
 
@@ -24,6 +24,7 @@ extension Poem {
     @NSManaged public var poeminfo: String?
     @NSManaged public var sectionname: String?
     @NSManaged public var subcategoryname: String?
+    @NSManaged public var tag: String?
     @NSManaged public var title: String?
     @NSManaged public var transliteration: String?
     @NSManaged public var type: String?

@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject var userSettings: UserSettings
     @EnvironmentObject var notificationHandler: NotificationHandler
     @Environment(\.showLoading) private var showLoading
-    @StateObject var vm = HomeViewModel()
+    
+    @StateObject var vm = DailyPoemViewModel()
     
     @State var bookDisplayAsGrid: Bool = true
     @State private var showPoemPopup = false
@@ -28,6 +30,17 @@ struct HomeView: View {
         let now = Date()
         return currentDate >= Calendar.current.startOfDay(for: now)
     }
+
+    private var isBeforeFirstDailyPoem: Bool {
+        if let firstDailyPoemDate = vm.firstDailyPoemDate {
+            if let nextDay = Calendar.current.date(byAdding: .day, value: 1, to: Calendar.current.startOfDay(for: firstDailyPoemDate)) {
+                return currentDate <= nextDay
+            }
+        }
+
+        return true
+    }
+    
     
     var body: some View {
         NavigationStack {
@@ -46,12 +59,15 @@ struct HomeView: View {
                                 
                                 Button {
                                     currentDate = Calendar.current.date(byAdding: .day, value: -1, to: currentDate) ?? currentDate
-                                    vm.getPoemOftheDay()
+                                    vm.getDailyPoemFor(currentDate)
                                 } label: {
                                     Image(systemName: "arrowtriangle.left.circle")
                                         .font(.title3)
                                         .foregroundColor(Color("TextColor"))
                                 }
+                                .disabled(isBeforeFirstDailyPoem)
+                                .opacity(isBeforeFirstDailyPoem ? 0.3 : 1.0)
+                                
                                 
                                 Text(formattedDate)
                                     .font(.subheadline)
@@ -60,7 +76,7 @@ struct HomeView: View {
                                 
                                 Button {
                                     currentDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate) ?? currentDate
-                                    vm.getPoemOftheDay()
+                                    vm.getDailyPoemFor(currentDate)
                                 } label: {
                                     Image(systemName: "arrowtriangle.right.circle")
                                         .font(.title3)
@@ -104,16 +120,34 @@ struct HomeView: View {
                             HStack(spacing: 15) {
                                 NavigationLink(value: "RandomPoemView") {
                                     VStack(alignment: .center, spacing: 10) {
-                                        Image(systemName: "wand.and.stars")
-                                            .font(.title)
-                                            .foregroundColor(.yellow)
+                                        HStack(spacing: 10) {
+                                            Circle()
+                                                .fill(.white)
+                                                .fill(Color.blue.opacity(userSettings.darkMode ? 0.75 : 0.6))
+                                                .frame(width: 10, height: 10)
+                                            Circle()
+                                                .fill(.white)
+                                                .fill(Color.cyan.opacity(userSettings.darkMode ? 0.75 : 0.6))
+                                                .frame(width: 10, height: 10)
+//                                            Circle()
+//                                                .fill(Color.indigo.opacity(0.6))
+//                                                .frame(width: 10, height: 10)
+                                            Circle()
+                                                .fill(.white)
+                                                .fill(Color.purple.opacity(userSettings.darkMode ? 0.7 : 0.55))
+                                                .frame(width: 10, height: 10)
+                                            
+                                        }.frame(height: 30)
+//                                        Image(systemName: "wand.and.stars")
+//                                            .font(.title)
+//                                            .foregroundColor(Color("colorYellow"))
                                         VStack(alignment: .leading) {
                                             Text("ஏதோ ஒரு பாடல்")
                                                 .lineLimit(1)
                                                 .foregroundStyle(Color("TextColor"))
                                         }
                                     }
-                                    .font(.body)
+                                    .font(.subheadline)
                                     .padding()
                                     .frame(maxWidth: .infinity)
                                     .background(.gray.opacity(0.15))
@@ -122,14 +156,20 @@ struct HomeView: View {
                                 
                                 NavigationLink(value: "FavouritePoemView") {
                                     VStack(alignment: .center, spacing: 10) {
-                                        Image(systemName: "bookmark")
-                                            .font(.title)
-                                            .foregroundColor(.yellow)
+                                        HStack {
+//                                            Image(systemName: "bookmark.fill")
+//                                                .font(.title3)
+//                                                .foregroundColor(.blue.opacity(0.5))
+                                            Image(systemName: "bookmark.fill")
+                                                .font(.title3)
+                                                .foregroundColor(.cyan.opacity(userSettings.darkMode ? 0.9 : 0.7))
+                                        }.frame(height: 30)
+                                        
                                         Text("சேமித்தவை ")
                                             .lineLimit(1)
                                             .foregroundStyle(Color("TextColor"))
                                     }
-                                    .font(.body)
+                                    .font(.subheadline)
                                     .padding()
                                     .frame(maxWidth: .infinity)
                                     //                                }
@@ -331,6 +371,7 @@ struct HomeView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 40)
+                            .cornerRadius(10.0)
                         
                         Text("Tamil Lit")
                             .font(.custom("Quicksand", size: 22))

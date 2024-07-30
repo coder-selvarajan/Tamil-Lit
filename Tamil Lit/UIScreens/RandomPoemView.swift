@@ -10,6 +10,7 @@ import PopupView
 
 struct RandomPoemView: View {
     @AppStorage("BooksOptedForRandomPoems") private var bookOptionsData: Data = Data()
+    @EnvironmentObject var userSettings: UserSettings
     @State private var bookOptions: [BookInfo] = []
     
     @StateObject private var vm = RandomPoemViewModel()
@@ -39,7 +40,7 @@ struct RandomPoemView: View {
                             .padding(.horizontal)
                             .padding(.vertical, 10)
                             .padding(.trailing, 15)
-                            .background(.yellow)
+                            .background(userSettings.darkMode ? .cyan : .cyan.opacity(0.9))
                             .cornerRadius(10.0)
                             .shadow(radius: 10)
                     }
@@ -109,7 +110,7 @@ struct RandomPoemView: View {
                 .animation(.spring())
                 .closeOnTapOutside(true)
                 .closeOnTap(false)
-                .backgroundColor(Color("TextColor").opacity(0.5))
+                .backgroundColor(userSettings.darkMode ? .white.opacity(0.25) : .black.opacity(0.65))
                 .autohideIn(50)
         }
     }

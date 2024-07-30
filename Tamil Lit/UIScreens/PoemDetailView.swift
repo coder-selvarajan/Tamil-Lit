@@ -163,11 +163,14 @@ struct PoemDetailView: View {
                             }
 
                             // Share icon
-                            SharePoem(poem: $selectedPoem, explanations: $viewModel.explanations)
+                            SharePoem(poem: $selectedPoem, 
+                                      explanations: $viewModel.explanations,
+                                      tintColor: .black)
                             
                             // Save as image icon
                             PoemScreenshotView(poem: $selectedPoem, 
                                                explanations: $viewModel.explanations,
+                                               iconTintColor: .black,
                                                colorTheme: colorTheme) {
                                 alertMessage = "படம் Photo Library-ல்  சேமிக்கப்பட்டது!"
                                 showAlert = true

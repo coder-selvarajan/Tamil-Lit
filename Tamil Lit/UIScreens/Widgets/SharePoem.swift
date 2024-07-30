@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct SharePoem: View {
+    @EnvironmentObject var userSettings: UserSettings
+    
     @Binding var poem: Poem
     @Binding var explanations: [Explanation]
+    @State var tintColor: Color
     
     @State private var isSharing = false
     
@@ -39,7 +42,7 @@ struct SharePoem: View {
                 Text("பகிர்")
             }
             .font(.subheadline)
-            .foregroundStyle(.black)
+            .foregroundStyle(tintColor)
         }
         .padding(.horizontal, 10)
         .sheet(isPresented: $isSharing, onDismiss: {

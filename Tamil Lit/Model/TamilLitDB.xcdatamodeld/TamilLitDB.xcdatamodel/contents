@@ -15,6 +15,14 @@
         <relationship name="mainCategories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MainCategory" inverseName="book" inverseEntity="MainCategory"/>
         <relationship name="poems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Poem" inverseName="book" inverseEntity="Poem"/>
     </entity>
+    <entity name="DailyPoem" representedClassName="DailyPoem" syncable="YES">
+        <attribute name="bookname" attributeType="String"/>
+        <attribute name="category" optional="YES" attributeType="String"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="number" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="poem" attributeType="String"/>
+    </entity>
     <entity name="Explanation" representedClassName="Explanation" syncable="YES">
         <attribute name="author" optional="YES" attributeType="String"/>
         <attribute name="bookname" optional="YES" attributeType="String"/>
@@ -31,12 +39,12 @@
         <attribute name="bookname" attributeType="String"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="maincategoryname" optional="YES" attributeType="String"/>
-        <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="number" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="poem" attributeType="String"/>
         <attribute name="sectionname" optional="YES" attributeType="String"/>
         <attribute name="subcategoryname" optional="YES" attributeType="String"/>
-        <attribute name="timestamp" optional="YES" attributeType="Date" defaultDateTimeInterval="743395500" usesScalarValueType="NO"/>
-        <attribute name="title" attributeType="String"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" defaultDateTimeInterval="743395560" usesScalarValueType="NO"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
     <entity name="MainCategory" representedClassName="MainCategory" syncable="YES">
         <attribute name="bookname" optional="YES" attributeType="String"/>
@@ -53,15 +61,16 @@
         <relationship name="subCategories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SubCategory" inverseName="mainCategory" inverseEntity="SubCategory"/>
     </entity>
     <entity name="Poem" representedClassName="Poem" syncable="YES">
-        <attribute name="bookname" attributeType="String" defaultValueString=""/>
+        <attribute name="bookname" attributeType="String"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="maincategoryname" optional="YES" attributeType="String"/>
-        <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="number" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="poem" attributeType="String" defaultValueString=""/>
         <attribute name="poeminfo" optional="YES" attributeType="String"/>
         <attribute name="sectionname" optional="YES" attributeType="String"/>
         <attribute name="subcategoryname" optional="YES" attributeType="String"/>
-        <attribute name="title" attributeType="String" defaultValueString=""/>
+        <attribute name="tag" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String" defaultValueString=""/>
         <attribute name="transliteration" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
         <relationship name="book" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="poems" inverseEntity="Book"/>

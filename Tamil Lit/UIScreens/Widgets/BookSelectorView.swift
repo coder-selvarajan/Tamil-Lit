@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct BookSelectorView: View {
+    @EnvironmentObject var userSettings: UserSettings
     @Binding var showModal: Bool
     @Binding var booksInfo: [BookInfo]
     
@@ -36,7 +37,7 @@ struct BookSelectorView: View {
                             HStack {
                                 Image(systemName: "checkmark.circle.fill")
                                     .font(.title3)
-                                    .foregroundColor(bookInfo.selected ? .yellow : .gray.opacity(0.5))
+                                    .foregroundColor(bookInfo.selected ? .cyan.opacity(0.75) : .gray.opacity(0.5))
                                     .padding(.trailing)
                                 
                                 Text(bookInfo.title)
@@ -55,7 +56,7 @@ struct BookSelectorView: View {
                     
                 } //VStack
                 .padding(paddingSize)
-                .background(Color("TextColorWhite"))
+                .background(userSettings.darkMode ? .black : .white)
                 .foregroundColor(Color("TextColor"))
                 .cornerRadius(15)
                 .frame(width: UIScreen.main.bounds.size.width - 60)

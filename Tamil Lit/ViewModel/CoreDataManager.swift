@@ -409,4 +409,89 @@ extension CoreDataManager {
 
         return nil
     }
+    
+    func fetchDailyPoem(for date: Date, includingBookNames: [String]) -> Poem? {
+        let calendar = Calendar.current
+        let targetDate = calendar.startOfDay(for: date)
+
+        // Check if there's already a DailyPoem for the target date
+        let dailyPoemRequest: NSFetchRequest<DailyPoem> = DailyPoem.fetchRequest()
+        dailyPoemRequest.predicate = NSPredicate(format: "date == %@", targetDate as NSDate)
+
+        do {
+            let todayPoems = try viewContext.fetch(dailyPoemRequest)
+            if let todayPoem = todayPoems.first {
+                // If there's already a DailyPoem for the target date, return the corresponding Poem
+                let poemRequest: NSFetchRequest<Poem> = Poem.fetchRequest()
+                poemRequest.predicate = NSPredicate(format: "bookname == %@ AND number == %d", todayPoem.bookname ?? "", todayPoem.number)
+                return try viewContext.fetch(poemRequest).first
+            } else {
+                // Fetch all poems for the given book names
+                let request: NSFetchRequest<Poem> = Poem.fetchRequest()
+                request.predicate = NSPredicate(format: "bookname IN %@", includingBookNames)
+
+                let allPoems = try viewContext.fetch(request)
+
+                // Fetch all the DailyPoem entries
+                let dailyPoems = try viewContext.fetch(NSFetchRequest<DailyPoem>(entityName: "DailyPoem"))
+                let dailyPoemIdentifiers = Set(dailyPoems.map { PoemIdentifier(bookname: $0.bookname ?? "", number: $0.number) })
+
+                // Filter out poems that are already in DailyPoem table
+                let filteredPoems = allPoems.filter { !dailyPoemIdentifiers.contains(PoemIdentifier(bookname: $0.bookname ?? "", number: $0.number)) }
+
+                // If there are any poems left, pick a random one
+                if let randomPoem = filteredPoems.randomElement() {
+                    // Create a new DailyPoem entry with the target date
+                    let newDailyPoem = DailyPoem(context: viewContext)
+                    newDailyPoem.bookname = randomPoem.bookname
+                    newDailyPoem.number = randomPoem.number
+                    newDailyPoem.date = targetDate
+                    newDailyPoem.id = UUID()
+                    newDailyPoem.category = randomPoem.maincategoryname
+                    newDailyPoem.poem = randomPoem.poem
+
+                    // Save the context
+                    try viewContext.save()
+
+                    return randomPoem
+                }
+            }
+        } catch {
+            print("Failed to fetch random poem: \(error)")
+        }
+
+        return nil
+    }
+    
+    func fetchMinimumDateInDailyPoem() -> Date? {
+        let fetchRequest = NSFetchRequest<NSDictionary>(entityName: "DailyPoem")
+        fetchRequest.resultType = .dictionaryResultType
+
+        // Use expression description to get the minimum date
+        let minDateExpression = NSExpressionDescription()
+        minDateExpression.name = "minDate"
+        minDateExpression.expression = NSExpression(forFunction: "min:", arguments: [NSExpression(forKeyPath: "date")])
+        minDateExpression.expressionResultType = .dateAttributeType
+
+        fetchRequest.propertiesToFetch = [minDateExpression]
+
+        do {
+            if let result = try viewContext.fetch(fetchRequest).first,
+               let minDate = result["minDate"] as? Date {
+                return minDate
+            }
+        } catch {
+            print("Failed to fetch minimum date: \(error)")
+        }
+
+        return nil
+    }
+
+
+
+}
+
+struct PoemIdentifier: Hashable {
+    let bookname: String
+    let number: Int16
 }

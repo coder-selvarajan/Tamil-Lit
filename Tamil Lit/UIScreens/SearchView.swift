@@ -62,6 +62,8 @@ extension String {
 
 struct SearchView: View {
     @AppStorage("BooksOptedForSearch") private var bookOptionsData: Data = Data()
+    @EnvironmentObject var userSettings: UserSettings
+    
     @State private var bookOptions: [BookInfo] = []
     
     @StateObject var vm = SearchViewModel()
@@ -134,7 +136,17 @@ struct SearchView: View {
 //                .padding(.leading, 10)
             }
             .padding(.horizontal)
-            .padding(.vertical, 10)
+            .padding(.top, 10)
+            
+            NavigationLink(destination: AboutView()) {
+                Text("Click here for the steps to enable Tamil keyboard")
+                    .font(.footnote)
+                    .foregroundStyle(.gray)
+                    .padding(.horizontal)
+                    .padding(.top, 5)
+                    .padding(.bottom, 10)
+            }
+            
             
             //Results
             List {
@@ -228,7 +240,8 @@ struct SearchView: View {
                 .animation(.spring())
                 .closeOnTapOutside(true)
                 .closeOnTap(false)
-                .backgroundColor(Color("TextColor").opacity(0.5))
+//                .backgroundColor(Color("TextColor").opacity(0.5))
+                .backgroundColor(userSettings.darkMode ? .white.opacity(0.25) : .black.opacity(0.65))
                 .autohideIn(50)
         }
     }

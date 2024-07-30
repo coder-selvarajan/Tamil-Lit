@@ -17,8 +17,6 @@
 		700920042C3BCDFE0049C60C /* PoemListWithCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700920032C3BCDFE0049C60C /* PoemListWithCategoryViewModel.swift */; };
 		70160F6B2C0B20E20053B4A9 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70160F6A2C0B20E20053B4A9 /* MainView.swift */; };
 		701BFAD62C33B1C2008D2805 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701BFAD52C33B1C2008D2805 /* CategoryViewModel.swift */; };
-		701FA7AA2C4F5139002851C3 /* FavouritePoem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701FA7A82C4F5139002851C3 /* FavouritePoem+CoreDataClass.swift */; };
-		701FA7AB2C4F5139002851C3 /* FavouritePoem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701FA7A92C4F5139002851C3 /* FavouritePoem+CoreDataProperties.swift */; };
 		70206A6C2C4D421900B55EE6 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 70206A6B2C4D421900B55EE6 /* PopupView */; };
 		70206A6E2C4D566000B55EE6 /* BookSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70206A6D2C4D566000B55EE6 /* BookSelectorView.swift */; };
 		70206A702C4D592400B55EE6 /* BookInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70206A6F2C4D592400B55EE6 /* BookInfo.swift */; };
@@ -31,6 +29,13 @@
 		703CD63D2C4E470800509F46 /* BookDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703CD63C2C4E470800509F46 /* BookDetailsViewModel.swift */; };
 		703E18B52C458E890032298E /* SingleCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703E18B42C458E890032298E /* SingleCategoryViewModel.swift */; };
 		704641092C50F8B100447FF4 /* SaveAsImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704641082C50F8B100447FF4 /* SaveAsImage.swift */; };
+		7051D59B2C587A3A00CCED81 /* DailyPoemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7051D59A2C587A3A00CCED81 /* DailyPoemViewModel.swift */; };
+		7051D5BE2C58868B00CCED81 /* DailyPoem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7051D5B82C58868B00CCED81 /* DailyPoem+CoreDataClass.swift */; };
+		7051D5BF2C58868B00CCED81 /* DailyPoem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7051D5B92C58868B00CCED81 /* DailyPoem+CoreDataProperties.swift */; };
+		7051D5C02C58868B00CCED81 /* Poem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7051D5BA2C58868B00CCED81 /* Poem+CoreDataClass.swift */; };
+		7051D5C12C58868B00CCED81 /* Poem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7051D5BB2C58868B00CCED81 /* Poem+CoreDataProperties.swift */; };
+		7051D5C22C58868B00CCED81 /* FavouritePoem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7051D5BC2C58868B00CCED81 /* FavouritePoem+CoreDataClass.swift */; };
+		7051D5C32C58868B00CCED81 /* FavouritePoem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7051D5BD2C58868B00CCED81 /* FavouritePoem+CoreDataProperties.swift */; };
 		7068D7E32C33DCE700FAB1F6 /* BookHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7068D7E22C33DCE700FAB1F6 /* BookHomeView.swift */; };
 		70824FBF2C56240900088810 /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70824FBE2C56240900088810 /* ArticleView.swift */; };
 		70824FC12C56558300088810 /* HTMLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70824FC02C56558300088810 /* HTMLView.swift */; };
@@ -75,8 +80,6 @@
 		70F86D452C490C8600799435 /* Settings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F86D372C490C8600799435 /* Settings+CoreDataProperties.swift */; };
 		70F86D462C490C8600799435 /* MainCategory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F86D382C490C8600799435 /* MainCategory+CoreDataClass.swift */; };
 		70F86D472C490C8600799435 /* MainCategory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F86D392C490C8600799435 /* MainCategory+CoreDataProperties.swift */; };
-		70F86D482C490C8600799435 /* Poem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F86D3A2C490C8600799435 /* Poem+CoreDataClass.swift */; };
-		70F86D492C490C8600799435 /* Poem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F86D3B2C490C8600799435 /* Poem+CoreDataProperties.swift */; };
 		70F86D4B2C49899300799435 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F86D4A2C49899300799435 /* SearchView.swift */; };
 /* End PBXBuildFile section */
 
@@ -91,8 +94,6 @@
 		700920032C3BCDFE0049C60C /* PoemListWithCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemListWithCategoryViewModel.swift; sourceTree = "<group>"; };
 		70160F6A2C0B20E20053B4A9 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		701BFAD52C33B1C2008D2805 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
-		701FA7A82C4F5139002851C3 /* FavouritePoem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavouritePoem+CoreDataClass.swift"; sourceTree = "<group>"; };
-		701FA7A92C4F5139002851C3 /* FavouritePoem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavouritePoem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		70206A6D2C4D566000B55EE6 /* BookSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSelectorView.swift; sourceTree = "<group>"; };
 		70206A6F2C4D592400B55EE6 /* BookInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookInfo.swift; sourceTree = "<group>"; };
 		702240552B69653C00EF072B /* WrapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapView.swift; sourceTree = "<group>"; };
@@ -104,6 +105,13 @@
 		703CD63C2C4E470800509F46 /* BookDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsViewModel.swift; sourceTree = "<group>"; };
 		703E18B42C458E890032298E /* SingleCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleCategoryViewModel.swift; sourceTree = "<group>"; };
 		704641082C50F8B100447FF4 /* SaveAsImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveAsImage.swift; sourceTree = "<group>"; };
+		7051D59A2C587A3A00CCED81 /* DailyPoemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPoemViewModel.swift; sourceTree = "<group>"; };
+		7051D5B82C58868B00CCED81 /* DailyPoem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyPoem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		7051D5B92C58868B00CCED81 /* DailyPoem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyPoem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7051D5BA2C58868B00CCED81 /* Poem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Poem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		7051D5BB2C58868B00CCED81 /* Poem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Poem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7051D5BC2C58868B00CCED81 /* FavouritePoem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavouritePoem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		7051D5BD2C58868B00CCED81 /* FavouritePoem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavouritePoem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		7068D7E22C33DCE700FAB1F6 /* BookHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookHomeView.swift; sourceTree = "<group>"; };
 		70824FBE2C56240900088810 /* ArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
 		70824FC02C56558300088810 /* HTMLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLView.swift; sourceTree = "<group>"; };
@@ -150,8 +158,6 @@
 		70F86D372C490C8600799435 /* Settings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		70F86D382C490C8600799435 /* MainCategory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainCategory+CoreDataClass.swift"; sourceTree = "<group>"; };
 		70F86D392C490C8600799435 /* MainCategory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainCategory+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		70F86D3A2C490C8600799435 /* Poem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Poem+CoreDataClass.swift"; sourceTree = "<group>"; };
-		70F86D3B2C490C8600799435 /* Poem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Poem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		70F86D4A2C49899300799435 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -209,6 +215,7 @@
 				70A1E9462C4AA12900264AC8 /* RandomPoemViewModel.swift */,
 				703CD63C2C4E470800509F46 /* BookDetailsViewModel.swift */,
 				709EFAE62C4ED0320018DB5C /* FavouritePoemViewModel.swift */,
+				7051D59A2C587A3A00CCED81 /* DailyPoemViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -216,8 +223,12 @@
 		70626FCA2C23D54A00055E77 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				701FA7A82C4F5139002851C3 /* FavouritePoem+CoreDataClass.swift */,
-				701FA7A92C4F5139002851C3 /* FavouritePoem+CoreDataProperties.swift */,
+				7051D5B82C58868B00CCED81 /* DailyPoem+CoreDataClass.swift */,
+				7051D5B92C58868B00CCED81 /* DailyPoem+CoreDataProperties.swift */,
+				7051D5BA2C58868B00CCED81 /* Poem+CoreDataClass.swift */,
+				7051D5BB2C58868B00CCED81 /* Poem+CoreDataProperties.swift */,
+				7051D5BC2C58868B00CCED81 /* FavouritePoem+CoreDataClass.swift */,
+				7051D5BD2C58868B00CCED81 /* FavouritePoem+CoreDataProperties.swift */,
 				70F86D2E2C490C8600799435 /* Book+CoreDataClass.swift */,
 				70F86D2F2C490C8600799435 /* Book+CoreDataProperties.swift */,
 				70F86D302C490C8600799435 /* SubCategory+CoreDataClass.swift */,
@@ -230,8 +241,6 @@
 				70F86D372C490C8600799435 /* Settings+CoreDataProperties.swift */,
 				70F86D382C490C8600799435 /* MainCategory+CoreDataClass.swift */,
 				70F86D392C490C8600799435 /* MainCategory+CoreDataProperties.swift */,
-				70F86D3A2C490C8600799435 /* Poem+CoreDataClass.swift */,
-				70F86D3B2C490C8600799435 /* Poem+CoreDataProperties.swift */,
 				70E729802C230C7D00DE5977 /* TamilLitDB.xcdatamodeld */,
 			);
 			path = Model;
@@ -431,9 +440,7 @@
 				704641092C50F8B100447FF4 /* SaveAsImage.swift in Sources */,
 				703E18B52C458E890032298E /* SingleCategoryViewModel.swift in Sources */,
 				70E93A412C4A3B500057E8B5 /* SearchViewModel.swift in Sources */,
-				701FA7AA2C4F5139002851C3 /* FavouritePoem+CoreDataClass.swift in Sources */,
 				702DF7B12C5285890037D0BD /* AboutView.swift in Sources */,
-				701FA7AB2C4F5139002851C3 /* FavouritePoem+CoreDataProperties.swift in Sources */,
 				70E739322C31555400A4CF0E /* PoemDetailView.swift in Sources */,
 				70160F6B2C0B20E20053B4A9 /* MainView.swift in Sources */,
 				7068D7E32C33DCE700FAB1F6 /* BookHomeView.swift in Sources */,
@@ -466,15 +473,20 @@
 				70206A6E2C4D566000B55EE6 /* BookSelectorView.swift in Sources */,
 				70F86D462C490C8600799435 /* MainCategory+CoreDataClass.swift in Sources */,
 				70F86D472C490C8600799435 /* MainCategory+CoreDataProperties.swift in Sources */,
-				70F86D482C490C8600799435 /* Poem+CoreDataClass.swift in Sources */,
 				703CD63D2C4E470800509F46 /* BookDetailsViewModel.swift in Sources */,
-				70F86D492C490C8600799435 /* Poem+CoreDataProperties.swift in Sources */,
 				70F7709F2C08BBAD00D329C3 /* HomeView.swift in Sources */,
 				7093B6752C398FFB00D38548 /* SingleCategoryView.swift in Sources */,
+				7051D59B2C587A3A00CCED81 /* DailyPoemViewModel.swift in Sources */,
 				702DF7AF2C527F0B0037D0BD /* SettingsView.swift in Sources */,
 				70E739342C31559C00A4CF0E /* ExplanationListViewModel.swift in Sources */,
 				70E739242C314A5F00A4CF0E /* PoemListView.swift in Sources */,
 				701BFAD62C33B1C2008D2805 /* CategoryViewModel.swift in Sources */,
+				7051D5BE2C58868B00CCED81 /* DailyPoem+CoreDataClass.swift in Sources */,
+				7051D5BF2C58868B00CCED81 /* DailyPoem+CoreDataProperties.swift in Sources */,
+				7051D5C02C58868B00CCED81 /* Poem+CoreDataClass.swift in Sources */,
+				7051D5C12C58868B00CCED81 /* Poem+CoreDataProperties.swift in Sources */,
+				7051D5C22C58868B00CCED81 /* FavouritePoem+CoreDataClass.swift in Sources */,
+				7051D5C32C58868B00CCED81 /* FavouritePoem+CoreDataProperties.swift in Sources */,
 				70824FC12C56558300088810 /* HTMLView.swift in Sources */,
 				702240562B69653C00EF072B /* WrapView.swift in Sources */,
 				700920042C3BCDFE0049C60C /* PoemListWithCategoryViewModel.swift in Sources */,

@@ -11,6 +11,8 @@ import CoreData
 
 class NotificationHandler: ObservableObject {
     @Published var appOpenedFromNotification: Bool = false
+    @StateObject var vm = DailyPoemViewModel()
+    
     private var cancellables = Set<AnyCancellable>()
     private var userSettings: UserSettings
     
@@ -103,18 +105,13 @@ class NotificationHandler: ObservableObject {
     
     func getRandomPoem() -> (String, String, String) { // returning id, book title, poem
         var result : (String, String, String) = ("Book", "Number", "Poem")
-        let fetchRequest: NSFetchRequest<Poem> = Poem.fetchRequest()
-        do {
-            let poems = try CoreDataManager.shared.viewContext.fetch(fetchRequest)
-            if let randomPoem = poems.randomElement() {
-                result.0 = randomPoem.id?.uuidString ?? ""
-                result.1 = "\(randomPoem.bookname ?? "") - \(randomPoem.book?.poemType ?? "") \(randomPoem.number)"
-                result.2 = randomPoem.poem ?? ""
-            }
-        } catch {
-            print("Error fetching poems: \(error)")
+        
+        if let randomPoem = vm.getthePoemOftheDay() {
+            result.0 = randomPoem.id?.uuidString ?? ""
+            result.1 = "\(randomPoem.bookname ?? "") - \(randomPoem.book?.poemType ?? "") \(randomPoem.number)"
+            result.2 = randomPoem.poem ?? ""
         }
-
+        
         return result
     }
 }

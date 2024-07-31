@@ -58,6 +58,7 @@ struct BookDetailsView: View {
                             .font(.subheadline)
                             .fontWeight(.semibold)
                         }
+                        .foregroundStyle(.black)
                         Spacer()
                     }
                     .padding()
@@ -67,6 +68,7 @@ struct BookDetailsView: View {
                     // book description
                     Text(vm.book?.info ?? "")
                         .padding(paddingSize)
+                        .foregroundStyle(.black)
                 }
                 
             }

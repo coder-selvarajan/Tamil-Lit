@@ -11,10 +11,19 @@ import StoreKit
 struct SettingsView: View {
     @EnvironmentObject var userSettings: UserSettings
     @EnvironmentObject var notificationHandler: NotificationHandler
-//    @State private var notificationsEnabled: Bool = UserDefaults.standard.bool(forKey: "notificationsEnabled")
     
-//    @State private var darkMode = false
-    @State private var showSettingsAlert = false
+//    @State private var showSettingsAlert = false
+//    @State private var showFeedbackAlert = false
+    
+    @State private var activeAlert: ActiveAlert?
+    
+    enum ActiveAlert: Identifiable {
+        case settings, feedback
+        
+        var id: Int {
+            hashValue
+        }
+    }
     
     var body: some View {
         VStack {
@@ -24,9 +33,6 @@ struct SettingsView: View {
                         VStack(alignment: .leading) {
                             Text("தினம் ஒரு பாடல் அறிவிப்பு")
                                 .font(.headline)
-//                            Text("Receive a new poem every day.")
-//                                .font(.subheadline)
-//                                .foregroundColor(.gray)
                         }
                     }
                     .padding(.vertical, 2)
@@ -37,7 +43,8 @@ struct SettingsView: View {
                                 if granted {
                                     notificationHandler.scheduleDailyNotification()
                                 } else {
-                                    showSettingsAlert = true
+//                                    showSettingsAlert = true
+                                    activeAlert = .settings
                                 }
                             }
                         } else {
@@ -49,9 +56,6 @@ struct SettingsView: View {
                         VStack(alignment: .leading) {
                             Text("கரும் திரை")
                                 .font(.headline)
-//                            Text("Receive a new poem every day.")
-//                                .font(.subheadline)
-//                                .foregroundColor(.gray)
                         }
                     }
                     .padding(.vertical, 2)
@@ -69,7 +73,7 @@ struct SettingsView: View {
                 }
                 
                 SwiftUI.Section {
-                    NavigationLink(destination: AboutView()) {
+                    NavigationLink(destination: CreditsView()) {
                         VStack(alignment: .leading) {
                             Text("Credits")
                                 .font(.headline)
@@ -80,106 +84,84 @@ struct SettingsView: View {
                 }
                 
                 SwiftUI.Section {
-                    NavigationLink(destination: AboutView()) {
+                    NavigationLink(destination: TamilKeyboardInstructionView()) {
                         VStack(alignment: .leading) {
                             Text("Tamil Keyboard")
                                 .font(.headline)
-                            Text("Steps to enable it on iPhone")
+                            Text("How to enable it on iPhone?")
                                 .font(.subheadline)
                         }
                     }
                 }
-                
                 SwiftUI.Section {
-                    VStack{
-                        Button(action: {
-                            // Action to redirect to App Store for rating
-//                            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-//                                SKStoreReviewController.requestReview(in: windowScene)
-//                            }
-                        }) {
-                            HStack(alignment: .center, spacing: 15) {
-                                Image(systemName: "heart.fill")
-                                    .foregroundColor(.red)
-                                
-                                Text("Leave a Review")
-                                    .font(.body.bold())
-                                    .foregroundStyle(Color("TextColor"))
-//                                Text("Rate this App")
-//                                    .font(.subheadline)
-//                                    .foregroundColor(.black.opacity(0.75))
-                                
-                                Spacer()
-                            }
+                    //                VStack{
+                    Button(action: {
+                        // Action to redirect to App Store for rating
+                        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                            SKStoreReviewController.requestReview(in: windowScene)
                         }
-                        .padding()
-                        .frame(maxWidth: .infinity)
-//                        .background(.gray.opacity(0.15))
-                        .background(userSettings.darkMode ? .black : .gray.opacity(0.15))
-                        .cornerRadius(10)
-                        .padding()
-                        .padding(.bottom)
-                        
-                        Button(action: {
-                            // Action to open feedback form or email
-                        }) {
-                            HStack(alignment: .center, spacing: 15) {
-                                Image(systemName: "square.and.pencil")
-                                    .foregroundColor(Color("TextColor"))
-                                
-                                Text("Feedback / Suggession")
-                                    .font(.body.bold())
-                                    .foregroundStyle(Color("TextColor"))
-                                
-//                                Text("Share your thoughts")
-//                                    .font(.subheadline)
-//                                    .foregroundColor(.gray)
-                                
-                                Spacer()
-                            }
+                    }) {
+                        HStack(alignment: .center, spacing: 15) {
+                            Image(systemName: "heart.fill")
+                                .foregroundColor(.red)
+                            
+                            Text("Leave a Review")
+                                .font(.body.bold())
+                                .foregroundStyle(Color("TextColor"))
+                            
+                            Spacer()
                         }
-                        .padding(.horizontal)
-                        .frame(maxWidth: .infinity)
-//                        .background(.gray.opacity(0.15))
-//                        .background(userSettings.darkMode ? .cyan : .cyan.opacity(0.6))
-//                        .cornerRadius(10)
-                        .padding(.bottom, 10)
-                        
-//                        Divider()
-                        
-                        Button(action: {
-                            // Action to redirect to App Store for rating
-                        }) {
-                            HStack(alignment: .center, spacing: 15) {
-                                Image(systemName: "paperplane")
-                                    .foregroundColor(Color("TextColor"))
-                                
-                                Text("Share this App")
-                                    .font(.body.bold())
-                                    .foregroundStyle(Color("TextColor"))
-                                
-//                                Text("Share with friends")
-//                                    .font(.subheadline)
-//                                    .foregroundColor(.gray)
-                                
-                                Spacer()
-                            }
-                        }
-                        .padding(.horizontal)
-                        .frame(maxWidth: .infinity)
-//                        .background(.gray.opacity(0.15))
-//                        .background(userSettings.darkMode ? .cyan : .cyan.opacity(0.6))
-//                        .cornerRadius(10)
-                        .padding(.bottom)
                     }
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    //                        .background(.gray.opacity(0.15))
+                    .background(userSettings.darkMode ? .black : .gray.opacity(0.15))
+                    .cornerRadius(10)
+                    //                    .padding(.vertical)
                 }
                 
+                Button(action: {
+//                    showFeedbackAlert = true
+                    activeAlert = .feedback
+                }) {
+                    HStack(alignment: .center, spacing: 15) {
+                        Image(systemName: "square.and.pencil")
+                            .foregroundColor(.cyan)
+                        
+                        Text("Send Feedback / Suggestion")
+                            .font(.body.bold())
+                            .foregroundStyle(Color("TextColor"))
+                    }
+                }
+                .padding(.vertical, 5)
                 
-            }
-            .navigationBarTitle("Settings")
-            .navigationBarTitleDisplayMode(.large)
-            .alert(isPresented: $showSettingsAlert) {
-                Alert(
+                Button(action: {
+                    // Action to redirect to App Store for rating
+                    let url = URL(string: "https://apps.apple.com/in/app/board-brain/id6482852806")!
+                    let activityController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+                    
+                    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                       let rootViewController = windowScene.windows.first?.rootViewController {
+                        rootViewController.present(activityController, animated: true, completion: nil)
+                    }
+                    
+                }) {
+                    HStack(alignment: .center, spacing: 15) {
+                        Image(systemName: "paperplane")
+                            .foregroundColor(.cyan)
+                        
+                        Text("Share this App")
+                            .font(.body.bold())
+                            .foregroundStyle(Color("TextColor"))
+                    }
+                }
+                .padding(.vertical, 5)
+            } // List
+        }
+        .alert(item: $activeAlert) { alertType in
+            switch alertType {
+            case .settings:
+                return Alert(
                     title: Text("Enable Notifications"),
                     message: Text("Notifications are disabled. Please go to Settings to enable them."),
                     primaryButton: .default(Text("Settings")) {
@@ -187,8 +169,55 @@ struct SettingsView: View {
                     },
                     secondaryButton: .cancel()
                 )
+            case .feedback:
+                return Alert(
+                    title: Text("Share Your Thoughts"),
+                    message: Text("Your feedback helps us improve. Please copy the email address below to send us your thoughts."),
+                    primaryButton: .default(Text("Copy email address")) {
+                        UIPasteboard.general.string = "selvarajan.thangavel@gmail.com"
+                    },
+                    secondaryButton: .cancel(Text("Cancel"))
+                )
             }
         }
+        
+//        .alert(isPresented: $showFeedbackAlert) {
+//            Alert(
+//                title: Text("Share Your Thoughts"),
+//                message: Text("Your feedback helps us improve. Please copy the email address below to send us your thoughts."),
+//                primaryButton: .default(Text("Copy email address")) {
+//                    UIPasteboard.general.string = "selvarajan.thangavel@gmail.com"
+//                },
+//                secondaryButton: .cancel(Text("Cancel"))
+//            )
+//        }
+//        .alert(isPresented: $showSettingsAlert) {
+//            Alert(
+//                title: Text("Enable Notifications"),
+//                message: Text("Notifications are disabled. Please go to Settings to enable them."),
+//                primaryButton: .default(Text("Settings")) {
+//                    openAppSettings()
+//                },
+//                secondaryButton: .cancel()
+//            )
+//        }
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                HStack {
+                    Image(systemName: "gearshape")
+                        .font(.headline)
+                        .padding(.trailing, 10)
+                    Text("Settings")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                    
+                    Spacer()
+                }
+                
+                .padding(0)
+            }
+        }
+        
     }
     
     private func openAppSettings() {

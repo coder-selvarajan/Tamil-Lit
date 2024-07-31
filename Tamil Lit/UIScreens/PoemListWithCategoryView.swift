@@ -12,6 +12,7 @@ struct PoemListWithCategoryView: View {
     let bookName: String
     //    let categoryLevel: Int
     
+    @EnvironmentObject var userSettings: UserSettings
     @StateObject var viewModel = PoemListWithCategoryViewModel()
     @State private var selectedCategoryId: UUID?
     @State private var highlightedCategoryId: UUID?
@@ -63,7 +64,9 @@ struct PoemListWithCategoryView: View {
                                         .padding(.horizontal, 10)
                                         .padding(.vertical, 10)
                                         .foregroundColor(highlightedCategoryId == category.id ? .white : .black)
-                                        .background(highlightedCategoryId == category.id ? colorTheme.opacity(0.7) : .white.opacity(0.7))
+                                        .background(highlightedCategoryId == category.id
+                                                    ? colorTheme.opacity(0.7)
+                                                    : (userSettings.darkMode ? colorTheme.opacity(0.5) : .white.opacity(0.7)))
                                         .cornerRadius(8.0)
                                 }
                             }

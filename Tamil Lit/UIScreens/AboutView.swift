@@ -9,105 +9,108 @@ import SwiftUI
 import StoreKit
 
 struct AboutView: View {
+    @EnvironmentObject var userSettings: UserSettings
+    
     var body: some View {
+        
         ScrollView(showsIndicators: false) {
-            VStack(alignment: .leading, spacing: 15) {
+            VStack(alignment: .leading, spacing: 20) {
                 HStack {
                     Image("114")
                         .resizable()
-                        .frame(width: 35, height: 35)
+                        .frame(width: 50, height: 50)
                         .clipShape(RoundedRectangle(cornerRadius: 15))
                     
                     Text("Tamil Lit")
-                        .font(.custom("Quicksand", size: 22))
+                        .font(.custom("Quicksand", size: 24))
                         .fontWeight(.semibold)
                         .padding(.horizontal, 10)
                     Spacer()
+                }.padding(.top)
+                
+                // Main content
+                VStack(alignment: .leading, spacing: 20) {
+                    Text("Welcome to Tamil Lit, an app dedicated to providing rich information about Tamil literature. Our app is designed to offer a seamless and enjoyable reading experience with a variety of features:")
+                        .font(.body)
+                    
+                    FeatureView(title: "Extensive Collection", description: "Tamil Lit currently includes 10 renowned literature books, each featuring multiple explanations. Our library is continuously expanding, with more books to be added in the future.")
+                    FeatureView(title: "Daily Poem Notifications", description: "Stay inspired with our 'Daily Poem' notification feature, delivering a new poem to your device every day.")
+                    FeatureView(title: "Random Poem Display", description: "Discover new poems effortlessly with our random poem display feature, which showcases poems from selected books.")
+                    FeatureView(title: "Bookmarking", description: "Easily bookmark your favorite poems and revisit them later. You can organize your bookmarks by date and book.")
+                    FeatureView(title: "Sharing", description: "Share the beauty of Tamil literature with friends. Tamil Lit allows you to share poem content directly from the app.")
+                    FeatureView(title: "Screenshot Capture", description: "Capture the essence of any poem, along with its explanations, by taking a screenshot within the app.")
+                    FeatureView(title: "Advanced Search", description: "Our advanced search functionality lets you search for poems using Tamil words. You can also filter your search by selecting specific books.")
+                    FeatureView(title: "Dark Mode", description: "Enjoy reading in any lighting condition with our dark mode feature, providing a comfortable reading experience in low light.")
+                    
+                    Text("Tamil Lit is your gateway to exploring the profound and timeless world of Tamil literature. Dive in and discover the beauty of classical Tamil poems and their interpretations.")
+                        .font(.body)
                 }
-                
-                Text("Discover the Rich Heritage of Tamil Literature with TamilLit")
-                    .fontWeight(.bold)
-                
-                Text("Welcome to TamilLit, your gateway to the timeless treasures of Tamil literature. Dive into a curated collection of classical Tamil texts, including Thirukural, Aathisudi, Naladiyar, and more. Whether you are a literature enthusiast, a student, or simply curious about the profound wisdom of Tamil writings, TamilLit offers an immersive experience tailored just for you.")
-                    .font(.body)
+//                .padding(.bottom, paddingSize)
                 
                 Divider()
+                    .padding(.vertical, 5)
                 
-                Text("Features")
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                
-                VStack(alignment: .leading, spacing: 10) {
-                    FeatureView(title: "Daily Poem", 
-                                description: "Start your day with a new poem delivered right to your app.")
-                    FeatureView(title: "Comprehensive Collection", 
-                                description: "Explore a vast array of literary works, from ancient classics to beloved proverbs.")
-                    FeatureView(title: "User-Friendly Interface",
-                                description: "Navigate effortlessly through well-organized categories and intuitive search functionality.")
-                    FeatureView(title: "Personalized Experience",
-                                description: "Customize your reading preferences with theme options, language settings, and notification controls.")
-                    FeatureView(title: "Engage and Share",
-                                description: "Rate the app, send feedback, and share your favorite passages with friends and family.")
-                }
-                
-                Divider()
-                
-                Text("Embark on a literary journey and uncover the profound wisdom and poetic beauty of Tamil literature. Download TamilLit today and enrich your understanding of this ancient and vibrant literary tradition.")
-                
+                // Additional App Information
                 VStack(alignment: .leading, spacing: 5) {
                     Text("App Information")
                         .font(.body)
                         .fontWeight(.semibold)
                     Text("Tamil Lit is an ad-free app that requires no internet connectivity. It does not require access to any information from the user's phone.")
-                        .font(.caption)
+                        .font(.body)
                         .padding(.bottom)
                     Text("This app is built using the SwiftUI framework.")
-                        .font(.caption)
+                        .font(.body)
                     HStack {
                         Link("Developer Website", destination: URL(string: "https://selvarajan.in")!)
-                            .font(.caption)
+                            .font(.body)
                             .foregroundColor(.blue)
                         Text(" | ")
-                            .font(.footnote)
-                            .foregroundStyle(Color("TextColorWhite").opacity(0.7))
+                            .font(.body)
+                            .foregroundColor(Color("TextColor").opacity(0.7))
                         Link("Github Profile", destination: URL(string: "https://github.com/coder-selvarajan")!)
-                            .font(.caption)
+                            .font(.body)
                             .foregroundColor(.blue)
                     }
                 }
+                .padding(.bottom, paddingSize)
                 
                 Spacer()
             }
-            .padding()
         }
         .padding(.horizontal)
         .background(Color("TextColorWhite").opacity(0.20))
-        .navigationTitle("About")
-        .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
         .toolbar {
             ToolbarItem(placement: .principal) {
                 HStack {
                     Text("About").font(.title3)
-                        .foregroundColor(Color("TextColorWhite"))
+                        .foregroundColor(Color("TextColor"))
                         .padding(.horizontal, 10)
                     Spacer()
                 }
             }
             
-            ToolbarItem(placement: .navigationBarTrailing) {
+            ToolbarItem {
                 Button(action: {
+                    // Action to redirect to App Store for rating
                     if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
                         SKStoreReviewController.requestReview(in: windowScene)
                     }
                 }) {
-                    HStack {
+                    HStack(alignment: .center, spacing: 15) {
                         Image(systemName: "heart.fill")
-                            .font(.subheadline)
-                            .foregroundColor(.blue)
+                            .foregroundColor(.red)
+                        
                         Text("Leave a Review")
+                            .font(.body.bold())
+                            .foregroundStyle(Color("TextColor"))
+                        
                     }
                 }
+//                .padding()
+//                .background(userSettings.darkMode ? .black : .gray.opacity(0.15))
+//                .cornerRadius(10)
             }
+            
         } //toolbar
     }
 }
@@ -120,9 +123,10 @@ struct FeatureView: View {
         HStack {
             VStack(alignment: .leading, spacing: 5) {
                 Text(title)
+                    .font(.body)
                     .fontWeight(.semibold)
                 Text(description)
-                    .font(.caption)
+                    .font(.body)
                     .foregroundColor(.secondary)
             }
         }

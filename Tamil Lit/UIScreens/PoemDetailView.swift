@@ -223,15 +223,15 @@ struct PoemDetailView: View {
                     } label: {
                         Image(systemName: "house.fill")
                             .font(.title3)
-                            .foregroundStyle(.black.opacity(0.8))
+                            .foregroundStyle(Color("TextColor").opacity(0.8))
                             .padding(.horizontal, paddingSize)
                             .padding(.vertical, 15)
                             .padding(.trailing, paddingSize)
                     }
-                    .background(.white)
+                    .background(Color("TextColorWhite"))
                     .cornerRadius(10.0)
                     .shadow(radius: 10)
-                    .padding(.bottom, paddingSize)
+                    .padding(.bottom, 30)
                     .padding(.trailing, -paddingSize)
                     
                 }

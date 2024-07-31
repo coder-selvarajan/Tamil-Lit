@@ -138,16 +138,6 @@ struct SearchView: View {
             .padding(.horizontal)
             .padding(.top, 10)
             
-            NavigationLink(destination: AboutView()) {
-                Text("Click here for the steps to enable Tamil keyboard")
-                    .font(.footnote)
-                    .foregroundStyle(.gray)
-                    .padding(.horizontal)
-                    .padding(.top, 5)
-                    .padding(.bottom, 10)
-            }
-            
-            
             //Results
             List {
                 if (searchState == .initial) {
@@ -166,16 +156,27 @@ struct SearchView: View {
                                 searchIsFocused = false
                             }
                         }
+                        if vm.getRecentSearch().count == 0 {
+                            Text("No search yet!")
+                                .font(.footnote)
+                                .foregroundStyle(.gray)
+                        }
+                    }
+                    
+                    if vm.getRecentSearch().count <= 2 {
+                        NavigationLink(destination: TamilKeyboardInstructionView()) {
+                            HStack {
+                                Text("How to enable Tamil keyboard?")
+                                    .font(.footnote)
+                                    .foregroundStyle(.gray)
+                                    .padding(.top, 5)
+                                    .padding(.bottom, 10)
+                                
+                                Spacer()
+                            }
+                        }
                     }
                 }
-                
-//                if (searchState == .typing) {
-//                    SwiftUI.Section(header: Text("Suggestions")) {
-//                        Text("Suggestion one")
-//                        Text("Suggestion two")
-//                        Text("Suggestion three")
-//                    }
-//                }
                 
                 if (searchState == .submitted) {
                     ForEach(vm.sortedKeys, id: \.self) { bookname in
@@ -207,6 +208,8 @@ struct SearchView: View {
                         }
                     }
                 }
+                
+                
             }
             .listStyle(InsetGroupedListStyle())
             .onAppear {
@@ -214,6 +217,9 @@ struct SearchView: View {
                     self.searchIsFocused = true
                 }
             }
+            
+            
+            
         } // VStack
         .navigationTitle(Text("பாடல் தேடு"))
         .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)

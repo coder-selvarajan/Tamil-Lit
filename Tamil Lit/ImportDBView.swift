@@ -31,7 +31,7 @@ struct ImportDBView: View {
                     .foregroundStyle(Color("TextColorWhite"))
                     .padding()
                     .background(.blue)
-                    .cornerRadius(10.0)
+                    .cornerRadius(size10)
             }
             
             

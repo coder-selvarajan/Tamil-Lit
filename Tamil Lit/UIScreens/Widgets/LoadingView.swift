@@ -29,7 +29,7 @@ struct LoadingView: View {
                 .padding(25)
         }
         .background(Color("TextColorWhite"))
-        .cornerRadius(10.0)
+        .cornerRadius(size10)
         .shadow(radius: 5)
     }
 }

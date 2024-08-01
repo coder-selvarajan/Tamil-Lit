@@ -56,7 +56,7 @@ struct PoemListView: View {
             colorTheme.opacity(userSettings.darkMode ? 0.5 : 0.3).ignoresSafeArea()
             
             VStack {
-                HStack(spacing: 10) {
+                HStack(spacing: size10) {
                     if section == nil {
                         Spacer()
                     }
@@ -66,8 +66,8 @@ struct PoemListView: View {
                     Spacer()
                 }
                 .font(.subheadline)
-                .padding(.top, 10)
-                .padding(.horizontal, paddingSize)
+                .padding(.top, size10)
+                .padding(.horizontal, size20)
                 
                 List(viewModel.poems) { poem in
                     NavigationLink(destination: PoemDetailView(colorTheme: colorTheme,
@@ -80,40 +80,36 @@ struct PoemListView: View {
                     .listRowBackground(colorTheme.opacity(0.2))
                 }
                 .scrollContentBackground(Visibility.hidden)
-                
-//                VStack{
-//                    Text(" ")
-//                }.frame(height: 50.0)
             }
             
             // Home Button
-            VStack {
-                Spacer()
-                HStack {
-                    Spacer()
-                    
-                    Button {
-                        // Go to home page
-//                        print(navigationPath.count)
-                        //                            navigationPath.removeAll()
-                        //                            presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        Image(systemName: "house.fill")
-                            .font(.title3)
-                            .foregroundStyle(Color("TextColor").opacity(0.8))
-                            .padding(.horizontal, paddingSize)
-                            .padding(.vertical, 15)
-                            .padding(.trailing, paddingSize)
-                    }
-                    .background(Color("TextColorWhite"))
-                    .cornerRadius(10.0)
-                    .shadow(radius: 10)
-                    .padding(.bottom, 30)
-                    .padding(.trailing, -paddingSize)
-                    
-                }
-            }
-            .edgesIgnoringSafeArea(.bottom)
+//            VStack {
+//                Spacer()
+//                HStack {
+//                    Spacer()
+//                    
+//                    Button {
+//                        // Go to home page
+////                        print(navigationPath.count)
+//                        //                            navigationPath.removeAll()
+//                        //                            presentationMode.wrappedValue.dismiss()
+//                    } label: {
+//                        Image(systemName: "house.fill")
+//                            .font(.title3)
+//                            .foregroundStyle(Color("TextColor").opacity(0.8))
+//                            .padding(.horizontal, size20)
+//                            .padding(.vertical)
+//                            .padding(.trailing, size20)
+//                    }
+//                    .background(Color("TextColorWhite"))
+//                    .cornerRadius(size10)
+//                    .shadow(radius: size10)
+//                    .padding(.bottom, size30)
+//                    .padding(.trailing, -size20)
+//                    
+//                }
+//            }
+//            .edgesIgnoringSafeArea(.bottom)
         }
         .onAppear {
             if section != nil {
@@ -135,8 +131,8 @@ struct PoemListView: View {
                     Image("Thiruvalluvar")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 30)
-                        .padding(.trailing, 10)
+                        .frame(width: size30)
+                        .padding(.trailing, size10)
                     Text(bookName)
                         .font(.body)
                         .fontWeight(.semibold)
@@ -154,7 +150,7 @@ struct PoemListView: View {
                         .font(.subheadline)
                         .foregroundStyle(.black)
                         .padding(.vertical, 5)
-                        .padding(.horizontal, 10)
+                        .padding(.horizontal, size10)
                         .background(colorTheme.opacity(0.3))
                         .cornerRadius(8)
                 }

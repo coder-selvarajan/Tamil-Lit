@@ -14,22 +14,22 @@ struct AboutView: View {
     var body: some View {
         
         ScrollView(showsIndicators: false) {
-            VStack(alignment: .leading, spacing: 20) {
+            VStack(alignment: .leading, spacing: size20) {
                 HStack {
                     Image("114")
                         .resizable()
-                        .frame(width: 50, height: 50)
-                        .clipShape(RoundedRectangle(cornerRadius: 15))
+                        .frame(width: size50, height: size50)
+                        .clipShape(RoundedRectangle(cornerRadius: size15))
                     
                     Text("Tamil Lit")
                         .font(.custom("Quicksand", size: 24))
                         .fontWeight(.semibold)
-                        .padding(.horizontal, 10)
+                        .padding(.horizontal, size10)
                     Spacer()
                 }.padding(.top)
                 
                 // Main content
-                VStack(alignment: .leading, spacing: 20) {
+                VStack(alignment: .leading, spacing: size20) {
                     Text("Welcome to Tamil Lit, an app dedicated to providing rich information about Tamil literature. Our app is designed to offer a seamless and enjoyable reading experience with a variety of features:")
                         .font(.body)
                     
@@ -64,15 +64,17 @@ struct AboutView: View {
                         Link("Developer Website", destination: URL(string: "https://selvarajan.in")!)
                             .font(.body)
                             .foregroundColor(.blue)
-                        Text(" | ")
-                            .font(.body)
-                            .foregroundColor(Color("TextColor").opacity(0.7))
-                        Link("Github Profile", destination: URL(string: "https://github.com/coder-selvarajan")!)
-                            .font(.body)
-                            .foregroundColor(.blue)
+//                        Text(" | ")
+//                            .font(.body)
+//                            .foregroundColor(Color("TextColor").opacity(0.7))
+//                        Link("Github Profile", destination: URL(string: "https://github.com/coder-selvarajan")!)
+//                            .font(.body)
+//                            .foregroundColor(.blue)
+                        
+                        Spacer()
                     }
                 }
-                .padding(.bottom, paddingSize)
+                .padding(.bottom, size20)
                 
                 Spacer()
             }
@@ -84,7 +86,7 @@ struct AboutView: View {
                 HStack {
                     Text("About").font(.title3)
                         .foregroundColor(Color("TextColor"))
-                        .padding(.horizontal, 10)
+                        .padding(.horizontal, size10)
                     Spacer()
                 }
             }
@@ -96,7 +98,7 @@ struct AboutView: View {
                         SKStoreReviewController.requestReview(in: windowScene)
                     }
                 }) {
-                    HStack(alignment: .center, spacing: 15) {
+                    HStack(alignment: .center, spacing: size15) {
                         Image(systemName: "heart.fill")
                             .foregroundColor(.red)
                         
@@ -108,7 +110,7 @@ struct AboutView: View {
                 }
 //                .padding()
 //                .background(userSettings.darkMode ? .black : .gray.opacity(0.15))
-//                .cornerRadius(10)
+//                .cornerRadius, size10)
             }
             
         } //toolbar

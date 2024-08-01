@@ -69,7 +69,7 @@ struct FavouritePoemListView: View {
                                                 HStack {
                                 Image(systemName: "book.closed.fill") // Replace with your image name
                                     .resizable()
-                                    .frame(width: paddingSize, height: paddingSize)
+                                    .frame(width: size20, height: size20)
                                     .foregroundColor(getColorByBook(bookname))
                                 Text(bookname)
                                     .font(.headline)
@@ -109,7 +109,7 @@ struct FavouritePoemListView: View {
                                                 HStack {
                                 Image(systemName: "calendar") // Replace with your image name
                                     .resizable()
-                                    .frame(width: paddingSize, height: paddingSize)
+                                    .frame(width: size20, height: size20)
 //                                    .foregroundColor(getColorByBook(bookname))
                                 Text(day)
                                     .font(.headline)
@@ -199,7 +199,7 @@ struct FavouritePoemListView: View {
                     .font(.subheadline)
                     .foregroundStyle(Color("TextColor"))
                     .padding(.vertical, 7)
-                    .padding(.horizontal, 10)
+                    .padding(.horizontal, size10)
                     .background(.gray.opacity(0.2))
                     .cornerRadius(8)
                 }

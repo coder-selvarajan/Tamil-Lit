@@ -12,9 +12,6 @@ struct SettingsView: View {
     @EnvironmentObject var userSettings: UserSettings
     @EnvironmentObject var notificationHandler: NotificationHandler
     
-//    @State private var showSettingsAlert = false
-//    @State private var showFeedbackAlert = false
-    
     @State private var activeAlert: ActiveAlert?
     
     enum ActiveAlert: Identifiable {
@@ -36,14 +33,13 @@ struct SettingsView: View {
                         }
                     }
                     .padding(.vertical, 2)
-                    .onChange(of: userSettings.notificationsEnabled) { oldValue, value in
+                    .onChange(of: userSettings.notificationsEnabled) { value in
                         if value {
                             // checking if the user allow the notification from this app.
                             notificationHandler.requestNotificationPermission { granted in
                                 if granted {
                                     notificationHandler.scheduleDailyNotification()
                                 } else {
-//                                    showSettingsAlert = true
                                     activeAlert = .settings
                                 }
                             }
@@ -94,14 +90,13 @@ struct SettingsView: View {
                     }
                 }
                 SwiftUI.Section {
-                    //                VStack{
                     Button(action: {
                         // Action to redirect to App Store for rating
                         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
                             SKStoreReviewController.requestReview(in: windowScene)
                         }
                     }) {
-                        HStack(alignment: .center, spacing: 15) {
+                        HStack(alignment: .center, spacing: size15) {
                             Image(systemName: "heart.fill")
                                 .foregroundColor(.red)
                             
@@ -114,21 +109,18 @@ struct SettingsView: View {
                     }
                     .padding()
                     .frame(maxWidth: .infinity)
-                    //                        .background(.gray.opacity(0.15))
                     .background(userSettings.darkMode ? .black : .gray.opacity(0.15))
-                    .cornerRadius(10)
-                    //                    .padding(.vertical)
+                    .cornerRadius(size10)
                 }
                 
                 Button(action: {
-//                    showFeedbackAlert = true
                     activeAlert = .feedback
                 }) {
-                    HStack(alignment: .center, spacing: 15) {
+                    HStack(alignment: .center, spacing: size15) {
                         Image(systemName: "square.and.pencil")
                             .foregroundColor(.cyan)
                         
-                        Text("Send Feedback / Suggestion")
+                        Text("Send Feedback ")
                             .font(.body.bold())
                             .foregroundStyle(Color("TextColor"))
                     }
@@ -146,7 +138,7 @@ struct SettingsView: View {
                     }
                     
                 }) {
-                    HStack(alignment: .center, spacing: 15) {
+                    HStack(alignment: .center, spacing: size15) {
                         Image(systemName: "paperplane")
                             .foregroundColor(.cyan)
                         
@@ -180,33 +172,12 @@ struct SettingsView: View {
                 )
             }
         }
-        
-//        .alert(isPresented: $showFeedbackAlert) {
-//            Alert(
-//                title: Text("Share Your Thoughts"),
-//                message: Text("Your feedback helps us improve. Please copy the email address below to send us your thoughts."),
-//                primaryButton: .default(Text("Copy email address")) {
-//                    UIPasteboard.general.string = "selvarajan.thangavel@gmail.com"
-//                },
-//                secondaryButton: .cancel(Text("Cancel"))
-//            )
-//        }
-//        .alert(isPresented: $showSettingsAlert) {
-//            Alert(
-//                title: Text("Enable Notifications"),
-//                message: Text("Notifications are disabled. Please go to Settings to enable them."),
-//                primaryButton: .default(Text("Settings")) {
-//                    openAppSettings()
-//                },
-//                secondaryButton: .cancel()
-//            )
-//        }
         .toolbar {
             ToolbarItem(placement: .principal) {
                 HStack {
                     Image(systemName: "gearshape")
                         .font(.headline)
-                        .padding(.trailing, 10)
+                        .padding(.trailing, size10)
                     Text("Settings")
                         .font(.title3)
                         .fontWeight(.semibold)

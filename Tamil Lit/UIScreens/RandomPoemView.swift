@@ -38,13 +38,13 @@ struct RandomPoemView: View {
                             .fontWeight(.bold)
                             .foregroundStyle(.black)
                             .padding(.horizontal)
-                            .padding(.vertical, 10)
-                            .padding(.trailing, 15)
+                            .padding(.vertical, size10)
+                            .padding(.trailing)
                             .background(userSettings.darkMode ? .cyan : .cyan.opacity(0.9))
-                            .cornerRadius(10.0)
-                            .shadow(radius: 10)
+                            .cornerRadius(size10)
+                            .shadow(radius: size10)
                     }
-                    .padding(.trailing, -15)
+                    .padding(.trailing, -size15)
                     .padding(.bottom)
                 }
             }
@@ -77,7 +77,7 @@ struct RandomPoemView: View {
                     .font(.subheadline)
                     .foregroundStyle(Color("TextColor"))
                     .padding(.vertical, 7)
-                    .padding(.horizontal, 10)
+                    .padding(.horizontal, size10)
                     .background(.gray.opacity(0.2))
                     .cornerRadius(8)
                 }

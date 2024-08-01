@@ -44,7 +44,7 @@ struct SharePoem: View {
             .font(.subheadline)
             .foregroundStyle(tintColor)
         }
-        .padding(.horizontal, 10)
+        .padding(.horizontal, size10)
         .sheet(isPresented: $isSharing, onDismiss: {
             print("Dismissed")
         }) {

@@ -64,7 +64,7 @@ struct PoemDetailView: View {
             ZStack {
                 TabView(selection: $selectedPoem) {
                     ForEach(poems, id: \.id) { poem in
-                        VStack(alignment: .leading, spacing: 10) {
+                        VStack(alignment: .leading, spacing: size10) {
                             Spacer()
                             Text("\(getPoemTitle())")
                                 .font(.callout)
@@ -82,9 +82,9 @@ struct PoemDetailView: View {
                             Spacer()
                         }
                         .tag(poem)
-                        .padding(.bottom, 15)
+                        .padding(.bottom)
                         .frame(maxWidth: .infinity)
-                        .padding(.horizontal, 10)
+                        .padding(.horizontal, size10)
                     }
                 }
                 .frame(height: poemViewHieght) //getPoemViewHieght())
@@ -92,11 +92,11 @@ struct PoemDetailView: View {
                 .indexViewStyle(.page(backgroundDisplayMode: .never))
             }
         }
-        .padding(.horizontal, 10)
+        .padding(.horizontal, size10)
         .background(colorTheme.opacity(0.35))
-        .cornerRadius(10.0)
-        .padding(.horizontal, 10)
-        .padding(.bottom, paddingSize)
+        .cornerRadius(size10)
+        .padding(.horizontal, size10)
+        .padding(.bottom, size20)
     }
     
     var body: some View {
@@ -106,12 +106,12 @@ struct PoemDetailView: View {
             colorTheme.opacity(userSettings.darkMode ? 0.5 : 0.3).ignoresSafeArea()
             
             ScrollView(showsIndicators: false) {
-                VStack(alignment: .leading, spacing: 10.0) {
+                VStack(alignment: .leading, spacing: size10) {
                     HStack(alignment: .top, spacing: 5) {
                         Text("வகை : ")
                             .padding(3)
                             .foregroundStyle(.black)
-                            .frame(width: 60)
+                            .frame(width: size60)
                             .multilineTextAlignment(.trailing)
                             .background(.white)
                             .cornerRadius(5)
@@ -123,7 +123,7 @@ struct PoemDetailView: View {
                     }
                     .font(.subheadline)
                     .padding(.vertical)
-                    .padding(.leading, paddingSize)
+                    .padding(.leading, size20)
                     .padding(.trailing, 5)
                     
                     
@@ -176,7 +176,7 @@ struct PoemDetailView: View {
                                 showAlert = true
                             }
                         }
-                        .padding(.top, -paddingSize)
+                        .padding(.top, -size20)
                         
                         VStack {
                             ForEach(viewModel.explanations, id:\.self) { explanation in
@@ -202,7 +202,7 @@ struct PoemDetailView: View {
                                 }
                             }
                         }
-                        .padding(.vertical, paddingSize)
+                        .padding(.vertical, size20)
 //                        .padding(.bottom, paddingSize)
                         
                     }.padding()
@@ -210,37 +210,37 @@ struct PoemDetailView: View {
             }
             
             // Home Button
-            VStack {
-                Spacer()
-                HStack {
-                    Spacer()
-                    
-                    Button {
-                        // Go to home page
-//                        print(navigationPath.count)
-                        //                            navigationPath.removeAll()
-                        //                            presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        Image(systemName: "house.fill")
-                            .font(.title3)
-                            .foregroundStyle(Color("TextColor").opacity(0.8))
-                            .padding(.horizontal, paddingSize)
-                            .padding(.vertical, 15)
-                            .padding(.trailing, paddingSize)
-                    }
-                    .background(Color("TextColorWhite"))
-                    .cornerRadius(10.0)
-                    .shadow(radius: 10)
-                    .padding(.bottom, 30)
-                    .padding(.trailing, -paddingSize)
-                    
-                }
-            }
-            .edgesIgnoringSafeArea(.bottom)
+//            VStack {
+//                Spacer()
+//                HStack {
+//                    Spacer()
+//                    
+//                    Button {
+//                        // Go to home page
+////                        print(navigationPath.count)
+//                        //                            navigationPath.removeAll()
+//                        //                            presentationMode.wrappedValue.dismiss()
+//                    } label: {
+//                        Image(systemName: "house.fill")
+//                            .font(.title3)
+//                            .foregroundStyle(Color("TextColor").opacity(0.8))
+//                            .padding(.horizontal, size20)
+//                            .padding(.vertical)
+//                            .padding(.trailing, size20)
+//                    }
+//                    .background(Color("TextColorWhite"))
+//                    .cornerRadius(size10)
+//                    .shadow(radius: size10)
+//                    .padding(.bottom, size30)
+//                    .padding(.trailing, -size20)
+//                    
+//                }
+//            }
+//            .edgesIgnoringSafeArea(.bottom)
         }
 //        .navigationTitle(Text(bookName).foregroundStyle(.black))
 //        .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
-        .onChange(of: selectedPoem, { oldValue, newValue in
+        .onChange(of: selectedPoem, perform: { newValue in
             poemBookmarked = vmFavPoem.isPoemBookmarked(newValue)
             viewModel.fetchExplanations(for: newValue)
         })
@@ -248,8 +248,8 @@ struct PoemDetailView: View {
             Text(alertMessage)
                 .padding()
                 .background(.white)
-                .cornerRadius(15.0)
-                .shadow(radius: 15.0)
+                .cornerRadius(size15)
+                .shadow(radius: size15)
         } customize: {
             $0
                 .type(.floater())
@@ -266,8 +266,8 @@ struct PoemDetailView: View {
                     Image("Thiruvalluvar")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 30)
-                        .padding(.trailing, 10)
+                        .frame(width: size30)
+                        .padding(.trailing, size10)
                     Text(bookName)
                         .font(.body)
                         .fontWeight(.semibold)
@@ -282,7 +282,7 @@ struct PoemDetailView: View {
         .onAppear {
             if let poemContent = selectedPoem.poem {
                 let lines = poemContent.components(separatedBy: "\n")
-                poemViewHieght = (CGFloat(lines.count) * 30.0) + 110.0
+                poemViewHieght = (CGFloat(lines.count) * size30) + size110
             }
             
             poemBookmarked = vmFavPoem.isPoemBookmarked(selectedPoem)

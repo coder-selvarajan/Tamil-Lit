@@ -30,7 +30,7 @@ struct BookSelectorView: View {
                                 .font(.body)
                         }
                     }
-                    .padding(.bottom, paddingSize)
+                    .padding(.bottom, size20)
                     
                     ForEach($booksInfo, id:\.id) { $bookInfo in
                         VStack {
@@ -46,7 +46,7 @@ struct BookSelectorView: View {
                             }
                             Divider().padding(.bottom, 5)
                         }
-                        .padding(.horizontal, 10)
+                        .padding(.horizontal, size10)
                         .onTapGesture {
                             bookInfo.selected.toggle()
                             
@@ -55,11 +55,11 @@ struct BookSelectorView: View {
                     }
                     
                 } //VStack
-                .padding(paddingSize)
+                .padding(size20)
                 .background(userSettings.darkMode ? .black : .white)
                 .foregroundColor(Color("TextColor"))
-                .cornerRadius(15)
-                .frame(width: UIScreen.main.bounds.size.width - 60)
+                .cornerRadius(size15)
+                .frame(width: UIScreen.main.bounds.size.width - size60)
                 .overlay(
                     CloseButton() {
                         showModal = false
@@ -77,12 +77,12 @@ struct CloseButton: View {
         Button {
             closeButtonClicked()
         } label: {
-            Image(systemName: "xmark.circle.fill")
+            Image(systemName: "xmark.app.fill")
                 .resizable()
-                .frame(width: 30, height: 30)
-                .foregroundColor(.red.opacity(0.8))
+                .frame(width: size30, height: size30)
+                .foregroundColor(.red.opacity(0.9))
         }
-        .padding([.top, .trailing], 10)
+        .padding([.top, .trailing], size10)
     }
 }
 

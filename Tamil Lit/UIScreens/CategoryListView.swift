@@ -24,11 +24,11 @@ struct CategoryListView: View {
                     HStack {
                         ForEach(viewModel.mainCategories, id:\.id) { mainCategory in
                             Text("\(mainCategory.title!)")
-                                .padding(10)
+                                .padding(size10)
                                 .font(.subheadline)
                                 .foregroundColor(viewModel.selectedMainCategory == mainCategory ? .white : .black)
                                 .background(viewModel.selectedMainCategory == mainCategory ? colorTheme.opacity(0.8) : .white)
-                                .cornerRadius(10.0)
+                                .cornerRadius(size10)
                                 .onTapGesture {
                                     viewModel.selectMainCategory(mainCategory)
                                 }
@@ -36,7 +36,7 @@ struct CategoryListView: View {
                     }
                 }
             }
-            .padding(.bottom, 10)
+            .padding(.bottom, size10)
             Divider()
             
             VStack(alignment: .leading) {
@@ -47,18 +47,18 @@ struct CategoryListView: View {
                 WrapView(data: viewModel.filteredSubCategories, content: { subCategory in
                     Button(action: {}) {
                         Text(subCategory.title!)
-                            .padding(10)
+                            .padding(size10)
                             .font(.subheadline)
                             .foregroundColor(viewModel.selectedSubCategory == subCategory ? .white : .black)
                             .background(viewModel.selectedSubCategory == subCategory ? colorTheme.opacity(0.8) : .white)
-                            .cornerRadius(10.0)
+                            .cornerRadius(size10)
                             .onTapGesture {
                                 viewModel.selectSubCategory(subCategory)
                             }
                     }
                 })
             }
-            .padding(.bottom, 10)
+            .padding(.bottom, size10)
             Divider()
             
             VStack(alignment: .leading) {
@@ -101,7 +101,7 @@ struct CategoryListView: View {
             }
             
         }
-        .padding(paddingSize)
+        .padding(size20)
         .onAppear {
             viewModel.fetchAllData(bookname: bookName)
         }
@@ -114,8 +114,8 @@ struct CategoryListView: View {
                     Image("Thiruvalluvar")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 30)
-                        .padding(.trailing, 10)
+                        .frame(width: size30)
+                        .padding(.trailing, size10)
                     Text(bookName)
                         .font(.body)
                         .fontWeight(.semibold)
@@ -134,7 +134,7 @@ struct CategoryListView: View {
                         .font(.subheadline)
                         .foregroundStyle(.black)
                         .padding(.vertical, 7)
-                        .padding(.horizontal, 10)
+                        .padding(.horizontal, size10)
                         .background(colorTheme.opacity(0.3))
                         .cornerRadius(8)
                 }

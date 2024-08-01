@@ -7,5 +7,29 @@
 
 import SwiftUI
 
+// aprox 5 for 375 screen size..
+let size5: CGFloat = UIScreen.main.bounds.size.width * 0.0135
+
+// aprox 10 for 375 screen size..
+let size10: CGFloat = UIScreen.main.bounds.size.width * 0.027
+
+// aprox 15 for 375 screen size..
+let size15: CGFloat = UIScreen.main.bounds.size.width * 0.04
+
 // aprox 20 for 375 screen size..
-let paddingSize: CGFloat = UIScreen.main.bounds.size.width * 0.055
+let size20: CGFloat = UIScreen.main.bounds.size.width * 0.055
+
+// aprox 30 for 375 screen size..
+let size30: CGFloat = UIScreen.main.bounds.size.width * 0.08
+
+// aprox 40 for 375 screen size..
+let size40: CGFloat = UIScreen.main.bounds.size.width * 0.107
+
+// aprox 50 for 375 screen size..
+let size50: CGFloat = UIScreen.main.bounds.size.width * 0.134
+
+// aprox 60 for 375 screen size..
+let size60: CGFloat = UIScreen.main.bounds.size.width * 0.16
+
+// aprox 110 for 375 screen size..
+let size110: CGFloat = UIScreen.main.bounds.size.width * 0.295

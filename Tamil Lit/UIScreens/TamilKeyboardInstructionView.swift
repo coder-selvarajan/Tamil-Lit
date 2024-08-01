@@ -10,11 +10,11 @@ import SwiftUI
 struct TamilKeyboardInstructionView: View {
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
+            VStack(alignment: .leading, spacing: size20) {
                 Text("How to Enable \nTamil Keyboard on iPhone")
                     .font(.title2) // Smaller title
                     .fontWeight(.bold)
-                    .padding(.bottom, 20)
+                    .padding(.bottom, size20)
                 
                 InstructionStepView(
                     stepNumber: 1,
@@ -53,7 +53,7 @@ struct TamilKeyboardInstructionView: View {
                 
                 Text("You're all set! You can now use the Tamil keyboard in any app that allows text input.")
                     .font(.headline)
-                    .padding(.top, 20)
+                    .padding(.top, size20)
                 
                 Spacer()
             }
@@ -68,14 +68,14 @@ struct InstructionStepView: View {
     let instruction: String
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: size10) {
             Text("Step \(stepNumber)")
                 .font(.title3) // Smaller step title
                 .fontWeight(.bold)
             
             Text(instruction)
                 .font(.body)
-                .padding(.bottom, 10)
+                .padding(.bottom, size10)
             
             Divider()
         }

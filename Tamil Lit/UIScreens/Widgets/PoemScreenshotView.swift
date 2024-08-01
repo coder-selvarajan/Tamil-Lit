@@ -37,12 +37,12 @@ struct PoemScreenshotView: View {
     }
     
     var getPoemScreenshotView: some View {
-        VStack(alignment: .leading, spacing: 10.0) {
+        VStack(alignment: .leading, spacing: size10) {
             HStack(alignment: .top, spacing: 5) {
                 Text("நூல் : ")
                     .padding(3)
                     .foregroundStyle(Color("TextColor"))
-                    .frame(width: 60)
+                    .frame(width: size60)
                     .multilineTextAlignment(.trailing)
                     .background(Color("TextColorWhite"))
                     .cornerRadius(5)
@@ -54,7 +54,7 @@ struct PoemScreenshotView: View {
             }
             .font(.subheadline)
             .padding(.vertical)
-            .padding(.leading, paddingSize)
+            .padding(.leading, size20)
             .padding(.trailing, 5)
             
             if !getCategoryText().starts(with: "பாடல்") {
@@ -62,7 +62,7 @@ struct PoemScreenshotView: View {
                     Text("வகை : ")
                         .padding(3)
                         .foregroundStyle(Color("TextColor"))
-                        .frame(width: 60)
+                        .frame(width: size60)
                         .multilineTextAlignment(.trailing)
                         .background(Color("TextColorWhite"))
                         .cornerRadius(5)
@@ -74,12 +74,12 @@ struct PoemScreenshotView: View {
                 }
                 .font(.subheadline)
                 .padding(.bottom)
-                .padding(.leading, paddingSize)
+                .padding(.leading, size20)
                 .padding(.trailing, 5)
             }
             
             // Poem view
-            VStack(alignment: .leading, spacing: 10) {
+            VStack(alignment: .leading, spacing: size10) {
                 Text("\(getPoemTitle())")
                     .font(.callout)
                     .fontWeight(Font.Weight.semibold)
@@ -95,8 +95,8 @@ struct PoemScreenshotView: View {
             }
             .padding()
             .background(colorTheme.opacity(0.5))
-            .cornerRadius(10.0)
-            .padding(.horizontal, 10)
+            .cornerRadius(size10)
+            .padding(.horizontal, size10)
             
             
             VStack(alignment: .leading) {
@@ -116,12 +116,12 @@ struct PoemScreenshotView: View {
 //                        Divider().background(.gray)
 //                            .padding(.vertical)
                     }
-                    .padding(.top, 10)
+                    .padding(.top, size10)
                 }
             }.padding()
         }
-        .padding(.horizontal, paddingSize)
-        .padding(.vertical, 40)
+        .padding(.horizontal, size20)
+        .padding(.vertical, size40)
         .background(colorTheme.opacity(0.35))
         .frame(width: UIScreen.main.bounds.width)
     }

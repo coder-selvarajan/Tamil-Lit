@@ -29,33 +29,33 @@ struct BookHomeView: View {
                 CategoryListView(colorTheme: colorTheme, bookName: bookName)
             }
             
-            VStack {
-                Spacer()
-                HStack {
-                    Spacer()
-                    
-                    Button {
-                        // Go to home page
-//                        print(navigationPath.count)
-                        //                            navigationPath.removeAll()
-                        //                            presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        Image(systemName: "house.fill")
-                            .font(.title3)
-                            .foregroundStyle(Color("TextColor").opacity(0.8))
-                            .padding(.horizontal, paddingSize)
-                            .padding(.vertical, 15)
-                            .padding(.trailing, paddingSize)
-                    }
-                    .background(Color("TextColorWhite"))
-                    .cornerRadius(10.0)
-                    .shadow(radius: 10)
-                    .padding(.bottom, 30)
-                    .padding(.trailing, -paddingSize)
-                    
-                }
-            }
-            .edgesIgnoringSafeArea(.bottom)
+//            VStack {
+//                Spacer()
+//                HStack {
+//                    Spacer()
+//                    
+//                    Button {
+//                        // Go to home page
+////                        print(navigationPath.count)
+//                        //                            navigationPath.removeAll()
+//                        //                            presentationMode.wrappedValue.dismiss()
+//                    } label: {
+//                        Image(systemName: "house.fill")
+//                            .font(.title3)
+//                            .foregroundStyle(Color("TextColor").opacity(0.8))
+//                            .padding(.horizontal, size20)
+//                            .padding(.vertical)
+//                            .padding(.trailing, size20)
+//                    }
+//                    .background(Color("TextColorWhite"))
+//                    .cornerRadius(size10)
+//                    .shadow(radius: size10)
+//                    .padding(.bottom, size30)
+//                    .padding(.trailing, -size20)
+//                    
+//                }
+//            }
+//            .edgesIgnoringSafeArea(.bottom)
             
         }.onAppear {
             viewModel.fetchAllData(bookname: bookName)

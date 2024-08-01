@@ -40,7 +40,7 @@ struct PoemListWithCategoryView: View {
                         .padding(.horizontal)
                     
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 10) {
+                        HStack(spacing: size10) {
                             ForEach(viewModel.categories, id: \.id) { category in
                                 Button {
                                     viewModel.selectedCategory = category
@@ -61,8 +61,8 @@ struct PoemListWithCategoryView: View {
                                 } label: {
                                     Text(getShortTitle(category))
                                         .font(.subheadline)
-                                        .padding(.horizontal, 10)
-                                        .padding(.vertical, 10)
+                                        .padding(.horizontal, size10)
+                                        .padding(.vertical, size10)
                                         .foregroundColor(highlightedCategoryId == category.id ? .white : .black)
                                         .background(highlightedCategoryId == category.id
                                                     ? colorTheme.opacity(0.7)
@@ -72,12 +72,12 @@ struct PoemListWithCategoryView: View {
                             }
                         }
                         .padding(.horizontal)
-                        .padding(.bottom, 10)
+                        .padding(.bottom, size10)
                     }
                 } // VStack
                 .padding(.top)
                 
-                Divider().padding(.bottom, 10).padding(.top, 0)
+                Divider().padding(.bottom, size10).padding(.top, 0)
                 
                 VStack(alignment: .leading) {
                     ScrollViewReader { proxy in
@@ -159,8 +159,8 @@ struct PoemListWithCategoryView: View {
                     Image("Thiruvalluvar")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 30)
-                        .padding(.trailing, 10)
+                        .frame(width: size30)
+                        .padding(.trailing, size10)
                     Text(bookName)
                         .font(.body)
                         .fontWeight(.semibold)
@@ -180,7 +180,7 @@ struct PoemListWithCategoryView: View {
                         .font(.subheadline)
                         .foregroundStyle(.black)
                         .padding(.vertical, 5)
-                        .padding(.horizontal, 10)
+                        .padding(.horizontal, size10)
                         .background(colorTheme.opacity(0.3))
                         .cornerRadius(8)
                 }

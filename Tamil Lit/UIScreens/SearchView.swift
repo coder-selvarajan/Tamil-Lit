@@ -97,18 +97,18 @@ struct SearchView: View {
                 .modifier(ClearButton(text: $searchText, searchIsFocused: _searchIsFocused))
                 .font(.headline)
                 .autocapitalization(UITextAutocapitalizationType.none)
-                .padding(.horizontal, 15)
-                .padding(.vertical, 15)
+                .padding(.horizontal)
+                .padding(.vertical)
                 .background(.gray.opacity(0.1))
-                .cornerRadius(10)
+                .cornerRadius(size10)
                 .focused($searchIsFocused)
                 .submitLabel(SubmitLabel.search)
                 .disableAutocorrection(true)
-                .onChange(of: searchText) {
+                .onChange(of: searchText, perform: { newValue in
                     if SearchEditChanged  { // means the cursor is on the search field
                         searchState = searchText == "" ? .initial : .typing
                     }
-                }
+                })
                 .onSubmit {
                     showLoading(.loading)
                     searchState = .submitted
@@ -132,11 +132,11 @@ struct SearchView: View {
                 }
                 .padding()
                 .background(.gray.opacity(0.2))
-                .cornerRadius(10.0)
-//                .padding(.leading, 10)
+                .cornerRadius(size10)
+//                .padding(.leading, size10)
             }
             .padding(.horizontal)
-            .padding(.top, 10)
+            .padding(.top, size10)
             
             //Results
             List {
@@ -163,14 +163,14 @@ struct SearchView: View {
                         }
                     }
                     
-                    if vm.getRecentSearch().count <= 2 {
+                    if vm.getRecentSearch().count < 2 {
                         NavigationLink(destination: TamilKeyboardInstructionView()) {
                             HStack {
                                 Text("How to enable Tamil keyboard?")
                                     .font(.footnote)
                                     .foregroundStyle(.gray)
                                     .padding(.top, 5)
-                                    .padding(.bottom, 10)
+                                    .padding(.bottom, size10)
                                 
                                 Spacer()
                             }
@@ -184,7 +184,7 @@ struct SearchView: View {
                                             HStack {
                             Image(systemName: "book.closed.fill") // Replace with your image name
                                 .resizable()
-                                .frame(width: paddingSize, height: paddingSize)
+                                .frame(width: size20, height: size20)
                                 .foregroundColor(getColorByBook(bookname))
                             Text(bookname)
                                 .font(.headline)

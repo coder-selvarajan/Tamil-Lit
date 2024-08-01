@@ -88,7 +88,7 @@ struct HomeView: View {
                             }
                             .padding(.bottom, 5)
                             
-                            Divider().padding(.vertical, 10)
+                            Divider().padding(.vertical, size10)
                             
 //                            Spacer()
                             
@@ -97,7 +97,7 @@ struct HomeView: View {
                                 Text("\(vm.poemOftheDay?.bookname ?? "")\(vm.categoryDisplay)")
                                     .font(.subheadline)
                                     .fontWeight(.semibold)
-                                    .padding(.bottom, 10)
+                                    .padding(.bottom, size10)
                                 
                                 Spacer()
                             }
@@ -112,35 +112,29 @@ struct HomeView: View {
                         .frame(maxWidth: .infinity)
                         .padding()
                         .background(.gray.opacity(0.15))
-                        .cornerRadius(8)
+                        .cornerRadius(size10)
                         .padding()
                         
                         // Action Section
                         VStack (alignment: .leading) {
-                            HStack(spacing: 15) {
+                            HStack(spacing: size15) {
                                 NavigationLink(value: "RandomPoemView") {
-                                    VStack(alignment: .center, spacing: 10) {
-                                        HStack(spacing: 10) {
+                                    VStack(alignment: .center, spacing: size10) {
+                                        HStack(spacing: size10) {
                                             Circle()
-                                                .fill(.white)
+                                                .fill(Color.white)
                                                 .fill(Color.blue.opacity(userSettings.darkMode ? 0.75 : 0.6))
-                                                .frame(width: 10, height: 10)
+                                                .frame(width: size10, height: size10)
                                             Circle()
-                                                .fill(.white)
+                                                .fill(Color.white)
                                                 .fill(Color.cyan.opacity(userSettings.darkMode ? 0.75 : 0.6))
-                                                .frame(width: 10, height: 10)
-//                                            Circle()
-//                                                .fill(Color.indigo.opacity(0.6))
-//                                                .frame(width: 10, height: 10)
+                                                .frame(width: size10, height: size10)
                                             Circle()
-                                                .fill(.white)
+                                                .fill(Color.white)
                                                 .fill(Color.purple.opacity(userSettings.darkMode ? 0.7 : 0.55))
-                                                .frame(width: 10, height: 10)
+                                                .frame(width: size10, height: size10)
                                             
-                                        }.frame(height: 30)
-//                                        Image(systemName: "wand.and.stars")
-//                                            .font(.title)
-//                                            .foregroundColor(Color("colorYellow"))
+                                        }.frame(height: size30)
                                         VStack(alignment: .leading) {
                                             Text("ஏதோ ஒரு பாடல்")
                                                 .lineLimit(1)
@@ -151,11 +145,11 @@ struct HomeView: View {
                                     .padding()
                                     .frame(maxWidth: .infinity)
                                     .background(.gray.opacity(0.15))
-                                    .cornerRadius(10.0)
+                                    .cornerRadius(size10)
                                 }
                                 
                                 NavigationLink(value: "FavouritePoemView") {
-                                    VStack(alignment: .center, spacing: 10) {
+                                    VStack(alignment: .center, spacing: size10) {
                                         HStack {
 //                                            Image(systemName: "bookmark.fill")
 //                                                .font(.title3)
@@ -163,7 +157,7 @@ struct HomeView: View {
                                             Image(systemName: "bookmark.fill")
                                                 .font(.title3)
                                                 .foregroundColor(.cyan.opacity(userSettings.darkMode ? 0.9 : 0.7))
-                                        }.frame(height: 30)
+                                        }.frame(height: size30)
                                         
                                         Text("சேமித்தவை ")
                                             .lineLimit(1)
@@ -174,7 +168,7 @@ struct HomeView: View {
                                     .frame(maxWidth: .infinity)
                                     //                                }
                                     .background(.gray.opacity(0.15))
-                                    .cornerRadius(10.0)
+                                    .cornerRadius(size10)
                                 }
                                 
                             }
@@ -220,7 +214,7 @@ struct HomeView: View {
                         .padding()
                         
                         // Tamil Articles Links
-                        VStack(spacing: 16) {
+                        VStack(spacing: size15) {
                             HStack {
                                 
                                 Image(systemName: "square.text.square")
@@ -315,7 +309,7 @@ struct HomeView: View {
                             }
                             .padding()
                             .background(.gray.opacity(0.1))
-                            .cornerRadius(10)
+                            .cornerRadius(size10)
                             
                         }
                         .padding()
@@ -323,7 +317,7 @@ struct HomeView: View {
                         
                         VStack{
                             Text(" ")
-                        }.frame(height: 40.0)
+                        }.frame(height: size40)
                         
                         Spacer()
                     }
@@ -352,13 +346,13 @@ struct HomeView: View {
                     showPoemPopup = true
                 }
             }
-            .onChange(of: notificationHandler.appOpenedFromNotification) { oldValue, newValue in
+            .onChange(of: notificationHandler.appOpenedFromNotification, perform: { newValue in
                 // this code is added since the app is open and the onAppear event would n't trigger..
                 if newValue {
                     print("App opened from notification")
                     showPoemPopup = true
                 }
-            }
+            })
             .sheet(isPresented: $showPoemPopup) {
                 if vm.poemOftheDay != nil {
                     SimplePoemDetailView(selectedPoem: Binding($vm.poemOftheDay)!, popupMode: true)
@@ -370,8 +364,8 @@ struct HomeView: View {
                         Image("114")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 40)
-                            .cornerRadius(10.0)
+                            .frame(width: size40)
+                            .cornerRadius(size10)
                         
                         Text("Tamil Lit")
                             .font(.custom("Quicksand", size: 22))
@@ -418,12 +412,12 @@ struct BookTileView: View {
     
     var body: some View {
         ZStack(alignment: .topLeading) {
-            RoundedRectangle(cornerRadius: 10)
-                .fill(userSettings.darkMode ? .white : .clear)
+            RoundedRectangle(cornerRadius: size10)
+                .fill(userSettings.darkMode ? Color.white : Color.clear)
                 .fill(userSettings.darkMode ? color.opacity(0.45) : color.opacity(0.25))
             
             HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: 10) {
+                VStack(alignment: .leading, spacing: size10) {
                     Text(bookTitle)
                         .font(.headline)
                         .foregroundStyle(.black)
@@ -451,7 +445,7 @@ struct BookTileView: View {
                             Image(img)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(height: 90)
+                                .frame(height: 80)
                                 .saturation(0.1)
 //                                .brightness(0.0)
 //                                .contrast(0.5)
@@ -461,7 +455,7 @@ struct BookTileView: View {
                             Image("book-icon")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 50)
+                                .frame(width: size50)
                                 .saturation(0.0)
                                 .opacity(0.6)
                                 .padding()
@@ -470,7 +464,7 @@ struct BookTileView: View {
                 }.padding(0)
             }
         }
-        .frame(height: bookDisplayAsGrid ? 150 : 90)
+        .frame(height: 150)
     }
 }
 

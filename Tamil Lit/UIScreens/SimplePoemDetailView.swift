@@ -51,14 +51,14 @@ struct SimplePoemDetailView: View {
             colorTheme.opacity(0.2).ignoresSafeArea()
             
             ScrollView(showsIndicators: false) {
-                VStack(alignment: .leading, spacing: 10.0) {
+                VStack(alignment: .leading, spacing: size10) {
                     
                     // Book and Category titles
                     VStack {
                         HStack(alignment: .top, spacing: 5) {
                             Text("நூல் : ")
                                 .padding(3)
-                                .frame(width: 60)
+                                .frame(width: size60)
                                 .multilineTextAlignment(.trailing)
                                 .background(Color("TextColorWhite"))
                                 .cornerRadius(5)
@@ -70,14 +70,14 @@ struct SimplePoemDetailView: View {
                             Spacer()
                         }
                         .font(.subheadline)
-                        .padding(.bottom, 10)
-                        .padding(.leading, paddingSize)
+                        .padding(.bottom, size10)
+                        .padding(.leading, size20)
                         .padding(.trailing, 5)
                         
                         HStack(alignment: .top, spacing: 5) {
                             Text("வகை : ")
                                 .padding(3)
-                                .frame(width: 60)
+                                .frame(width: size60)
                                 .multilineTextAlignment(.trailing)
                                 .background(Color("TextColorWhite"))
                                 .cornerRadius(5)
@@ -88,11 +88,11 @@ struct SimplePoemDetailView: View {
                             Spacer()
                         }
                         .font(.subheadline)
-                        .padding(.bottom, 10)
-                        .padding(.leading, paddingSize)
+                        .padding(.bottom, size10)
+                        .padding(.leading, size20)
                         .padding(.trailing, 5)
                     }
-                    .padding(.top, 30)
+                    .padding(.top, size30)
                     .padding(.bottom)
                     
                     // Poem box
@@ -114,15 +114,15 @@ struct SimplePoemDetailView: View {
                             
                             Spacer()
                         }
-                        .padding(.bottom, 15)
+                        .padding(.bottom)
                         .frame(maxWidth: .infinity)
-                        .padding(.horizontal, 10)
+                        .padding(.horizontal, size10)
                     }
-                    .padding(.horizontal, 10)
+                    .padding(.horizontal, size10)
                     .background(colorTheme.opacity(0.35))
-                    .cornerRadius(10.0)
-                    .padding(.horizontal, 10)
-                    .padding(.bottom, paddingSize)
+                    .cornerRadius(size10)
+                    .padding(.horizontal, size10)
+                    .padding(.bottom, size20)
                     
                     // Explanation section
                     VStack(alignment: .leading) {
@@ -171,7 +171,7 @@ struct SimplePoemDetailView: View {
                                 showAlert = true
                             }
                         }
-                        .padding(.top, -paddingSize)
+                        .padding(.top, -size20)
                         
                         VStack {
                             ForEach(vmExplanation.explanations, id:\.self) { explanation in
@@ -196,11 +196,11 @@ struct SimplePoemDetailView: View {
                                 }
                             }
                         }
-                        .padding(.top, paddingSize)
+                        .padding(.top, size20)
                         
                     }
-                    .padding(paddingSize)
-                    .padding(.bottom, paddingSize)
+                    .padding(size20)
+                    .padding(.bottom, size20)
                 }
             }
             
@@ -211,8 +211,8 @@ struct SimplePoemDetailView: View {
                         
                         Image(systemName: "xmark.app.fill")
                             .font(.largeTitle)
-                            .foregroundColor(.red.opacity(0.7))
-                            .padding(10)
+                            .foregroundColor(.red.opacity(0.9))
+                            .padding(size10)
                             .padding(.top, 5)
                             .onTapGesture {
                                 presentationMode.wrappedValue.dismiss()
@@ -227,8 +227,8 @@ struct SimplePoemDetailView: View {
             Text("\(alertMessage)")
                 .padding()
                 .background(Color("TextColorWhite"))
-                .cornerRadius(15.0)
-                .shadow(radius: 15.0)
+                .cornerRadius(size15)
+                .shadow(radius: size15)
         } customize: {
             $0
                 .type(.floater())
@@ -238,7 +238,7 @@ struct SimplePoemDetailView: View {
                 .closeOnTapOutside(true)
                 .autohideIn(1.5)
         }
-        .onChange(of: selectedPoem, { oldValue, newValue in
+        .onChange(of: selectedPoem, perform: { newValue in
 //            if let poem = newValue {
                 poemBookmarked = vmFavPoem.isPoemBookmarked(newValue)
                 vmExplanation.fetchExplanations(for: newValue)

@@ -127,7 +127,7 @@ let _books = [
         order: 2,
         title: "ஆத்திசூடி",
         subtitle: "109 வாக்கியங்கள்",
-        image: "Avvaiyar3",
+        image: "Avvaiyar",
         color: .cyan,
         bannerColor: "colorAthichudi",
         selected: true
@@ -147,7 +147,7 @@ let _books = [
         order: 4,
         title: "ஆசாரக் கோவை",
         subtitle: "100 பாடல்கள்",
-        image: "Ramar",
+        image: "Acharam",
         color: .purple.opacity(0.7),
         bannerColor: "colorAcharakovai",
         selected: true
@@ -157,7 +157,7 @@ let _books = [
         order: 5,
         title: "இனியவை நாற்பது",
         subtitle: "40 பாடல்கள்",
-        image: "Balaji",
+        image: "GoodHandGesture",
         color: .red.opacity(0.6),
         bannerColor: "colorIniyavaiNaarpathu",
         selected: true
@@ -167,7 +167,7 @@ let _books = [
         order: 6,
         title: "இன்னா நாற்பது",
         subtitle: "40 பாடல்கள்",
-        image: "Karuppusamy",
+        image: "CrossHands",
         color: .orange.opacity(0.7),
         bannerColor: "colorInnaNaarpathu",
         selected: true
@@ -177,7 +177,7 @@ let _books = [
         order: 7,
         title: "நான்மணிக்கடிகை",
         subtitle: "101 பாடல்கள்",
-        image: "Meenakshi",
+        image: "Bharathanattiyam",
         color: .brown,
         bannerColor: "colorNaanmanikadikai",
         selected: true
@@ -187,7 +187,7 @@ let _books = [
         order: 8,
         title: "திரிகடுகம்",
         subtitle: "102 பாடல்கள்",
-        image: "Adiyogi",
+        image: "Thirikadugam",
         color: .gray,
         bannerColor: "colorThirikadukam",
         selected: true
@@ -197,7 +197,7 @@ let _books = [
         order: 9,
         title: "முதுமொழிக் காஞ்சி",
         subtitle: "100 பழமொழிகள்",
-        image: "Murugan",
+        image: "PalmleafManuscript",
         color: .teal,
         bannerColor: "colorMothumozhikanchi",
         selected: true
@@ -207,7 +207,7 @@ let _books = [
         order: 10,
         title: "பழமொழி நானூறு",
         subtitle: "400 பழமொழிகள்",
-        image: "Balaji",
+        image: "OldPalmleaf",
         color: .green.opacity(0.7),
         bannerColor: "colorPazhamozhiNaanuru",
         selected: true

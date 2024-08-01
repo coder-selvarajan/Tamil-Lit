@@ -22,7 +22,7 @@ struct BookDetailsView: View {
             bookInfo.color.opacity(0.2).ignoresSafeArea()
             
             ScrollView(showsIndicators: false) {
-                VStack(alignment: .leading, spacing: 10) {
+                VStack(alignment: .leading, spacing: size10) {
                     
                     HStack(alignment: .top) {
                         Image(bookInfo.image)
@@ -30,8 +30,8 @@ struct BookDetailsView: View {
                             .scaledToFit()
                             .saturation(0.0)
                             .opacity(0.75)
-                            .frame(width: 60)
-                            .padding(.trailing, 10)
+                            .frame(width: size60)
+                            .padding(.trailing, size10)
                         
                         VStack(alignment: .leading) {
                             Text(bookName)
@@ -67,7 +67,7 @@ struct BookDetailsView: View {
 
                     // book description
                     Text(vm.book?.info ?? "")
-                        .padding(paddingSize)
+                        .padding(size20)
                         .foregroundStyle(.black)
                 }
                 
@@ -84,7 +84,7 @@ struct BookDetailsView: View {
                         Image(systemName: "xmark.app.fill")
                             .font(.largeTitle)
                             .foregroundColor(.black.opacity(0.60))
-                            .padding(10)
+                            .padding(size10)
                             .padding(.top, 5)
                             .onTapGesture {
                                 presentationMode.wrappedValue.dismiss()

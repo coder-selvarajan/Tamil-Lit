@@ -98,17 +98,106 @@ struct BookInfo: Identifiable, Codable, Hashable {
 }
 
 //let _books = [
-//    BookInfo(id: UUID(), order: 1, title: "திருக்குறள்", subtitle: "1330 குறள்கள்", image: "Thiruvalluvar", color: .blue, selected: true),
-//    BookInfo(id: UUID(), order: 2, title: "ஆத்திசூடி", subtitle: "109 வாக்கியங்கள்", image: "Avvaiyar3", color: .cyan, selected: true),
-//    BookInfo(id: UUID(), order: 3, title: "நாலடியார்", subtitle: "400 பாடல்கள்", image: "Jainmonk", color: .indigo, selected: true),
-//    
-//    BookInfo(id: UUID(), order: 4, title: "ஆசாரக் கோவை", subtitle: "100 பாடல்கள்", image: "Ramar", color: .purple.opacity(0.7), selected: true),
-//    BookInfo(id: UUID(), order: 5, title: "இனியவை நாற்பது", subtitle: "40 பாடல்கள்", image: "Balaji", color: .red.opacity(0.6), selected: true),
-//    BookInfo(id: UUID(), order: 6, title: "இன்னா நாற்பது", subtitle: "40 பாடல்கள்", image: "Karuppusamy", color: .orange.opacity(0.7), selected: true),
-//    BookInfo(id: UUID(), order: 7, title: "நான்மணிக்கடிகை", subtitle: "101 பாடல்கள்", image: "Meenakshi", color: .brown, selected: true),
-//    BookInfo(id: UUID(), order: 8, title: "திரிகடுகம்", subtitle: "102 பாடல்கள்", image: "Adiyogi", color: .gray, selected: true),
-//    BookInfo(id: UUID(), order: 9, title: "முதுமொழிக் காஞ்சி", subtitle: "100 பழமொழிகள்", image: "Murugan", color: .teal, selected: true),
-//    BookInfo(id: UUID(), order: 10, title: "பழமொழி நானூறு", subtitle: "400 பழமொழிகள்", image: "Balaji", color: .green.opacity(0.7), selected: true)
+//    BookInfo(
+//        id: UUID(),
+//        order: 1,
+//        title: "திருக்குறள்",
+//        subtitle: "1330 குறள்கள்",
+//        image: "Thiruvalluvar",
+//        color: .blue,
+//        bannerColor: "colorThirukural",
+//        selected: true
+//    ),
+//    BookInfo(
+//        id: UUID(),
+//        order: 2,
+//        title: "ஆத்திசூடி",
+//        subtitle: "109 வாக்கியங்கள்",
+//        image: "Avvaiyar",
+//        color: .cyan,
+//        bannerColor: "colorAthichudi",
+//        selected: true
+//    ),
+//    BookInfo(
+//        id: UUID(),
+//        order: 3,
+//        title: "நாலடியார்",
+//        subtitle: "400 பாடல்கள்",
+//        image: "Jainmonk",
+//        color: .indigo,
+//        bannerColor: "colorNaaladiyar",
+//        selected: true
+//    ),
+//    BookInfo(
+//        id: UUID(),
+//        order: 4,
+//        title: "ஆசாரக் கோவை",
+//        subtitle: "100 பாடல்கள்",
+//        image: "Acharam",
+//        color: .purple.opacity(0.7),
+//        bannerColor: "colorAcharakovai",
+//        selected: true
+//    ),
+//    BookInfo(
+//        id: UUID(),
+//        order: 5,
+//        title: "இனியவை நாற்பது",
+//        subtitle: "40 பாடல்கள்",
+//        image: "GoodHandGesture",
+//        color: .red.opacity(0.6),
+//        bannerColor: "colorIniyavaiNaarpathu",
+//        selected: true
+//    ),
+//    BookInfo(
+//        id: UUID(),
+//        order: 6,
+//        title: "இன்னா நாற்பது",
+//        subtitle: "40 பாடல்கள்",
+//        image: "CrossHands",
+//        color: .orange.opacity(0.7),
+//        bannerColor: "colorInnaNaarpathu",
+//        selected: true
+//    ),
+//    BookInfo(
+//        id: UUID(),
+//        order: 7,
+//        title: "நான்மணிக்கடிகை",
+//        subtitle: "101 பாடல்கள்",
+//        image: "Bharathanattiyam",
+//        color: .brown,
+//        bannerColor: "colorNaanmanikadikai",
+//        selected: true
+//    ),
+//    BookInfo(
+//        id: UUID(),
+//        order: 8,
+//        title: "திரிகடுகம்",
+//        subtitle: "102 பாடல்கள்",
+//        image: "Thirikadugam",
+//        color: .gray,
+//        bannerColor: "colorThirikadukam",
+//        selected: true
+//    ),
+//    BookInfo(
+//        id: UUID(),
+//        order: 9,
+//        title: "முதுமொழிக் காஞ்சி",
+//        subtitle: "100 பழமொழிகள்",
+//        image: "PalmleafManuscript",
+//        color: .teal,
+//        bannerColor: "colorMothumozhikanchi",
+//        selected: true
+//    ),
+//    BookInfo(
+//        id: UUID(),
+//        order: 10,
+//        title: "பழமொழி நானூறு",
+//        subtitle: "400 பழமொழிகள்",
+//        image: "OldPalmleaf",
+//        color: .green.opacity(0.7),
+//        bannerColor: "colorPazhamozhiNaanuru",
+//        selected: true
+//    )
 //]
 
 let _books = [
@@ -118,7 +207,7 @@ let _books = [
         title: "திருக்குறள்",
         subtitle: "1330 குறள்கள்",
         image: "Thiruvalluvar",
-        color: .blue,
+        color: .gray,
         bannerColor: "colorThirukural",
         selected: true
     ),
@@ -127,8 +216,8 @@ let _books = [
         order: 2,
         title: "ஆத்திசூடி",
         subtitle: "109 வாக்கியங்கள்",
-        image: "Avvaiyar",
-        color: .cyan,
+        image: "Avvaiyar2",
+        color: .gray,
         bannerColor: "colorAthichudi",
         selected: true
     ),
@@ -137,8 +226,8 @@ let _books = [
         order: 3,
         title: "நாலடியார்",
         subtitle: "400 பாடல்கள்",
-        image: "Jainmonk",
-        color: .indigo,
+        image: "JainSanyasi",
+        color: .gray,
         bannerColor: "colorNaaladiyar",
         selected: true
     ),
@@ -148,7 +237,7 @@ let _books = [
         title: "ஆசாரக் கோவை",
         subtitle: "100 பாடல்கள்",
         image: "Acharam",
-        color: .purple.opacity(0.7),
+        color: .gray,
         bannerColor: "colorAcharakovai",
         selected: true
     ),
@@ -158,7 +247,7 @@ let _books = [
         title: "இனியவை நாற்பது",
         subtitle: "40 பாடல்கள்",
         image: "GoodHandGesture",
-        color: .red.opacity(0.6),
+        color: .gray,
         bannerColor: "colorIniyavaiNaarpathu",
         selected: true
     ),
@@ -168,7 +257,7 @@ let _books = [
         title: "இன்னா நாற்பது",
         subtitle: "40 பாடல்கள்",
         image: "CrossHands",
-        color: .orange.opacity(0.7),
+        color: .gray,
         bannerColor: "colorInnaNaarpathu",
         selected: true
     ),
@@ -178,7 +267,7 @@ let _books = [
         title: "நான்மணிக்கடிகை",
         subtitle: "101 பாடல்கள்",
         image: "Bharathanattiyam",
-        color: .brown,
+        color: .gray,
         bannerColor: "colorNaanmanikadikai",
         selected: true
     ),
@@ -198,7 +287,7 @@ let _books = [
         title: "முதுமொழிக் காஞ்சி",
         subtitle: "100 பழமொழிகள்",
         image: "PalmleafManuscript",
-        color: .teal,
+        color: .gray,
         bannerColor: "colorMothumozhikanchi",
         selected: true
     ),
@@ -208,7 +297,7 @@ let _books = [
         title: "பழமொழி நானூறு",
         subtitle: "400 பழமொழிகள்",
         image: "OldPalmleaf",
-        color: .green.opacity(0.7),
+        color: .gray,
         bannerColor: "colorPazhamozhiNaanuru",
         selected: true
     )

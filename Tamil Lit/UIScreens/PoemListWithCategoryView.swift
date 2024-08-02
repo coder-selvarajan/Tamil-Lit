@@ -35,8 +35,7 @@ struct PoemListWithCategoryView: View {
                 VStack(alignment: .leading) {
                     Text("வகைகள்: ")
                         .foregroundStyle(.black.opacity(0.8))
-                        .font(.footnote)
-                        .fontWeight(.bold)
+                        .font(.footnote.bold())
                         .padding(.horizontal)
                     
                     ScrollView(.horizontal, showsIndicators: false) {
@@ -133,9 +132,13 @@ struct PoemListWithCategoryView: View {
                                 }
                             }
                         } // List
-                        .scrollContentBackground(Visibility.hidden)
-                        .scrollIndicators(.hidden)
+//                        .scrollContentBackground(Visibility.hidden)
+//                        .scrollIndicators(.hidden)
                         .padding(.top, -5)
+                        .background(Color.clear) // Use background instead of scrollContentBackground
+                        .onAppear {
+                            UITableView.appearance().showsVerticalScrollIndicator = false // Hide scroll indicators
+                        }
                         
                     } //ScrollViewReader
                 }

@@ -6,41 +6,79 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct MainView: View {
-//    @State private var selectedTab = 0
+    @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = true
+    @AppStorage("launchCount") var launchCount: Int = 0
     
-    @State private var navigationPath = NavigationPath()
+//    @State private var navigationPath = NavigationPath()
     @Environment(\.presentationMode) var presentationMode
-    
-//    init() {
-//        UITabBar.appearance().isHidden = true
-//    }
     
     var body: some View {
         ZStack {
-            HomeView()
+            NavigationView {
+                if hasCompletedOnboarding {
+                    HomeView()
+                } else {
+                    // OnboardingView(hasCompletedOnboarding: $hasCompletedOnboarding)
+                }
+            }
+            .onAppear {
+                launchCount += 1  // Incrementing the launch count
+                checkAndPromptForReview()
+            }
+        }
+        
+//        ZStack {
+//            if #available(iOS 16.0, *) {
+//                NavigationStack {
+//                    if hasCompletedOnboarding {
+//                        HomeView()
+//                    } else {
+//                        //                    OnboardingView(hasCompletedOnboarding: $hasCompletedOnboarding)
+//                    }
+//                }
+//                .onAppear(){
+//                    //                TelemetryDeck.signal(
+//                    //                    "Page Load",
+//                    //                    parameters: [
+//                    //                        "app": "BoardBrain",
+//                    //                        "event": "page load",
+//                    //                        "identifier":"main-view",
+//                    //                        "viewName":"Main View"
+//                    //                    ]
+//                    //                )
+//                }
+//                .onAppear {
+//                    launchCount += 1  // Incrementing the launch count
+//                    checkAndPromptForReview()
+//                }
+//            } else {
+//                // Fallback on earlier versions
+//                NavigationView {
+//                    if hasCompletedOnboarding {
+//                        HomeView()
+//                    } else {
+//                        //                    OnboardingView(hasCompletedOnboarding: $hasCompletedOnboarding)
+//                    }
+//                }
+//                .onAppear {
+//                    launchCount += 1  // Incrementing the launch count
+//                    checkAndPromptForReview()
+//                }
+//            }
+//        }
+    }
+    
+    private func checkAndPromptForReview() {
+        if launchCount == 5 || launchCount == 20 {
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                SKStoreReviewController.requestReview(in: windowScene)
+            }
         }
     }
 }
-
-//struct TabButton: View {
-//    let icon: String
-//    let tabIndex: Int
-//    @Binding var selectedTab: Int
-//    
-//    var body: some View {
-//        Button(action: {
-//            selectedTab = tabIndex
-//        }) {
-//            Image(systemName: icon)
-//                .font(.title3)
-//                .foregroundColor(selectedTab == tabIndex ? Color("TextColor") : Color.gray)
-//                .padding()
-//        }
-//    }
-//}
-
 
 #Preview {
     MainView()

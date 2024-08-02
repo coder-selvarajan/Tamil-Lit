@@ -48,8 +48,13 @@ struct SharePoem: View {
         .sheet(isPresented: $isSharing, onDismiss: {
             print("Dismissed")
         }) {
-            ActivityView(activityItems: [poemText()])
-                .presentationDetents([.medium])
+            if #available(iOS 16.0, *) {
+                ActivityView(activityItems: [poemText()])
+                    .presentationDetents([.medium])
+            } else {
+                // Fallback on earlier versions
+                ActivityView(activityItems: [poemText()])
+            }
         }
     }
     

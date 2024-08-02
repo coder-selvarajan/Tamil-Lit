@@ -55,8 +55,8 @@ struct BookDetailsView: View {
                                     Text("காலம் : \(period)")
                                 }
                             }
-                            .font(.subheadline)
-                            .fontWeight(.semibold)
+                            .font(.subheadline.bold())
+//                            .fontWeight(.semibold)
                         }
                         .foregroundStyle(.black)
                         Spacer()

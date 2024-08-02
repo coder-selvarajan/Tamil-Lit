@@ -51,7 +51,7 @@ struct PoemListView: View {
     
     var body: some View {
         ZStack {
-            Color.white.ignoresSafeArea()
+//            Color.white.ignoresSafeArea()
 //            colorTheme.opacity(0.2).ignoresSafeArea()
             colorTheme.opacity(userSettings.darkMode ? 0.5 : 0.3).ignoresSafeArea()
             
@@ -75,11 +75,12 @@ struct PoemListView: View {
                                                                poems: viewModel.poems,
                                                                selectedPoem: poem)) {
                         Text("\(poem.number). \(poem.poem ?? "No Poem")")
-                            .foregroundStyle(.black)
+//                            .foregroundStyle(Color("TextColor"))
                     }
                     .listRowBackground(colorTheme.opacity(0.2))
                 }
-                .scrollContentBackground(Visibility.hidden)
+                .background(Color.clear)
+//                .scrollContentBackground(Visibility.hidden)
             }
             
             // Home Button

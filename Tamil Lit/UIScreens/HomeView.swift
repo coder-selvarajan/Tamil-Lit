@@ -41,9 +41,8 @@ struct HomeView: View {
         return true
     }
     
-    
     var body: some View {
-        NavigationStack {
+//        NavigationView {
             VStack {
                 ScrollView(showsIndicators: false) {
                     VStack {
@@ -72,7 +71,6 @@ struct HomeView: View {
                                 Text(formattedDate)
                                     .font(.subheadline)
                                     .foregroundStyle(Color("TextColor").opacity(0.85))
-//                                    .padding(.horizontal, 5)
                                 
                                 Button {
                                     currentDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate) ?? currentDate
@@ -89,8 +87,6 @@ struct HomeView: View {
                             .padding(.bottom, 5)
                             
                             Divider().padding(.vertical, size10)
-                            
-//                            Spacer()
                             
                             // Book and Category display
                             HStack(alignment: .top) {
@@ -118,22 +114,21 @@ struct HomeView: View {
                         // Action Section
                         VStack (alignment: .leading) {
                             HStack(spacing: size15) {
-                                NavigationLink(value: "RandomPoemView") {
+                                NavigationLink(destination: RandomPoemView()) {
                                     VStack(alignment: .center, spacing: size10) {
                                         HStack(spacing: size10) {
                                             Circle()
-                                                .fill(Color.white)
-                                                .fill(Color.blue.opacity(userSettings.darkMode ? 0.75 : 0.6))
+                                                .fill(Color.blue.opacity(userSettings.darkMode ? 0.75 : 0.5))
+                                                .background(Circle().fill(Color.white)) // to support the look in dark mode
                                                 .frame(width: size10, height: size10)
                                             Circle()
-                                                .fill(Color.white)
-                                                .fill(Color.cyan.opacity(userSettings.darkMode ? 0.75 : 0.6))
+                                                .fill(Color.cyan.opacity(userSettings.darkMode ? 0.75 : 0.5))
+                                                .background(Circle().fill(Color.white)) // to support the look in dark mode
                                                 .frame(width: size10, height: size10)
                                             Circle()
-                                                .fill(Color.white)
-                                                .fill(Color.purple.opacity(userSettings.darkMode ? 0.7 : 0.55))
+                                                .fill(Color.purple.opacity(userSettings.darkMode ? 0.75 : 0.5))
+                                                .background(Circle().fill(Color.white)) // to support the look in dark mode
                                                 .frame(width: size10, height: size10)
-                                            
                                         }.frame(height: size30)
                                         VStack(alignment: .leading) {
                                             Text("ஏதோ ஒரு பாடல்")
@@ -148,15 +143,12 @@ struct HomeView: View {
                                     .cornerRadius(size10)
                                 }
                                 
-                                NavigationLink(value: "FavouritePoemView") {
+                                NavigationLink(destination: FavouritePoemListView()) {
                                     VStack(alignment: .center, spacing: size10) {
                                         HStack {
-//                                            Image(systemName: "bookmark.fill")
-//                                                .font(.title3)
-//                                                .foregroundColor(.blue.opacity(0.5))
                                             Image(systemName: "bookmark.fill")
                                                 .font(.title3)
-                                                .foregroundColor(.cyan.opacity(userSettings.darkMode ? 0.9 : 0.7))
+                                                .foregroundColor(.cyan.opacity(userSettings.darkMode ? 0.9 : 0.6))
                                         }.frame(height: size30)
                                         
                                         Text("சேமித்தவை ")
@@ -187,19 +179,12 @@ struct HomeView: View {
                                     .font(.title3)
                                 
                                 Spacer()
-                                
-//                                Picker("View", selection: $bookDisplayAsGrid) {
-//                                    Image(systemName: "list.dash").tag(false)
-//                                    Image(systemName: "square.grid.2x2").tag(true)
-//                                }
-//                                .pickerStyle(SegmentedPickerStyle())
-//                                .frame(width: 60)
                             }
                             
                             ForEach(_books.chunked(into: 2), id: \.self) { bookPair in
                                 HStack(spacing: 16) {
                                     ForEach(bookPair) { book in
-                                        NavigationLink(value: book.title) {
+                                        NavigationLink(destination: BookHomeView(colorTheme: book.color, bookName: book.title)) {
                                             BookTileView(bookTitle: book.title,
                                                          imageName: book.image,
                                                          footnote: book.subtitle,
@@ -220,8 +205,6 @@ struct HomeView: View {
                                 Image(systemName: "square.text.square")
                                     .font(.title2)
                                     .padding(.trailing, 5)
-//                                Text("வரலாற்று தகவல்கள்")
-//                                    .font(.title3)
                                 Text("வரலாற்று தகவல்கள்")
                                     .font(.title3)
                                 
@@ -325,17 +308,15 @@ struct HomeView: View {
             }
             .navigationTitle("Home")
             .navigationBarTitleDisplayMode(.inline)
-            .navigationDestination(for: String.self) { value in
-                if let book = _books.first(where: { $0.title == value }) {
-                    BookHomeView(colorTheme: book.color, bookName: book.title)
-                } else if value == "RandomPoemView" {
-                    RandomPoemView()
-                } else if value == "FavouritePoemView" {
-                    FavouritePoemListView()
-                } else if value == "Article" {
-                    ArticleView()
-                }
-            }
+//            .navigationDestination(for: String.self) { value in
+//                if let book = _books.first(where: { $0.title == value }) {
+//                    BookHomeView(colorTheme: book.color, bookName: book.title)
+//                } else if value == "RandomPoemView" {
+//                    RandomPoemView()
+//                } else if value == "FavouritePoemView" {
+//                    FavouritePoemListView()
+//                }
+//            }
             .onAppear() {
                 // Fetch the poem of the day
                 vm.getPoemOftheDay()
@@ -394,7 +375,7 @@ struct HomeView: View {
                     }
                 }
             } // toolbar
-        } //NavigationStack
+//        } //NavigationView
     }
 }
 
@@ -413,21 +394,24 @@ struct BookTileView: View {
     var body: some View {
         ZStack(alignment: .topLeading) {
             RoundedRectangle(cornerRadius: size10)
-                .fill(userSettings.darkMode ? Color.white : Color.clear)
-                .fill(userSettings.darkMode ? color.opacity(0.45) : color.opacity(0.25))
+                .fill(color.opacity(0.15))
+//                .overlay(
+//                    RoundedRectangle(cornerRadius: size10)
+//                        .stroke(Color.cyan, lineWidth: 1)
+//                )
+//                .fill(userSettings.darkMode ? color.opacity(0.45) : color.opacity(0.25))
+//                .background(RoundedRectangle(cornerRadius: size10).fill(Color.white))
             
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: size10) {
                     Text(bookTitle)
-                        .font(.headline)
-                        .foregroundStyle(.black)
-//                        .foregroundStyle(Color("TextColor"))
-                        .fontWeight(Font.Weight.semibold)
+                        .font(.headline.bold())
+                        .foregroundStyle(Color("TextColor"))
                         .multilineTextAlignment(.leading)
                         //.lineLimit(1)
                     Text(footnote)
                         .font(.footnote)
-                        .foregroundStyle(.black.opacity(0.7))
+                        .foregroundStyle(Color("TextColor").opacity(0.7))
 //                        .foregroundColor(Color("TextColor").opacity(0.7))
                 }
 //                .frame(maxWidth: .infinity)
@@ -446,7 +430,7 @@ struct BookTileView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(height: 80)
-                                .saturation(0.1)
+//                                .saturation(0.1)
 //                                .brightness(0.0)
 //                                .contrast(0.5)
                                 .opacity(0.8)

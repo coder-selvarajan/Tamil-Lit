@@ -18,8 +18,8 @@ struct CategoryListView: View {
             VStack(alignment: .leading) {
                 Text("பால்:")
                     .foregroundStyle(.black.opacity(0.8))
-                    .font(.caption)
-                    .fontWeight(.bold)
+                    .font(.caption.bold())
+                    
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(viewModel.mainCategories, id:\.id) { mainCategory in
@@ -42,8 +42,8 @@ struct CategoryListView: View {
             VStack(alignment: .leading) {
                 Text("இயல்:")
                     .foregroundStyle(.black.opacity(0.8))
-                    .font(.caption)
-                    .fontWeight(.bold)
+                    .font(.caption.bold())
+                    
                 WrapView(data: viewModel.filteredSubCategories, content: { subCategory in
                     Button(action: {}) {
                         Text(subCategory.title!)
@@ -64,8 +64,8 @@ struct CategoryListView: View {
             VStack(alignment: .leading) {
                 Text("அதிகாரம்:")
                     .foregroundStyle(.black.opacity(0.8))
-                    .font(.caption)
-                    .fontWeight(.bold)
+                    .font(.caption.bold())
+                    
                 //                ScrollView {
                 LazyVStack(alignment: .leading) {
                     ForEach(viewModel.filteredSections, id:\.self) { section in
@@ -81,7 +81,7 @@ struct CategoryListView: View {
                                     VStack(alignment: .leading) {
                                         Text("\(section.title ?? "")")
                                             .foregroundStyle(.black)
-                                            .fontWeight(.semibold)
+                                            .font(.body.bold())
                                         
                                         Text("\(viewModel.book?.poemType ?? ""): \(section.start)..\(section.end)")
                                             .foregroundStyle(.black.opacity(0.5))

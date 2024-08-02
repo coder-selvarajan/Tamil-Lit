@@ -26,16 +26,19 @@ struct SingleCategoryView: View {
                                                              categoryLevel: 1,
                                                              mainCategory: category)) {
                                     Text(title)
-                                        .foregroundStyle(.black)
+//                                        .foregroundStyle(Color("TextColor"))
                                 }
                             }
                         }
                     }
                     .listRowBackground(colorTheme.opacity(0.2))
                 }
-//                .listStyle(PlainListStyle())
-                .scrollContentBackground(Visibility.hidden)
-                .scrollIndicators(.hidden)
+                .background(Color.clear) // Use background instead of scrollContentBackground
+                .onAppear {
+                    UITableView.appearance().showsVerticalScrollIndicator = false // Hide scroll indicators
+                }
+//                .scrollContentBackground(Visibility.hidden)
+//                .scrollIndicators(.hidden)
             }
             
 //        .navigationBarTitle(bookName)

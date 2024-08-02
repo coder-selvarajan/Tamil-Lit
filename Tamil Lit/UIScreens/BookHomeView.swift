@@ -18,7 +18,7 @@ struct BookHomeView: View {
     
     var body: some View {
         ZStack {
-            Color.white.ignoresSafeArea()
+//            Color.white.ignoresSafeArea()
             colorTheme.opacity(userSettings.darkMode ? 0.4 : 0.3).ignoresSafeArea()
             
             if viewModel.book?.name == "பழமொழி நானூறு" {
@@ -29,33 +29,33 @@ struct BookHomeView: View {
                 CategoryListView(colorTheme: colorTheme, bookName: bookName)
             }
             
-//            VStack {
-//                Spacer()
-//                HStack {
-//                    Spacer()
-//                    
-//                    Button {
-//                        // Go to home page
-////                        print(navigationPath.count)
-//                        //                            navigationPath.removeAll()
-//                        //                            presentationMode.wrappedValue.dismiss()
-//                    } label: {
-//                        Image(systemName: "house.fill")
-//                            .font(.title3)
-//                            .foregroundStyle(Color("TextColor").opacity(0.8))
-//                            .padding(.horizontal, size20)
-//                            .padding(.vertical)
-//                            .padding(.trailing, size20)
-//                    }
-//                    .background(Color("TextColorWhite"))
-//                    .cornerRadius(size10)
-//                    .shadow(radius: size10)
-//                    .padding(.bottom, size30)
-//                    .padding(.trailing, -size20)
-//                    
-//                }
-//            }
-//            .edgesIgnoringSafeArea(.bottom)
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    
+                    Button {
+                        // Go to home page
+//                        print(navigationPath.count)
+                        //                            navigationPath.removeAll()
+                        //                            presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Image(systemName: "house.fill")
+                            .font(.title3)
+                            .foregroundStyle(Color("TextColor").opacity(0.8))
+                            .padding(.horizontal, size20)
+                            .padding(.vertical)
+                            .padding(.trailing, size20)
+                    }
+                    .background(Color("TextColorWhite"))
+                    .cornerRadius(size10)
+                    .shadow(radius: size10)
+                    .padding(.bottom, size30)
+                    .padding(.trailing, -size20)
+                    
+                }
+            }
+            .edgesIgnoringSafeArea(.bottom)
             
         }.onAppear {
             viewModel.fetchAllData(bookname: bookName)

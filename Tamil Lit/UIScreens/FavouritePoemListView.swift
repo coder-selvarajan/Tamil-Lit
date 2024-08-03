@@ -14,6 +14,7 @@ enum PoemListingOrder: String, CaseIterable {
 
 struct FavouritePoemListView: View {
     @EnvironmentObject var userSettings: UserSettings
+    @EnvironmentObject var bookManager: BookManager
     
     @StateObject private var vm = FavouritePoemViewModel()
     @AppStorage("BooksOptedForFavouritePoems") private var bookOptionsData: Data = Data()
@@ -224,7 +225,7 @@ struct FavouritePoemListView: View {
             }
         }
         
-        bookOptions = _books
+        bookOptions = bookManager.books
         saveBookOptions()
     }
     
@@ -232,6 +233,14 @@ struct FavouritePoemListView: View {
         if let encodedOptions = try? JSONEncoder().encode(bookOptions) {
             bookOptionsData = encodedOptions
         }
+    }
+    
+    private func getColorByBook(_ value: String) -> Color {
+        if let bookColor = bookManager.books.filter({ $0.title == value }).first?.color {
+            return bookColor
+        }
+        
+        return .blue
     }
 }
 

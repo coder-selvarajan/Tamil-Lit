@@ -200,117 +200,109 @@ struct BookInfo: Identifiable, Codable, Hashable {
 //    )
 //]
 
-let _books = [
-    BookInfo(
-        id: UUID(),
-        order: 1,
-        title: "திருக்குறள்",
-        subtitle: "1330 குறள்கள்",
-        image: "Thiruvalluvar",
-        color: .gray,
-        bannerColor: "colorThirukural",
-        selected: true
-    ),
-    BookInfo(
-        id: UUID(),
-        order: 2,
-        title: "ஆத்திசூடி",
-        subtitle: "109 வாக்கியங்கள்",
-        image: "Avvaiyar2",
-        color: .gray,
-        bannerColor: "colorAthichudi",
-        selected: true
-    ),
-    BookInfo(
-        id: UUID(),
-        order: 3,
-        title: "நாலடியார்",
-        subtitle: "400 பாடல்கள்",
-        image: "JainSanyasi",
-        color: .gray,
-        bannerColor: "colorNaaladiyar",
-        selected: true
-    ),
-    BookInfo(
-        id: UUID(),
-        order: 4,
-        title: "ஆசாரக் கோவை",
-        subtitle: "100 பாடல்கள்",
-        image: "Acharam",
-        color: .gray,
-        bannerColor: "colorAcharakovai",
-        selected: true
-    ),
-    BookInfo(
-        id: UUID(),
-        order: 5,
-        title: "இனியவை நாற்பது",
-        subtitle: "40 பாடல்கள்",
-        image: "GoodHandGesture",
-        color: .gray,
-        bannerColor: "colorIniyavaiNaarpathu",
-        selected: true
-    ),
-    BookInfo(
-        id: UUID(),
-        order: 6,
-        title: "இன்னா நாற்பது",
-        subtitle: "40 பாடல்கள்",
-        image: "CrossHands",
-        color: .gray,
-        bannerColor: "colorInnaNaarpathu",
-        selected: true
-    ),
-    BookInfo(
-        id: UUID(),
-        order: 7,
-        title: "நான்மணிக்கடிகை",
-        subtitle: "101 பாடல்கள்",
-        image: "Bharathanattiyam",
-        color: .gray,
-        bannerColor: "colorNaanmanikadikai",
-        selected: true
-    ),
-    BookInfo(
-        id: UUID(),
-        order: 8,
-        title: "திரிகடுகம்",
-        subtitle: "102 பாடல்கள்",
-        image: "Thirikadugam",
-        color: .gray,
-        bannerColor: "colorThirikadukam",
-        selected: true
-    ),
-    BookInfo(
-        id: UUID(),
-        order: 9,
-        title: "முதுமொழிக் காஞ்சி",
-        subtitle: "100 பழமொழிகள்",
-        image: "PalmleafManuscript",
-        color: .gray,
-        bannerColor: "colorMothumozhikanchi",
-        selected: true
-    ),
-    BookInfo(
-        id: UUID(),
-        order: 10,
-        title: "பழமொழி நானூறு",
-        subtitle: "400 பழமொழிகள்",
-        image: "OldPalmleaf",
-        color: .gray,
-        bannerColor: "colorPazhamozhiNaanuru",
-        selected: true
-    )
-]
+//let _books = [
+//    BookInfo(
+//        id: UUID(),
+//        order: 1,
+//        title: "திருக்குறள்",
+//        subtitle: "1330 குறள்கள்",
+//        image: "Thiruvalluvar",
+//        color: thirukuralColor,
+//        bannerColor: "colorThirukural",
+//        selected: true
+//    ),
+//    BookInfo(
+//        id: UUID(),
+//        order: 2,
+//        title: "ஆத்திசூடி",
+//        subtitle: "109 வாக்கியங்கள்",
+//        image: "Avvaiyar2",
+//        color: athichudiColor,
+//        bannerColor: "colorAthichudi",
+//        selected: true
+//    ),
+//    BookInfo(
+//        id: UUID(),
+//        order: 3,
+//        title: "நாலடியார்",
+//        subtitle: "400 பாடல்கள்",
+//        image: "JainSanyasi",
+//        color: naaladiyarColor,
+//        bannerColor: "colorNaaladiyar",
+//        selected: true
+//    ),
+//    BookInfo(
+//        id: UUID(),
+//        order: 4,
+//        title: "ஆசாரக் கோவை",
+//        subtitle: "100 பாடல்கள்",
+//        image: "Acharam",
+//        color: acharakovaiColor,
+//        bannerColor: "colorAcharakovai",
+//        selected: true
+//    ),
+//    BookInfo(
+//        id: UUID(),
+//        order: 5,
+//        title: "இனியவை நாற்பது",
+//        subtitle: "40 பாடல்கள்",
+//        image: "GoodHandGesture",
+//        color: iniyavaiNaarpathuColor,
+//        bannerColor: "colorIniyavaiNaarpathu",
+//        selected: true
+//    ),
+//    BookInfo(
+//        id: UUID(),
+//        order: 6,
+//        title: "இன்னா நாற்பது",
+//        subtitle: "40 பாடல்கள்",
+//        image: "CrossHands",
+//        color: innaNaarpathuColor,
+//        bannerColor: "colorInnaNaarpathu",
+//        selected: true
+//    ),
+//    BookInfo(
+//        id: UUID(),
+//        order: 7,
+//        title: "நான்மணிக்கடிகை",
+//        subtitle: "101 பாடல்கள்",
+//        image: "Bharathanattiyam",
+//        color: naanmanikadikaiColor,
+//        bannerColor: "colorNaanmanikadikai",
+//        selected: true
+//    ),
+//    BookInfo(
+//        id: UUID(),
+//        order: 8,
+//        title: "திரிகடுகம்",
+//        subtitle: "102 பாடல்கள்",
+//        image: "Thirikadugam",
+//        color: thirikadukamColor,
+//        bannerColor: "colorThirikadukam",
+//        selected: true
+//    ),
+//    BookInfo(
+//        id: UUID(),
+//        order: 9,
+//        title: "முதுமொழிக் காஞ்சி",
+//        subtitle: "100 பழமொழிகள்",
+//        image: "PalmleafManuscript",
+//        color: muthumozhikanchiColor,
+//        bannerColor: "colorMothumozhikanchi",
+//        selected: true
+//    ),
+//    BookInfo(
+//        id: UUID(),
+//        order: 10,
+//        title: "பழமொழி நானூறு",
+//        subtitle: "400 பழமொழிகள்",
+//        image: "OldPalmleaf",
+//        color: pazhamozhiNaanooruColor,
+//        bannerColor: "colorPazhamozhiNaanuru",
+//        selected: true
+//    )
+//]
 
-
-func getColorByBook(_ value: String) -> Color {
-    if let bookColor = _books.filter({ $0.title == value }).first?.color {
-        return bookColor
-    }
-    
-    return .blue
-}
 
 // Helper function to chunk array into smaller arrays
 extension Array {

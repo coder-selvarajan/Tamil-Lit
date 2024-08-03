@@ -9,6 +9,8 @@ import SwiftUI
 import CoreData
 
 class FavouritePoemViewModel : ObservableObject {
+    @EnvironmentObject var bookManager: BookManager
+    
     @Published var favPoemsByCategory: [String: [FavouritePoem]] = [:]
     @Published var favPoemsByDate: [String: [FavouritePoem]] = [:]
     @Published var sortedKeys: [String] = []
@@ -60,7 +62,7 @@ class FavouritePoemViewModel : ObservableObject {
         
         // order by book
         let dictResults = Dictionary(grouping: poems, by: { $0.bookname ?? "Unknown Book" })
-        let bookOrderMapping = _books.reduce(into: [String: Int]()) { (dict, book) in
+        let bookOrderMapping = bookManager.books.reduce(into: [String: Int]()) { (dict, book) in
             dict[book.title] = book.order
         }
         

@@ -10,6 +10,10 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject var userSettings: UserSettings
     @EnvironmentObject var notificationHandler: NotificationHandler
+    
+    @EnvironmentObject var bookManager: BookManager
+    @EnvironmentObject var themeManager: ThemeManager
+    
     @Environment(\.showLoading) private var showLoading
     
     @StateObject var vm = DailyPoemViewModel()
@@ -181,18 +185,20 @@ struct HomeView: View {
                                 Spacer()
                             }
                             
-                            ForEach(_books.chunked(into: 2), id: \.self) { bookPair in
+                            ForEach(bookManager.books.chunked(into: 2), id: \.self) { bookPair in
                                 HStack(spacing: 16) {
-                                    ForEach(bookPair) { book in
-                                        NavigationLink(destination: BookHomeView(colorTheme: book.color, bookName: book.title)) {
-                                            BookTileView(bookTitle: book.title,
-                                                         imageName: book.image,
-                                                         footnote: book.subtitle,
-                                                         color: book.color,
-                                                         bannerColor: book.bannerColor,
-                                                         bookDisplayAsGrid: $bookDisplayAsGrid)
+                                    ForEach(bookPair.indices, id: \.self) { index in
+                                        let bookBinding = $bookManager.books[bookPair[index].order - 1] 
+                                        NavigationLink(destination: BookHomeView(colorTheme: bookBinding.wrappedValue.color, bookName: bookBinding.wrappedValue.title)) {
+                                            BookTileView(book: bookBinding, bookDisplayAsGrid: $bookDisplayAsGrid)
                                         }
                                     }
+                                    
+//                                    ForEach(bookPair) { book in
+//                                        NavigationLink(destination: BookHomeView(colorTheme: book.color, bookName: book.title)) {
+//                                            BookTileView(book: Binding($book), bookDisplayAsGrid: $bookDisplayAsGrid)
+//                                        }
+//                                    }
                                 }
                             }
                         }
@@ -379,78 +385,79 @@ struct HomeView: View {
     }
 }
 
-struct BookTileView: View {
-    @EnvironmentObject var userSettings: UserSettings
-    
-    var colors = [Color.blue, Color.green, Color.red, Color.cyan, Color.indigo, Color.orange, Color.purple, Color.brown, Color.teal, Color.pink, Color.gray, Color.yellow]
-    var bookTitle: String
-    var imageName: String?
-    var footnote: String
-    var color: Color = Color.clear
-    var bannerColor: String
-    
-    @Binding var bookDisplayAsGrid: Bool
-    
-    var body: some View {
-        ZStack(alignment: .topLeading) {
-            RoundedRectangle(cornerRadius: size10)
-                .fill(color.opacity(0.15))
-//                .overlay(
-//                    RoundedRectangle(cornerRadius: size10)
-//                        .stroke(Color.cyan, lineWidth: 1)
-//                )
-//                .fill(userSettings.darkMode ? color.opacity(0.45) : color.opacity(0.25))
-//                .background(RoundedRectangle(cornerRadius: size10).fill(Color.white))
-            
-            HStack(alignment: .top) {
-                VStack(alignment: .leading, spacing: size10) {
-                    Text(bookTitle)
-                        .font(.headline.bold())
-                        .foregroundStyle(Color("TextColor"))
-                        .multilineTextAlignment(.leading)
-                        //.lineLimit(1)
-                    Text(footnote)
-                        .font(.footnote)
-                        .foregroundStyle(Color("TextColor").opacity(0.7))
-//                        .foregroundColor(Color("TextColor").opacity(0.7))
-                }
-//                .frame(maxWidth: .infinity)
-                .padding()
-                
-                Spacer()
-            }
-            
-            if bookDisplayAsGrid {
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        if let img = imageName {
-                            Image(img)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 80)
-//                                .saturation(0.1)
-//                                .brightness(0.0)
-//                                .contrast(0.5)
-                                .opacity(0.8)
-                        }
-                        else {
-                            Image("book-icon")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: size50)
-                                .saturation(0.0)
-                                .opacity(0.6)
-                                .padding()
-                        }
-                    }.padding(0)
-                }.padding(0)
-            }
-        }
-        .frame(height: 150)
-    }
-}
+//struct BookTileView: View {
+//    @EnvironmentObject var userSettings: UserSettings
+//    
+//    var colors = [Color.blue, Color.green, Color.red, Color.cyan, Color.indigo, Color.orange, Color.purple, Color.brown, Color.teal, Color.pink, Color.gray, Color.yellow]
+//    var bookTitle: String
+//    var imageName: String?
+//    var footnote: String
+//    var color: Color = Color.clear
+//    var bannerColor: String
+//    var book: BookInfo
+//    
+//    @Binding var bookDisplayAsGrid: Bool
+//    
+//    var body: some View {
+//        ZStack(alignment: .topLeading) {
+//            RoundedRectangle(cornerRadius: size10)
+//                .fill(color.opacity(0.15))
+////                .overlay(
+////                    RoundedRectangle(cornerRadius: size10)
+////                        .stroke(Color.cyan, lineWidth: 1)
+////                )
+////                .fill(userSettings.darkMode ? color.opacity(0.45) : color.opacity(0.25))
+////                .background(RoundedRectangle(cornerRadius: size10).fill(Color.white))
+//            
+//            HStack(alignment: .top) {
+//                VStack(alignment: .leading, spacing: size10) {
+//                    Text(bookTitle)
+//                        .font(.headline.bold())
+//                        .foregroundStyle(Color("TextColor"))
+//                        .multilineTextAlignment(.leading)
+//                        //.lineLimit(1)
+//                    Text(footnote)
+//                        .font(.footnote)
+//                        .foregroundStyle(Color("TextColor").opacity(0.7))
+////                        .foregroundColor(Color("TextColor").opacity(0.7))
+//                }
+////                .frame(maxWidth: .infinity)
+//                .padding()
+//                
+//                Spacer()
+//            }
+//            
+//            if bookDisplayAsGrid {
+//                VStack {
+//                    Spacer()
+//                    HStack {
+//                        Spacer()
+//                        if let img = imageName {
+//                            Image(img)
+//                                .resizable()
+//                                .scaledToFit()
+//                                .frame(height: 80)
+////                                .saturation(0.1)
+////                                .brightness(0.0)
+////                                .contrast(0.5)
+//                                .opacity(0.8)
+//                        }
+//                        else {
+//                            Image("book-icon")
+//                                .resizable()
+//                                .scaledToFit()
+//                                .frame(width: size50)
+//                                .saturation(0.0)
+//                                .opacity(0.6)
+//                                .padding()
+//                        }
+//                    }.padding(0)
+//                }.padding(0)
+//            }
+//        }
+//        .frame(height: 150)
+//    }
+//}
 
 //#Preview {
 //    HomeView()

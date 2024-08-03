@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct BookDetailsView: View {
+    @EnvironmentObject var bookManager: BookManager
     @Environment(\.presentationMode) var presentationMode
     @StateObject private var vm = BookDetailsViewModel()
     @State var popupMode: Bool = true
     var bookName: String = "திருக்குறள்"
     var bookInfo: BookInfo {
-        _books.filter({$0.title == bookName}).first!
+        bookManager.books.filter({$0.title == bookName}).first!
     }
     
     var body: some View {

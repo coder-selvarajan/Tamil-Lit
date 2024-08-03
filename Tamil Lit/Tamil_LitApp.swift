@@ -10,8 +10,11 @@ import SwiftUI
 @main
 struct Tamil_LitApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     @StateObject private var userSettings = UserSettings()
     @StateObject private var notificationHandler = NotificationHandler(userSettings: UserSettings())
+    @StateObject var themeManager = ThemeManager()
+    @StateObject var bookManager = BookManager(theme: Themes.primaryTheme)
     
     let persistenceController = CoreDataManager.shared
     @State private var loadingStatus: LoadingStatus  = .idle
@@ -22,11 +25,12 @@ struct Tamil_LitApp: App {
                 .environmentObject(userSettings)
                 .preferredColorScheme(userSettings.darkMode ? .dark : .light)
                 .environment(\.managedObjectContext, persistenceController.viewContext)
+                .environmentObject(notificationHandler)
+                .environmentObject(themeManager)
+                .environmentObject(bookManager)
                 .environment(\.showLoading) { loadingStatus in
                     self.loadingStatus = loadingStatus
                 }
-                
-                .environmentObject(notificationHandler)
                 .onAppear {
                     notificationHandler.checkFirstLaunch()
                 }

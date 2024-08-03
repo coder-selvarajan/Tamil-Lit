@@ -104,6 +104,7 @@ struct PoemListWithCategoryView: View {
                                             }
                                         } //Section2
                                 } //Section1
+                                .listRowBackground(colorTheme.opacity(0.2))
 //                                .background(
 //                                    GeometryReader { geo in
 //                                        Color.clear
@@ -123,7 +124,7 @@ struct PoemListWithCategoryView: View {
 //                                    }
 //                                )
                             }
-                            .listRowBackground(colorTheme.opacity(0.2))
+//                            .listRowBackground(colorTheme.opacity(0.2))
                             .onChange(of: selectedCategoryId) { id in
                                 if let id = id {
                                     withAnimation(.spring()) {
@@ -132,13 +133,18 @@ struct PoemListWithCategoryView: View {
                                 }
                             }
                         } // List
+                        .listStyle(.insetGrouped)
+//                        .listRowBackground(Color(.systemGray6))
+//                        .background(colorTheme.opacity(0.1))
+                        
 //                        .scrollContentBackground(Visibility.hidden)
 //                        .scrollIndicators(.hidden)
                         .padding(.top, -5)
-                        .background(Color.clear) // Use background instead of scrollContentBackground
-                        .onAppear {
-                            UITableView.appearance().showsVerticalScrollIndicator = false // Hide scroll indicators
-                        }
+//                        .background(colorTheme) // Use background instead of scrollContentBackground
+//                        .onAppear {
+//                            UITableView.appearance().backgroundColor = colorTheme
+//                            UITableView.appearance().showsVerticalScrollIndicator = false // Hide scroll indicators
+//                        }
                         
                     } //ScrollViewReader
                 }

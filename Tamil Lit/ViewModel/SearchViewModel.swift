@@ -9,6 +9,8 @@ import SwiftUI
 import CoreData
 
 class SearchViewModel: ObservableObject {
+    @EnvironmentObject var bookManager: BookManager
+    
     @Published var searchResults: [String: [Poem]] = [:]
     @Published var sortedKeys: [String] = []
     
@@ -19,7 +21,7 @@ class SearchViewModel: ObservableObject {
         let poems = CoreDataManager.shared.performSearch(searchText: searchText, excludingBookNames: excludedBookNames)
         let dictResults = Dictionary(grouping: poems, by: { $0.bookname ?? "Unknown Book" })
         
-        let bookOrderMapping = _books.reduce(into: [String: Int]()) { (dict, book) in
+        let bookOrderMapping = bookManager.books.reduce(into: [String: Int]()) { (dict, book) in
             dict[book.title] = book.order
         }
         

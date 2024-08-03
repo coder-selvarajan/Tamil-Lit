@@ -69,17 +69,25 @@ struct PoemListView: View {
                 .padding(.top, size10)
                 .padding(.horizontal, size20)
                 
+                
                 List(viewModel.poems) { poem in
                     NavigationLink(destination: PoemDetailView(colorTheme: colorTheme,
                                                                bookName: bookName,
                                                                poems: viewModel.poems,
                                                                selectedPoem: poem)) {
                         Text("\(poem.number). \(poem.poem ?? "No Poem")")
-//                            .foregroundStyle(Color("TextColor"))
+                        //                            .foregroundStyle(Color("TextColor"))
                     }
-                    .listRowBackground(colorTheme.opacity(0.2))
+                                                               .listRowBackground(colorTheme.opacity(0.2))
                 }
-                .background(Color.clear)
+                .onAppear {
+                    // Placed here for sample purposes, normally set globally
+                    UITableView.appearance().backgroundColor = .clear
+                }
+                .listStyle(.insetGrouped)
+                .background(Color.red)
+                
+//                .background(colorTheme)
 //                .scrollContentBackground(Visibility.hidden)
             }
             

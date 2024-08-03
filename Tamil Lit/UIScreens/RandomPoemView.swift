@@ -11,6 +11,8 @@ import PopupView
 struct RandomPoemView: View {
     @AppStorage("BooksOptedForRandomPoems") private var bookOptionsData: Data = Data()
     @EnvironmentObject var userSettings: UserSettings
+    @EnvironmentObject var bookManager: BookManager
+    
     @State private var bookOptions: [BookInfo] = []
     
     @StateObject private var vm = RandomPoemViewModel()
@@ -123,7 +125,7 @@ struct RandomPoemView: View {
             }
         }
         
-        bookOptions = _books
+        bookOptions = bookManager.books
         saveBookOptions()
     }
     

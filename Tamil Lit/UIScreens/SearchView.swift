@@ -63,6 +63,7 @@ extension String {
 struct SearchView: View {
     @AppStorage("BooksOptedForSearch") private var bookOptionsData: Data = Data()
     @EnvironmentObject var userSettings: UserSettings
+    @EnvironmentObject var bookManager: BookManager
     
     @State private var bookOptions: [BookInfo] = []
     
@@ -260,7 +261,7 @@ struct SearchView: View {
             }
         }
         
-        bookOptions = _books
+        bookOptions = bookManager.books
         saveBookOptions()
     }
     
@@ -269,6 +270,15 @@ struct SearchView: View {
             bookOptionsData = encodedOptions
         }
     }
+    
+    private func getColorByBook(_ value: String) -> Color {
+        if let bookColor = bookManager.books.filter({ $0.title == value }).first?.color {
+            return bookColor
+        }
+        
+        return .blue
+    }
+
 }
 
 #Preview {

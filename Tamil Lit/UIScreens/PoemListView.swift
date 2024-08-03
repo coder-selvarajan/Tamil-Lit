@@ -70,22 +70,24 @@ struct PoemListView: View {
                 .padding(.horizontal, size20)
                 
                 
-                List(viewModel.poems) { poem in
-                    NavigationLink(destination: PoemDetailView(colorTheme: colorTheme,
-                                                               bookName: bookName,
-                                                               poems: viewModel.poems,
-                                                               selectedPoem: poem)) {
-                        Text("\(poem.number). \(poem.poem ?? "No Poem")")
-                        //                            .foregroundStyle(Color("TextColor"))
+//                List(viewModel.poems) { poem in
+                List {
+                    SwiftUI.Section(header: Text("")) {
+                        ForEach(viewModel.poems, id:\.self) { poem in
+                            NavigationLink(destination: PoemDetailView(colorTheme: colorTheme,
+                                                                       bookName: bookName,
+                                                                       poems: viewModel.poems,
+                                                                       selectedPoem: poem)) {
+                                Text("\(poem.number). \(poem.poem ?? "No Poem")")
+                                //                            .foregroundStyle(Color("TextColor"))
+                            }
+                                                                       .listRowBackground(colorTheme.opacity(0.2))
+                        }
                     }
-                                                               .listRowBackground(colorTheme.opacity(0.2))
                 }
-                .onAppear {
-                    // Placed here for sample purposes, normally set globally
-                    UITableView.appearance().backgroundColor = .clear
-                }
+                .modifier(ListBackgroundModifier())
                 .listStyle(.insetGrouped)
-                .background(Color.red)
+                .background(Color.clear)
                 
 //                .background(colorTheme)
 //                .scrollContentBackground(Visibility.hidden)
@@ -165,6 +167,19 @@ struct PoemListView: View {
                 }
             }
         } // toolbar
+    }
+}
+
+struct ListBackgroundModifier: ViewModifier {
+
+    @ViewBuilder
+    func body(content: Content) -> some View {
+        if #available(iOS 16.0, *) {
+            content
+                .scrollContentBackground(.hidden)
+        } else {
+            content
+        }
     }
 }
 

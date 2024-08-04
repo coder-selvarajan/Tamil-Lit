@@ -97,7 +97,7 @@ struct SettingsView: View {
                             themeManager.setTheme(.primary)
                             bookManager.updateBooks(with: themeManager.currentTheme)
                         }) {
-                            Text("Primary")
+                            Text("Colorful")
                                 .frame(maxWidth: .infinity)
                         }
                         .buttonStyle(RoundedBackgroundButtonStyle(isSelected: themeManager.selectedTheme == .primary))

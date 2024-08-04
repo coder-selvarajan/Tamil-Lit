@@ -9,8 +9,6 @@ import SwiftUI
 import CoreData
 
 class FavouritePoemViewModel : ObservableObject {
-    @EnvironmentObject var bookManager: BookManager
-    
     @Published var favPoemsByCategory: [String: [FavouritePoem]] = [:]
     @Published var favPoemsByDate: [String: [FavouritePoem]] = [:]
     @Published var sortedKeys: [String] = []
@@ -45,6 +43,8 @@ class FavouritePoemViewModel : ObservableObject {
     }
     
     func getAllFavPoemsCategoried(bookOptions: [BookInfo]) {
+        let bookMgr = BookManager()
+        
         let excludedBookNames: [String] = bookOptions.filter { !$0.selected }.map { $0.title }
         
         let poems = CoreDataManager.shared.fetchAllFavPoems(excludingBookNames: excludedBookNames)
@@ -62,7 +62,7 @@ class FavouritePoemViewModel : ObservableObject {
         
         // order by book
         let dictResults = Dictionary(grouping: poems, by: { $0.bookname ?? "Unknown Book" })
-        let bookOrderMapping = bookManager.books.reduce(into: [String: Int]()) { (dict, book) in
+        let bookOrderMapping = bookMgr.books.reduce(into: [String: Int]()) { (dict, book) in
             dict[book.title] = book.order
         }
         

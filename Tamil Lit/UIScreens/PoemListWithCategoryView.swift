@@ -10,14 +10,17 @@ import SwiftUI
 struct PoemListWithCategoryView: View {
     let colorTheme: Color
     let bookName: String
-    //    let categoryLevel: Int
+    let book: BookInfo
     
     @EnvironmentObject var userSettings: UserSettings
+    @EnvironmentObject var themeManager: ThemeManager
+    
     @StateObject var viewModel = PoemListWithCategoryViewModel()
     @State private var selectedCategoryId: UUID?
     @State private var highlightedCategoryId: UUID?
     
     @State private var showBookInfo: Bool = false
+    
     
     func getShortTitle(_ category: MainCategory) -> String {
         if let title = category.title, title.starts(with: "பாடல்கள்") {
@@ -29,8 +32,6 @@ struct PoemListWithCategoryView: View {
     
     var body: some View {
         ZStack {
-//            colorTheme.opacity(0.2).ignoresSafeArea()
-            
             VStack {
                 VStack(alignment: .leading) {
                     Text("வகைகள்: ")
@@ -58,15 +59,29 @@ struct PoemListWithCategoryView: View {
                                         selectedCategoryId = nil
                                     }
                                 } label: {
-                                    Text(getShortTitle(category))
-                                        .font(.subheadline)
-                                        .padding(.horizontal, size10)
-                                        .padding(.vertical, size10)
-                                        .foregroundColor(highlightedCategoryId == category.id ? .white : .black)
-                                        .background(highlightedCategoryId == category.id
-                                                    ? colorTheme.opacity(0.7)
-                                                    : (userSettings.darkMode ? colorTheme.opacity(0.5) : .white.opacity(0.7)))
-                                        .cornerRadius(8.0)
+                                    if themeManager.selectedTheme == .primary { // for colorful theme
+                                        Text(getShortTitle(category))
+                                            .font(.subheadline)
+                                            .padding(.horizontal, size10)
+                                            .padding(.vertical, size10)
+                                            .foregroundColor(highlightedCategoryId == category.id ? .white : .black)
+                                            .background(highlightedCategoryId == category.id
+                                                        ? colorTheme.opacity(0.7)
+                                                        : (userSettings.darkMode ? colorTheme.opacity(0.5) : .white.opacity(0.7)))
+                                            .cornerRadius(8.0)
+                                    } else { // for light and dark themes
+                                        Text(getShortTitle(category))
+                                            .font(.subheadline)
+                                            .padding(.horizontal, size10)
+                                            .padding(.vertical, size10)
+                                            .foregroundStyle(Color("TextColor"))
+                                            .background(.gray.opacity(0.2))
+//                                            .foregroundColor(highlightedCategoryId == category.id ? .white : .black)
+//                                            .background(highlightedCategoryId == category.id
+//                                                        ? colorTheme.opacity(0.7)
+//                                                        : (userSettings.darkMode ? colorTheme.opacity(0.5) : .white.opacity(0.7)))
+                                            .cornerRadius(8.0)
+                                    }
                                 }
                             }
                         }
@@ -76,7 +91,7 @@ struct PoemListWithCategoryView: View {
                 } // VStack
                 .padding(.top)
                 
-                Divider().padding(.bottom, size10).padding(.top, 0)
+//                Divider().padding(.bottom, size10).padding(.top, 0)
                 
                 VStack(alignment: .leading) {
                     ScrollViewReader { proxy in
@@ -86,7 +101,6 @@ struct PoemListWithCategoryView: View {
                                     SwiftUI.Section(header: Text(category.title ?? "")
                                         .font(.title3)
                                         .fontWeight(.semibold)
-                                        .foregroundColor(.black)
                                         .padding(.leading, 0)
                                         .padding(.top, 0)) {
                                             // fetch poems by category and display in a section
@@ -94,17 +108,18 @@ struct PoemListWithCategoryView: View {
                                                 NavigationLink(destination: 
                                                 PoemDetailView(colorTheme: colorTheme,
                                                                bookName: bookName,
+                                                               book: book,
                                                                poems: viewModel.fetchPoemsByCategory(category.title ?? ""),
                                                                selectedPoem: poem)) {
                                                     if let poemText = poem.poem {
                                                         Text(poemText)
-                                                            .foregroundStyle(.black)
                                                     }
                                                 }
                                             }
                                         } //Section2
                                 } //Section1
-                                .listRowBackground(colorTheme.opacity(0.2))
+                                .listRowBackground(themeManager.selectedTheme == ThemeSelection.primary ? colorTheme.opacity(0.2) : .gray.opacity(0.1))
+                                
 //                                .background(
 //                                    GeometryReader { geo in
 //                                        Color.clear
@@ -124,7 +139,6 @@ struct PoemListWithCategoryView: View {
 //                                    }
 //                                )
                             }
-//                            .listRowBackground(colorTheme.opacity(0.2))
                             .onChange(of: selectedCategoryId) { id in
                                 if let id = id {
                                     withAnimation(.spring()) {
@@ -133,19 +147,10 @@ struct PoemListWithCategoryView: View {
                                 }
                             }
                         } // List
+                        .modifier(ListBackgroundModifier())
                         .listStyle(.insetGrouped)
-//                        .listRowBackground(Color(.systemGray6))
-//                        .background(colorTheme.opacity(0.1))
-                        
-//                        .scrollContentBackground(Visibility.hidden)
-//                        .scrollIndicators(.hidden)
+                        .background(Color.clear)
                         .padding(.top, -5)
-//                        .background(colorTheme) // Use background instead of scrollContentBackground
-//                        .onAppear {
-//                            UITableView.appearance().backgroundColor = colorTheme
-//                            UITableView.appearance().showsVerticalScrollIndicator = false // Hide scroll indicators
-//                        }
-                        
                     } //ScrollViewReader
                 }
             } // VStack
@@ -165,7 +170,7 @@ struct PoemListWithCategoryView: View {
             ToolbarItem(placement: .principal) {
                 HStack {
                     // Search Bar
-                    Image("Thiruvalluvar")
+                    Image(book.image)
                         .resizable()
                         .scaledToFit()
                         .frame(width: size30)
@@ -173,7 +178,6 @@ struct PoemListWithCategoryView: View {
                     Text(bookName)
                         .font(.body)
                         .fontWeight(.semibold)
-                        .foregroundStyle(.black)
                     
                     Spacer()
                     
@@ -187,10 +191,10 @@ struct PoemListWithCategoryView: View {
                 } label: {
                     Text("நூல் பற்றி")
                         .font(.subheadline)
-                        .foregroundStyle(.black)
+                        .foregroundStyle(Color("TextColor"))
                         .padding(.vertical, 5)
                         .padding(.horizontal, size10)
-                        .background(colorTheme.opacity(0.3))
+                        .background(themeManager.selectedTheme == .primary ? colorTheme.opacity(0.3) : .gray.opacity(0.2))
                         .cornerRadius(8)
                 }
             }

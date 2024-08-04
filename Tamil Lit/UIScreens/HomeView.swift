@@ -188,17 +188,14 @@ struct HomeView: View {
                             ForEach(bookManager.books.chunked(into: 2), id: \.self) { bookPair in
                                 HStack(spacing: 16) {
                                     ForEach(bookPair.indices, id: \.self) { index in
-                                        let bookBinding = $bookManager.books[bookPair[index].order - 1] 
-                                        NavigationLink(destination: BookHomeView(colorTheme: bookBinding.wrappedValue.color, bookName: bookBinding.wrappedValue.title)) {
+                                        let bookBinding = $bookManager.books[bookPair[index].order - 1]
+                                        let bookItem = bookManager.books[bookPair[index].order - 1]
+                                        NavigationLink(destination: BookHomeView(colorTheme: bookBinding.wrappedValue.color,
+                                                                                 bookName: bookBinding.wrappedValue.title,
+                                                                                 book: bookItem)) {
                                             BookTileView(book: bookBinding, bookDisplayAsGrid: $bookDisplayAsGrid)
                                         }
                                     }
-                                    
-//                                    ForEach(bookPair) { book in
-//                                        NavigationLink(destination: BookHomeView(colorTheme: book.color, bookName: book.title)) {
-//                                            BookTileView(book: Binding($book), bookDisplayAsGrid: $bookDisplayAsGrid)
-//                                        }
-//                                    }
                                 }
                             }
                         }
@@ -314,15 +311,6 @@ struct HomeView: View {
             }
             .navigationTitle("Home")
             .navigationBarTitleDisplayMode(.inline)
-//            .navigationDestination(for: String.self) { value in
-//                if let book = _books.first(where: { $0.title == value }) {
-//                    BookHomeView(colorTheme: book.color, bookName: book.title)
-//                } else if value == "RandomPoemView" {
-//                    RandomPoemView()
-//                } else if value == "FavouritePoemView" {
-//                    FavouritePoemListView()
-//                }
-//            }
             .onAppear() {
                 // Fetch the poem of the day
                 vm.getPoemOftheDay()

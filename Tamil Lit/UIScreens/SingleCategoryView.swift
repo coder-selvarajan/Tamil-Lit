@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct SingleCategoryView: View {
+    @EnvironmentObject var themeManager: ThemeManager
+    
     let colorTheme: Color
     let bookName: String
+    let book: BookInfo
+    
     @StateObject private var viewModel = SingleCategoryViewModel()
     @State private var showBookInfo: Bool = false
     
@@ -23,7 +27,7 @@ struct SingleCategoryView: View {
                                 NavigationLink(destination:
                                                 PoemListView(colorTheme: colorTheme,
                                                              bookName: bookName,
-                                                             categoryLevel: 1,
+                                                             book: book,
                                                              mainCategory: category)) {
                                     Text(title)
 //                                        .foregroundStyle(Color("TextColor"))
@@ -31,14 +35,11 @@ struct SingleCategoryView: View {
                             }
                         }
                     }
-                    .listRowBackground(colorTheme.opacity(0.2))
+                    .listRowBackground(themeManager.selectedTheme == ThemeSelection.primary ? colorTheme.opacity(0.2) : .gray.opacity(0.1))
                 }
-                .background(Color.clear) // Use background instead of scrollContentBackground
-                .onAppear {
-                    UITableView.appearance().showsVerticalScrollIndicator = false // Hide scroll indicators
-                }
-//                .scrollContentBackground(Visibility.hidden)
-//                .scrollIndicators(.hidden)
+                .modifier(ListBackgroundModifier())
+                .listStyle(.insetGrouped)
+                .background(Color.clear)
             }
             
 //        .navigationBarTitle(bookName)
@@ -49,7 +50,7 @@ struct SingleCategoryView: View {
         .toolbar {
             ToolbarItem(placement: .principal) {
                 HStack {
-                    Image("Thiruvalluvar")
+                    Image(book.image)
                         .resizable()
                         .scaledToFit()
                         .frame(width: size30)
@@ -57,7 +58,6 @@ struct SingleCategoryView: View {
                     Text(bookName)
                         .font(.body)
                         .fontWeight(.semibold)
-                        .foregroundStyle(.black)
                     
                     Spacer()
                 }
@@ -70,12 +70,11 @@ struct SingleCategoryView: View {
                 } label: {
                    Text("நூல் பற்றி")
                     .font(.subheadline)
-                    .foregroundStyle(.black)
+                    .foregroundStyle(Color("TextColor"))
                     .padding(.vertical, 7)
                     .padding(.horizontal, size10)
-                    .background(colorTheme.opacity(0.3))
+                    .background(themeManager.selectedTheme == .primary ? colorTheme.opacity(0.3) : .gray.opacity(0.2))
                     .cornerRadius(8)
-                    
                 }
             }
         }

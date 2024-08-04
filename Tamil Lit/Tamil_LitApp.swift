@@ -14,7 +14,7 @@ struct Tamil_LitApp: App {
     @StateObject private var userSettings = UserSettings()
     @StateObject private var notificationHandler = NotificationHandler(userSettings: UserSettings())
     @StateObject var themeManager = ThemeManager()
-    @StateObject var bookManager = BookManager(theme: Themes.primaryTheme)
+    @StateObject var bookManager = BookManager()
     
     let persistenceController = CoreDataManager.shared
     @State private var loadingStatus: LoadingStatus  = .idle

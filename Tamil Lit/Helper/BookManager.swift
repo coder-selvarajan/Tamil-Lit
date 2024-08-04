@@ -11,8 +11,12 @@ import SwiftUI
 class BookManager: ObservableObject {
     @Published var books: [BookInfo]
 
-    init(theme: Theme) {
-        self.books = BookManager.getBooks(for: theme)
+    init() {
+        let savedTheme = UserDefaults.standard.string(forKey: "selectedTheme") ?? ThemeSelection.primary.rawValue
+        let selTheme = ThemeSelection(rawValue: savedTheme) ?? .primary
+        let currentTheme = ThemeManager.getTheme(for: selTheme)
+        
+        self.books = BookManager.getBooks(for: currentTheme)
     }
 
     static func getBooks(for theme: Theme) -> [BookInfo] {
@@ -42,7 +46,7 @@ class BookManager: ObservableObject {
                 order: 3,
                 title: "நாலடியார்",
                 subtitle: "400 பாடல்கள்",
-                image: "JainSanyasi",
+                image: "JainSanyasi2",
                 color: theme.naaladiyarColor,
                 bannerColor: "colorNaaladiyar",
                 selected: true
@@ -52,7 +56,7 @@ class BookManager: ObservableObject {
                 order: 4,
                 title: "ஆசாரக் கோவை",
                 subtitle: "100 பாடல்கள்",
-                image: "Acharam",
+                image: "Rishi",
                 color: theme.acharakovaiColor,
                 bannerColor: "colorAcharakovai",
                 selected: true

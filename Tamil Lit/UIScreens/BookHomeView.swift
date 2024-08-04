@@ -9,24 +9,28 @@ import SwiftUI
 
 struct BookHomeView: View {
     @EnvironmentObject var userSettings: UserSettings
+    @EnvironmentObject var themeManager: ThemeManager
     
     let colorTheme: Color
     let bookName: String
-//    let book: Book?
+    let book: BookInfo
+    
     @StateObject private var viewModel = CategoryViewModel()
     
     
     var body: some View {
         ZStack {
 //            Color.white.ignoresSafeArea()
-            colorTheme.opacity(userSettings.darkMode ? 0.4 : 0.3).ignoresSafeArea()
+            if themeManager.selectedTheme == ThemeSelection.primary {
+                colorTheme.opacity(0.3).ignoresSafeArea()
+            }
             
             if viewModel.book?.name == "பழமொழி நானூறு" {
-                SingleCategoryView(colorTheme: colorTheme, bookName: bookName)
+                SingleCategoryView(colorTheme: colorTheme, bookName: bookName, book: book)
             } else if viewModel.book?.categoryLevel == 1 {
-                PoemListWithCategoryView(colorTheme: colorTheme, bookName: bookName)
+                PoemListWithCategoryView(colorTheme: colorTheme, bookName: bookName, book: book)
             } else {
-                CategoryListView(colorTheme: colorTheme, bookName: bookName)
+                CategoryListView(colorTheme: colorTheme, bookName: bookName, book: book)
             }
             
             VStack {

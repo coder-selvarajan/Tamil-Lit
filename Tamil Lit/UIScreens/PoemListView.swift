@@ -8,20 +8,20 @@
 import SwiftUI
 
 struct PoemListView: View {
-    @EnvironmentObject var userSettings: UserSettings
-    
     let colorTheme: Color
     let bookName: String
-    let categoryLevel: Int
+    let book: BookInfo
     
     var mainCategory: MainCategory?
     var subCategory: SubCategory?
     var section: Section?
     
-    @StateObject private var viewModel = PoemListViewModel()
-//    @State private var poems: [Poem]
+    @EnvironmentObject var userSettings: UserSettings
+    @EnvironmentObject var themeManager: ThemeManager
     
-    @State private var showBookInfo: Bool = false
+    @StateObject private var viewModel = PoemListViewModel()
+    
+    @State private var showBookDetails: Bool = false
     
     func getTitle() -> String {
         if let title = section?.title {
@@ -45,47 +45,33 @@ struct PoemListView: View {
         } else if subCategory != nil {
             return "\(mainCategory?.title ?? "") › \(subCategory?.title ?? "")"
         } else {
-            return "\(mainCategory?.title ?? "")"
+            return "வகை: \(mainCategory?.title ?? "")"
         }
     }
     
     var body: some View {
         ZStack {
-//            Color.white.ignoresSafeArea()
-//            colorTheme.opacity(0.2).ignoresSafeArea()
-            colorTheme.opacity(userSettings.darkMode ? 0.5 : 0.3).ignoresSafeArea()
+            if themeManager.selectedTheme == ThemeSelection.primary {
+                colorTheme.opacity(0.2).ignoresSafeArea()
+            }
             
             VStack {
-                HStack(spacing: size10) {
-                    if section == nil {
-                        Spacer()
-                    }
-                    Text("\(getCategoryText())")
-                        .fontWeight(.bold)
-                        .foregroundStyle(.black.opacity(0.95))
-                    Spacer()
-                }
-                .font(.subheadline)
-                .padding(.top, size10)
-                .padding(.horizontal, size20)
                 
-                
-//                List(viewModel.poems) { poem in
                 List {
-                    SwiftUI.Section(header: Text("")) {
+                    SwiftUI.Section(header: Text("\(getCategoryText())").font(.headline).foregroundStyle(.primary).padding(.bottom, 10)) {
                         ForEach(viewModel.poems, id:\.self) { poem in
                             NavigationLink(destination: PoemDetailView(colorTheme: colorTheme,
                                                                        bookName: bookName,
+                                                                       book: book,
                                                                        poems: viewModel.poems,
                                                                        selectedPoem: poem)) {
                                 Text("\(poem.number). \(poem.poem ?? "No Poem")")
-                                //                            .foregroundStyle(Color("TextColor"))
                             }
-                                                                       .listRowBackground(colorTheme.opacity(0.2))
+                                                                       .listRowBackground(themeManager.selectedTheme == ThemeSelection.primary ? colorTheme.opacity(0.2) : .gray.opacity(0.2))
                         }
                     }
                 }
-                .modifier(ListBackgroundModifier())
+//                .modifier(ListBackgroundModifier())
                 .listStyle(.insetGrouped)
                 .background(Color.clear)
                 
@@ -94,33 +80,33 @@ struct PoemListView: View {
             }
             
             // Home Button
-//            VStack {
-//                Spacer()
-//                HStack {
-//                    Spacer()
-//                    
-//                    Button {
-//                        // Go to home page
-////                        print(navigationPath.count)
-//                        //                            navigationPath.removeAll()
-//                        //                            presentationMode.wrappedValue.dismiss()
-//                    } label: {
-//                        Image(systemName: "house.fill")
-//                            .font(.title3)
-//                            .foregroundStyle(Color("TextColor").opacity(0.8))
-//                            .padding(.horizontal, size20)
-//                            .padding(.vertical)
-//                            .padding(.trailing, size20)
-//                    }
-//                    .background(Color("TextColorWhite"))
-//                    .cornerRadius(size10)
-//                    .shadow(radius: size10)
-//                    .padding(.bottom, size30)
-//                    .padding(.trailing, -size20)
-//                    
-//                }
-//            }
-//            .edgesIgnoringSafeArea(.bottom)
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    
+                    Button {
+                        // Go to home page
+//                        print(navigationPath.count)
+                        //                            navigationPath.removeAll()
+                        //                            presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Image(systemName: "house.fill")
+                            .font(.title3)
+                            .foregroundStyle(Color("TextColor").opacity(0.8))
+                            .padding(.horizontal, size20)
+                            .padding(.vertical)
+                            .padding(.trailing, size20)
+                    }
+                    .background(Color("TextColorWhite"))
+                    .cornerRadius(size10)
+                    .shadow(radius: size10)
+                    .padding(.bottom, size30)
+                    .padding(.trailing, -size20)
+                    
+                }
+            }
+            .edgesIgnoringSafeArea(.bottom)
         }
         .onAppear {
             if section != nil {
@@ -129,7 +115,7 @@ struct PoemListView: View {
                 viewModel.fetchPoemsByCategory(mainCategory!)
             }
         }
-        .sheet(isPresented: $showBookInfo) {
+        .sheet(isPresented: $showBookDetails) {
             BookDetailsView(bookName: bookName)
         }
         .toolbar {
@@ -139,7 +125,7 @@ struct PoemListView: View {
                         Spacer()
                     }
                     
-                    Image("Thiruvalluvar")
+                    Image(book.image)
                         .resizable()
                         .scaledToFit()
                         .frame(width: size30)
@@ -147,22 +133,24 @@ struct PoemListView: View {
                     Text(bookName)
                         .font(.body)
                         .fontWeight(.semibold)
-                        .foregroundStyle(.black)
                     
                     Spacer()
                 }
                 .padding(0)
             }
+            
             ToolbarItem {
                 Button {
-                    showBookInfo = true
+                    DispatchQueue.main.async {
+                        showBookDetails = true
+                    }
                 } label: {
                     Text("நூல் பற்றி")
                         .font(.subheadline)
-                        .foregroundStyle(.black)
+                        .foregroundStyle(Color("TextColor"))
                         .padding(.vertical, 5)
                         .padding(.horizontal, size10)
-                        .background(colorTheme.opacity(0.3))
+                        .background(themeManager.selectedTheme == .primary ? colorTheme.opacity(0.3) : .gray.opacity(0.2))
                         .cornerRadius(8)
                 }
             }
@@ -170,18 +158,6 @@ struct PoemListView: View {
     }
 }
 
-struct ListBackgroundModifier: ViewModifier {
-
-    @ViewBuilder
-    func body(content: Content) -> some View {
-        if #available(iOS 16.0, *) {
-            content
-                .scrollContentBackground(.hidden)
-        } else {
-            content
-        }
-    }
-}
 
 //#Preview {
 //    PoemListView()

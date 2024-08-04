@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct BookDetailsView: View {
-    @EnvironmentObject var bookManager: BookManager
     @Environment(\.presentationMode) var presentationMode
     @StateObject private var vm = BookDetailsViewModel()
+    
+    @EnvironmentObject var bookManager: BookManager
+    @EnvironmentObject var themeManager: ThemeManager
+    
     @State var popupMode: Bool = true
+    
     var bookName: String = "திருக்குறள்"
     var bookInfo: BookInfo {
         bookManager.books.filter({$0.title == bookName}).first!
@@ -19,8 +23,9 @@ struct BookDetailsView: View {
     
     var body: some View {
         ZStack {
-            Color.white.ignoresSafeArea()
-            bookInfo.color.opacity(0.2).ignoresSafeArea()
+            if themeManager.selectedTheme == ThemeSelection.primary {
+                bookInfo.color.opacity(0.2).ignoresSafeArea()
+            }
             
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: size10) {
@@ -29,7 +34,7 @@ struct BookDetailsView: View {
                         Image(bookInfo.image)
                             .resizable()
                             .scaledToFit()
-                            .saturation(0.0)
+                            .saturation(themeManager.selectedTheme == ThemeSelection.primary ?  0.1 : 1.0)
                             .opacity(0.75)
                             .frame(width: size60)
                             .padding(.trailing, size10)
@@ -59,22 +64,19 @@ struct BookDetailsView: View {
                             .font(.subheadline.bold())
 //                            .fontWeight(.semibold)
                         }
-                        .foregroundStyle(.black)
+//                        .foregroundStyle(.black)
                         Spacer()
                     }
                     .padding()
                     .padding(.vertical)
-                    .background(bookInfo.color.opacity(0.3))
+                    .background(themeManager.selectedTheme == .primary
+                                ? bookInfo.color.opacity(0.2) : .gray.opacity(0.1))
 
                     // book description
                     Text(vm.book?.info ?? "")
                         .padding(size20)
-                        .foregroundStyle(.black)
+//                        .foregroundStyle(.black)
                 }
-                
-            }
-            .onAppear() {
-                vm.getBookInfo(bookName: bookName)
             }
             
             if popupMode {
@@ -95,6 +97,9 @@ struct BookDetailsView: View {
                     Spacer()
                 }
             }
+        }
+        .onAppear() {
+            vm.getBookInfo(bookName: bookName)
         }
     }
 }

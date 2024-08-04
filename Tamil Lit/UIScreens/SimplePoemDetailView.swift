@@ -9,6 +9,8 @@ import SwiftUI
 import PopupView
 
 struct SimplePoemDetailView: View {
+    @EnvironmentObject var themeManager: ThemeManager
+    
     @Environment(\.presentationMode) var presentationMode
     @StateObject private var vmExplanation = ExplanationListViewModel()
     @StateObject private var vmFavPoem = FavouritePoemViewModel()
@@ -21,6 +23,7 @@ struct SimplePoemDetailView: View {
     @State private var alertMessage: String = "படம் Photo Library-ல்  சேமிக்கப்பட்டது!"
     
     @State private var poemBookmarked: Bool = false
+    
     
     func getCategoryText() -> String {
         if selectedPoem.sectionname != nil {
@@ -48,7 +51,7 @@ struct SimplePoemDetailView: View {
     
     var body: some View {
         ZStack(alignment: .top) {
-            colorTheme.opacity(0.2).ignoresSafeArea()
+//            colorTheme.opacity(0.2).ignoresSafeArea()
             
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: size10) {
@@ -56,13 +59,23 @@ struct SimplePoemDetailView: View {
                     // Book and Category titles
                     VStack {
                         HStack(alignment: .top, spacing: 5) {
-                            Text("நூல் : ")
-                                .padding(3)
-                                .frame(width: size60)
-                                .multilineTextAlignment(.trailing)
-                                .background(Color("TextColorWhite"))
-                                .cornerRadius(5)
-                                .padding(.trailing, 5)
+                            if themeManager.selectedTheme == .primary {
+                                Text("நூல் : ")
+                                    .padding(3)
+                                    .frame(width: size60)
+                                    .multilineTextAlignment(.trailing)
+                                    .background(.white)
+                                    .cornerRadius(5)
+                                    .padding(.trailing, 5)
+                            } else {
+                                Text("நூல் : ")
+                                    .padding(3)
+                                    .frame(width: size60)
+                                    .multilineTextAlignment(.trailing)
+                                    .background(.gray.opacity(0.2))
+                                    .cornerRadius(5)
+                                    .padding(.trailing, 5)
+                            }
                             Text("\(selectedPoem.bookname ?? "")")
                                 .font(.title3)
                                 .fontWeight(.bold)
@@ -75,13 +88,25 @@ struct SimplePoemDetailView: View {
                         .padding(.trailing, 5)
                         
                         HStack(alignment: .top, spacing: 5) {
-                            Text("வகை : ")
-                                .padding(3)
-                                .frame(width: size60)
-                                .multilineTextAlignment(.trailing)
-                                .background(Color("TextColorWhite"))
-                                .cornerRadius(5)
-                                .padding(.trailing, 5)
+                            if themeManager.selectedTheme == .primary {
+                                Text("வகை : ")
+                                    .padding(3)
+                                    .frame(width: size60)
+                                    .multilineTextAlignment(.trailing)
+                                    .background(.white)
+                                    .cornerRadius(5)
+                                    .padding(.trailing, 5)
+                            } else {
+                                Text("வகை : ")
+                                    .padding(3)
+                                    .frame(width: size60)
+                                    .multilineTextAlignment(.trailing)
+                                    .background(.gray.opacity(0.2))
+                                    .cornerRadius(5)
+                                    .padding(.trailing, 5)
+                            }
+                            
+                            
                             Text("\(getCategoryText())")
                                 .fontWeight(.bold)
                                 .foregroundStyle(Color("TextColor").opacity(0.95))
@@ -102,13 +127,13 @@ struct SimplePoemDetailView: View {
                             Text("\(getPoemTitle())")
                                 .font(.callout)
                                 .fontWeight(Font.Weight.semibold)
-                                .foregroundStyle(Color("TextColor"))
+//                                .foregroundStyle(Color("TextColor"))
                             
                             VStack(alignment: .leading, spacing: 2.0) {
                                 Text("\(selectedPoem.poem ?? "")")
                                     .font(.subheadline)
                                     .fontWeight(Font.Weight.semibold)
-                                    .foregroundStyle(Color("TextColor"))
+//                                    .foregroundStyle(Color("TextColor"))
                                     .frame(maxWidth: .infinity, alignment: .leading)
                             }
                             
@@ -119,7 +144,7 @@ struct SimplePoemDetailView: View {
                         .padding(.horizontal, size10)
                     }
                     .padding(.horizontal, size10)
-                    .background(colorTheme.opacity(0.35))
+                    .background(.gray.opacity(0.2))
                     .cornerRadius(size10)
                     .padding(.horizontal, size10)
                     .padding(.bottom, size20)
@@ -159,13 +184,11 @@ struct SimplePoemDetailView: View {
                             
                             // Share poem icon
                             SharePoem(poem: $selectedPoem, 
-                                      explanations: $vmExplanation.explanations,
-                                      tintColor: Color("TextColor"))
+                                      explanations: $vmExplanation.explanations)
                             
                             // Save as image icon
                             PoemScreenshotView(poem: $selectedPoem,
                                                explanations: $vmExplanation.explanations,
-                                               iconTintColor: Color("TextColor"),
                                                colorTheme: colorTheme) {
                                 alertMessage = "படம் Photo Library-ல்  சேமிக்கப்பட்டது!"
                                 showAlert = true

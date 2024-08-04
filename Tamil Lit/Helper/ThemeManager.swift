@@ -74,13 +74,14 @@ enum ThemeSelection: String {
 }
 
 class ThemeManager: ObservableObject {
-    @Published var currentTheme: Theme = ThemeManager.getTheme(for: .primary)
-    @Published var selectedTheme: ThemeSelection = .primary
+    @Published var currentTheme: Theme //= ThemeManager.getTheme(for: .primary)
+    @Published var selectedTheme: ThemeSelection //= .primary
 
     init() {
         let savedTheme = UserDefaults.standard.string(forKey: "selectedTheme") ?? ThemeSelection.primary.rawValue
-        self.selectedTheme = ThemeSelection(rawValue: savedTheme) ?? .primary
-        self.currentTheme = ThemeManager.getTheme(for: self.selectedTheme)
+        let selTheme = ThemeSelection(rawValue: savedTheme) ?? .primary
+        self.selectedTheme = selTheme
+        self.currentTheme = ThemeManager.getTheme(for: selTheme)
     }
     
     static func getTheme(for selection: ThemeSelection) -> Theme {

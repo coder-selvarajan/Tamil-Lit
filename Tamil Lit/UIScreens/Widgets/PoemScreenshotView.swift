@@ -10,7 +10,7 @@ import SwiftUI
 struct PoemScreenshotView: View {
     @Binding var poem: Poem
     @Binding var explanations: [Explanation]
-    @State var iconTintColor: Color
+//    @State var iconTintColor: Color
     
     let colorTheme: Color
     let completionCallBack: (() -> Void)?
@@ -146,7 +146,7 @@ struct PoemScreenshotView: View {
                 Text("நகல்")
             }
             .font(.subheadline)
-            .foregroundStyle(iconTintColor)
+            .foregroundStyle(Color("TextColor"))
         }
     }
 }

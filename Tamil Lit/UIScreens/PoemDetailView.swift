@@ -11,12 +11,14 @@ import PopupView
 struct PoemDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var userSettings: UserSettings
+    @EnvironmentObject var themeManager: ThemeManager
     
     @StateObject private var viewModel = ExplanationListViewModel()
     @StateObject private var vmFavPoem = FavouritePoemViewModel()
     
     let colorTheme: Color
     let bookName: String
+    let book: BookInfo
     var poems: [Poem] = []
     
     @State var selectedPoem: Poem
@@ -69,13 +71,13 @@ struct PoemDetailView: View {
                             Text("\(getPoemTitle())")
                                 .font(.callout)
                                 .fontWeight(Font.Weight.semibold)
-                                .foregroundStyle(.black)
+//                                .foregroundStyle(.black)
                             
                             VStack(alignment: .leading, spacing: 2.0) {
                                 Text("\(poem.poem ?? "")")
                                     .font(.subheadline)
                                     .fontWeight(Font.Weight.semibold)
-                                    .foregroundStyle(.black)
+//                                    .foregroundStyle(.black)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                             }
                             
@@ -93,7 +95,7 @@ struct PoemDetailView: View {
             }
         }
         .padding(.horizontal, size10)
-        .background(colorTheme.opacity(0.35))
+        .background(themeManager.selectedTheme == ThemeSelection.primary ? colorTheme.opacity(0.2) : .gray.opacity(0.2))
         .cornerRadius(size10)
         .padding(.horizontal, size10)
         .padding(.bottom, size20)
@@ -101,24 +103,34 @@ struct PoemDetailView: View {
     
     var body: some View {
         ZStack(alignment: .top) {
-//            Color.white.ignoresSafeArea()
-//            colorTheme.opacity(0.2).ignoresSafeArea()
-            colorTheme.opacity(userSettings.darkMode ? 0.5 : 0.3).ignoresSafeArea()
+            if themeManager.selectedTheme == ThemeSelection.primary {
+                colorTheme.opacity(0.2).ignoresSafeArea()
+            }
             
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: size10) {
                     HStack(alignment: .top, spacing: 5) {
-                        Text("வகை : ")
-                            .padding(3)
-                            .foregroundStyle(.black)
-                            .frame(width: size60)
-                            .multilineTextAlignment(.trailing)
-                            .background(.white)
-                            .cornerRadius(5)
-                            .padding(.trailing, 5)
+                        if themeManager.selectedTheme == .primary {
+                            Text("வகை : ")
+                                .padding(3)
+                                .frame(width: size60)
+                                .multilineTextAlignment(.trailing)
+                                .background(.white)
+                                .cornerRadius(5)
+                                .padding(.trailing, 5)
+                        } else {
+                            Text("வகை : ")
+                                .padding(3)
+                                .frame(width: size60)
+                                .multilineTextAlignment(.trailing)
+                                .background(.gray.opacity(0.2))
+                                .cornerRadius(5)
+                                .padding(.trailing, 5)
+                        }
+                        
                         Text("\(getCategoryText())")
                             .fontWeight(.bold)
-                            .foregroundStyle(.black.opacity(0.95))
+//                            .foregroundStyle(.black.opacity(0.95))
                         Spacer()
                     }
                     .font(.subheadline)
@@ -159,18 +171,16 @@ struct PoemDetailView: View {
                                     Text("சேமி")
                                 }
                                 .font(.subheadline)
-                                .foregroundStyle(.black)
+                                .foregroundStyle(Color("TextColor"))
                             }
 
                             // Share icon
                             SharePoem(poem: $selectedPoem, 
-                                      explanations: $viewModel.explanations,
-                                      tintColor: .black)
+                                      explanations: $viewModel.explanations)
                             
                             // Save as image icon
                             PoemScreenshotView(poem: $selectedPoem, 
                                                explanations: $viewModel.explanations,
-                                               iconTintColor: .black,
                                                colorTheme: colorTheme) {
                                 alertMessage = "படம் Photo Library-ல்  சேமிக்கப்பட்டது!"
                                 showAlert = true
@@ -185,15 +195,16 @@ struct PoemDetailView: View {
                                         Text("\(title): ")
                                             .font(.body)
                                             .fontWeight(.bold)
-                                            .foregroundStyle(.black)
+//                                            .foregroundStyle(.black)
                                             .padding(.bottom, 5)
                                     }
                                     Text("\(explanation.meaning ?? "")")
                                         .font(.body)
-                                        .foregroundStyle(.black)
+//                                        .foregroundStyle(.black)
                                     
                                     if viewModel.explanations.last != explanation {
-                                        Divider().background(.gray)
+                                        Divider()
+                                            .background(.gray)
                                             .padding(.vertical)
                                     } else {
                                         Divider().background(Color.clear)
@@ -230,7 +241,7 @@ struct PoemDetailView: View {
                     }
                     .background(Color("TextColorWhite"))
                     .cornerRadius(size10)
-                    .shadow(radius: size10)
+                    .shadow(color: Color("TextColor").opacity(0.2), radius: 5)
                     .padding(.bottom, size30)
                     .padding(.trailing, -size20)
                     
@@ -263,7 +274,7 @@ struct PoemDetailView: View {
             ToolbarItem(placement: .principal) {
                 HStack {
                     // Search Bar
-                    Image("Thiruvalluvar")
+                    Image(book.image)
                         .resizable()
                         .scaledToFit()
                         .frame(width: size30)
@@ -271,7 +282,7 @@ struct PoemDetailView: View {
                     Text(bookName)
                         .font(.body)
                         .fontWeight(.semibold)
-                        .foregroundStyle(.black)
+                        
                     
                     Spacer()
                     

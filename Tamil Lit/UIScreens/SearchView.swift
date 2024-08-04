@@ -113,7 +113,7 @@ struct SearchView: View {
                 .onSubmit {
                     showLoading(.loading)
                     searchState = .submitted
-                    vm.search(searchText, bookOptions: bookOptions)
+                    vm.search(searchText, bookOptions: bookOptions, books: bookManager.books)
                     showLoading(.success)
                 }
                 .toolbar {
@@ -152,7 +152,7 @@ struct SearchView: View {
                                 searchText = recentText
                                 showLoading(.loading)
                                 searchState = .submitted
-                                vm.search(searchText, bookOptions: bookOptions)
+                                vm.search(searchText, bookOptions: bookOptions, books: bookManager.books)
                                 showLoading(.success)
                                 searchIsFocused = false
                             }

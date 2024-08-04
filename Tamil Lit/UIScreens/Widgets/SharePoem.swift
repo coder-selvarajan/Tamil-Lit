@@ -12,7 +12,7 @@ struct SharePoem: View {
     
     @Binding var poem: Poem
     @Binding var explanations: [Explanation]
-    @State var tintColor: Color
+//    @State var tintColor: Color
     
     @State private var isSharing = false
     
@@ -42,7 +42,7 @@ struct SharePoem: View {
                 Text("பகிர்")
             }
             .font(.subheadline)
-            .foregroundStyle(tintColor)
+            .foregroundStyle(Color("TextColor"))
         }
         .padding(.horizontal, size10)
         .sheet(isPresented: $isSharing, onDismiss: {

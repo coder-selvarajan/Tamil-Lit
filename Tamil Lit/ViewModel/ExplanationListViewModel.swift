@@ -13,4 +13,8 @@ class ExplanationListViewModel: ObservableObject {
     func fetchExplanations(for poem: Poem) {
         explanations = CoreDataManager.shared.fetchExplanations(for: poem)
     }
+    
+    func getExplanations(for poem: Poem) -> [Explanation] {
+        return CoreDataManager.shared.fetchExplanations(for: poem)
+    }
 }

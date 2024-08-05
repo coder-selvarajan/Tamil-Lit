@@ -12,6 +12,7 @@ struct RandomPoemView: View {
     @AppStorage("BooksOptedForRandomPoems") private var bookOptionsData: Data = Data()
     @EnvironmentObject var userSettings: UserSettings
     @EnvironmentObject var bookManager: BookManager
+    @EnvironmentObject var themeManager: ThemeManager
     
     @State private var bookOptions: [BookInfo] = []
     
@@ -35,16 +36,29 @@ struct RandomPoemView: View {
                             randomPoem = poem
                         }
                     } label: {
-                        Text("அடுத்து...")
-                            .font(.body)
-                            .fontWeight(.bold)
-                            .foregroundStyle(.black)
-                            .padding(.horizontal)
-                            .padding(.vertical, size10)
-                            .padding(.trailing)
-                            .background(userSettings.darkMode ? .cyan : .cyan.opacity(0.9))
-                            .cornerRadius(size10)
-                            .shadow(radius: size10)
+                        if themeManager.selectedTheme == .primary {
+                            Text("அடுத்து...")
+                                .font(.body)
+                                .fontWeight(.bold)
+                                .foregroundStyle(.black)
+                                .padding(.horizontal)
+                                .padding(.vertical, size10)
+                                .padding(.trailing)
+                                .background(userSettings.darkMode ? .cyan : .cyan.opacity(0.9))
+                                .cornerRadius(size10)
+                                .shadow(radius: size10)
+                        } else {
+                            Text("அடுத்து...")
+                                .font(.body)
+                                .fontWeight(.bold)
+                                .foregroundStyle(.black)
+                                .padding(.horizontal)
+                                .padding(.vertical, size10)
+                                .padding(.trailing)
+                                .background(userSettings.darkMode ? .yellow : .yellow.opacity(0.9))
+                                .cornerRadius(size10)
+                                .shadow(radius: size10)
+                        }
                     }
                     .padding(.trailing, -size15)
                     .padding(.bottom)

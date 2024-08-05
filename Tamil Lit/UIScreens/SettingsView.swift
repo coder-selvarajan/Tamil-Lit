@@ -33,7 +33,7 @@ struct SettingsView: View {
                         VStack(alignment: .leading) {
                             Text("தினம் ஒரு பாடல் அறிவிப்பு")
                                 .font(.headline)
-                            Text("Daily Push Notification")
+                            Text("Enable/Disable Push Notification")
                                 .font(.footnote)
                         }
                     }
@@ -53,44 +53,44 @@ struct SettingsView: View {
                         }
                     }
                     
-//                    Toggle(isOn: $userSettings.darkMode) {
-//                        VStack(alignment: .leading) {
-//                            Text("கரும் திரை")
-//                                .font(.headline)
-//                        }
-//                    }
-//                    .padding(.vertical, 2)
+                    //                    Toggle(isOn: $userSettings.darkMode) {
+                    //                        VStack(alignment: .leading) {
+                    //                            Text("கரும் திரை")
+                    //                                .font(.headline)
+                    //                        }
+                    //                    }
+                    //                    .padding(.vertical, 2)
                     
                 }
                 
-//                SwiftUI.Section(header: Text("Select Theme")) {
-//                    Button(action: {
-//                        userSettings.darkMode = false
-//                        themeManager.setTheme(.primary)
-//                        bookManager.updateBooks(with: themeManager.currentTheme)
-//                    }) {
-//                        Text("Primary")
-//                            .foregroundColor(themeManager.currentTheme == Themes.primaryTheme ? .blue : .primary)
-//                    }
-//                    Button(action: {
-//                        userSettings.darkMode = false
-//                        themeManager.setTheme(.light)
-//                        bookManager.updateBooks(with: themeManager.currentTheme)
-//                    }) {
-//                        Text("Light ")
-//                            .foregroundColor(themeManager.currentTheme == Themes.lightTheme ? .blue : .primary)
-//                    }
-//                    Button(action: {
-//                        userSettings.darkMode = true
-//                        themeManager.setTheme(.dark)
-//                        bookManager.updateBooks(with: themeManager.currentTheme)
-//                    }) {
-//                        Text("Dark ")
-//                            .foregroundColor(themeManager.currentTheme == Themes.darkTheme ? .blue : .primary)
-//                    }
-//                }
+                //                SwiftUI.Section(header: Text("Select Theme")) {
+                //                    Button(action: {
+                //                        userSettings.darkMode = false
+                //                        themeManager.setTheme(.primary)
+                //                        bookManager.updateBooks(with: themeManager.currentTheme)
+                //                    }) {
+                //                        Text("Primary")
+                //                            .foregroundColor(themeManager.currentTheme == Themes.primaryTheme ? .blue : .primary)
+                //                    }
+                //                    Button(action: {
+                //                        userSettings.darkMode = false
+                //                        themeManager.setTheme(.light)
+                //                        bookManager.updateBooks(with: themeManager.currentTheme)
+                //                    }) {
+                //                        Text("Light ")
+                //                            .foregroundColor(themeManager.currentTheme == Themes.lightTheme ? .blue : .primary)
+                //                    }
+                //                    Button(action: {
+                //                        userSettings.darkMode = true
+                //                        themeManager.setTheme(.dark)
+                //                        bookManager.updateBooks(with: themeManager.currentTheme)
+                //                    }) {
+                //                        Text("Dark ")
+                //                            .foregroundColor(themeManager.currentTheme == Themes.darkTheme ? .blue : .primary)
+                //                    }
+                //                }
                 
-                SwiftUI.Section(header: Text("Select Theme")) {
+                SwiftUI.Section(header: Text("Choose your theme")) {
                     HStack(spacing: 16) {
                         Button(action: {
                             userSettings.darkMode = false
@@ -107,7 +107,7 @@ struct SettingsView: View {
                             themeManager.setTheme(.light)
                             bookManager.updateBooks(with: themeManager.currentTheme)
                         }) {
-                            Text("Light")
+                            Text("Mono")
                                 .frame(maxWidth: .infinity)
                         }
                         .buttonStyle(RoundedBackgroundButtonStyle(isSelected: themeManager.selectedTheme == .light))
@@ -218,6 +218,7 @@ struct SettingsView: View {
                 }
                 .padding(.vertical, 5)
             } // List
+            
         }
         .alert(item: $activeAlert) { alertType in
             switch alertType {
@@ -274,15 +275,21 @@ struct RoundedBackgroundButtonStyle: ButtonStyle {
     var isSelected: Bool
     
     func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .padding()
-            .background(isSelected ? Color.cyan : Color.gray.opacity(0.2))
-            .foregroundColor(isSelected ? .white : .primary)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-//            .overlay(
-//                RoundedRectangle(cornerRadius: 10)
-//                    .stroke(Color.primary, lineWidth: 1)
-//            )
+        VStack(alignment: .center, spacing: 10) {
+            Image(systemName: "checkmark.circle.fill")
+                .foregroundStyle(isSelected ? .green : .gray.opacity(0.3))
+            
+            configuration.label
+        }
+        .padding()
+        .background(Color.gray.opacity(0.2))
+    //            .background(isSelected ? Color.cyan : Color.gray.opacity(0.2))
+    //            .foregroundColor(isSelected ? .white : .primary)
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(isSelected ? Color("TextColor").opacity(0.5) : Color.clear, lineWidth: 1)
+        )
     }
 }
 

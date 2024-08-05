@@ -10,7 +10,7 @@ import SwiftUI
 struct CreditsView: View {
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: size20) {
+            VStack(alignment: .leading) {
                 Text("Credits")
                     .font(.title2) // Smaller title
                     .fontWeight(.bold)
@@ -18,20 +18,21 @@ struct CreditsView: View {
                 
                 Text("Some of the content in the TamilLit app is sourced from the following websites:")
                     .font(.body)
-                    .padding(.bottom, size10)
+                    .padding(.bottom, size20)
                 
-                CreditLinkView(title: "Wikipedia (Tamil)", url: "https://ta.wikipedia.org")
-                CreditLinkView(title: "Sangathamizh", url: "https://sangathamizh.com")
+                CreditLinkView(title: "ta.wikipedia.org", url: "https://ta.wikipedia.org")
+                CreditLinkView(title: "sangathamizh.com", url: "https://sangathamizh.com")
+                CreditLinkView(title: "github.com/tk120404", url: "https://github.com/tk120404")
 
-                Divider()
-                    .padding(size10)
-                
-                Text("Thirukural & Athichudi JSONs are sourced from these GitHub repositories:")
-                    .font(.body)
-                    .padding(.top, size20)
-                
-                CreditLinkView(title: "Thirukkural JSON", url: "https://github.com/tk120404/thirukkural")
-                CreditLinkView(title: "Aathichudi JSON", url: "https://github.com/tk120404/Aathichudi")
+//                Divider()
+//                    .padding(size10)
+//                
+//                Text("Thirukural & Athichudi JSONs are sourced from these GitHub repositories:")
+//                    .font(.body)
+//                    .padding(.top, size20)
+//                
+//                CreditLinkView(title: "Thirukkural JSON", url: "https://github.com/tk120404/thirukkural")
+//                CreditLinkView(title: "Aathichudi JSON", url: "https://github.com/tk120404/Aathichudi")
                 
                 Spacer()
             }
@@ -46,15 +47,18 @@ struct CreditLinkView: View {
     let url: String
     
     var body: some View {
-        VStack(alignment: .leading, spacing: size10) {
-            Text(title)
-                .font(.headline)
-            
-            Link(url, destination: URL(string: url)!)
-                .font(.subheadline)
-                .foregroundColor(.blue)
-        }
-        .padding(.bottom, size10)
+        Text(title)
+            .font(.body.bold())
+        
+//        VStack(alignment: .leading, spacing: size10) {
+//            Text(title)
+//                .font(.body.bold())
+//            
+//            Link(url, destination: URL(string: url)!)
+//                .font(.subheadline)
+//                .foregroundColor(.blue)
+//        }
+//        .padding(.bottom, size10)
     }
 }
 

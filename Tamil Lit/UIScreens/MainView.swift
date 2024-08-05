@@ -13,7 +13,7 @@ struct MainView: View {
     @AppStorage("launchCount") var launchCount: Int = 0
     
 //    @State private var navigationPath = NavigationPath()
-    @Environment(\.presentationMode) var presentationMode
+//    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         ZStack {

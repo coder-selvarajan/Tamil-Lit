@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct PoemListView: View {
-    let colorTheme: Color
-    let bookName: String
     let book: BookInfo
     
     var mainCategory: MainCategory?
@@ -22,6 +20,8 @@ struct PoemListView: View {
     @StateObject private var viewModel = PoemListViewModel()
     
     @State private var showBookDetails: Bool = false
+    
+    @State private var showAlert: Bool = false
     
     func getTitle() -> String {
         if let title = section?.title {
@@ -51,8 +51,8 @@ struct PoemListView: View {
     
     var body: some View {
         ZStack {
-            if themeManager.selectedTheme == ThemeSelection.primary {
-                colorTheme.opacity(0.2).ignoresSafeArea()
+            if themeManager.selectedTheme == .primary {
+                book.color.opacity(0.2).ignoresSafeArea()
             }
             
             VStack {
@@ -60,54 +60,22 @@ struct PoemListView: View {
                 List {
                     SwiftUI.Section(header: Text("\(getCategoryText())").font(.headline).foregroundStyle(.primary).padding(.bottom, 10)) {
                         ForEach(viewModel.poems, id:\.self) { poem in
-                            NavigationLink(destination: PoemDetailView(colorTheme: colorTheme,
-                                                                       bookName: bookName,
-                                                                       book: book,
+                            NavigationLink(destination: PoemDetailView(book: book,
                                                                        poems: viewModel.poems,
                                                                        selectedPoem: poem)) {
                                 Text("\(poem.number). \(poem.poem ?? "No Poem")")
                             }
-                                                                       .listRowBackground(themeManager.selectedTheme == ThemeSelection.primary ? colorTheme.opacity(0.2) : .gray.opacity(0.2))
+                                                                       .listRowBackground(themeManager.selectedTheme == ThemeSelection.primary ? book.color.opacity(0.2) : .gray.opacity(0.2))
                         }
                     }
                 }
-//                .modifier(ListBackgroundModifier())
+                .modifier(ListBackgroundModifier())
                 .listStyle(.insetGrouped)
                 .background(Color.clear)
-                
-//                .background(colorTheme)
-//                .scrollContentBackground(Visibility.hidden)
             }
-            
-            // Home Button
-            VStack {
-                Spacer()
-                HStack {
-                    Spacer()
-                    
-                    Button {
-                        // Go to home page
-//                        print(navigationPath.count)
-                        //                            navigationPath.removeAll()
-                        //                            presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        Image(systemName: "house.fill")
-                            .font(.title3)
-                            .foregroundStyle(Color("TextColor").opacity(0.8))
-                            .padding(.horizontal, size20)
-                            .padding(.vertical)
-                            .padding(.trailing, size20)
-                    }
-                    .background(Color("TextColorWhite"))
-                    .cornerRadius(size10)
-                    .shadow(radius: size10)
-                    .padding(.bottom, size30)
-                    .padding(.trailing, -size20)
-                    
-                }
-            }
-            .edgesIgnoringSafeArea(.bottom)
         }
+        .navigationTitle(Text("Poem List"))
+        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             if section != nil {
                 viewModel.fetchPoemsBySection(section!)
@@ -116,7 +84,11 @@ struct PoemListView: View {
             }
         }
         .sheet(isPresented: $showBookDetails) {
-            BookDetailsView(bookName: bookName)
+            VStack {
+                Text("Showing the alert")
+            }
+            
+//            BookDetailsView(bookName: book.title)
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
@@ -130,7 +102,7 @@ struct PoemListView: View {
                         .scaledToFit()
                         .frame(width: size30)
                         .padding(.trailing, size10)
-                    Text(bookName)
+                    Text(book.title)
                         .font(.body)
                         .fontWeight(.semibold)
                     
@@ -141,17 +113,20 @@ struct PoemListView: View {
             
             ToolbarItem {
                 Button {
-                    DispatchQueue.main.async {
-                        showBookDetails = true
-                    }
+//                    presentationMode.wrappedValue.dismiss()
+                    showAlert = true
                 } label: {
-                    Text("நூல் பற்றி")
-                        .font(.subheadline)
-                        .foregroundStyle(Color("TextColor"))
-                        .padding(.vertical, 5)
-                        .padding(.horizontal, size10)
-                        .background(themeManager.selectedTheme == .primary ? colorTheme.opacity(0.3) : .gray.opacity(0.2))
-                        .cornerRadius(8)
+                    HStack(alignment: .center, spacing: 5) {
+                        Image(systemName: "house")
+                            .font(.caption)
+                        Text("Home")
+                    }
+                    .font(.subheadline)
+                    .foregroundStyle(Color("TextColor"))
+                    .padding(.vertical, 5)
+                    .padding(.horizontal, size10)
+                    .background(themeManager.selectedTheme == .primary ? book.color.opacity(0.3) : .gray.opacity(0.2))
+                    .cornerRadius(8)
                 }
             }
         } // toolbar

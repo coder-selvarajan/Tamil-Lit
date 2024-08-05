@@ -17,8 +17,6 @@ struct SharePoem: View {
     @State private var isSharing = false
     
     func getCategoryDisplay() -> String {
-//        guard let poem = poem else { return "" }
-        
         let mainCat = poem.maincategoryname ?? ""
         let subCat = poem.subcategoryname ?? ""
         let sec = poem.sectionname ?? ""

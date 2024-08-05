@@ -16,20 +16,16 @@ struct PoemDetailView: View {
     @StateObject private var viewModel = ExplanationListViewModel()
     @StateObject private var vmFavPoem = FavouritePoemViewModel()
     
-    let colorTheme: Color
-    let bookName: String
     let book: BookInfo
     var poems: [Poem] = []
     
     @State var selectedPoem: Poem
     @State var poemViewHieght: CGFloat = 160.0
     
-//    @State private var showAlert: (Bool, String) = (false, "")
-    
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = "படம் Photo Library-ல்  சேமிக்கப்பட்டது!"
-    
     @State private var poemBookmarked: Bool = false
+    @State private var shareThePoem = false
     
     func getCategoryText() -> String {
         if poems.count > 0 {
@@ -47,210 +43,171 @@ struct PoemDetailView: View {
         return ""
     }
     
-    func getPoemTitle() -> String {
-        if selectedPoem.number == 0 {
+    func getPoemTitle(poem: Poem) -> String {
+        if poem.number == 0 {
             return ""
         }
         
-        let poemType = selectedPoem.book?.poemType ?? ""
+        let poemType = poem.book?.poemType ?? ""
         
-        if let title = selectedPoem.title, title != "" {
+        if let title = poem.title, title != "" {
             return title + ":"
         }
         
-        return poemType + ": \(selectedPoem.number)"
-    }
-    
-    var poemTabView: some View {
-        VStack {
-            ZStack {
-                TabView(selection: $selectedPoem) {
-                    ForEach(poems, id: \.id) { poem in
-                        VStack(alignment: .leading, spacing: size10) {
-                            Spacer()
-                            Text("\(getPoemTitle())")
-                                .font(.callout)
-                                .fontWeight(Font.Weight.semibold)
-//                                .foregroundStyle(.black)
-                            
-                            VStack(alignment: .leading, spacing: 2.0) {
-                                Text("\(poem.poem ?? "")")
-                                    .font(.subheadline)
-                                    .fontWeight(Font.Weight.semibold)
-//                                    .foregroundStyle(.black)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                            }
-                            
-                            Spacer()
-                        }
-                        .tag(poem)
-                        .padding(.bottom)
-                        .frame(maxWidth: .infinity)
-                        .padding(.horizontal, size10)
-                    }
-                }
-                .frame(height: poemViewHieght) //getPoemViewHieght())
-                .tabViewStyle(.page)
-                .indexViewStyle(.page(backgroundDisplayMode: .never))
-            }
-        }
-        .padding(.horizontal, size10)
-        .background(themeManager.selectedTheme == ThemeSelection.primary ? colorTheme.opacity(0.2) : .gray.opacity(0.2))
-        .cornerRadius(size10)
-        .padding(.horizontal, size10)
-        .padding(.bottom, size20)
+        return poemType + ": \(poem.number)"
     }
     
     var body: some View {
         ZStack(alignment: .top) {
             if themeManager.selectedTheme == ThemeSelection.primary {
-                colorTheme.opacity(0.2).ignoresSafeArea()
+                book.color.opacity(0.2).ignoresSafeArea()
             }
             
-            ScrollView(showsIndicators: false) {
-                VStack(alignment: .leading, spacing: size10) {
-                    HStack(alignment: .top, spacing: 5) {
-                        if themeManager.selectedTheme == .primary {
-                            Text("வகை : ")
-                                .padding(3)
-                                .frame(width: size60)
-                                .multilineTextAlignment(.trailing)
-                                .background(.white)
-                                .cornerRadius(5)
-                                .padding(.trailing, 5)
-                        } else {
-                            Text("வகை : ")
-                                .padding(3)
-                                .frame(width: size60)
-                                .multilineTextAlignment(.trailing)
-                                .background(.gray.opacity(0.2))
-                                .cornerRadius(5)
-                                .padding(.trailing, 5)
-                        }
-                        
-                        Text("\(getCategoryText())")
-                            .fontWeight(.bold)
-//                            .foregroundStyle(.black.opacity(0.95))
-                        Spacer()
+            VStack(alignment: .leading, spacing: size10) {
+                // Category strip
+                HStack(alignment: .top, spacing: 5) {
+                    if themeManager.selectedTheme == .primary {
+                        Text("வகை : ")
+                            .padding(3)
+                            .frame(width: size60)
+                            .multilineTextAlignment(.trailing)
+                            .background(.white)
+                            .cornerRadius(5)
+                            .padding(.trailing, 5)
+                    } else {
+                        Text("வகை : ")
+                            .padding(3)
+                            .frame(width: size60)
+                            .multilineTextAlignment(.trailing)
+                            .background(.gray.opacity(0.2))
+                            .cornerRadius(5)
+                            .padding(.trailing, 5)
                     }
-                    .font(.subheadline)
-                    .padding(.vertical)
-                    .padding(.leading, size20)
-                    .padding(.trailing, 5)
                     
-                    
-                    // Poems in a tab view
-                    poemTabView
-                    
-                    VStack(alignment: .leading) {
-                        HStack {
-                            Spacer()
-                            Button {
-                                if poemBookmarked {
-                                    if vmFavPoem.removeFavPoem(selectedPoem) {
-                                        poemBookmarked = false
-                                        alertMessage = "\(selectedPoem.book?.poemType ?? "") நீக்கப்பட்டது!"
-                                        showAlert = true
-                                    } else {
-                                        alertMessage = "Operation failed!"
-                                        showAlert = true
-                                    }
-                                } else {
-                                    if vmFavPoem.saveFavPoem(selectedPoem) {
-                                        poemBookmarked = true
-                                        alertMessage = "\(selectedPoem.book?.poemType ?? "") சேமிக்கப்பட்டது!"
-                                        showAlert = true
-                                    } else {
-                                        alertMessage = "Operation failed!"
-                                        showAlert = true
-                                    }
-                                }
-                            } label: {
-                                HStack(spacing: 5) {
-                                    Image(systemName: poemBookmarked ? "bookmark.fill" : "bookmark")
-                                    Text("சேமி")
-                                }
-                                .font(.subheadline)
-                                .foregroundStyle(Color("TextColor"))
-                            }
-
-                            // Share icon
-                            SharePoem(poem: $selectedPoem, 
-                                      explanations: $viewModel.explanations)
-                            
-                            // Save as image icon
-                            PoemScreenshotView(poem: $selectedPoem, 
-                                               explanations: $viewModel.explanations,
-                                               colorTheme: colorTheme) {
-                                alertMessage = "படம் Photo Library-ல்  சேமிக்கப்பட்டது!"
-                                showAlert = true
-                            }
-                        }
-                        .padding(.top, -size20)
-                        
-                        VStack {
-                            ForEach(viewModel.explanations, id:\.self) { explanation in
-                                VStack(alignment: .leading, spacing: 2.0) {
-                                    if let title = explanation.title, title != "" {
-                                        Text("\(title): ")
-                                            .font(.body)
-                                            .fontWeight(.bold)
-//                                            .foregroundStyle(.black)
-                                            .padding(.bottom, 5)
-                                    }
-                                    Text("\(explanation.meaning ?? "")")
-                                        .font(.body)
-//                                        .foregroundStyle(.black)
-                                    
-                                    if viewModel.explanations.last != explanation {
-                                        Divider()
-                                            .background(.gray)
-                                            .padding(.vertical)
-                                    } else {
-                                        Divider().background(Color.clear)
-                                            .padding(.vertical)
-                                    }
-                                }
-                            }
-                        }
-                        .padding(.vertical, size20)
-//                        .padding(.bottom, paddingSize)
-                        
-                    }.padding()
-                }
-            }
-            
-            // Home Button
-            VStack {
-                Spacer()
-                HStack {
+                    Text("\(getCategoryText())")
+                        .fontWeight(.bold)
+                    //                            .foregroundStyle(.black.opacity(0.95))
                     Spacer()
-                    
-                    Button {
-                        // Go to home page
-//                        print(navigationPath.count)
-                        //                            navigationPath.removeAll()
-                        //                            presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        Image(systemName: "house.fill")
-                            .font(.title3)
-                            .foregroundStyle(Color("TextColor").opacity(0.8))
-                            .padding(.horizontal, size20)
-                            .padding(.vertical)
-                            .padding(.trailing, size20)
+                }
+                .font(.subheadline)
+                .padding(.vertical)
+                .padding(.leading, size20)
+                .padding(.trailing, 5)
+                
+                
+                // Poems in a tab view
+                TabView(selection: $selectedPoem) {
+                    ForEach(poems, id: \.id) { poem in
+                        ScrollView(Axis.Set.vertical, showsIndicators: false) {
+                            VStack {
+                                // Poem info
+                                VStack(alignment: .leading, spacing: size10) {
+                                    Text("\(getPoemTitle(poem: poem))")
+                                        .font(.callout.bold())
+                                    
+                                    VStack(alignment: .leading, spacing: 2.0) {
+                                        Text("\(poem.poem ?? "")")
+                                            .font(.body.bold())
+                                            .frame(maxWidth: .infinity, alignment: .leading)
+                                    }
+                                }
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(themeManager.selectedTheme == ThemeSelection.primary ? book.color.opacity(0.2) : .gray.opacity(0.2))
+                                .cornerRadius(size10)
+                                .padding(.horizontal, size10)
+                                .padding(.bottom, size20)
+                                
+                                VStack(alignment: .leading) {
+                                    // Action button strip
+                                    HStack {
+                                        Spacer()
+                                        Button {
+                                            if poemBookmarked {
+                                                if vmFavPoem.removeFavPoem(poem) {
+                                                    poemBookmarked = false
+                                                    alertMessage = "\(poem.book?.poemType ?? "") நீக்கப்பட்டது!"
+                                                    showAlert = true
+                                                } else {
+                                                    alertMessage = "Operation failed!"
+                                                    showAlert = true
+                                                }
+                                            } else {
+                                                if vmFavPoem.saveFavPoem(poem) {
+                                                    poemBookmarked = true
+                                                    alertMessage = "\(poem.book?.poemType ?? "") சேமிக்கப்பட்டது!"
+                                                    showAlert = true
+                                                } else {
+                                                    alertMessage = "Operation failed!"
+                                                    showAlert = true
+                                                }
+                                            }
+                                        } label: {
+                                            HStack(spacing: 5) {
+                                                Image(systemName: poemBookmarked ? "bookmark.fill" : "bookmark")
+                                                Text("சேமி")
+                                            }
+                                            .font(.subheadline)
+                                            .foregroundStyle(Color("TextColor"))
+                                        }
+                                        
+                                        // Share icon
+                                        SharePoem(poem: $selectedPoem,
+                                                  explanations: $viewModel.explanations)
+                                        
+                                        // Save as image icon
+                                        PoemScreenshotView(poem: $selectedPoem,
+                                                           explanations: $viewModel.explanations,
+                                                           colorTheme: book.color) {
+                                            alertMessage = "படம் Photo Library-ல்  சேமிக்கப்பட்டது!"
+                                            showAlert = true
+                                        }
+                                    }
+                                    .padding(.top, -size20)
+                                    
+                                    // Explanations
+                                    VStack {
+                                        ForEach(viewModel.getExplanations(for: poem), id:\.self) { explanation in
+                                            VStack(alignment: .leading, spacing: 2.0) {
+                                                if let title = explanation.title, title != "" {
+                                                    Text("\(title): ")
+                                                        .textSelection(.enabled)
+                                                        .font(.body.bold())
+                                                        .padding(.bottom, 5)
+                                                }
+                                                Text("\(explanation.meaning ?? "")")
+                                                    .textSelection(.enabled)
+                                                    .font(.body)
+                                                
+                                                if viewModel.explanations.last != explanation {
+                                                    Divider()
+                                                        .background(.gray)
+                                                        .padding(.vertical)
+                                                } else {
+                                                    Divider().background(Color.clear)
+                                                        .padding(.vertical)
+                                                }
+                                            }
+                                        }
+                                    }
+                                    .padding(.vertical, size20)
+                                    
+                                }.padding()
+                                
+                            }
+                            .padding(.bottom)
+                            .frame(maxWidth: .infinity)
+                            .padding(.horizontal, size5)
+                        }
+                        .ignoresSafeArea()
+                        .tag(poem)
+                        
                     }
-                    .background(Color("TextColorWhite"))
-                    .cornerRadius(size10)
-                    .shadow(color: Color("TextColor").opacity(0.2), radius: 5)
-                    .padding(.bottom, size30)
-                    .padding(.trailing, -size20)
-                    
                 }
             }
-            .edgesIgnoringSafeArea(.bottom)
+            .tabViewStyle(.page)
+            .indexViewStyle(.page(backgroundDisplayMode: .always))
         }
-//        .navigationTitle(Text(bookName).foregroundStyle(.black))
-//        .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
         .onChange(of: selectedPoem, perform: { newValue in
             poemBookmarked = vmFavPoem.isPoemBookmarked(newValue)
             viewModel.fetchExplanations(for: newValue)
@@ -258,7 +215,7 @@ struct PoemDetailView: View {
         .popup(isPresented: $showAlert) {
             Text(alertMessage)
                 .padding()
-                .background(.white)
+                .background(Color("TextColorWhite"))
                 .cornerRadius(size15)
                 .shadow(radius: size15)
         } customize: {
@@ -279,23 +236,36 @@ struct PoemDetailView: View {
                         .scaledToFit()
                         .frame(width: size30)
                         .padding(.trailing, size10)
-                    Text(bookName)
+                    Text(book.title)
                         .font(.body)
                         .fontWeight(.semibold)
-                        
+                    
                     
                     Spacer()
                     
                 }
                 .padding(0)
             }
+            
+            ToolbarItem {
+                Button {
+//                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    HStack(alignment: .center, spacing: 5) {
+                        Image(systemName: "house")
+                            .font(.caption)
+                        Text("Home")
+                    }
+                    .font(.subheadline)
+                    .foregroundStyle(Color("TextColor"))
+                    .padding(.vertical, 5)
+                    .padding(.horizontal, size10)
+                    .background(themeManager.selectedTheme == .primary ? book.color.opacity(0.3) : .gray.opacity(0.2))
+                    .cornerRadius(8)
+                }
+            }
         }
         .onAppear {
-            if let poemContent = selectedPoem.poem {
-                let lines = poemContent.components(separatedBy: "\n")
-                poemViewHieght = (CGFloat(lines.count) * size30) + size110
-            }
-            
             poemBookmarked = vmFavPoem.isPoemBookmarked(selectedPoem)
             viewModel.fetchExplanations(for: selectedPoem)
         }

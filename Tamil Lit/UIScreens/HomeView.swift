@@ -14,8 +14,6 @@ struct HomeView: View {
     @EnvironmentObject var bookManager: BookManager
     @EnvironmentObject var themeManager: ThemeManager
     
-    @Environment(\.showLoading) private var showLoading
-    
     @StateObject var vm = DailyPoemViewModel()
     
     @State var bookDisplayAsGrid: Bool = true
@@ -34,93 +32,93 @@ struct HomeView: View {
         let now = Date()
         return currentDate >= Calendar.current.startOfDay(for: now)
     }
-
+    
     private var isBeforeFirstDailyPoem: Bool {
         if let firstDailyPoemDate = vm.firstDailyPoemDate {
             if let nextDay = Calendar.current.date(byAdding: .day, value: 1, to: Calendar.current.startOfDay(for: firstDailyPoemDate)) {
                 return currentDate <= nextDay
             }
         }
-
+        
         return true
     }
     
     var body: some View {
-//        NavigationView {
-            VStack {
-                ScrollView(showsIndicators: false) {
-                    VStack {
-                        
-                        // Daily poem
-                        VStack(alignment: .leading, spacing: 0) {
-                            HStack(alignment: .center) {
-                                Text("தினம் ஒரு பாடல்")
-                                    .font(.headline)
-                                    .fontWeight(.semibold)
-                                
-                                Spacer()
-                                
-                                Button {
-                                    currentDate = Calendar.current.date(byAdding: .day, value: -1, to: currentDate) ?? currentDate
-                                    vm.getDailyPoemFor(currentDate)
-                                } label: {
-                                    Image(systemName: "arrowtriangle.left.circle")
-                                        .font(.title3)
-                                        .foregroundColor(Color("TextColor"))
-                                }
-                                .disabled(isBeforeFirstDailyPoem)
-                                .opacity(isBeforeFirstDailyPoem ? 0.3 : 1.0)
-                                
-                                
-                                Text(formattedDate)
-                                    .font(.subheadline)
-                                    .foregroundStyle(Color("TextColor").opacity(0.85))
-                                
-                                Button {
-                                    currentDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate) ?? currentDate
-                                    vm.getDailyPoemFor(currentDate)
-                                } label: {
-                                    Image(systemName: "arrowtriangle.right.circle")
-                                        .font(.title3)
-                                        .foregroundColor(Color("TextColor"))
-                                }
-                                .disabled(isTodayOrAfter)
-                                .opacity(isTodayOrAfter ? 0.3 : 1.0)
-                                
+        VStack {
+            ScrollView(showsIndicators: false) {
+                VStack {
+                    
+                    // Daily poem
+                    VStack(alignment: .leading, spacing: 0) {
+                        HStack(alignment: .center) {
+                            Text("தினம் ஒரு பாடல்")
+                                .font(.headline)
+                                .fontWeight(.semibold)
+                            
+                            Spacer()
+                            
+                            Button {
+                                currentDate = Calendar.current.date(byAdding: .day, value: -1, to: currentDate) ?? currentDate
+                                vm.getDailyPoemFor(currentDate)
+                            } label: {
+                                Image(systemName: "arrowtriangle.left.circle")
+                                    .font(.title3)
+                                    .foregroundColor(Color("TextColor"))
                             }
-                            .padding(.bottom, 5)
+                            .disabled(isBeforeFirstDailyPoem)
+                            .opacity(isBeforeFirstDailyPoem ? 0.3 : 1.0)
                             
-                            Divider().padding(.vertical, size10)
                             
-                            // Book and Category display
-                            HStack(alignment: .top) {
-                                Text("\(vm.poemOftheDay?.bookname ?? "")\(vm.categoryDisplay)")
-                                    .font(.subheadline)
-                                    .fontWeight(.semibold)
-                                    .padding(.bottom, size10)
-                                
-                                Spacer()
+                            Text(formattedDate)
+                                .font(.subheadline)
+                                .foregroundStyle(Color("TextColor").opacity(0.85))
+                            
+                            Button {
+                                currentDate = Calendar.current.date(byAdding: .day, value: 1, to: currentDate) ?? currentDate
+                                vm.getDailyPoemFor(currentDate)
+                            } label: {
+                                Image(systemName: "arrowtriangle.right.circle")
+                                    .font(.title3)
+                                    .foregroundColor(Color("TextColor"))
                             }
+                            .disabled(isTodayOrAfter)
+                            .opacity(isTodayOrAfter ? 0.3 : 1.0)
                             
-                            // Daily poem display
-                            Text(vm.poemOftheDay?.poem ?? "")
-                                .lineLimit(3)
-                                .onTapGesture {
-                                    showPoemPopup = true
-                                }
                         }
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(.gray.opacity(0.15))
-                        .cornerRadius(size10)
-                        .padding()
+                        .padding(.bottom, 5)
                         
-                        // Action Section
-                        VStack (alignment: .leading) {
-                            HStack(spacing: size15) {
-                                NavigationLink(destination: RandomPoemView()) {
-                                    VStack(alignment: .center, spacing: size10) {
-                                        HStack(spacing: size10) {
+                        Divider().padding(.vertical, size10)
+                        
+                        // Book and Category display
+                        HStack(alignment: .top) {
+                            Text("\(vm.poemOftheDay?.bookname ?? "")\(vm.categoryDisplay)")
+                                .font(.subheadline)
+                                .fontWeight(.semibold)
+                                .padding(.bottom, size10)
+                            
+                            Spacer()
+                        }
+                        
+                        // Daily poem display
+                        Text(vm.poemOftheDay?.poem ?? "")
+                            .lineLimit(3)
+                            .onTapGesture {
+                                showPoemPopup = true
+                            }
+                    }
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(.gray.opacity(0.15))
+                    .cornerRadius(size10)
+                    .padding()
+                    
+                    // Action Section
+                    VStack (alignment: .leading) {
+                        HStack(spacing: size15) {
+                            NavigationLink(destination: RandomPoemView()) {
+                                VStack(alignment: .center, spacing: size10) {
+                                    HStack(spacing: size10) {
+                                        if themeManager.selectedTheme == .primary {
                                             Circle()
                                                 .fill(Color.blue.opacity(userSettings.darkMode ? 0.75 : 0.5))
                                                 .background(Circle().fill(Color.white)) // to support the look in dark mode
@@ -133,320 +131,262 @@ struct HomeView: View {
                                                 .fill(Color.purple.opacity(userSettings.darkMode ? 0.75 : 0.5))
                                                 .background(Circle().fill(Color.white)) // to support the look in dark mode
                                                 .frame(width: size10, height: size10)
-                                        }.frame(height: size30)
-                                        VStack(alignment: .leading) {
-                                            Text("ஏதோ ஒரு பாடல்")
-                                                .lineLimit(1)
-                                                .foregroundStyle(Color("TextColor"))
+                                        } else {
+                                            Circle()
+                                                .fill(Color.yellow.opacity(userSettings.darkMode ? 0.75 : 0.5))
+                                                .background(Circle().fill(Color.white)) // to support the look in dark mode
+                                                .frame(width: size10, height: size10)
+                                            Circle()
+                                                .fill(Color.orange.opacity(userSettings.darkMode ? 0.75 : 0.5))
+                                                .background(Circle().fill(Color.white)) // to support the look in dark mode
+                                                .frame(width: size10, height: size10)
+                                            Circle()
+                                                .fill(Color.red.opacity(userSettings.darkMode ? 0.75 : 0.5))
+                                                .background(Circle().fill(Color.white)) // to support the look in dark mode
+                                                .frame(width: size10, height: size10)
                                         }
-                                    }
-                                    .font(.subheadline)
-                                    .padding()
-                                    .frame(maxWidth: .infinity)
-                                    .background(.gray.opacity(0.15))
-                                    .cornerRadius(size10)
-                                }
-                                
-                                NavigationLink(destination: FavouritePoemListView()) {
-                                    VStack(alignment: .center, spacing: size10) {
-                                        HStack {
-                                            Image(systemName: "bookmark.fill")
-                                                .font(.title3)
-                                                .foregroundColor(.cyan.opacity(userSettings.darkMode ? 0.9 : 0.6))
-                                        }.frame(height: size30)
-                                        
-                                        Text("சேமித்தவை ")
+                                    }.frame(height: size30)
+                                    VStack(alignment: .leading) {
+                                        Text("ஏதோ ஒரு பாடல்")
                                             .lineLimit(1)
                                             .foregroundStyle(Color("TextColor"))
                                     }
-                                    .font(.subheadline)
-                                    .padding()
-                                    .frame(maxWidth: .infinity)
-                                    //                                }
-                                    .background(.gray.opacity(0.15))
-                                    .cornerRadius(size10)
                                 }
-                                
-                            }
-                            .frame(maxWidth: .infinity)
-                            .padding(.horizontal)
-                        }
-                        
-                        // Tiles
-                        VStack(spacing: 16) {
-                            HStack {
-                                
-                                Image(systemName: "books.vertical")
-                                    .font(.title2)
-                                    .padding(.trailing, 5)
-                                Text("தமிழ் இலக்கிய நூல்கள்")
-                                    .font(.title3)
-                                
-                                Spacer()
+                                .font(.subheadline)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(.gray.opacity(0.15))
+                                .cornerRadius(size10)
                             }
                             
-                            ForEach(bookManager.books.chunked(into: 2), id: \.self) { bookPair in
-                                HStack(spacing: 16) {
-                                    ForEach(bookPair.indices, id: \.self) { index in
-                                        let bookBinding = $bookManager.books[bookPair[index].order - 1]
-                                        let bookItem = bookManager.books[bookPair[index].order - 1]
-                                        NavigationLink(destination: BookHomeView(colorTheme: bookBinding.wrappedValue.color,
-                                                                                 bookName: bookBinding.wrappedValue.title,
-                                                                                 book: bookItem)) {
-                                            BookTileView(book: bookBinding, bookDisplayAsGrid: $bookDisplayAsGrid)
+                            NavigationLink(destination: FavouritePoemListView()) {
+                                VStack(alignment: .center, spacing: size10) {
+                                    HStack {
+                                        if themeManager.selectedTheme == .primary {
+                                            Image(systemName: "bookmark.fill")
+                                                .font(.title3)
+                                                .foregroundColor(.cyan.opacity(userSettings.darkMode ? 0.9 : 0.6))
+                                        } else {
+                                            Image(systemName: "bookmark.fill")
+                                                .font(.title3)
+                                                .foregroundColor(.orange.opacity(userSettings.darkMode ? 0.9 : 0.6))
                                         }
+                                    }.frame(height: size30)
+                                    
+                                    Text("சேமித்தவை ")
+                                        .lineLimit(1)
+                                        .foregroundStyle(Color("TextColor"))
+                                }
+                                .font(.subheadline)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                //                                }
+                                .background(.gray.opacity(0.15))
+                                .cornerRadius(size10)
+                            }
+                            
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.horizontal)
+                    }
+                    
+                    // Tiles
+                    VStack(spacing: 16) {
+                        HStack {
+                            
+                            Image(systemName: "books.vertical")
+                                .font(.title2)
+                                .padding(.trailing, 5)
+                            Text("தமிழ் இலக்கிய நூல்கள்")
+                                .font(.title3)
+                            
+                            Spacer()
+                        }
+                        
+                        
+                        
+                        ForEach(bookManager.books.chunked(into: 2), id: \.self) { bookPair in
+                            HStack(spacing: 16) {
+                                ForEach(bookPair.indices, id: \.self) { index in
+                                    let bookBinding = $bookManager.books[bookPair[index].order - 1]
+                                    let bookItem = bookManager.books[bookPair[index].order - 1]
+                                    NavigationLink(destination: BookHomeView(book: bookItem)) {
+                                        BookTileView(book: bookBinding, bookDisplayAsGrid: $bookDisplayAsGrid)
                                     }
                                 }
                             }
                         }
-                        .padding()
+                    }
+                    .padding()
+                    
+                    // Tamil Articles Links
+                    VStack(spacing: size15) {
+                        HStack {
+                            
+                            Image(systemName: "square.text.square")
+                                .font(.title2)
+                                .padding(.trailing, 5)
+                            Text("வரலாற்று தகவல்கள்")
+                                .font(.title3)
+                            
+                            Spacer()
+                        }
                         
-                        // Tamil Articles Links
-                        VStack(spacing: size15) {
-                            HStack {
-                                
-                                Image(systemName: "square.text.square")
-                                    .font(.title2)
-                                    .padding(.trailing, 5)
-                                Text("வரலாற்று தகவல்கள்")
-                                    .font(.title3)
-                                
-                                Spacer()
+                        VStack {
+                            VStack {
+                                NavigationLink(destination: ArticleView(fileName: "TamilLiterature")) {
+                                    HStack {
+                                        Text("தமிழ் இலக்கிய வரலாறு")
+                                            .foregroundColor(Color("TextColor"))
+                                        
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
+                                            .foregroundColor(.gray)
+                                    }
+                                    .padding(.vertical, 5)
+                                }
+                                Divider()
                             }
                             
                             VStack {
-                                VStack {
-                                    NavigationLink(destination: ArticleView(fileName: "TamilLiterature")) {
-                                        HStack {
-                                            Text("தமிழ் இலக்கிய வரலாறு")
-                                                .foregroundColor(Color("TextColor"))
-                                            
-                                            Spacer()
-                                            Image(systemName: "chevron.right")
-                                                .foregroundColor(.gray)
-                                        }
-                                        .padding(.vertical, 5)
+                                NavigationLink(destination: ArticleView(fileName: "SangaIlakkiyam")) {
+                                    HStack {
+                                        Text("சங்க இலக்கியம்")
+                                            .foregroundColor(Color("TextColor"))
+                                        
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
+                                            .foregroundColor(.gray)
                                     }
-                                    Divider()
+                                    .padding(.vertical, 5)
                                 }
                                 
-                                VStack {
-                                    NavigationLink(destination: ArticleView(fileName: "SangaIlakkiyam")) {
-                                        HStack {
-                                            Text("சங்க இலக்கியம்")
-                                                .foregroundColor(Color("TextColor"))
-                                            
-                                            Spacer()
-                                            Image(systemName: "chevron.right")
-                                                .foregroundColor(.gray)
-                                        }
-                                        .padding(.vertical, 5)
-                                    }
-                                    
-                                    Divider()
-                                    
-                                }
-                                
-                                VStack {
-                                    NavigationLink(destination: ArticleView(fileName: "SangaIlakkiyaNoolkal")) {
-                                        HStack {
-                                            Text("சங்க இலக்கிய நூல்கள்")
-                                                .foregroundColor(Color("TextColor"))
-                                            
-                                            Spacer()
-                                            Image(systemName: "chevron.right")
-                                                .foregroundColor(.gray)
-                                        }
-                                        .padding(.vertical, 5)
-                                    }
-                                    Divider()
-                                }
-                                
-                                VStack {
-                                    NavigationLink(destination: ArticleView(fileName: "Idaikaala-Ilakkiyam")) {
-                                        HStack {
-                                            Text("இடைக்கால இலக்கியம்")
-                                                .foregroundColor(Color("TextColor"))
-                                            
-                                            Spacer()
-                                            Image(systemName: "chevron.right")
-                                                .foregroundColor(.gray)
-                                        }
-                                        .padding(.vertical, 5)
-                                    }
-                                    Divider()
-                                }
-                                
-                                VStack {
-                                    NavigationLink(destination: ArticleView(fileName: "Naveena-Yugam")) {
-                                        HStack {
-                                            Text("நவீன யுகம்")
-                                                .foregroundColor(Color("TextColor"))
-                                            
-                                            Spacer()
-                                            Image(systemName: "chevron.right")
-                                                .foregroundColor(.gray)
-                                        }
-                                        .padding(.vertical, 5)
-                                    }
-//                                    Divider()
-                                }
+                                Divider()
                                 
                             }
-                            .padding()
-                            .background(.gray.opacity(0.1))
-                            .cornerRadius(size10)
+                            
+                            VStack {
+                                NavigationLink(destination: ArticleView(fileName: "SangaIlakkiyaNoolkal")) {
+                                    HStack {
+                                        Text("சங்க இலக்கிய நூல்கள்")
+                                            .foregroundColor(Color("TextColor"))
+                                        
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
+                                            .foregroundColor(.gray)
+                                    }
+                                    .padding(.vertical, 5)
+                                }
+                                Divider()
+                            }
+                            
+                            VStack {
+                                NavigationLink(destination: ArticleView(fileName: "Idaikaala-Ilakkiyam")) {
+                                    HStack {
+                                        Text("இடைக்கால இலக்கியம்")
+                                            .foregroundColor(Color("TextColor"))
+                                        
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
+                                            .foregroundColor(.gray)
+                                    }
+                                    .padding(.vertical, 5)
+                                }
+                                Divider()
+                            }
+                            
+                            VStack {
+                                NavigationLink(destination: ArticleView(fileName: "Naveena-Yugam")) {
+                                    HStack {
+                                        Text("நவீன யுகம்")
+                                            .foregroundColor(Color("TextColor"))
+                                        
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
+                                            .foregroundColor(.gray)
+                                    }
+                                    .padding(.vertical, 5)
+                                }
+                                //                                    Divider()
+                            }
                             
                         }
                         .padding()
+                        .background(.gray.opacity(0.1))
+                        .cornerRadius(size10)
                         
-                        
-                        VStack{
-                            Text(" ")
-                        }.frame(height: size40)
-                        
-                        Spacer()
                     }
+                    .padding()
+                    
+                    
+                    VStack{
+                        Text(" ")
+                    }.frame(height: size40)
+                    
+                    Spacer()
                 }
             }
-            .navigationTitle("Home")
-            .navigationBarTitleDisplayMode(.inline)
-            .onAppear() {
-                // Fetch the poem of the day
-                vm.getPoemOftheDay()
-                
-                // Open the daily poem popup when the user comes from the daily notification message..
-                if notificationHandler.appOpenedFromNotification {
-                    notificationHandler.appOpenedFromNotification = false
-                    showPoemPopup = true
-                }
+        }
+        .navigationTitle("Home")
+        .navigationBarTitleDisplayMode(.inline)
+        .onAppear() {
+            // Fetch the poem of the day
+            vm.getPoemOftheDay()
+            
+            // Open the daily poem popup when the user comes from the daily notification message..
+            if notificationHandler.appOpenedFromNotification {
+                notificationHandler.appOpenedFromNotification = false
+                showPoemPopup = true
             }
-            .onChange(of: notificationHandler.appOpenedFromNotification, perform: { newValue in
-                // this code is added since the app is open and the onAppear event would n't trigger..
-                if newValue {
-                    print("App opened from notification")
-                    showPoemPopup = true
-                }
-            })
-            .sheet(isPresented: $showPoemPopup) {
-                if vm.poemOftheDay != nil {
-                    SimplePoemDetailView(selectedPoem: Binding($vm.poemOftheDay)!, popupMode: true)
-                }
+        }
+        .onChange(of: notificationHandler.appOpenedFromNotification, perform: { newValue in
+            // this code is added since the app is open and the onAppear event would n't trigger..
+            if newValue {
+                print("App opened from notification")
+                showPoemPopup = true
             }
-            .toolbar {
-                ToolbarItem(placement: .principal) {
+        })
+        .sheet(isPresented: $showPoemPopup) {
+            if vm.poemOftheDay != nil {
+                SimplePoemDetailView(selectedPoem: Binding($vm.poemOftheDay)!, popupMode: true)
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                HStack {
+                    Image("114")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: size40)
+                        .cornerRadius(size10)
+                    
+                    Text("Tamil Lit")
+                        .font(.custom("Quicksand", size: 22))
+                        .fontWeight(.semibold)
+                    
+                    Spacer()
+                }
+                .padding(0)
+            }
+            
+            ToolbarItem {
+                NavigationLink(destination: SearchView()) {
                     HStack {
-                        Image("114")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: size40)
-                            .cornerRadius(size10)
-                        
-                        Text("Tamil Lit")
-                            .font(.custom("Quicksand", size: 22))
-                            .fontWeight(.semibold)
-                        
-                        Spacer()
-                    }
-                    .padding(0)
-                }
-                
-                ToolbarItem {
-                    NavigationLink(destination: SearchView()) {
-                        HStack {
-                            Image(systemName: "magnifyingglass")
-                                .foregroundStyle(Color("TextColor"))
-                            
-                            Text("தேடுக").foregroundStyle(.gray)
-                        }.padding(.horizontal)
-                    }
-                }
-                
-                ToolbarItem {
-                    NavigationLink(destination: SettingsView()) {
-                        Image(systemName: "gearshape")
+                        Image(systemName: "magnifyingglass")
                             .foregroundStyle(Color("TextColor"))
-                    }
+                        
+                        Text("தேடுக").foregroundStyle(.gray)
+                    }.padding(.horizontal)
                 }
-            } // toolbar
-//        } //NavigationView
+            }
+            
+            ToolbarItem {
+                NavigationLink(destination: SettingsView()) {
+                    Image(systemName: "gearshape")
+                        .foregroundStyle(Color("TextColor"))
+                }
+            }
+        } // toolbar
     }
 }
 
-//struct BookTileView: View {
-//    @EnvironmentObject var userSettings: UserSettings
-//    
-//    var colors = [Color.blue, Color.green, Color.red, Color.cyan, Color.indigo, Color.orange, Color.purple, Color.brown, Color.teal, Color.pink, Color.gray, Color.yellow]
-//    var bookTitle: String
-//    var imageName: String?
-//    var footnote: String
-//    var color: Color = Color.clear
-//    var bannerColor: String
-//    var book: BookInfo
-//    
-//    @Binding var bookDisplayAsGrid: Bool
-//    
-//    var body: some View {
-//        ZStack(alignment: .topLeading) {
-//            RoundedRectangle(cornerRadius: size10)
-//                .fill(color.opacity(0.15))
-////                .overlay(
-////                    RoundedRectangle(cornerRadius: size10)
-////                        .stroke(Color.cyan, lineWidth: 1)
-////                )
-////                .fill(userSettings.darkMode ? color.opacity(0.45) : color.opacity(0.25))
-////                .background(RoundedRectangle(cornerRadius: size10).fill(Color.white))
-//            
-//            HStack(alignment: .top) {
-//                VStack(alignment: .leading, spacing: size10) {
-//                    Text(bookTitle)
-//                        .font(.headline.bold())
-//                        .foregroundStyle(Color("TextColor"))
-//                        .multilineTextAlignment(.leading)
-//                        //.lineLimit(1)
-//                    Text(footnote)
-//                        .font(.footnote)
-//                        .foregroundStyle(Color("TextColor").opacity(0.7))
-////                        .foregroundColor(Color("TextColor").opacity(0.7))
-//                }
-////                .frame(maxWidth: .infinity)
-//                .padding()
-//                
-//                Spacer()
-//            }
-//            
-//            if bookDisplayAsGrid {
-//                VStack {
-//                    Spacer()
-//                    HStack {
-//                        Spacer()
-//                        if let img = imageName {
-//                            Image(img)
-//                                .resizable()
-//                                .scaledToFit()
-//                                .frame(height: 80)
-////                                .saturation(0.1)
-////                                .brightness(0.0)
-////                                .contrast(0.5)
-//                                .opacity(0.8)
-//                        }
-//                        else {
-//                            Image("book-icon")
-//                                .resizable()
-//                                .scaledToFit()
-//                                .frame(width: size50)
-//                                .saturation(0.0)
-//                                .opacity(0.6)
-//                                .padding()
-//                        }
-//                    }.padding(0)
-//                }.padding(0)
-//            }
-//        }
-//        .frame(height: 150)
-//    }
-//}
-
-//#Preview {
-//    HomeView()
-//}

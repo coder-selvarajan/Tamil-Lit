@@ -49,6 +49,7 @@ struct BookInfo: Identifiable, Codable, Hashable {
     var id: UUID
     var order: Int
     var title: String
+    var bannerDisplay: String
     var subtitle: String
     var image: String
     var color: Color
@@ -56,14 +57,15 @@ struct BookInfo: Identifiable, Codable, Hashable {
     var selected: Bool
 
     enum CodingKeys: String, CodingKey {
-        case id, order, title, subtitle, image, bannerColor, selected
+        case id, order, title, bannerDisplay, subtitle, image, bannerColor, selected
         case colorHex
     }
 
-    init(id: UUID, order: Int, title: String, subtitle: String, image: String, color: Color, bannerColor: String, selected: Bool) {
+    init(id: UUID, order: Int, title: String, bannerDisplay: String, subtitle: String, image: String, color: Color, bannerColor: String, selected: Bool) {
         self.id = id
         self.order = order
         self.title = title
+        self.bannerDisplay = bannerDisplay
         self.subtitle = subtitle
         self.image = image
         self.color = color
@@ -76,6 +78,7 @@ struct BookInfo: Identifiable, Codable, Hashable {
         id = try container.decode(UUID.self, forKey: .id)
         order = try container.decode(Int.self, forKey: .order)
         title = try container.decode(String.self, forKey: .title)
+        bannerDisplay = try container.decode(String.self, forKey: .bannerDisplay)
         subtitle = try container.decode(String.self, forKey: .subtitle)
         image = try container.decode(String.self, forKey: .image)
         bannerColor = try container.decode(String.self, forKey: .bannerColor)
@@ -89,6 +92,7 @@ struct BookInfo: Identifiable, Codable, Hashable {
         try container.encode(id, forKey: .id)
         try container.encode(order, forKey: .order)
         try container.encode(title, forKey: .title)
+        try container.encode(title, forKey: .bannerDisplay)
         try container.encode(subtitle, forKey: .subtitle)
         try container.encode(image, forKey: .image)
         try container.encode(bannerColor, forKey: .bannerColor)

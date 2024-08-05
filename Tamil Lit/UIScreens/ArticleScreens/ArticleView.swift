@@ -24,6 +24,7 @@ struct ArticleView: View {
     var body: some View {
         ScrollView {
             Markdown(markdownContent)
+                .textSelection(.enabled)
                 .padding()
         }
         .onAppear() {

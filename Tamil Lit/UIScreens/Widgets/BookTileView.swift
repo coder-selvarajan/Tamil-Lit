@@ -17,7 +17,8 @@ struct BookTileView: View {
     var body: some View {
         ZStack(alignment: .topLeading) {
             RoundedRectangle(cornerRadius: size10)
-                .fill(book.color.opacity(0.25))
+                .fill(book.color.opacity(0.2))
+            
 //                .overlay(
 //                    RoundedRectangle(cornerRadius: size10)
 //                        .stroke(Color.cyan, lineWidth: 1)
@@ -27,7 +28,7 @@ struct BookTileView: View {
             
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: size10) {
-                    Text(book.title)
+                    Text(book.bannerDisplay)
                         .font(.title3)
                         .foregroundStyle(Color("TextColor"))
                         .multilineTextAlignment(.leading)

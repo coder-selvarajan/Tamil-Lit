@@ -9,6 +9,8 @@ import SwiftUI
 
 struct BookSelectorView: View {
     @EnvironmentObject var userSettings: UserSettings
+    @EnvironmentObject var themeManager: ThemeManager
+    
     @Binding var showModal: Bool
     @Binding var booksInfo: [BookInfo]
     
@@ -35,10 +37,17 @@ struct BookSelectorView: View {
                     ForEach($booksInfo, id:\.id) { $bookInfo in
                         VStack {
                             HStack {
-                                Image(systemName: "checkmark.circle.fill")
-                                    .font(.title3)
-                                    .foregroundColor(bookInfo.selected ? .cyan.opacity(0.75) : .gray.opacity(0.5))
-                                    .padding(.trailing)
+                                if themeManager.selectedTheme == .primary {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .font(.title3)
+                                        .foregroundColor(bookInfo.selected ? .cyan.opacity(0.75) : .gray.opacity(0.5))
+                                        .padding(.trailing)
+                                } else {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .font(.title3)
+                                        .foregroundColor(bookInfo.selected ? .yellow.opacity(0.75) : .yellow.opacity(0.5))
+                                        .padding(.trailing)
+                                }
                                 
                                 Text(bookInfo.title)
                                     .foregroundColor(bookInfo.selected ? Color("TextColor") : .gray.opacity(0.7))

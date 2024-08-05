@@ -55,6 +55,8 @@
 		70A1E9472C4AA12900264AC8 /* RandomPoemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A1E9462C4AA12900264AC8 /* RandomPoemViewModel.swift */; };
 		70B5EBD32C3AD6FB00471451 /* ImportDBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B5EBD22C3AD6FB00471451 /* ImportDBView.swift */; };
 		70B5EBDB2C3AF73500471451 /* TamilLitDB.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 70B5EBD82C3AF73500471451 /* TamilLitDB.sqlite */; };
+		70B8DFF12C60DF4E00C56DF7 /* TestSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8DFF02C60DF4E00C56DF7 /* TestSheet.swift */; };
+		70B8DFF92C610D2D00C56DF7 /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B8DFF82C610D2D00C56DF7 /* HomeScreenView.swift */; };
 		70BA907A2C501E3F0003CAA5 /* SharePoem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BA90792C501E3F0003CAA5 /* SharePoem.swift */; };
 		70C057D42C54EB3200C10ABA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C057D32C54EB3200C10ABA /* AppDelegate.swift */; };
 		70C057D62C54EF2300C10ABA /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C057D52C54EF2300C10ABA /* NotificationHandler.swift */; };
@@ -139,6 +141,8 @@
 		70A1E9462C4AA12900264AC8 /* RandomPoemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomPoemViewModel.swift; sourceTree = "<group>"; };
 		70B5EBD22C3AD6FB00471451 /* ImportDBView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportDBView.swift; sourceTree = "<group>"; };
 		70B5EBD82C3AF73500471451 /* TamilLitDB.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = TamilLitDB.sqlite; sourceTree = "<group>"; };
+		70B8DFF02C60DF4E00C56DF7 /* TestSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSheet.swift; sourceTree = "<group>"; };
+		70B8DFF82C610D2D00C56DF7 /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
 		70BA90792C501E3F0003CAA5 /* SharePoem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePoem.swift; sourceTree = "<group>"; };
 		70C057D02C54BEE000C10ABA /* Tamil Lit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Tamil Lit.entitlements"; sourceTree = "<group>"; };
 		70C057D32C54EB3200C10ABA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -205,6 +209,8 @@
 		702240542B69652000EF072B /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				70068B612C5DF7A5009543EB /* ThemeManager.swift */,
+				70068B632C5DFD18009543EB /* BookManager.swift */,
 				702240552B69653C00EF072B /* WrapView.swift */,
 				70206A6F2C4D592400B55EE6 /* BookInfo.swift */,
 				704641082C50F8B100447FF4 /* SaveAsImage.swift */,
@@ -213,8 +219,6 @@
 				70C057D72C5535CE00C10ABA /* UserSettings.swift */,
 				70824FC02C56558300088810 /* HTMLView.swift */,
 				70824FC22C565FE400088810 /* HTMLLabel.swift */,
-				70068B612C5DF7A5009543EB /* ThemeManager.swift */,
-				70068B632C5DFD18009543EB /* BookManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -300,6 +304,7 @@
 				70C057D92C554A1A00C10ABA /* Widgets */,
 				70160F6A2C0B20E20053B4A9 /* MainView.swift */,
 				70F7709E2C08BBAD00D329C3 /* HomeView.swift */,
+				70B8DFF82C610D2D00C56DF7 /* HomeScreenView.swift */,
 				7068D7E22C33DCE700FAB1F6 /* BookHomeView.swift */,
 				70F86D4A2C49899300799435 /* SearchView.swift */,
 				70C7CF6E2C4AD63B00D4189B /* RandomPoemView.swift */,
@@ -315,6 +320,7 @@
 				70A1E9422C4A565F00264AC8 /* SimplePoemDetailView.swift */,
 				7090CFF82C5A6E9A00B23353 /* TamilKeyboardInstructionView.swift */,
 				7090CFFA2C5A73E000B23353 /* CreditsView.swift */,
+				70B8DFF02C60DF4E00C56DF7 /* TestSheet.swift */,
 			);
 			path = UIScreens;
 			sourceTree = "<group>";
@@ -498,6 +504,7 @@
 				702DF7A82C5210A10037D0BD /* PoemScreenshotView.swift in Sources */,
 				70068B622C5DF7A5009543EB /* ThemeManager.swift in Sources */,
 				70F86D452C490C8600799435 /* Settings+CoreDataProperties.swift in Sources */,
+				70B8DFF12C60DF4E00C56DF7 /* TestSheet.swift in Sources */,
 				70C057D42C54EB3200C10ABA /* AppDelegate.swift in Sources */,
 				70824FBF2C56240900088810 /* ArticleView.swift in Sources */,
 				70206A6E2C4D566000B55EE6 /* BookSelectorView.swift in Sources */,
@@ -527,6 +534,7 @@
 				70A1E9432C4A565F00264AC8 /* SimplePoemDetailView.swift in Sources */,
 				70E739302C31530000A4CF0E /* PoemListViewModel.swift in Sources */,
 				70DEF95A2C5402A800E72152 /* Constants.swift in Sources */,
+				70B8DFF92C610D2D00C56DF7 /* HomeScreenView.swift in Sources */,
 				70C057D82C5535CE00C10ABA /* UserSettings.swift in Sources */,
 				70824FC32C565FE400088810 /* HTMLLabel.swift in Sources */,
 				70BA907A2C501E3F0003CAA5 /* SharePoem.swift in Sources */,
@@ -589,7 +597,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -646,7 +654,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -677,7 +685,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -716,7 +724,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

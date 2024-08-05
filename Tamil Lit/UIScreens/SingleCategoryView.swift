@@ -10,42 +10,33 @@ import SwiftUI
 struct SingleCategoryView: View {
     @EnvironmentObject var themeManager: ThemeManager
     
-    let colorTheme: Color
-    let bookName: String
     let book: BookInfo
     
     @StateObject private var viewModel = SingleCategoryViewModel()
     @State private var showBookInfo: Bool = false
     
     var body: some View {
-//        ScrollView(showsIndicators: false) {
-            VStack(alignment: .leading) {
-                List {
-                    SwiftUI.Section(header: Text("வகைகள்: ").fontWeight(.bold).foregroundStyle(.black)) {
-                        ForEach(viewModel.categories, id:\.self) { category in
-                            if let title = category.title {
-                                NavigationLink(destination:
-                                                PoemListView(colorTheme: colorTheme,
-                                                             bookName: bookName,
-                                                             book: book,
-                                                             mainCategory: category)) {
-                                    Text(title)
-//                                        .foregroundStyle(Color("TextColor"))
-                                }
+        VStack(alignment: .leading) {
+            List {
+                SwiftUI.Section(header: Text("வகைகள்: ").fontWeight(.bold).foregroundStyle(.black)) {
+                    ForEach(viewModel.categories, id:\.self) { category in
+                        if let title = category.title {
+                            NavigationLink(destination:
+                                            PoemListView(book: book,
+                                                         mainCategory: category)) {
+                                Text(title)
                             }
                         }
                     }
-                    .listRowBackground(themeManager.selectedTheme == ThemeSelection.primary ? colorTheme.opacity(0.2) : .gray.opacity(0.1))
                 }
-                .modifier(ListBackgroundModifier())
-                .listStyle(.insetGrouped)
-                .background(Color.clear)
+                .listRowBackground(themeManager.selectedTheme == ThemeSelection.primary ? book.color.opacity(0.2) : .gray.opacity(0.1))
             }
-            
-//        .navigationBarTitle(bookName)
-//        .navigationBarTitleDisplayMode(.inline)
+            .modifier(ListBackgroundModifier())
+            .listStyle(.insetGrouped)
+            .background(Color.clear)
+        }
         .sheet(isPresented: $showBookInfo) {
-            BookDetailsView(bookName: bookName)
+            BookDetailsView(bookName: book.title)
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
@@ -55,7 +46,7 @@ struct SingleCategoryView: View {
                         .scaledToFit()
                         .frame(width: size30)
                         .padding(.trailing, size10)
-                    Text(bookName)
+                    Text(book.title)
                         .font(.body)
                         .fontWeight(.semibold)
                     
@@ -68,23 +59,19 @@ struct SingleCategoryView: View {
                 Button {
                     showBookInfo = true
                 } label: {
-                   Text("நூல் பற்றி")
-                    .font(.subheadline)
-                    .foregroundStyle(Color("TextColor"))
-                    .padding(.vertical, 7)
-                    .padding(.horizontal, size10)
-                    .background(themeManager.selectedTheme == .primary ? colorTheme.opacity(0.3) : .gray.opacity(0.2))
-                    .cornerRadius(8)
+                    Text("நூல் பற்றி")
+                        .font(.subheadline)
+                        .foregroundStyle(Color("TextColor"))
+                        .padding(.vertical, 7)
+                        .padding(.horizontal, size10)
+                        .background(themeManager.selectedTheme == .primary ? book.color.opacity(0.3) : .gray.opacity(0.2))
+                        .cornerRadius(8)
                 }
             }
         }
         .onAppear {
-            viewModel.fetchCateoriesByBook(bookName)
-            viewModel.fetchPoemsByBook(bookName)
+            viewModel.fetchCateoriesByBook(book.title)
+            viewModel.fetchPoemsByBook(book.title)
         }
     }
 }
-
-//#Preview {
-//    SingleCategoryView()
-//}

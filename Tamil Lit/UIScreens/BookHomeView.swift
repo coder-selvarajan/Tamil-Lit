@@ -11,8 +11,8 @@ struct BookHomeView: View {
     @EnvironmentObject var userSettings: UserSettings
     @EnvironmentObject var themeManager: ThemeManager
     
-    let colorTheme: Color
-    let bookName: String
+//    let colorTheme: Color
+//    let bookName: String
     let book: BookInfo
     
     @StateObject private var viewModel = CategoryViewModel()
@@ -22,47 +22,48 @@ struct BookHomeView: View {
         ZStack {
 //            Color.white.ignoresSafeArea()
             if themeManager.selectedTheme == ThemeSelection.primary {
-                colorTheme.opacity(0.3).ignoresSafeArea()
+                book.color.opacity(0.3).ignoresSafeArea()
             }
             
             if viewModel.book?.name == "பழமொழி நானூறு" {
-                SingleCategoryView(colorTheme: colorTheme, bookName: bookName, book: book)
+                SingleCategoryView(book: book)
             } else if viewModel.book?.categoryLevel == 1 {
-                PoemListWithCategoryView(colorTheme: colorTheme, bookName: bookName, book: book)
+                PoemListWithCategoryView(book: book)
             } else {
-                CategoryListView(colorTheme: colorTheme, bookName: bookName, book: book)
+                CategoryListView(book: book)
             }
             
-            VStack {
-                Spacer()
-                HStack {
-                    Spacer()
-                    
-                    Button {
-                        // Go to home page
-//                        print(navigationPath.count)
-                        //                            navigationPath.removeAll()
-                        //                            presentationMode.wrappedValue.dismiss()
-                    } label: {
-                        Image(systemName: "house.fill")
-                            .font(.title3)
-                            .foregroundStyle(Color("TextColor").opacity(0.8))
-                            .padding(.horizontal, size20)
-                            .padding(.vertical)
-                            .padding(.trailing, size20)
-                    }
-                    .background(Color("TextColorWhite"))
-                    .cornerRadius(size10)
-                    .shadow(radius: size10)
-                    .padding(.bottom, size30)
-                    .padding(.trailing, -size20)
-                    
-                }
-            }
-            .edgesIgnoringSafeArea(.bottom)
+            // Home button
+//            VStack {
+//                Spacer()
+//                HStack {
+//                    Spacer()
+//                    
+//                    Button {
+//                        // Go to home page
+////                        print(navigationPath.count)
+//                        //                            navigationPath.removeAll()
+//                        //                            presentationMode.wrappedValue.dismiss()
+//                    } label: {
+//                        Image(systemName: "house.fill")
+//                            .font(.title3)
+//                            .foregroundStyle(Color("TextColor").opacity(0.8))
+//                            .padding(.horizontal, size20)
+//                            .padding(.vertical)
+//                            .padding(.trailing, size20)
+//                    }
+//                    .background(Color("TextColorWhite"))
+//                    .cornerRadius(size10)
+//                    .shadow(radius: size10)
+//                    .padding(.bottom, size30)
+//                    .padding(.trailing, -size20)
+//                    
+//                }
+//            }
+//            .edgesIgnoringSafeArea(.bottom)
             
         }.onAppear {
-            viewModel.fetchAllData(bookname: bookName)
+            viewModel.fetchAllData(bookname: book.title)
         }
         
     }

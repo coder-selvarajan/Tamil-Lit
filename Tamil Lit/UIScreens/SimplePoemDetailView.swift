@@ -125,15 +125,11 @@ struct SimplePoemDetailView: View {
                         VStack(alignment: .leading, spacing: 10) {
                             Spacer()
                             Text("\(getPoemTitle())")
-                                .font(.callout)
-                                .fontWeight(Font.Weight.semibold)
-//                                .foregroundStyle(Color("TextColor"))
+                                .font(.callout.bold())
                             
                             VStack(alignment: .leading, spacing: 2.0) {
                                 Text("\(selectedPoem.poem ?? "")")
-                                    .font(.subheadline)
-                                    .fontWeight(Font.Weight.semibold)
-//                                    .foregroundStyle(Color("TextColor"))
+                                    .font(.subheadline.bold())
                                     .frame(maxWidth: .infinity, alignment: .leading)
                             }
                             
@@ -183,7 +179,7 @@ struct SimplePoemDetailView: View {
                             }
                             
                             // Share poem icon
-                            SharePoem(poem: $selectedPoem, 
+                            SharePoem(poem: $selectedPoem,
                                       explanations: $vmExplanation.explanations)
                             
                             // Save as image icon

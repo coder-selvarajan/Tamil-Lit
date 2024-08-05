@@ -41,11 +41,11 @@ struct BookDetailsView: View {
                         
                         VStack(alignment: .leading) {
                             Text(bookName)
-                                .font(.title3)
-                                .fontWeight(.bold)
+                                .textSelection(.enabled)
+                                .font(.title3.bold())
                             Text(bookInfo.subtitle)
-                                .font(.subheadline)
-                                .fontWeight(.semibold)
+                                .textSelection(.enabled)
+                                .font(.subheadline.bold())
                             
                             if vm.book?.author! != "" || vm.book?.period! != "" {
                                 Divider()
@@ -55,16 +55,14 @@ struct BookDetailsView: View {
                             
                             VStack(alignment: .leading) {
                                 if let author = vm.book?.author, author != "" {
-                                    Text("எழுதியவர் : \(author)")
+                                    Text("எழுதியவர் : \(author)").textSelection(.enabled)
                                 }
                                 if let period = vm.book?.period, period != "" {
-                                    Text("காலம் : \(period)")
+                                    Text("காலம் : \(period)").textSelection(.enabled)
                                 }
                             }
                             .font(.subheadline.bold())
-//                            .fontWeight(.semibold)
                         }
-//                        .foregroundStyle(.black)
                         Spacer()
                     }
                     .padding()
@@ -74,8 +72,8 @@ struct BookDetailsView: View {
 
                     // book description
                     Text(vm.book?.info ?? "")
+                        .textSelection(.enabled)
                         .padding(size20)
-//                        .foregroundStyle(.black)
                 }
             }
             
@@ -86,7 +84,8 @@ struct BookDetailsView: View {
                         
                         Image(systemName: "xmark.app.fill")
                             .font(.largeTitle)
-                            .foregroundColor(.black.opacity(0.60))
+                            .foregroundColor(themeManager.selectedTheme == .primary
+                                             ? .black.opacity(0.60) : .red.opacity(0.9))
                             .padding(size10)
                             .padding(.top, 5)
                             .onTapGesture {

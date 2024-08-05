@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct PoemListWithCategoryView: View {
-    let colorTheme: Color
-    let bookName: String
     let book: BookInfo
     
     @EnvironmentObject var userSettings: UserSettings
@@ -35,7 +33,7 @@ struct PoemListWithCategoryView: View {
             VStack {
                 VStack(alignment: .leading) {
                     Text("வகைகள்: ")
-                        .foregroundStyle(.black.opacity(0.8))
+                        .foregroundStyle(Color("TextColor").opacity(0.8))
                         .font(.footnote.bold())
                         .padding(.horizontal)
                     
@@ -66,8 +64,8 @@ struct PoemListWithCategoryView: View {
                                             .padding(.vertical, size10)
                                             .foregroundColor(highlightedCategoryId == category.id ? .white : .black)
                                             .background(highlightedCategoryId == category.id
-                                                        ? colorTheme.opacity(0.7)
-                                                        : (userSettings.darkMode ? colorTheme.opacity(0.5) : .white.opacity(0.7)))
+                                                        ? book.color.opacity(0.7)
+                                                        : (userSettings.darkMode ? book.color.opacity(0.5) : .white.opacity(0.7)))
                                             .cornerRadius(8.0)
                                     } else { // for light and dark themes
                                         Text(getShortTitle(category))
@@ -106,9 +104,7 @@ struct PoemListWithCategoryView: View {
                                             // fetch poems by category and display in a section
                                             ForEach(viewModel.fetchPoemsByCategory(category.title ?? ""), id: \.id) { poem in
                                                 NavigationLink(destination: 
-                                                PoemDetailView(colorTheme: colorTheme,
-                                                               bookName: bookName,
-                                                               book: book,
+                                                PoemDetailView(book: book,
                                                                poems: viewModel.fetchPoemsByCategory(category.title ?? ""),
                                                                selectedPoem: poem)) {
                                                     if let poemText = poem.poem {
@@ -118,7 +114,7 @@ struct PoemListWithCategoryView: View {
                                             }
                                         } //Section2
                                 } //Section1
-                                .listRowBackground(themeManager.selectedTheme == ThemeSelection.primary ? colorTheme.opacity(0.2) : .gray.opacity(0.1))
+                                .listRowBackground(themeManager.selectedTheme == ThemeSelection.primary ? book.color.opacity(0.2) : .gray.opacity(0.1))
                                 
 //                                .background(
 //                                    GeometryReader { geo in
@@ -157,14 +153,11 @@ struct PoemListWithCategoryView: View {
             
         }
         .onAppear {
-            viewModel.fetchCateoriesByBook(bookName)
-            viewModel.fetchPoemsByBook(bookName)
-//            selectedCategoryId = viewModel.selectedCategory?.id
-            
-            //viewModel.fetchPoemsByCategory()
+            viewModel.fetchCateoriesByBook(book.title)
+            viewModel.fetchPoemsByBook(book.title)
         }
         .sheet(isPresented: $showBookInfo) {
-            BookDetailsView(bookName: bookName)
+            BookDetailsView(bookName: book.title)
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
@@ -175,7 +168,7 @@ struct PoemListWithCategoryView: View {
                         .scaledToFit()
                         .frame(width: size30)
                         .padding(.trailing, size10)
-                    Text(bookName)
+                    Text(book.title)
                         .font(.body)
                         .fontWeight(.semibold)
                     
@@ -194,7 +187,7 @@ struct PoemListWithCategoryView: View {
                         .foregroundStyle(Color("TextColor"))
                         .padding(.vertical, 5)
                         .padding(.horizontal, size10)
-                        .background(themeManager.selectedTheme == .primary ? colorTheme.opacity(0.3) : .gray.opacity(0.2))
+                        .background(themeManager.selectedTheme == .primary ? book.color.opacity(0.3) : .gray.opacity(0.2))
                         .cornerRadius(8)
                 }
             }

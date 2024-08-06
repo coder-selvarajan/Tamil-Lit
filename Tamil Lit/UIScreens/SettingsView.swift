@@ -91,14 +91,14 @@ struct SettingsView: View {
                 //                }
                 
                 SwiftUI.Section(header: Text("Choose your theme")) {
-                    HStack(spacing: 16) {
+                    VStack(spacing: size15) {
                         Button(action: {
                             userSettings.darkMode = false
                             themeManager.setTheme(.primary)
                             bookManager.updateBooks(with: themeManager.currentTheme)
                         }) {
-                            Text("Colorful")
-                                .frame(maxWidth: .infinity)
+                            Text("Colorful (Default)")
+                                .frame(maxWidth: .infinity, alignment: .leading)
                         }
                         .buttonStyle(RoundedBackgroundButtonStyle(isSelected: themeManager.selectedTheme == .primary))
                         
@@ -107,8 +107,8 @@ struct SettingsView: View {
                             themeManager.setTheme(.light)
                             bookManager.updateBooks(with: themeManager.currentTheme)
                         }) {
-                            Text("Mono")
-                                .frame(maxWidth: .infinity)
+                            Text("Monochrome")
+                                .frame(maxWidth: .infinity, alignment: .leading)
                         }
                         .buttonStyle(RoundedBackgroundButtonStyle(isSelected: themeManager.selectedTheme == .light))
                         
@@ -117,14 +117,29 @@ struct SettingsView: View {
                             themeManager.setTheme(.dark)
                             bookManager.updateBooks(with: themeManager.currentTheme)
                         }) {
-                            Text("Dark")
-                                .frame(maxWidth: .infinity)
+                            Text("Dark Mode")
+                                .frame(maxWidth: .infinity, alignment: .leading)
                         }
                         .buttonStyle(RoundedBackgroundButtonStyle(isSelected: themeManager.selectedTheme == .dark))
                     }
                     .padding(.vertical)
                 }
                 
+                SwiftUI.Section {
+                    VStack {
+                        Text("Adjust Content Scaling")
+                        Picker("Content Size", selection: $userSettings.fontScaling) {
+                            ForEach(FontScalingOption.allCases) { option in
+                                Text(option.rawValue.capitalized)
+                                    .font(.title3)
+                                    .tag(option)
+                            }
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                        .frame(maxWidth: .infinity)
+                    }
+//                    .padding()
+                }
                 
                 SwiftUI.Section {
                     NavigationLink(destination: AboutView()) {
@@ -218,7 +233,6 @@ struct SettingsView: View {
                 }
                 .padding(.vertical, 5)
             } // List
-            
         }
         .alert(item: $activeAlert) { alertType in
             switch alertType {
@@ -258,6 +272,7 @@ struct SettingsView: View {
                 .padding(0)
             }
         }
+        .customFontScaling()
         
     }
     
@@ -275,20 +290,22 @@ struct RoundedBackgroundButtonStyle: ButtonStyle {
     var isSelected: Bool
     
     func makeBody(configuration: Configuration) -> some View {
-        VStack(alignment: .center, spacing: 10) {
+        HStack(alignment: .center, spacing: 20) {
             Image(systemName: "checkmark.circle.fill")
+                .font(.title2)
                 .foregroundStyle(isSelected ? .green : .gray.opacity(0.3))
             
             configuration.label
+            
+            Spacer()
         }
-        .padding()
-        .background(Color.gray.opacity(0.2))
-    //            .background(isSelected ? Color.cyan : Color.gray.opacity(0.2))
-    //            .foregroundColor(isSelected ? .white : .primary)
+        .padding(.horizontal)
+        .padding(.vertical, size10)
+        .background(Color.gray.opacity(0.15))
         .clipShape(RoundedRectangle(cornerRadius: 10))
         .overlay(
             RoundedRectangle(cornerRadius: 10)
-                .stroke(isSelected ? Color("TextColor").opacity(0.5) : Color.clear, lineWidth: 1)
+                .stroke(isSelected ? .gray.opacity(0.5) : Color.clear, lineWidth: 2)
         )
     }
 }

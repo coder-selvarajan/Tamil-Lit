@@ -73,5 +73,6 @@ struct SingleCategoryView: View {
             viewModel.fetchCateoriesByBook(book.title)
             viewModel.fetchPoemsByBook(book.title)
         }
+        .customFontScaling()
     }
 }

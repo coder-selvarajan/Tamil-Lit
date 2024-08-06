@@ -218,9 +218,6 @@ struct SearchView: View {
                     self.searchIsFocused = true
                 }
             }
-            
-            
-            
         } // VStack
         .navigationTitle(Text("பாடல் தேடு"))
         .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
@@ -229,7 +226,6 @@ struct SearchView: View {
                 SimplePoemDetailView(selectedPoem: Binding($selectedPoem)!, popupMode: true)
             }
         }
-        .onAppear(perform: loadBookOptions) // To load book options for search from user-defaults
         .popup(isPresented: $showOptions) {
             let titleString = "Books to include for **Search** : "
             let attributedTitle = try! AttributedString(markdown: titleString)
@@ -251,6 +247,8 @@ struct SearchView: View {
                 .backgroundColor(userSettings.darkMode ? .white.opacity(0.25) : .black.opacity(0.65))
                 .autohideIn(50)
         }
+        .onAppear(perform: loadBookOptions) // To load book options for search from user-defaults
+        .customFontScaling()
     }
     
     private func loadBookOptions() {

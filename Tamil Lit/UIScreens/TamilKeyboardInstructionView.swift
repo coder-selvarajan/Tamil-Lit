@@ -60,6 +60,7 @@ struct TamilKeyboardInstructionView: View {
             .padding()
         }
         .navigationTitle("Tamil Keyboard")
+        .customFontScaling()
     }
 }
 

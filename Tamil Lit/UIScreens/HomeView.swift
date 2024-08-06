@@ -387,6 +387,7 @@ struct HomeView: View {
                 }
             }
         } // toolbar
+        .customFontScaling()
     }
 }
 

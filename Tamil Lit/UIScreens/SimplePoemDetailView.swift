@@ -51,8 +51,6 @@ struct SimplePoemDetailView: View {
     
     var body: some View {
         ZStack(alignment: .top) {
-//            colorTheme.opacity(0.2).ignoresSafeArea()
-            
             ScrollView(showsIndicators: false) {
                 VStack(alignment: .leading, spacing: size10) {
                     
@@ -60,7 +58,7 @@ struct SimplePoemDetailView: View {
                     VStack {
                         HStack(alignment: .top, spacing: 5) {
                             if themeManager.selectedTheme == .primary {
-                                Text("நூல் : ")
+                                Text("நூல்: ")
                                     .padding(3)
                                     .frame(width: size60)
                                     .multilineTextAlignment(.trailing)
@@ -68,7 +66,7 @@ struct SimplePoemDetailView: View {
                                     .cornerRadius(5)
                                     .padding(.trailing, 5)
                             } else {
-                                Text("நூல் : ")
+                                Text("நூல்: ")
                                     .padding(3)
                                     .frame(width: size60)
                                     .multilineTextAlignment(.trailing)
@@ -89,17 +87,17 @@ struct SimplePoemDetailView: View {
                         
                         HStack(alignment: .top, spacing: 5) {
                             if themeManager.selectedTheme == .primary {
-                                Text("வகை : ")
+                                Text("வகை: ")
                                     .padding(3)
-                                    .frame(width: size60)
+                                    .frame(minWidth: size60)
                                     .multilineTextAlignment(.trailing)
                                     .background(.white)
                                     .cornerRadius(5)
                                     .padding(.trailing, 5)
                             } else {
-                                Text("வகை : ")
+                                Text("வகை: ")
                                     .padding(3)
-                                    .frame(width: size60)
+                                    .frame(minWidth: size60)
                                     .multilineTextAlignment(.trailing)
                                     .background(.gray.opacity(0.2))
                                     .cornerRadius(5)
@@ -112,7 +110,7 @@ struct SimplePoemDetailView: View {
                                 .foregroundStyle(Color("TextColor").opacity(0.95))
                             Spacer()
                         }
-                        .font(.subheadline)
+//                        .font(.subheadline)
                         .padding(.bottom, size10)
                         .padding(.leading, size20)
                         .padding(.trailing, 5)
@@ -121,29 +119,49 @@ struct SimplePoemDetailView: View {
                     .padding(.bottom)
                     
                     // Poem box
-                    VStack {
-                        VStack(alignment: .leading, spacing: 10) {
-                            Spacer()
-                            Text("\(getPoemTitle())")
-                                .font(.callout.bold())
-                            
-                            VStack(alignment: .leading, spacing: 2.0) {
-                                Text("\(selectedPoem.poem ?? "")")
-                                    .font(.subheadline.bold())
-                                    .frame(maxWidth: .infinity, alignment: .leading)
+                    ZStack {
+                        VStack {
+                            VStack(alignment: .leading, spacing: 10) {
+                                Spacer()
+                                Text("\(getPoemTitle())")
+                                    .textSelection(.enabled)
+                                    .font(.callout.bold())
+                                
+                                VStack(alignment: .leading, spacing: 2.0) {
+                                    Text("\(selectedPoem.poem ?? "")")
+                                        .textSelection(.enabled)
+                                        .font(.body.bold())
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                }
+                                
+                                Spacer()
                             }
-                            
+                            .padding(.bottom)
+                            .frame(maxWidth: .infinity)
+                            .padding(.horizontal, size10)
+                        }
+                        .padding(.horizontal, size10)
+                        .background(.gray.opacity(0.2))
+                        .cornerRadius(size10)
+                        .padding(.horizontal, size10)
+                        .padding(.bottom, size20)
+                        
+                        // Text to speech button
+                        VStack {
+                            HStack {
+                                Spacer()
+                                
+                                SpeakButtonView(textContent: Binding(
+                                    get: { PoemHelper.poemText(poem: selectedPoem,
+                                                               explanations: vmExplanation.explanations) },
+                                    set: { newValue in
+                                        //
+                                    }
+                                )).padding([.trailing, .top], size10)
+                            }
                             Spacer()
                         }
-                        .padding(.bottom)
-                        .frame(maxWidth: .infinity)
-                        .padding(.horizontal, size10)
                     }
-                    .padding(.horizontal, size10)
-                    .background(.gray.opacity(0.2))
-                    .cornerRadius(size10)
-                    .padding(.horizontal, size10)
-                    .padding(.bottom, size20)
                     
                     // Explanation section
                     VStack(alignment: .leading) {
@@ -197,12 +215,14 @@ struct SimplePoemDetailView: View {
                                 VStack(alignment: .leading, spacing: 2.0) {
                                     if let title = explanation.title, title != "" {
                                         Text("\(title): ")
+                                            .textSelection(.enabled)
                                             .font(.body)
                                             .fontWeight(.bold)
                                             .foregroundStyle(Color("TextColor"))
                                             .padding(.bottom, 5)
                                     }
                                     Text("\(explanation.meaning ?? "")")
+                                        .textSelection(.enabled)
                                         .font(.body)
                                     
                                     if vmExplanation.explanations.last != explanation {
@@ -269,6 +289,7 @@ struct SimplePoemDetailView: View {
                 vmExplanation.fetchExplanations(for: selectedPoem)
 //            }
         }
+        .customFontScaling()
     }
 }
 

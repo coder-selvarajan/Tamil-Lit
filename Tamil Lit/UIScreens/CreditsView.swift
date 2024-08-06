@@ -23,22 +23,12 @@ struct CreditsView: View {
                 CreditLinkView(title: "ta.wikipedia.org", url: "https://ta.wikipedia.org")
                 CreditLinkView(title: "sangathamizh.com", url: "https://sangathamizh.com")
                 CreditLinkView(title: "github.com/tk120404", url: "https://github.com/tk120404")
-
-//                Divider()
-//                    .padding(size10)
-//                
-//                Text("Thirukural & Athichudi JSONs are sourced from these GitHub repositories:")
-//                    .font(.body)
-//                    .padding(.top, size20)
-//                
-//                CreditLinkView(title: "Thirukkural JSON", url: "https://github.com/tk120404/thirukkural")
-//                CreditLinkView(title: "Aathichudi JSON", url: "https://github.com/tk120404/Aathichudi")
                 
                 Spacer()
             }
             .padding()
         }
-//        .navigationTitle("Credits")
+        .customFontScaling()
     }
 }
 

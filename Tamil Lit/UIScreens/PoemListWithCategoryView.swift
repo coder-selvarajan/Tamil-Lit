@@ -150,7 +150,6 @@ struct PoemListWithCategoryView: View {
                     } //ScrollViewReader
                 }
             } // VStack
-            
         }
         .onAppear {
             viewModel.fetchCateoriesByBook(book.title)
@@ -192,6 +191,7 @@ struct PoemListWithCategoryView: View {
                 }
             }
         }
+        .customFontScaling()
     }
 }
 

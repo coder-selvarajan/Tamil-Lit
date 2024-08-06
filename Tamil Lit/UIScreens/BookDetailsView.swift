@@ -55,10 +55,10 @@ struct BookDetailsView: View {
                             
                             VStack(alignment: .leading) {
                                 if let author = vm.book?.author, author != "" {
-                                    Text("எழுதியவர் : \(author)").textSelection(.enabled)
+                                    Text("எழுதியவர்: \(author)").textSelection(.enabled)
                                 }
                                 if let period = vm.book?.period, period != "" {
-                                    Text("காலம் : \(period)").textSelection(.enabled)
+                                    Text("காலம்: \(period)").textSelection(.enabled)
                                 }
                             }
                             .font(.subheadline.bold())
@@ -95,8 +95,10 @@ struct BookDetailsView: View {
                     
                     Spacer()
                 }
+                .customFontScaling()
             }
         }
+        .customFontScaling()
         .onAppear() {
             vm.getBookInfo(bookName: bookName)
         }

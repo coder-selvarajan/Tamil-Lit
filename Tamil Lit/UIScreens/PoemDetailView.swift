@@ -26,6 +26,7 @@ struct PoemDetailView: View {
     @State private var alertMessage: String = "படம் Photo Library-ல்  சேமிக்கப்பட்டது!"
     @State private var poemBookmarked: Bool = false
     @State private var shareThePoem = false
+    @State var textReading: Bool = false
     
     func getCategoryText() -> String {
         if poems.count > 0 {
@@ -67,7 +68,7 @@ struct PoemDetailView: View {
                 // Category strip
                 HStack(alignment: .top, spacing: 5) {
                     if themeManager.selectedTheme == .primary {
-                        Text("வகை : ")
+                        Text("வகை: ")
                             .padding(3)
                             .frame(width: size60)
                             .multilineTextAlignment(.trailing)
@@ -75,7 +76,7 @@ struct PoemDetailView: View {
                             .cornerRadius(5)
                             .padding(.trailing, 5)
                     } else {
-                        Text("வகை : ")
+                        Text("வகை: ")
                             .padding(3)
                             .frame(width: size60)
                             .multilineTextAlignment(.trailing)
@@ -101,22 +102,40 @@ struct PoemDetailView: View {
                         ScrollView(Axis.Set.vertical, showsIndicators: false) {
                             VStack {
                                 // Poem info
-                                VStack(alignment: .leading, spacing: size10) {
-                                    Text("\(getPoemTitle(poem: poem))")
-                                        .font(.callout.bold())
+                                ZStack {
+                                    VStack(alignment: .leading, spacing: size10) {
+                                        Text("\(getPoemTitle(poem: poem))")
+                                            .font(.callout.bold())
+                                        
+                                        VStack(alignment: .leading, spacing: 2.0) {
+                                            Text("\(poem.poem ?? "")")
+                                                .font(.body.bold())
+                                                .frame(maxWidth: .infinity, alignment: .leading)
+                                        }
+                                    }
+                                    .padding()
+                                    .frame(maxWidth: .infinity)
+                                    .background(themeManager.selectedTheme == ThemeSelection.primary ? book.color.opacity(0.2) : .gray.opacity(0.2))
+                                    .cornerRadius(size10)
+                                    .padding(.horizontal, size10)
+                                    .padding(.bottom, size20)
                                     
-                                    VStack(alignment: .leading, spacing: 2.0) {
-                                        Text("\(poem.poem ?? "")")
-                                            .font(.body.bold())
-                                            .frame(maxWidth: .infinity, alignment: .leading)
+                                    // Text to speech button
+                                    VStack {
+                                        HStack {
+                                            Spacer()
+                                            
+                                            SpeakButtonView(textContent: Binding(
+                                                get: { PoemHelper.poemText(poem: selectedPoem,
+                                                                           explanations: viewModel.explanations) },
+                                                set: { newValue in
+                                                    //
+                                                }
+                                            )).padding([.trailing, .top], size10)
+                                        }
+                                        Spacer()
                                     }
                                 }
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(themeManager.selectedTheme == ThemeSelection.primary ? book.color.opacity(0.2) : .gray.opacity(0.2))
-                                .cornerRadius(size10)
-                                .padding(.horizontal, size10)
-                                .padding(.bottom, size20)
                                 
                                 VStack(alignment: .leading) {
                                     // Action button strip
@@ -162,6 +181,15 @@ struct PoemDetailView: View {
                                             alertMessage = "படம் Photo Library-ல்  சேமிக்கப்பட்டது!"
                                             showAlert = true
                                         }
+                                        
+//                                        SpeakButtonView(textContent: Binding(
+//                                            get: { PoemHelper.poemText(poem: selectedPoem,
+//                                                                       explanations: viewModel.explanations) },
+//                                            set: { newValue in
+//                                                    //
+//                                            }
+//                                        ))
+                                        
                                     }
                                     .padding(.top, -size20)
                                     
@@ -269,6 +297,7 @@ struct PoemDetailView: View {
             poemBookmarked = vmFavPoem.isPoemBookmarked(selectedPoem)
             viewModel.fetchExplanations(for: selectedPoem)
         }
+        .customFontScaling()
     }
 }
 

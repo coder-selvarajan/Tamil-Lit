@@ -215,6 +215,7 @@ struct FavouritePoemListView: View {
                 selectedPoem = poem
             }
         }
+        .customFontScaling()
     }
     
     private func loadBookOptions() {

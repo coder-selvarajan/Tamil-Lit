@@ -100,13 +100,6 @@ struct RandomPoemView: View {
             }
             
         }
-        .onAppear {
-            loadBookOptions()
-            
-            if let poem = vm.getRandomPoem(bookOptions: bookOptions) {
-                randomPoem = poem
-            }
-        }
         .popup(isPresented: $showOptions) {
             let titleString = "Books to include for "
             let subTitleString = "**Random poem pickup** :"
@@ -129,6 +122,14 @@ struct RandomPoemView: View {
                 .backgroundColor(userSettings.darkMode ? .white.opacity(0.25) : .black.opacity(0.65))
                 .autohideIn(50)
         }
+        .onAppear {
+            loadBookOptions()
+            
+            if let poem = vm.getRandomPoem(bookOptions: bookOptions) {
+                randomPoem = poem
+            }
+        }
+        .customFontScaling()
     }
     
     private func loadBookOptions() {

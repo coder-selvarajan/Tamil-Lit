@@ -108,12 +108,9 @@ struct AboutView: View {
                         
                     }
                 }
-//                .padding()
-//                .background(userSettings.darkMode ? .black : .gray.opacity(0.15))
-//                .cornerRadius, size10)
             }
-            
         } //toolbar
+        .customFontScaling()
     }
 }
 

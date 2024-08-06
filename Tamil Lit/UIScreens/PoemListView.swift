@@ -130,6 +130,7 @@ struct PoemListView: View {
                 }
             }
         } // toolbar
+        .customFontScaling()
     }
 }
 

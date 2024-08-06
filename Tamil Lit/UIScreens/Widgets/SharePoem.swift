@@ -12,24 +12,7 @@ struct SharePoem: View {
     
     @Binding var poem: Poem
     @Binding var explanations: [Explanation]
-//    @State var tintColor: Color
-    
     @State private var isSharing = false
-    
-    func getCategoryDisplay() -> String {
-        let mainCat = poem.maincategoryname ?? ""
-        let subCat = poem.subcategoryname ?? ""
-        let sec = poem.sectionname ?? ""
-        
-        if sec != ""  {
-            return "\nவகை: \(mainCat) - \(subCat) - \(sec)"
-        } else if subCat != "", !subCat.starts(with: "பாடல்") {
-            return "\nவகை: \(mainCat) - \(subCat)"
-        } else if mainCat != "", !mainCat.starts(with: "பாடல்") {
-            return "\nவகை: \(mainCat)"
-        }
-        return ""
-    }
     
     var body: some View {
         Button {
@@ -47,47 +30,61 @@ struct SharePoem: View {
             print("Dismissed")
         }) {
             if #available(iOS 16.0, *) {
-                ActivityView(activityItems: [poemText()])
+                ActivityView(activityItems: [PoemHelper.poemText(poem: poem, explanations: explanations)])
                     .presentationDetents([.medium])
             } else {
                 // Fallback on earlier versions
-                ActivityView(activityItems: [poemText()])
+                ActivityView(activityItems: [PoemHelper.poemText(poem: poem, explanations: explanations)])
             }
         }
     }
     
-    func poemText() -> String {
-        var explanationsStr : String = ""
+    
+}
+
+class PoemHelper {
+    static func getCategoryDisplay(poem: Poem) -> String {
+        let mainCat = poem.maincategoryname ?? ""
+        let subCat = poem.subcategoryname ?? ""
+        let sec = poem.sectionname ?? ""
         
-//        if let poem = poem {
-            var expTitle = ""
-            print(explanations.count)
-            for explanation in explanations {
-                if let title = explanation.title, title != "" {
-                    expTitle = """
+        if sec != ""  {
+            return "\nவகை: \(mainCat) - \(subCat) - \(sec)"
+        } else if subCat != "", !subCat.starts(with: "பாடல்") {
+            return "\nவகை: \(mainCat) - \(subCat)"
+        } else if mainCat != "", !mainCat.starts(with: "பாடல்") {
+            return "\nவகை: \(mainCat)"
+        }
+        return ""
+    }
+    
+    static func poemText(poem: Poem, explanations: [Explanation]) -> String {
+        var explanationsStr : String = ""
+        var expTitle = ""
+        for explanation in explanations {
+            if let title = explanation.title, title != "" {
+                expTitle = """
                     \(title):
                     
                     """
-                }
-                explanationsStr += """
+            }
+            explanationsStr += """
                 \(expTitle)\(explanation.meaning ?? "")
                 
                 
                 """
-            }
-
-            return """
-            \(poem.bookname ?? "")\(getCategoryDisplay())
+        }
+        
+        return """
+            \(poem.bookname ?? "")\(getCategoryDisplay(poem: poem))
             
             \(poem.book?.poemType ?? "பாடல் ") \(poem.number) :
             \(poem.poem ?? "")
             
             \(explanationsStr)
             """
-//        }
-        
-//        return ""
     }
+    
 }
 
 // UIViewControllerRepresentable wrapper

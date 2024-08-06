@@ -17,7 +17,7 @@ struct Tamil_LitApp: App {
     @StateObject var bookManager = BookManager()
     
     let persistenceController = CoreDataManager.shared
-    @State private var loadingStatus: LoadingStatus  = .idle
+//    @State private var loadingStatus: LoadingStatus  = .idle
     
     var body: some Scene {
         WindowGroup {
@@ -28,17 +28,19 @@ struct Tamil_LitApp: App {
                 .environmentObject(notificationHandler)
                 .environmentObject(themeManager)
                 .environmentObject(bookManager)
-                .environment(\.showLoading) { loadingStatus in
-                    self.loadingStatus = loadingStatus
-                }
+                .environment(\.customFontScaling, userSettings.fontScaling.sizeCategory)
                 .onAppear {
                     notificationHandler.checkFirstLaunch()
                 }
-                .overlay(alignment: .center) {
-                    if loadingStatus == .loading {
-                        LoadingView()
-                    }
-                }
+            
+//                .environment(\.showLoading) { loadingStatus in
+//                    self.loadingStatus = loadingStatus
+//                }
+//                .overlay(alignment: .center) {
+//                    if loadingStatus == .loading {
+//                        LoadingView()
+//                    }
+//                }
         }
     }
 }

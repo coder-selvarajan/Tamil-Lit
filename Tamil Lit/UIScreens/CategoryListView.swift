@@ -168,10 +168,6 @@ struct CategoryListView: View {
                 }
             }
         }
-        
+        .customFontScaling()
     }
 }
-
-//#Preview {
-//    CategoryListViewModel()
-//}

@@ -39,7 +39,7 @@ struct PoemScreenshotView: View {
     var getPoemScreenshotView: some View {
         VStack(alignment: .leading, spacing: size10) {
             HStack(alignment: .top, spacing: 5) {
-                Text("நூல் : ")
+                Text("நூல்: ")
                     .padding(3)
                     .foregroundStyle(Color("TextColor"))
                     .frame(width: size60)
@@ -59,7 +59,7 @@ struct PoemScreenshotView: View {
             
             if !getCategoryText().starts(with: "பாடல்") {
                 HStack(alignment: .top, spacing: 5) {
-                    Text("வகை : ")
+                    Text("வகை: ")
                         .padding(3)
                         .foregroundStyle(Color("TextColor"))
                         .frame(width: size60)

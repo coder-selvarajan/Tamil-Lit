@@ -35,6 +35,7 @@ struct BookTileView: View {
                     Text(book.subtitle)
                         .font(.footnote)
                         .foregroundStyle(Color("TextColor").opacity(0.7))
+                        .multilineTextAlignment(.leading)
                 }
                 .padding()
                 

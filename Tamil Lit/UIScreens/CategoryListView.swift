@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CategoryListView: View {
     @EnvironmentObject var themeManager: ThemeManager
+    @EnvironmentObject var navigationManager: NavigationManager
     
     let book: BookInfo
     
@@ -104,7 +105,8 @@ struct CategoryListView: View {
                         NavigationLink(destination: PoemListView(book: book,
                                                                  mainCategory: viewModel.selectedMainCategory,
                                                                  subCategory: viewModel.selectedSubCategory,
-                                                                 section: section)) {
+                                                                 section: section)
+                                        .environmentObject(navigationManager)) {
                             VStack {
                                 HStack(alignment: .center) {
                                  

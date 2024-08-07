@@ -10,6 +10,8 @@ import PopupView
 
 struct PoemDetailView: View {
     @Environment(\.presentationMode) var presentationMode
+    
+    @EnvironmentObject var navigationManager: NavigationManager
     @EnvironmentObject var userSettings: UserSettings
     @EnvironmentObject var themeManager: ThemeManager
     
@@ -278,6 +280,7 @@ struct PoemDetailView: View {
             ToolbarItem {
                 Button {
 //                    presentationMode.wrappedValue.dismiss()
+                    navigationManager.isRootActive = false
                 } label: {
                     HStack(alignment: .center, spacing: 5) {
                         Image(systemName: "house")

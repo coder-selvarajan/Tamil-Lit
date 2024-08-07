@@ -216,8 +216,7 @@ struct SimplePoemDetailView: View {
                                     if let title = explanation.title, title != "" {
                                         Text("\(title): ")
                                             .textSelection(.enabled)
-                                            .font(.body)
-                                            .fontWeight(.bold)
+                                            .font(.body.bold())
                                             .foregroundStyle(Color("TextColor"))
                                             .padding(.bottom, 5)
                                     }

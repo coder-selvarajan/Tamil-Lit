@@ -13,6 +13,8 @@ struct Tamil_LitApp: App {
     
     @StateObject private var userSettings = UserSettings()
     @StateObject private var notificationHandler = NotificationHandler(userSettings: UserSettings())
+    
+    @StateObject var navigationManager = NavigationManager()
     @StateObject var themeManager = ThemeManager()
     @StateObject var bookManager = BookManager()
     
@@ -26,6 +28,7 @@ struct Tamil_LitApp: App {
                 .preferredColorScheme(userSettings.darkMode ? .dark : .light)
                 .environment(\.managedObjectContext, persistenceController.viewContext)
                 .environmentObject(notificationHandler)
+                .environmentObject(navigationManager)
                 .environmentObject(themeManager)
                 .environmentObject(bookManager)
                 .environment(\.customFontScaling, userSettings.fontScaling.sizeCategory)

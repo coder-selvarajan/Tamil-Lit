@@ -14,6 +14,8 @@ struct HomeView: View {
     @EnvironmentObject var bookManager: BookManager
     @EnvironmentObject var themeManager: ThemeManager
     
+    @EnvironmentObject var navigationManager: NavigationManager
+    
     @StateObject var vm = DailyPoemViewModel()
     
     @State var bookDisplayAsGrid: Bool = true
@@ -202,14 +204,18 @@ struct HomeView: View {
                             Spacer()
                         }
                         
-                        
-                        
                         ForEach(bookManager.books.chunked(into: 2), id: \.self) { bookPair in
                             HStack(spacing: 16) {
                                 ForEach(bookPair.indices, id: \.self) { index in
                                     let bookBinding = $bookManager.books[bookPair[index].order - 1]
                                     let bookItem = bookManager.books[bookPair[index].order - 1]
-                                    NavigationLink(destination: BookHomeView(book: bookItem)) {
+                                    let isActiveBinding = Binding<Bool>(
+                                        get: { navigationManager.activeBook[bookItem.id] ?? false },
+                                        set: { navigationManager.activeBook[bookItem.id] = $0 }
+                                    )
+                                    NavigationLink(destination: BookHomeView(book: bookItem)
+                                        .environmentObject(navigationManager),
+                                                   isActive: isActiveBinding) {
                                         BookTileView(book: bookBinding, bookDisplayAsGrid: $bookDisplayAsGrid)
                                     }
                                 }

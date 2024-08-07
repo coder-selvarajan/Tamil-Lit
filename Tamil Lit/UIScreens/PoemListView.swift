@@ -14,6 +14,7 @@ struct PoemListView: View {
     var subCategory: SubCategory?
     var section: Section?
     
+    @EnvironmentObject var navigationManager: NavigationManager
     @EnvironmentObject var userSettings: UserSettings
     @EnvironmentObject var themeManager: ThemeManager
     
@@ -62,7 +63,8 @@ struct PoemListView: View {
                         ForEach(viewModel.poems, id:\.self) { poem in
                             NavigationLink(destination: PoemDetailView(book: book,
                                                                        poems: viewModel.poems,
-                                                                       selectedPoem: poem)) {
+                                                                       selectedPoem: poem)
+                                            .environmentObject(navigationManager)) {
                                 Text("\(poem.number). \(poem.poem ?? "No Poem")")
                             }
                                                                        .listRowBackground(themeManager.selectedTheme == ThemeSelection.primary ? book.color.opacity(0.2) : .gray.opacity(0.2))
@@ -114,7 +116,8 @@ struct PoemListView: View {
             ToolbarItem {
                 Button {
 //                    presentationMode.wrappedValue.dismiss()
-                    showAlert = true
+//                    showAlert = true
+                    navigationManager.isRootActive = false
                 } label: {
                     HStack(alignment: .center, spacing: 5) {
                         Image(systemName: "house")

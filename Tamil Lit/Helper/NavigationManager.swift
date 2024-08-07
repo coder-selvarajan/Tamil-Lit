@@ -9,4 +9,5 @@ import SwiftUI
 
 class NavigationManager: ObservableObject {
     @Published var isRootActive = false
+    @Published var activeBook: [UUID: Bool] = [:]
 }

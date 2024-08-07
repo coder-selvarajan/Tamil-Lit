@@ -21,6 +21,30 @@ struct BookDetailsView: View {
         bookManager.books.filter({$0.title == bookName}).first!
     }
     
+    func getReadableText(from bookObj: Book?) -> String {
+        var author = ""
+        var period = ""
+        
+        guard let book = bookObj else { return "" }
+        
+        if let _author = vm.book?.author, _author != "" {
+            author = "எழுதியவர்: \(_author)"
+        }
+        if let _period = vm.book?.period, _period != "" {
+            period = "காலம்: \(_period)"
+        }
+        
+        return """
+            \(bookInfo.title)
+            \(bookInfo.subtitle)
+            
+            \(author)
+            \(period)
+            
+            \(book.info ?? "")
+            """
+    }
+    
     var body: some View {
         ZStack {
             if themeManager.selectedTheme == ThemeSelection.primary {
@@ -49,7 +73,7 @@ struct BookDetailsView: View {
                             
                             if vm.book?.author! != "" || vm.book?.period! != "" {
                                 Divider()
-                                    .background(.black)
+                                    .background(Color("TextColor"))
                                     .padding(.bottom, 5)
                             }
                             
@@ -69,11 +93,25 @@ struct BookDetailsView: View {
                     .padding(.vertical)
                     .background(themeManager.selectedTheme == .primary
                                 ? bookInfo.color.opacity(0.2) : .gray.opacity(0.1))
+                    
+                    HStack {
+                        Spacer()
+                        
+                        SpeakButtonView(textContent:
+                                            Binding(
+                                                get: { getReadableText(from: vm.book) },
+                                                set: { newValue in
+                                                    //
+                                                }))
+                        .padding([.vertical, .trailing], 5)
+//                            .background(themeManager.selectedTheme == .primary ? .gray.opacity(0.3) : .gray.opacity(0.2))
+//                            .cornerRadius(8)
+                    }
 
                     // book description
                     Text(vm.book?.info ?? "")
                         .textSelection(.enabled)
-                        .padding(size20)
+                        .padding([.horizontal, .bottom], size20)
                 }
             }
             

@@ -20,3 +20,15 @@ struct ListBackgroundModifier: ViewModifier {
         }
     }
 }
+
+struct ListScrollIndicatorsModifier: ViewModifier {
+    @ViewBuilder
+    func body(content: Content) -> some View {
+        if #available(iOS 16.0, *) {
+            content
+                .scrollIndicators(.hidden)
+        } else {
+            content
+        }
+    }
+}

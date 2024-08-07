@@ -42,7 +42,3 @@ extension View {
     }
 }
 
-
-
-
-

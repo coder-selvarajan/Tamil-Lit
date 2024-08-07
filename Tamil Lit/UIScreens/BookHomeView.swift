@@ -22,7 +22,7 @@ struct BookHomeView: View {
         ZStack {
 //            Color.white.ignoresSafeArea()
             if themeManager.selectedTheme == ThemeSelection.primary {
-                book.color.opacity(0.3).ignoresSafeArea()
+                book.color.opacity(0.2).ignoresSafeArea()
             }
             
             if viewModel.book?.name == "பழமொழி நானூறு" {

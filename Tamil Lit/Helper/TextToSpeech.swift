@@ -9,8 +9,14 @@ import Foundation
 import SwiftUI
 import AVFoundation
 
-class SpeechSynthesizer: ObservableObject {
+class SpeechSynthesizer: NSObject, ObservableObject, AVSpeechSynthesizerDelegate {
     private var synthesizer = AVSpeechSynthesizer()
+    @Published var isSpeaking = false
+    
+    override init() {
+        super.init()
+        synthesizer.delegate = self
+    }
     
     func speak(text: String, language: String = "ta-IN", completion: @escaping (Bool) -> Void) {
         // Data cleaning
@@ -21,6 +27,7 @@ class SpeechSynthesizer: ObservableObject {
             utterance.voice = AVSpeechSynthesisVoice(language: language)
             utterance.rate = AVSpeechUtteranceDefaultSpeechRate
             synthesizer.speak(utterance)
+            isSpeaking = true
             completion(true)
         } else {
             completion(false)
@@ -30,30 +37,17 @@ class SpeechSynthesizer: ObservableObject {
     func stopSpeaking() {
         if synthesizer.isSpeaking {
             synthesizer.stopSpeaking(at: .immediate)
+            isSpeaking = false
         }
     }
     
     private func isVoiceAvailable(language: String) -> Bool {
+//        return false // For testing the 'voice not installed' alert
         return AVSpeechSynthesisVoice(language: language) != nil
     }
     
-//    func speak(text: String, language: String = "ta-IN") {
-//        // Data cleaning
-//        let cleanText = text.replacingOccurrences(of: "#", with: "")
-//        
-//        let utterance = AVSpeechUtterance(string: cleanText)
-//        if let voice = AVSpeechSynthesisVoice(language: language) {
-//            utterance.voice = voice
-//        } else {
-//            print("Voice for \(language) not found")
-//        }
-//        utterance.rate = AVSpeechUtteranceDefaultSpeechRate
-//        synthesizer.speak(utterance)
-//    }
-    
-//    func stopSpeaking() {
-//        if synthesizer.isSpeaking {
-//            synthesizer.stopSpeaking(at: .immediate)
-//        }
-//    }
+    // AVSpeechSynthesizerDelegate method
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        isSpeaking = false
+    }
 }

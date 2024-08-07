@@ -92,8 +92,7 @@ struct HomeView: View {
                         // Book and Category display
                         HStack(alignment: .top) {
                             Text("\(vm.poemOftheDay?.bookname ?? "")\(vm.categoryDisplay)")
-                                .font(.subheadline)
-                                .fontWeight(.semibold)
+                                .font(.subheadline.bold())
                                 .padding(.bottom, size10)
                             
                             Spacer()
@@ -319,9 +318,9 @@ struct HomeView: View {
                     .padding()
                     
                     
-                    VStack{
-                        Text(" ")
-                    }.frame(height: size40)
+//                    VStack{
+//                        Text(" ")
+//                    }.frame(height: size10)
                     
                     Spacer()
                 }

@@ -15,18 +15,20 @@ class UserSettings: ObservableObject {
 }
 
 enum FontScalingOption: String, CaseIterable, Identifiable {
-    case normal, large, extraLarge
+    case small, normal, large, extraLarge
 
     var id: String { self.rawValue }
 
     var sizeCategory: ContentSizeCategory {
         switch self {
+        case .small:
+            return .medium
         case .normal:
             return .large
         case .large:
             return .extraLarge
         case .extraLarge:
-            return .extraExtraLarge //.accessibilityExtraExtraExtraLarge
+            return .extraExtraLarge
         }
     }
 }

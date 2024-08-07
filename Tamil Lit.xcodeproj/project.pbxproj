@@ -39,6 +39,7 @@
 		7051D5C12C58868B00CCED81 /* Poem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7051D5BB2C58868B00CCED81 /* Poem+CoreDataProperties.swift */; };
 		7051D5C22C58868B00CCED81 /* FavouritePoem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7051D5BC2C58868B00CCED81 /* FavouritePoem+CoreDataClass.swift */; };
 		7051D5C32C58868B00CCED81 /* FavouritePoem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7051D5BD2C58868B00CCED81 /* FavouritePoem+CoreDataProperties.swift */; };
+		7056974D2C63E3FC00D90D45 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7056974C2C63E3FC00D90D45 /* NavigationManager.swift */; };
 		705757142C626FCD00512AF9 /* SpeakButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705757132C626FCD00512AF9 /* SpeakButtonView.swift */; };
 		7068D7E32C33DCE700FAB1F6 /* BookHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7068D7E22C33DCE700FAB1F6 /* BookHomeView.swift */; };
 		70824FBF2C56240900088810 /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70824FBE2C56240900088810 /* ArticleView.swift */; };
@@ -127,6 +128,7 @@
 		7051D5BB2C58868B00CCED81 /* Poem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Poem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		7051D5BC2C58868B00CCED81 /* FavouritePoem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavouritePoem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		7051D5BD2C58868B00CCED81 /* FavouritePoem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavouritePoem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7056974C2C63E3FC00D90D45 /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
 		705757132C626FCD00512AF9 /* SpeakButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakButtonView.swift; sourceTree = "<group>"; };
 		7068D7E22C33DCE700FAB1F6 /* BookHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookHomeView.swift; sourceTree = "<group>"; };
 		70824FBE2C56240900088810 /* ArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				70824FC22C565FE400088810 /* HTMLLabel.swift */,
 				70CE96ED2C61D5B70013F185 /* CustomFontScaling.swift */,
 				70CE96EF2C61FE9E0013F185 /* TextToSpeech.swift */,
+				7056974C2C63E3FC00D90D45 /* NavigationManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -532,6 +535,7 @@
 				7051D5C12C58868B00CCED81 /* Poem+CoreDataProperties.swift in Sources */,
 				7051D5C22C58868B00CCED81 /* FavouritePoem+CoreDataClass.swift in Sources */,
 				70CE96EE2C61D5B70013F185 /* CustomFontScaling.swift in Sources */,
+				7056974D2C63E3FC00D90D45 /* NavigationManager.swift in Sources */,
 				7051D5C32C58868B00CCED81 /* FavouritePoem+CoreDataProperties.swift in Sources */,
 				70824FC12C56558300088810 /* HTMLView.swift in Sources */,
 				702240562B69653C00EF072B /* WrapView.swift in Sources */,

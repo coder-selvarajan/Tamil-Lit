@@ -38,7 +38,7 @@ struct ArticleView: View {
             ToolbarItem {
                 SpeakButtonView(textContent: $markdownContent)
                     .padding(.vertical, 5)
-                    .background(themeManager.selectedTheme == .primary ? .gray.opacity(0.3) : .gray.opacity(0.2))
+                    .background(.gray.opacity(0.2))
                     .cornerRadius(8)
             }
         } // toolbar

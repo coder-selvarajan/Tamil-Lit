@@ -90,15 +90,28 @@ struct SettingsView: View {
                 //                    }
                 //                }
                 
-                SwiftUI.Section(header: Text("Choose your theme")) {
+                SwiftUI.Section(header: Text("Choose your theme").font(.subheadline.bold())) {
                     VStack(spacing: size15) {
                         Button(action: {
                             userSettings.darkMode = false
                             themeManager.setTheme(.primary)
                             bookManager.updateBooks(with: themeManager.currentTheme)
                         }) {
-                            Text("Colorful (Default)")
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                            HStack {
+                                Text("Colorful")
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                
+                                Spacer()
+                                
+                                Circle()
+                                    .fill(Color.blue.opacity(userSettings.darkMode ? 0.75 : 0.5))
+                                    .background(Circle().fill(Color.white)) // to support the look in dark mode
+                                    .frame(width: size10, height: size10)
+                                Circle()
+                                    .fill(Color.purple.opacity(userSettings.darkMode ? 0.75 : 0.5))
+                                    .background(Circle().fill(Color.white)) // to support the look in dark mode
+                                    .frame(width: size10, height: size10)
+                            }
                         }
                         .buttonStyle(RoundedBackgroundButtonStyle(isSelected: themeManager.selectedTheme == .primary))
                         
@@ -107,8 +120,21 @@ struct SettingsView: View {
                             themeManager.setTheme(.light)
                             bookManager.updateBooks(with: themeManager.currentTheme)
                         }) {
-                            Text("Monochrome")
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                            HStack {
+                                Text("Monochrome")
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                
+                                Spacer()
+                                
+                                Circle()
+                                    .fill(Color.white)
+                                    .background(Circle().fill(Color.white)) // to support the look in dark mode
+                                    .frame(width: size10, height: size10)
+                                Circle()
+                                    .fill(Color.gray.opacity(0.75))
+                                    .background(Circle().fill(Color.white)) // to support the look in dark mode
+                                    .frame(width: size10, height: size10)
+                            }
                         }
                         .buttonStyle(RoundedBackgroundButtonStyle(isSelected: themeManager.selectedTheme == .light))
                         
@@ -117,29 +143,95 @@ struct SettingsView: View {
                             themeManager.setTheme(.dark)
                             bookManager.updateBooks(with: themeManager.currentTheme)
                         }) {
-                            Text("Dark Mode")
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                            HStack {
+                                Text("Dark Mode")
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                
+                                Spacer()
+                                
+                                Circle()
+                                    .fill(Color.black.opacity(userSettings.darkMode ? 0.75 : 0.5))
+                                    .background(Circle().fill(Color.white)) // to support the look in dark mode
+                                    .frame(width: size10, height: size10)
+                                Circle()
+                                    .fill(Color.black)
+                                    .background(Circle().fill(Color.white)) // to support the look in dark mode
+                                    .frame(width: size10, height: size10)
+                            }
                         }
                         .buttonStyle(RoundedBackgroundButtonStyle(isSelected: themeManager.selectedTheme == .dark))
                     }
                     .padding(.vertical)
                 }
                 
-                SwiftUI.Section {
-                    VStack {
-                        Text("Adjust Content Scaling")
-                        Picker("Content Size", selection: $userSettings.fontScaling) {
-                            ForEach(FontScalingOption.allCases) { option in
-                                Text(option.rawValue.capitalized)
-                                    .font(.title3)
-                                    .tag(option)
+                SwiftUI.Section(header: Text("Adjust Font Size").font(.subheadline.bold())) {
+                    VStack(spacing: size15) {
+                        HStack(spacing: size15) {
+                            Button(action: {
+                                userSettings.fontScaling = .small
+                            }) {
+                                VStack {
+                                    Text("Small")
+                                        .frame(maxWidth: .infinity, alignment: .center)
+                                }
                             }
+                            .buttonStyle(TileButtonStyle(isSelected: userSettings.fontScaling == .small))
+                            
+                            Button(action: {
+                                userSettings.fontScaling = .normal
+                            }) {
+                                HStack {
+                                    Text("Medium")
+                                        .lineLimit(1)
+                                        .frame(maxWidth: .infinity, alignment: .center)
+                                }
+                            }
+                            .buttonStyle(TileButtonStyle(isSelected: userSettings.fontScaling == .normal))
+                            
+                            Button(action: {
+                                userSettings.fontScaling = .large
+                            }) {
+                                HStack {
+                                    Text("Large")
+                                        .frame(maxWidth: .infinity, alignment: .center)
+                                }
+                            }
+                            .buttonStyle(TileButtonStyle(isSelected: userSettings.fontScaling == .large))
                         }
-                        .pickerStyle(SegmentedPickerStyle())
-                        .frame(maxWidth: .infinity)
+                        
+                        HStack(spacing: size15) {
+                            Button(action: {
+                                userSettings.fontScaling = .extraLarge
+                            }) {
+                                HStack {
+                                    Text("Extra Large")
+                                        .lineLimit(1)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                    
+                                    Spacer()
+                                }
+                                .padding(.vertical, size10)
+                            }
+                            .buttonStyle(RoundedBackgroundButtonStyle(isSelected: userSettings.fontScaling == .extraLarge))
+                        }
                     }
-//                    .padding()
+                    .padding(.vertical)
                 }
+                
+//                SwiftUI.Section(header: Text("Adjust Content Scaling").font(.subheadline.bold())) {
+//                    VStack {
+//                        Picker("Content Size", selection: $userSettings.fontScaling) {
+//                            ForEach(FontScalingOption.allCases) { option in
+//                                Text(option.rawValue.capitalized)
+//                                    .tag(option)
+//                                    .font(.system(size: 20).bold())
+//                            }
+//                        }
+//                        .pickerStyle(SegmentedPickerStyle())
+//                        .frame(maxWidth: .infinity)
+//                    }
+//                    .padding(.vertical, size10)
+//                }
                 
                 SwiftUI.Section {
                     NavigationLink(destination: AboutView()) {
@@ -233,6 +325,7 @@ struct SettingsView: View {
                 }
                 .padding(.vertical, 5)
             } // List
+            .modifier(ListScrollIndicatorsModifier())
         }
         .alert(item: $activeAlert) { alertType in
             switch alertType {
@@ -299,6 +392,29 @@ struct RoundedBackgroundButtonStyle: ButtonStyle {
             
             Spacer()
         }
+        .padding(.horizontal)
+        .padding(.vertical, size10)
+        .background(Color.gray.opacity(0.15))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(isSelected ? .gray.opacity(0.5) : Color.clear, lineWidth: 2)
+        )
+    }
+}
+
+struct TileButtonStyle: ButtonStyle {
+    var isSelected: Bool
+    
+    func makeBody(configuration: Configuration) -> some View {
+        VStack(alignment: .center, spacing: size5) {
+            Image(systemName: "checkmark.circle.fill")
+                .font(.title2)
+                .foregroundStyle(isSelected ? .green : .gray.opacity(0.3))
+            
+            configuration.label
+        }
+//        .frame(height: size70)
         .padding(.horizontal)
         .padding(.vertical, size10)
         .background(Color.gray.opacity(0.15))

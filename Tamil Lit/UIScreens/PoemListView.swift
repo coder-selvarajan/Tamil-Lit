@@ -115,13 +115,12 @@ struct PoemListView: View {
             
             ToolbarItem {
                 Button {
-//                    presentationMode.wrappedValue.dismiss()
-//                    showAlert = true
                     navigationManager.isRootActive = false
+                    navigationManager.activeBook.keys.forEach { navigationManager.activeBook[$0] = false }
                 } label: {
-                    HStack(alignment: .center, spacing: 5) {
+                    HStack(alignment: .top, spacing: 5) {
                         Image(systemName: "house")
-                            .font(.caption)
+                            .font(.caption2)
                         Text("Home")
                     }
                     .font(.subheadline)

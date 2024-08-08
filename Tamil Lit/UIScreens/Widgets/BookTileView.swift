@@ -29,13 +29,27 @@ struct BookTileView: View {
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: size10) {
                     Text(book.bannerDisplay)
-                        .font(.title3)
+                        .font(.body.bold())
                         .foregroundStyle(Color("TextColor"))
                         .multilineTextAlignment(.leading)
+                    
+//                    Text("\(book.poemCount/2)/\(book.poemCount) read")
+//                        .font(.footnote)
+//                        .foregroundStyle(Color("TextColor").opacity(0.7))
+//                        .multilineTextAlignment(.leading)
+                    
                     Text(book.subtitle)
                         .font(.footnote)
                         .foregroundStyle(Color("TextColor").opacity(0.7))
                         .multilineTextAlignment(.leading)
+                    
+//                    HStack {
+//                        Text("10 viewed")
+//                            .font(.caption)
+//                            .foregroundColor(.secondary)
+//                        
+//                        Spacer()
+//                    }.padding(0)
                 }
                 .padding()
                 
@@ -58,6 +72,22 @@ struct BookTileView: View {
                     }.padding(0)
                 }.padding(0)
             }
+            
+            VStack {
+                Spacer()
+                HStack(alignment: .center) {
+                    Image(systemName: "eye")
+                        .font(.caption2)
+                    
+                    Text(" \(book.poemCount/2)")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    
+                    Spacer()
+                }
+                .foregroundColor(.secondary)
+                .padding([.leading, .bottom])
+            }.padding(0)
         }
         .frame(height: 150)
     }

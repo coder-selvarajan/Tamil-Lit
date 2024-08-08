@@ -164,7 +164,7 @@ struct SettingsView: View {
                     .padding(.vertical)
                 }
                 
-                SwiftUI.Section(header: Text("Adjust Font Size").font(.subheadline.bold())) {
+                SwiftUI.Section(header: Text("Adjust Font Scaling").font(.subheadline.bold())) {
                     VStack(spacing: size15) {
                         HStack(spacing: size15) {
                             Button(action: {

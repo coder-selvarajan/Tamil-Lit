@@ -9,8 +9,6 @@ import SwiftUI
 import PopupView
 
 struct PoemDetailView: View {
-    @Environment(\.presentationMode) var presentationMode
-    
     @EnvironmentObject var navigationManager: NavigationManager
     @EnvironmentObject var userSettings: UserSettings
     @EnvironmentObject var themeManager: ThemeManager
@@ -103,8 +101,8 @@ struct PoemDetailView: View {
                     ForEach(poems, id: \.id) { poem in
                         ScrollView(Axis.Set.vertical, showsIndicators: false) {
                             VStack {
-                                // Poem info
                                 ZStack {
+                                    // Poem info
                                     VStack(alignment: .leading, spacing: size10) {
                                         Text("\(getPoemTitle(poem: poem))")
                                             .font(.callout.bold())
@@ -116,6 +114,7 @@ struct PoemDetailView: View {
                                         }
                                     }
                                     .padding()
+                                    .padding(.vertical, size5)
                                     .frame(maxWidth: .infinity)
                                     .background(themeManager.selectedTheme == ThemeSelection.primary ? book.color.opacity(0.2) : .gray.opacity(0.2))
                                     .cornerRadius(size10)
@@ -279,12 +278,12 @@ struct PoemDetailView: View {
             
             ToolbarItem {
                 Button {
-//                    presentationMode.wrappedValue.dismiss()
                     navigationManager.isRootActive = false
+                    navigationManager.activeBook.keys.forEach { navigationManager.activeBook[$0] = false }
                 } label: {
-                    HStack(alignment: .center, spacing: 5) {
+                    HStack(alignment: .top, spacing: 5) {
                         Image(systemName: "house")
-                            .font(.caption)
+                            .font(.caption2)
                         Text("Home")
                     }
                     .font(.subheadline)

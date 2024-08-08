@@ -35,16 +35,16 @@ struct Theme: Equatable {
 }
 
 struct Themes {
-    static let primaryTheme = Theme(thirukuralColor: Color.blue,
-                                    athichudiColor: Color.cyan,
-                                    naaladiyarColor: Color.indigo,
+    static let primaryTheme = Theme(thirukuralColor: Color.blue.opacity(0.85),
+                                    athichudiColor: Color.cyan.opacity(0.9),
+                                    naaladiyarColor: Color.indigo.opacity(0.85),
                                     acharakovaiColor: Color.purple.opacity(0.5),
-                                    iniyavaiNaarpathuColor: Color.red.opacity(0.5),
+                                    iniyavaiNaarpathuColor: Color.red.opacity(0.4),
                                     innaNaarpathuColor: Color.orange.opacity(0.5),
-                                    naanmanikadikaiColor: Color.brown,
-                                    thirikadukamColor: Color.gray,
-                                    muthumozhikanchiColor: Color.teal,
-                                    pazhamozhiNaanooruColor: Color.green.opacity(0.5))
+                                    naanmanikadikaiColor: Color.brown.opacity(0.9),
+                                    thirikadukamColor: Color.gray.opacity(0.9),
+                                    muthumozhikanchiColor: Color.teal.opacity(0.85),
+                                    pazhamozhiNaanooruColor: Color.green.opacity(0.45))
     
     static let lightTheme = Theme(thirukuralColor: Color.gray,
                                     athichudiColor: Color.gray,

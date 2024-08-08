@@ -51,22 +51,24 @@ struct BookInfo: Identifiable, Codable, Hashable {
     var title: String
     var bannerDisplay: String
     var subtitle: String
+    var poemCount: Int
     var image: String
     var color: Color
     var bannerColor: String
     var selected: Bool
 
     enum CodingKeys: String, CodingKey {
-        case id, order, title, bannerDisplay, subtitle, image, bannerColor, selected
+        case id, order, title, bannerDisplay, subtitle, poemCount, image, bannerColor, selected
         case colorHex
     }
 
-    init(id: UUID, order: Int, title: String, bannerDisplay: String, subtitle: String, image: String, color: Color, bannerColor: String, selected: Bool) {
+    init(id: UUID, order: Int, title: String, bannerDisplay: String, subtitle: String, poemCount: Int, image: String, color: Color, bannerColor: String, selected: Bool) {
         self.id = id
         self.order = order
         self.title = title
         self.bannerDisplay = bannerDisplay
         self.subtitle = subtitle
+        self.poemCount = poemCount
         self.image = image
         self.color = color
         self.bannerColor = bannerColor
@@ -80,6 +82,7 @@ struct BookInfo: Identifiable, Codable, Hashable {
         title = try container.decode(String.self, forKey: .title)
         bannerDisplay = try container.decode(String.self, forKey: .bannerDisplay)
         subtitle = try container.decode(String.self, forKey: .subtitle)
+        poemCount = try container.decode(Int.self, forKey: .poemCount)
         image = try container.decode(String.self, forKey: .image)
         bannerColor = try container.decode(String.self, forKey: .bannerColor)
         selected = try container.decode(Bool.self, forKey: .selected)
@@ -94,6 +97,7 @@ struct BookInfo: Identifiable, Codable, Hashable {
         try container.encode(title, forKey: .title)
         try container.encode(title, forKey: .bannerDisplay)
         try container.encode(subtitle, forKey: .subtitle)
+        try container.encode(poemCount, forKey: .poemCount)
         try container.encode(image, forKey: .image)
         try container.encode(bannerColor, forKey: .bannerColor)
         try container.encode(selected, forKey: .selected)

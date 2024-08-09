@@ -73,6 +73,7 @@
         <attribute name="title" optional="YES" attributeType="String" defaultValueString=""/>
         <attribute name="transliteration" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
+        <attribute name="viewed" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="book" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="poems" inverseEntity="Book"/>
         <relationship name="explanations" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Explanation" inverseName="poem" inverseEntity="Explanation"/>
         <relationship name="mainCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MainCategory" inverseName="poems" inverseEntity="MainCategory"/>

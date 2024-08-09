@@ -9,6 +9,8 @@ import SwiftUI
 import PopupView
 
 struct PoemDetailView: View {
+    @Environment(\.managedObjectContext) private var viewContext //TODO: Refactor
+    
     @EnvironmentObject var navigationManager: NavigationManager
     @EnvironmentObject var userSettings: UserSettings
     @EnvironmentObject var themeManager: ThemeManager
@@ -27,6 +29,10 @@ struct PoemDetailView: View {
     @State private var poemBookmarked: Bool = false
     @State private var shareThePoem = false
     @State var textReading: Bool = false
+    
+    @State private var timeElapsed = 0
+    @State private var timer: Timer?
+    
     
     func getCategoryText() -> String {
         if poems.count > 0 {
@@ -87,7 +93,6 @@ struct PoemDetailView: View {
                     
                     Text("\(getCategoryText())")
                         .fontWeight(.bold)
-                    //                            .foregroundStyle(.black.opacity(0.95))
                     Spacer()
                 }
                 .font(.subheadline)
@@ -182,15 +187,6 @@ struct PoemDetailView: View {
                                             alertMessage = "படம் Photo Library-ல்  சேமிக்கப்பட்டது!"
                                             showAlert = true
                                         }
-                                        
-//                                        SpeakButtonView(textContent: Binding(
-//                                            get: { PoemHelper.poemText(poem: selectedPoem,
-//                                                                       explanations: viewModel.explanations) },
-//                                            set: { newValue in
-//                                                    //
-//                                            }
-//                                        ))
-                                        
                                     }
                                     .padding(.top, -size20)
                                     
@@ -238,6 +234,8 @@ struct PoemDetailView: View {
             .indexViewStyle(.page(backgroundDisplayMode: .always))
         }
         .onChange(of: selectedPoem, perform: { newValue in
+            resetTimer() //for 'viewed' field update
+            
             poemBookmarked = vmFavPoem.isPoemBookmarked(newValue)
             viewModel.fetchExplanations(for: newValue)
         })
@@ -298,9 +296,43 @@ struct PoemDetailView: View {
         .onAppear {
             poemBookmarked = vmFavPoem.isPoemBookmarked(selectedPoem)
             viewModel.fetchExplanations(for: selectedPoem)
+            
+            startTimer() //for updating 'viewed' state
+        }
+        .onDisappear {
+            timer?.invalidate()
         }
         .customFontScaling()
     }
+    
+    private func startTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            timeElapsed += 1
+            if timeElapsed >= 5 {
+                updateViewedStatus(for: selectedPoem)
+                timer?.invalidate() // Stop the timer after updating
+            }
+        }
+    }
+    
+    private func resetTimer() {
+        timeElapsed = 0
+        timer?.invalidate()
+        startTimer()
+    }
+    
+    private func updateViewedStatus(for poem: Poem) {
+        viewContext.performAndWait {
+            poem.viewed = true
+            do {
+                try viewContext.save()
+                print("poem viewed")
+            } catch {
+                print("Failed to update viewed status: \(error)")
+            }
+        }
+    }
+    
 }
 
 //#Preview {

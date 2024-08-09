@@ -487,11 +487,61 @@ extension CoreDataManager {
         return nil
     }
 
-
+    //fetch book viewed count
+    func fetchBookViewedSummary() -> [BookViewedSummary] {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Poem")
+        
+        // Set up properties to fetch
+        let booknameExpression = NSExpression(forKeyPath: "bookname")
+        let countExpression = NSExpression(forFunction: "count:", arguments: [NSExpression(forKeyPath: "bookname")])
+        let viewedSumExpression = NSExpression(forFunction: "sum:", arguments: [NSExpression(forKeyPath: "viewed")])
+        
+        // Create expression descriptions
+        let booknameDescription = NSExpressionDescription()
+        booknameDescription.name = "bookname"
+        booknameDescription.expression = booknameExpression
+        booknameDescription.expressionResultType = .stringAttributeType
+        
+        let countDescription = NSExpressionDescription()
+        countDescription.name = "totalRecords"
+        countDescription.expression = countExpression
+        countDescription.expressionResultType = .integer32AttributeType
+        
+        let viewedSumDescription = NSExpressionDescription()
+        viewedSumDescription.name = "viewedCount"
+        viewedSumDescription.expression = viewedSumExpression
+        viewedSumDescription.expressionResultType = .integer32AttributeType
+        
+        // Add expressions to fetch request
+        fetchRequest.propertiesToFetch = [booknameDescription, countDescription, viewedSumDescription]
+        fetchRequest.resultType = .dictionaryResultType
+        fetchRequest.propertiesToGroupBy = ["bookname"]
+        
+        do {
+            let results = try viewContext.fetch(fetchRequest) as! [[String: Any]]
+            return results.compactMap { dictionary in
+                if let bookname = dictionary["bookname"] as? String,
+                   let totalRecords = dictionary["totalRecords"] as? Int,
+                   let viewedCount = dictionary["viewedCount"] as? Int {
+                    return BookViewedSummary(bookname: bookname, totalRecords: totalRecords, viewedCount: viewedCount)
+                }
+                return nil
+            }
+        } catch {
+            print("Failed to fetch book viewed summary: \(error)")
+            return []
+        }
+    }
 
 }
 
 struct PoemIdentifier: Hashable {
     let bookname: String
     let number: Int16
+}
+
+struct BookViewedSummary {
+    let bookname: String
+    let totalRecords: Int
+    let viewedCount: Int
 }

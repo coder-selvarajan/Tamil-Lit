@@ -17,6 +17,7 @@ struct HomeView: View {
     @EnvironmentObject var navigationManager: NavigationManager
     
     @StateObject var vm = DailyPoemViewModel()
+    @StateObject var vmHome = HomeViewModel()
     
     @State var bookDisplayAsGrid: Bool = true
     @State private var showPoemPopup = false
@@ -213,10 +214,18 @@ struct HomeView: View {
                                         get: { navigationManager.activeBook[bookItem.id] ?? false },
                                         set: { navigationManager.activeBook[bookItem.id] = $0 }
                                     )
+                                    let bookViewSummary =  vmHome.getBookView(for: bookItem)
+                                    
                                     NavigationLink(destination: BookHomeView(book: bookItem)
                                         .environmentObject(navigationManager),
                                                    isActive: isActiveBinding) {
-                                        BookTileView(book: bookBinding, bookDisplayAsGrid: $bookDisplayAsGrid)
+                                        BookTileView(book: bookBinding,
+                                                     bookDisplayAsGrid: $bookDisplayAsGrid,
+                                                     bookViewSummary: Binding(
+                                                        get: { bookViewSummary },
+                                                        set: { newValue in
+                                                            //
+                                                        }))
                                     }
                                 }
                             }
@@ -343,6 +352,10 @@ struct HomeView: View {
                 notificationHandler.appOpenedFromNotification = false
                 showPoemPopup = true
             }
+            
+            // BookViewSummary
+            vmHome.getAllBookViewSummry()
+            
         }
         .onChange(of: notificationHandler.appOpenedFromNotification, perform: { newValue in
             // this code is added since the app is open and the onAppear event would n't trigger..

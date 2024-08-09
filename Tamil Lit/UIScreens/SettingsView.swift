@@ -93,6 +93,7 @@ struct SettingsView: View {
                 SwiftUI.Section(header: Text("Choose your theme").font(.subheadline.bold())) {
                     VStack(spacing: size15) {
                         Button(action: {
+                            performMediumHapticFeedback()
                             userSettings.darkMode = false
                             themeManager.setTheme(.primary)
                             bookManager.updateBooks(with: themeManager.currentTheme)
@@ -116,6 +117,7 @@ struct SettingsView: View {
                         .buttonStyle(RoundedBackgroundButtonStyle(isSelected: themeManager.selectedTheme == .primary))
                         
                         Button(action: {
+                            performMediumHapticFeedback()
                             userSettings.darkMode = false
                             themeManager.setTheme(.light)
                             bookManager.updateBooks(with: themeManager.currentTheme)
@@ -139,6 +141,7 @@ struct SettingsView: View {
                         .buttonStyle(RoundedBackgroundButtonStyle(isSelected: themeManager.selectedTheme == .light))
                         
                         Button(action: {
+                            performMediumHapticFeedback()
                             userSettings.darkMode = true
                             themeManager.setTheme(.dark)
                             bookManager.updateBooks(with: themeManager.currentTheme)
@@ -168,6 +171,7 @@ struct SettingsView: View {
                     VStack(spacing: size15) {
                         HStack(spacing: size15) {
                             Button(action: {
+                                performMediumHapticFeedback()
                                 userSettings.fontScaling = .small
                             }) {
                                 VStack {
@@ -178,6 +182,7 @@ struct SettingsView: View {
                             .buttonStyle(TileButtonStyle(isSelected: userSettings.fontScaling == .small))
                             
                             Button(action: {
+                                performMediumHapticFeedback()
                                 userSettings.fontScaling = .normal
                             }) {
                                 HStack {
@@ -189,6 +194,7 @@ struct SettingsView: View {
                             .buttonStyle(TileButtonStyle(isSelected: userSettings.fontScaling == .normal))
                             
                             Button(action: {
+                                performMediumHapticFeedback()
                                 userSettings.fontScaling = .large
                             }) {
                                 HStack {
@@ -201,6 +207,7 @@ struct SettingsView: View {
                         
                         HStack(spacing: size15) {
                             Button(action: {
+                                performMediumHapticFeedback()
                                 userSettings.fontScaling = .extraLarge
                             }) {
                                 HStack {

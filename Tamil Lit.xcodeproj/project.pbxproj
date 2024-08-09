@@ -18,6 +18,7 @@
 		700920002C3BB1270049C60C /* PoemListWithCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70091FFF2C3BB1270049C60C /* PoemListWithCategoryView.swift */; };
 		700920022C3BC14D0049C60C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700920012C3BC14D0049C60C /* LoadingView.swift */; };
 		700920042C3BCDFE0049C60C /* PoemListWithCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700920032C3BCDFE0049C60C /* PoemListWithCategoryViewModel.swift */; };
+		701216102C667B580025CCB2 /* HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7012160F2C667B580025CCB2 /* HapticFeedback.swift */; };
 		70160F6B2C0B20E20053B4A9 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70160F6A2C0B20E20053B4A9 /* MainView.swift */; };
 		701BFAD62C33B1C2008D2805 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701BFAD52C33B1C2008D2805 /* CategoryViewModel.swift */; };
 		70206A6C2C4D421900B55EE6 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 70206A6B2C4D421900B55EE6 /* PopupView */; };
@@ -107,6 +108,7 @@
 		70091FFF2C3BB1270049C60C /* PoemListWithCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemListWithCategoryView.swift; sourceTree = "<group>"; };
 		700920012C3BC14D0049C60C /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		700920032C3BCDFE0049C60C /* PoemListWithCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemListWithCategoryViewModel.swift; sourceTree = "<group>"; };
+		7012160F2C667B580025CCB2 /* HapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedback.swift; sourceTree = "<group>"; };
 		70160F6A2C0B20E20053B4A9 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		701BFAD52C33B1C2008D2805 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		70206A6D2C4D566000B55EE6 /* BookSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookSelectorView.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				70CE96ED2C61D5B70013F185 /* CustomFontScaling.swift */,
 				70CE96EF2C61FE9E0013F185 /* TextToSpeech.swift */,
 				7056974C2C63E3FC00D90D45 /* NavigationManager.swift */,
+				7012160F2C667B580025CCB2 /* HapticFeedback.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 				70C7CF6F2C4AD63B00D4189B /* RandomPoemView.swift in Sources */,
 				70F86D3D2C490C8600799435 /* Book+CoreDataProperties.swift in Sources */,
 				7090CFFB2C5A73E000B23353 /* CreditsView.swift in Sources */,
+				701216102C667B580025CCB2 /* HapticFeedback.swift in Sources */,
 				70F86D3E2C490C8600799435 /* SubCategory+CoreDataClass.swift in Sources */,
 				70F86D3F2C490C8600799435 /* SubCategory+CoreDataProperties.swift in Sources */,
 				70068B642C5DFD18009543EB /* BookManager.swift in Sources */,

@@ -487,7 +487,20 @@ extension CoreDataManager {
         return nil
     }
 
-    //fetch book viewed count
+    // Update poem viewed status
+    func updateViewedStatus(for poem: Poem) {
+        viewContext.performAndWait {
+            poem.viewed = true
+            do {
+                try viewContext.save()
+                print("poem viewed")
+            } catch {
+                print("Failed to update viewed status: \(error)")
+            }
+        }
+    }
+    
+    //fetch book viewed summary
     func fetchBookViewedSummary() -> [BookViewedSummary] {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Poem")
         

@@ -33,6 +33,7 @@ struct RandomPoemView: View {
                     Spacer()
                     Button {
                         if let poem = vm.getRandomPoem(bookOptions: bookOptions) {
+                            performMediumHapticFeedback()
                             randomPoem = poem
                         }
                     } label: {

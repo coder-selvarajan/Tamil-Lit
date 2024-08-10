@@ -58,7 +58,6 @@ struct FavouritePoemListView: View {
                         }
                     }
                     .pickerStyle(SegmentedPickerStyle())
-                    .tint(Color("colorYellow"))
                     .frame(width: UIScreen.main.bounds.width * 0.5)
                 }
                 .padding()

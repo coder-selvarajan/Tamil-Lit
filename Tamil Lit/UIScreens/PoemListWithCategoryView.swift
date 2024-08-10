@@ -58,15 +58,26 @@ struct PoemListWithCategoryView: View {
                                     }
                                 } label: {
                                     if themeManager.selectedTheme == .primary { // for colorful theme
-                                        Text(getShortTitle(category))
-                                            .font(.subheadline)
-                                            .padding(.horizontal, size10)
-                                            .padding(.vertical, size10)
-                                            .foregroundColor(highlightedCategoryId == category.id ? .white : .black)
-                                            .background(highlightedCategoryId == category.id
-                                                        ? book.color.opacity(0.7)
-                                                        : (userSettings.darkMode ? book.color.opacity(0.5) : .white.opacity(0.7)))
-                                            .cornerRadius(8.0)
+                                        if #available(iOS 16.0, *) {
+                                            Text(getShortTitle(category))
+                                                .font(.subheadline)
+                                                .padding(.horizontal, size10)
+                                                .padding(.vertical, size10)
+                                                .foregroundColor(highlightedCategoryId == category.id ? .white : .black)
+                                                .background(highlightedCategoryId == category.id
+                                                            ? book.color.opacity(0.7) : .white.opacity(0.7))
+                                                .cornerRadius(8.0)
+                                        } else { // iOS 15
+                                            Text(getShortTitle(category))
+                                                .font(.subheadline)
+                                                .padding(.horizontal, size10)
+                                                .padding(.vertical, size10)
+                                                .foregroundColor(highlightedCategoryId == category.id ? .white : .black)
+                                                .background(highlightedCategoryId == category.id
+                                                            ? book.color.opacity(0.7)
+                                                            : book.color.opacity(0.2))
+                                                .cornerRadius(8.0)
+                                        }
                                     } else { // for light and dark themes
                                         Text(getShortTitle(category))
                                             .font(.subheadline)
@@ -74,10 +85,6 @@ struct PoemListWithCategoryView: View {
                                             .padding(.vertical, size10)
                                             .foregroundStyle(Color("TextColor"))
                                             .background(.gray.opacity(0.2))
-//                                            .foregroundColor(highlightedCategoryId == category.id ? .white : .black)
-//                                            .background(highlightedCategoryId == category.id
-//                                                        ? colorTheme.opacity(0.7)
-//                                                        : (userSettings.darkMode ? colorTheme.opacity(0.5) : .white.opacity(0.7)))
                                             .cornerRadius(8.0)
                                     }
                                 }

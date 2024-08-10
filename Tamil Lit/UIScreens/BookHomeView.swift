@@ -20,9 +20,11 @@ struct BookHomeView: View {
     
     var body: some View {
         ZStack {
-//            Color.white.ignoresSafeArea()
-            if themeManager.selectedTheme == ThemeSelection.primary {
-                book.color.opacity(0.2).ignoresSafeArea()
+            
+            if #available(iOS 16.0, *) {
+                if themeManager.selectedTheme == ThemeSelection.primary {
+                    book.color.opacity(0.2).ignoresSafeArea()
+                }
             }
             
             if viewModel.book?.name == "பழமொழி நானூறு" {

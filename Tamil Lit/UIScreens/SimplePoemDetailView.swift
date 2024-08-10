@@ -14,6 +14,7 @@ struct SimplePoemDetailView: View {
     @Environment(\.presentationMode) var presentationMode
     @StateObject private var vmExplanation = ExplanationListViewModel()
     @StateObject private var vmFavPoem = FavouritePoemViewModel()
+    @StateObject private var vmPoemDet = PoemDetailsViewModel()
     
     let colorTheme: Color = Color.gray
     @Binding var selectedPoem: Poem
@@ -23,6 +24,9 @@ struct SimplePoemDetailView: View {
     @State private var alertMessage: String = "படம் Photo Library-ல்  சேமிக்கப்பட்டது!"
     
     @State private var poemBookmarked: Bool = false
+    
+    @State private var timeElapsed = 0
+    @State private var timer: Timer?
     
     
     func getCategoryText() -> String {
@@ -119,48 +123,33 @@ struct SimplePoemDetailView: View {
                     .padding(.bottom)
                     
                     // Poem box
-                    ZStack {
-                        VStack {
-                            VStack(alignment: .leading, spacing: 10) {
-                                Spacer()
-                                Text("\(getPoemTitle())")
-                                    .textSelection(.enabled)
-                                    .font(.callout.bold())
-                                
-                                VStack(alignment: .leading, spacing: 2.0) {
-                                    Text("\(selectedPoem.poem ?? "")")
-                                        .textSelection(.enabled)
-                                        .font(.body.bold())
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                }
-                                
-                                Spacer()
+                    ZStack(alignment: .topTrailing) {
+                        VStack(alignment: .leading, spacing: size10) {
+                            Text("\(getPoemTitle())")
+                                .font(.callout.bold())
+                            
+                            VStack(alignment: .leading, spacing: 2.0) {
+                                Text("\(selectedPoem.poem ?? "")")
+                                    .font(.body.bold())
+                                    .frame(maxWidth: .infinity, alignment: .leading)
                             }
-                            .padding(.bottom)
-                            .frame(maxWidth: .infinity)
-                            .padding(.horizontal, size10)
                         }
-                        .padding(.horizontal, size10)
+                        .padding()
+                        .padding(.vertical, size5)
+                        .frame(maxWidth: .infinity)
                         .background(.gray.opacity(0.2))
                         .cornerRadius(size10)
                         .padding(.horizontal, size10)
-                        .padding(.bottom, size20)
+                        .padding(.bottom, size10)
                         
                         // Text to speech button
-                        VStack {
-                            HStack {
-                                Spacer()
-                                
-                                SpeakButtonView(textContent: Binding(
-                                    get: { PoemHelper.poemText(poem: selectedPoem,
-                                                               explanations: vmExplanation.explanations) },
-                                    set: { newValue in
-                                        //
-                                    }
-                                )).padding([.trailing, .top], size10)
+                        SpeakButtonView(textContent: Binding(
+                            get: { PoemHelper.poemText(poem: selectedPoem,
+                                                       explanations: vmExplanation.explanations) },
+                            set: { newValue in
+                                //
                             }
-                            Spacer()
-                        }
+                        )).padding([.trailing, .top], size10)
                     }
                     
                     // Explanation section
@@ -277,18 +266,37 @@ struct SimplePoemDetailView: View {
                 .autohideIn(1.5)
         }
         .onChange(of: selectedPoem, perform: { newValue in
-//            if let poem = newValue {
-                poemBookmarked = vmFavPoem.isPoemBookmarked(newValue)
-                vmExplanation.fetchExplanations(for: newValue)
-//            }
+            resetTimer() //for 'viewed' field update
+
+            poemBookmarked = vmFavPoem.isPoemBookmarked(newValue)
+            vmExplanation.fetchExplanations(for: newValue)
         })
         .onAppear {
-//            if let selectedPoem = selectedPoem {
-                poemBookmarked = vmFavPoem.isPoemBookmarked(selectedPoem)
-                vmExplanation.fetchExplanations(for: selectedPoem)
-//            }
+            poemBookmarked = vmFavPoem.isPoemBookmarked(selectedPoem)
+            vmExplanation.fetchExplanations(for: selectedPoem)
+            
+            startTimer() //for updating 'viewed' state
+        }
+        .onDisappear {
+            timer?.invalidate()
         }
         .customFontScaling()
+    }
+    
+    private func startTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            timeElapsed += 1
+            if timeElapsed >= 5 {
+                vmPoemDet.updatePoemViewedStatus(for: selectedPoem)
+                timer?.invalidate() // Stop the timer after updating
+            }
+        }
+    }
+    
+    private func resetTimer() {
+        timeElapsed = 0
+        timer?.invalidate()
+        startTimer()
     }
 }
 

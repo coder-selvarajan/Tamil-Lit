@@ -488,7 +488,7 @@ extension CoreDataManager {
     }
 
     // Update poem viewed status
-    func updateViewedStatus(for poem: Poem) {
+    func updatePoemViewedStatus(for poem: Poem) {
         viewContext.performAndWait {
             poem.viewed = true
             do {

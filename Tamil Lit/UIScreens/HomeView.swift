@@ -398,7 +398,7 @@ struct HomeView: View {
                 }
             }
             
-            ToolbarItem {
+            ToolbarItem(placement: .topBarTrailing) {
                 NavigationLink(destination: SettingsView()) {
                     Image(systemName: "gearshape")
                         .foregroundStyle(Color("TextColor"))

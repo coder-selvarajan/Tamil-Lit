@@ -127,9 +127,9 @@ struct PoemScreenshotView: View {
     }
     
     var body: some View {
-        // Save as image icon
-        Button(action: {
-            if #available(iOS 16.0, *) {
+        if #available(iOS 16.0, *) {
+            // Save as image icon
+            Button(action: {
                 let renderer = ImageRenderer(content: getPoemScreenshotView)
                 if let image = renderer.uiImage {
                     let imageSaver = ImageSever()
@@ -137,16 +137,16 @@ struct PoemScreenshotView: View {
                     
                     completionCallBack!()
                 }
-            } else {
-                // TODO: Implement screenshot feature for iOS15
+            }) {
+                HStack(spacing: 5) {
+                    Image(systemName: "camera")
+                    Text("நகல்")
+                }
+                .font(.subheadline)
+                .foregroundStyle(Color("TextColor"))
             }
-        }) {
-            HStack(spacing: 5) {
-                Image(systemName: "camera")
-                Text("நகல்")
-            }
-            .font(.subheadline)
-            .foregroundStyle(Color("TextColor"))
+        } else {
+            EmptyView()
         }
     }
 }

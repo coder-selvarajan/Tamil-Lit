@@ -9,14 +9,13 @@ import SwiftUI
 import PopupView
 
 struct PoemDetailView: View {
-    @Environment(\.managedObjectContext) private var viewContext //TODO: Refactor
-    
     @EnvironmentObject var navigationManager: NavigationManager
     @EnvironmentObject var userSettings: UserSettings
     @EnvironmentObject var themeManager: ThemeManager
     
     @StateObject private var viewModel = ExplanationListViewModel()
     @StateObject private var vmFavPoem = FavouritePoemViewModel()
+    @StateObject private var vmPoemDet = PoemDetailsViewModel()
     
     let book: BookInfo
     var poems: [Poem] = []
@@ -66,8 +65,10 @@ struct PoemDetailView: View {
     
     var body: some View {
         ZStack(alignment: .top) {
-            if themeManager.selectedTheme == ThemeSelection.primary {
-                book.color.opacity(0.2).ignoresSafeArea()
+            if #available(iOS 16.0, *) {
+                if themeManager.selectedTheme == ThemeSelection.primary {
+                    book.color.opacity(0.2).ignoresSafeArea()
+                }
             }
             
             VStack(alignment: .leading, spacing: size10) {
@@ -106,7 +107,7 @@ struct PoemDetailView: View {
                     ForEach(poems, id: \.id) { poem in
                         ScrollView(Axis.Set.vertical, showsIndicators: false) {
                             VStack {
-                                ZStack {
+                                ZStack(alignment: .topTrailing) {
                                     // Poem info
                                     VStack(alignment: .leading, spacing: size10) {
                                         Text("\(getPoemTitle(poem: poem))")
@@ -124,23 +125,16 @@ struct PoemDetailView: View {
                                     .background(themeManager.selectedTheme == ThemeSelection.primary ? book.color.opacity(0.2) : .gray.opacity(0.2))
                                     .cornerRadius(size10)
                                     .padding(.horizontal, size10)
-                                    .padding(.bottom, size20)
+                                    .padding(.bottom, size10)
                                     
                                     // Text to speech button
-                                    VStack {
-                                        HStack {
-                                            Spacer()
-                                            
-                                            SpeakButtonView(textContent: Binding(
-                                                get: { PoemHelper.poemText(poem: selectedPoem,
-                                                                           explanations: viewModel.explanations) },
-                                                set: { newValue in
-                                                    //
-                                                }
-                                            )).padding([.trailing, .top], size10)
+                                    SpeakButtonView(textContent: Binding(
+                                        get: { PoemHelper.poemText(poem: selectedPoem,
+                                                                   explanations: viewModel.explanations) },
+                                        set: { newValue in
+                                            //
                                         }
-                                        Spacer()
-                                    }
+                                    )).padding([.trailing, .top], size10)
                                 }
                                 
                                 VStack(alignment: .leading) {
@@ -309,7 +303,7 @@ struct PoemDetailView: View {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             timeElapsed += 1
             if timeElapsed >= 5 {
-                updateViewedStatus(for: selectedPoem)
+                vmPoemDet.updatePoemViewedStatus(for: selectedPoem)
                 timer?.invalidate() // Stop the timer after updating
             }
         }
@@ -319,18 +313,6 @@ struct PoemDetailView: View {
         timeElapsed = 0
         timer?.invalidate()
         startTimer()
-    }
-    
-    private func updateViewedStatus(for poem: Poem) {
-        viewContext.performAndWait {
-            poem.viewed = true
-            do {
-                try viewContext.save()
-                print("poem viewed")
-            } catch {
-                print("Failed to update viewed status: \(error)")
-            }
-        }
     }
     
 }

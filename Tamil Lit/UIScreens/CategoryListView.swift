@@ -27,16 +27,29 @@ struct CategoryListView: View {
                     HStack {
                         ForEach(viewModel.mainCategories, id:\.id) { mainCategory in
                             if themeManager.selectedTheme == .primary {
-                                Text("\(mainCategory.title!)")
-                                    .padding(size10)
-                                    .font(.subheadline)
-                                    .foregroundColor(viewModel.selectedMainCategory == mainCategory ? .white : .black)
-                                    .background(viewModel.selectedMainCategory == mainCategory 
-                                                ? book.color.opacity(0.8) : .white)
-                                    .cornerRadius(size10)
-                                    .onTapGesture {
-                                        viewModel.selectMainCategory(mainCategory)
-                                    }
+                                if #available(iOS 16.0, *) {
+                                    Text("\(mainCategory.title!)")
+                                        .padding(size10)
+                                        .font(.subheadline)
+                                        .foregroundColor(viewModel.selectedMainCategory == mainCategory ? .white : .black)
+                                        .background(viewModel.selectedMainCategory == mainCategory
+                                                    ? book.color.opacity(0.8) : .white)
+                                        .cornerRadius(size10)
+                                        .onTapGesture {
+                                            viewModel.selectMainCategory(mainCategory)
+                                        }
+                                } else {
+                                    Text("\(mainCategory.title!)")
+                                        .padding(size10)
+                                        .font(.subheadline)
+                                        .foregroundColor(viewModel.selectedMainCategory == mainCategory ? .white : .black)
+                                        .background(viewModel.selectedMainCategory == mainCategory
+                                                    ? book.color.opacity(0.8) : book.color.opacity(0.1))
+                                        .cornerRadius(size10)
+                                        .onTapGesture {
+                                            viewModel.selectMainCategory(mainCategory)
+                                        }
+                                }
                             } else { // light, dark
                                 Text("\(mainCategory.title!)")
                                     .padding(size10)
@@ -65,16 +78,29 @@ struct CategoryListView: View {
                 WrapView(data: viewModel.filteredSubCategories, content: { subCategory in
                     Button(action: {}) {
                         if themeManager.selectedTheme == .primary {
-                            Text(subCategory.title!)
-                                .padding(size10)
-                                .font(.subheadline)
-                                .foregroundColor(viewModel.selectedSubCategory == subCategory ? .white : .black)
-                                .background(viewModel.selectedSubCategory == subCategory 
-                                            ? book.color.opacity(0.8) : .white)
-                                .cornerRadius(size10)
-                                .onTapGesture {
-                                    viewModel.selectSubCategory(subCategory)
-                                }
+                            if #available(iOS 16.0, *) {
+                                Text(subCategory.title!)
+                                    .padding(size10)
+                                    .font(.subheadline)
+                                    .foregroundColor(viewModel.selectedSubCategory == subCategory ? .white : .black)
+                                    .background(viewModel.selectedSubCategory == subCategory
+                                                ? book.color.opacity(0.8) : .white)
+                                    .cornerRadius(size10)
+                                    .onTapGesture {
+                                        viewModel.selectSubCategory(subCategory)
+                                    }
+                            } else {
+                                Text(subCategory.title!)
+                                    .padding(size10)
+                                    .font(.subheadline)
+                                    .foregroundColor(viewModel.selectedSubCategory == subCategory ? .white : .black)
+                                    .background(viewModel.selectedSubCategory == subCategory
+                                                ? book.color.opacity(0.8) : book.color.opacity(0.1))
+                                    .cornerRadius(size10)
+                                    .onTapGesture {
+                                        viewModel.selectSubCategory(subCategory)
+                                    }
+                            }
                         } else {
                             Text(subCategory.title!)
                                 .padding(size10)

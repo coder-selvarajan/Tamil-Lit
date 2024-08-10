@@ -24,7 +24,7 @@ struct PoemDetailView: View {
     @State var poemViewHieght: CGFloat = 160.0
     
     @State private var showAlert: Bool = false
-    @State private var alertMessage: String = "படம் Photo Library-ல் =சேமிக்கப்பட்டது!"
+    @State private var alertMessage: String = ""
     @State private var poemBookmarked: Bool = false
     @State private var shareThePoem = false
     @State var textReading: Bool = false
@@ -146,19 +146,19 @@ struct PoemDetailView: View {
                                             if poemBookmarked {
                                                 if vmFavPoem.removeFavPoem(poem) {
                                                     poemBookmarked = false
-                                                    alertMessage = "\(poem.book?.poemType ?? "") நீக்கப்பட்டது!"
+                                                    alertMessage = " \(poem.book?.poemType ?? "") நீக்கப்பட்டது! "
                                                     showAlert = true
                                                 } else {
-                                                    alertMessage = "Operation failed!"
+                                                    alertMessage = "Operation failed❗️"
                                                     showAlert = true
                                                 }
                                             } else {
                                                 if vmFavPoem.saveFavPoem(poem) {
                                                     poemBookmarked = true
-                                                    alertMessage = "\(poem.book?.poemType ?? "") சேமிக்கப்பட்டது!"
+                                                    alertMessage = " \(poem.book?.poemType ?? "") சேமிக்கப்பட்டது! "
                                                     showAlert = true
                                                 } else {
-                                                    alertMessage = "Operation failed!"
+                                                    alertMessage = "Operation failed❗️"
                                                     showAlert = true
                                                 }
                                             }
@@ -184,7 +184,7 @@ struct PoemDetailView: View {
                                                 if success {
                                                     alertMessage = "படம் Photo Library-ல் சேமிக்கப்பட்டது!"
                                                 } else {
-                                                    alertMessage = "❗️ படம் சேமிக்க இயலவில்லை."
+                                                    alertMessage = "படம் சேமிக்க இயலவில்லை❗️ \nCheck 'Photo Library' access."
                                                 }
                                                 showAlert = true
                                             }
@@ -242,13 +242,7 @@ struct PoemDetailView: View {
             viewModel.fetchExplanations(for: newValue)
         })
         .popup(isPresented: $showAlert) {
-            VStack {
-                Text("\(alertMessage)")
-                    .padding()
-                    .background(Color("TextColorWhite"))
-                    .cornerRadius(size15)
-                    .shadow(radius: size15)
-            }
+            PopupContentView(alertMessage: $alertMessage)
         } customize: {
             $0
                 .type(.floater())
@@ -325,6 +319,20 @@ struct PoemDetailView: View {
         startTimer()
     }
     
+}
+
+struct PopupContentView: View {
+    @Binding var alertMessage: String
+    
+    var body: some View {
+        VStack {
+            Text(alertMessage)
+                .padding()
+                .background(Color("TextColorWhite"))
+                .cornerRadius(size15)
+                .shadow(radius: size15)
+        }
+    }
 }
 
 //#Preview {

@@ -21,7 +21,7 @@ struct SimplePoemDetailView: View {
     @State var popupMode: Bool = false
     
     @State private var showAlert: Bool = false
-    @State private var alertMessage: String = "படம் Photo Library-ல்  சேமிக்கப்பட்டது!"
+    @State private var alertMessage: String = ""
     
     @State private var poemBookmarked: Bool = false
     
@@ -163,7 +163,7 @@ struct SimplePoemDetailView: View {
                                         alertMessage = "\(selectedPoem.book?.poemType ?? "") நீக்கப்பட்டது!"
                                         showAlert = true
                                     } else {
-                                        alertMessage = "Operation failed!"
+                                        alertMessage = "Operation failed❗️"
                                         showAlert = true
                                     }
                                 } else {
@@ -172,7 +172,7 @@ struct SimplePoemDetailView: View {
                                         alertMessage = "\(selectedPoem.book?.poemType ?? "") சேமிக்கப்பட்டது!"
                                         showAlert = true
                                     } else {
-                                        alertMessage = "Operation failed!"
+                                        alertMessage = "Operation failed❗️"
                                         showAlert = true
                                     }
                                 }
@@ -196,7 +196,7 @@ struct SimplePoemDetailView: View {
                                 if success {
                                     alertMessage = "படம் Photo Library-ல் சேமிக்கப்பட்டது!"
                                 } else {
-                                    alertMessage = "❗️படம் சேமிக்க இயலவில்லை."
+                                    alertMessage = "படம் சேமிக்க இயலவில்லை❗️ \nCheck 'Photo Library' access."
                                 }
                                 showAlert = true
                             }
@@ -255,11 +255,7 @@ struct SimplePoemDetailView: View {
             }
         }
         .popup(isPresented: $showAlert) {
-            Text("\(alertMessage)")
-                .padding()
-                .background(Color("TextColorWhite"))
-                .cornerRadius(size15)
-                .shadow(radius: size15)
+            PopupContentView(alertMessage: $alertMessage)
         } customize: {
             $0
                 .type(.floater())

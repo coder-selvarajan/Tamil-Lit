@@ -192,8 +192,12 @@ struct SimplePoemDetailView: View {
                             // Save as image icon
                             PoemScreenshotView(poem: $selectedPoem,
                                                explanations: $vmExplanation.explanations,
-                                               colorTheme: colorTheme) {
-                                alertMessage = "படம் Photo Library-ல்  சேமிக்கப்பட்டது!"
+                                               colorTheme: colorTheme) { success in
+                                if success {
+                                    alertMessage = "படம் Photo Library-ல் சேமிக்கப்பட்டது!"
+                                } else {
+                                    alertMessage = "❗️படம் சேமிக்க இயலவில்லை."
+                                }
                                 showAlert = true
                             }
                         }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SpeakButtonView: View {
-    @StateObject private var speechSynthesizer = SpeechSynthesizer()
+    @StateObject var speechSynthesizer = SpeechSynthesizer()
     
     @Binding var textContent: String
     @State var showAlert: Bool = false
@@ -18,8 +18,11 @@ struct SpeakButtonView: View {
             if speechSynthesizer.isSpeaking {
                 speechSynthesizer.stopSpeaking()
             } else {
+                //Content clean up
+                let content = textContent.replacingOccurrences(of: ":", with: ". \n")
+                
                 // if we dont find Tamil voice then instruct the user to enable the setting..
-                speechSynthesizer.speak(text: textContent) { success in
+                speechSynthesizer.speak(text: content) { success in
                     if !success {
                         showAlert = true
                     }
@@ -41,17 +44,15 @@ struct SpeakButtonView: View {
                 message: Text("To enable Tamil text-to-speech, go to Settings > Accessibility > Spoken Content > Voices > Tamil and download the Tamil voice."),
                 primaryButton: .default(Text("Open Settings"), action: {
                     openMainSettings()
-                    
-//                    if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
-//                        if UIApplication.shared.canOpenURL(settingsUrl) {
-//                            UIApplication.shared.open(settingsUrl, completionHandler: { success in
-//                                print("Settings opened: \(success)")
-//                            })
-//                        }
-//                    }
                 }),
                 secondaryButton: .default(Text("OK"))
             )
+        }
+        .onChange(of: textContent) { newValue in
+            // Stop speaking when the content changes
+            if speechSynthesizer.isSpeaking {
+                speechSynthesizer.stopSpeaking()
+            }
         }
         .onDisappear {
             speechSynthesizer.stopSpeaking()

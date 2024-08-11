@@ -28,7 +28,6 @@ struct SimplePoemDetailView: View {
     @State private var timeElapsed = 0
     @State private var timer: Timer?
     
-    
     func getCategoryText() -> String {
         if selectedPoem.sectionname != nil {
             return "\(selectedPoem.maincategoryname ?? "")  ›  \(selectedPoem.subcategoryname ?? "")  ›  \(selectedPoem.sectionname ?? "")"
@@ -149,7 +148,8 @@ struct SimplePoemDetailView: View {
                             set: { newValue in
                                 //
                             }
-                        )).padding([.trailing, .top], size10)
+                        ))
+                        .padding([.trailing, .top], size10)
                     }
                     
                     // Explanation section
@@ -204,31 +204,10 @@ struct SimplePoemDetailView: View {
                         .padding(.top, -size20)
                         
                         VStack {
-                            ForEach(vmExplanation.explanations, id:\.self) { explanation in
-                                VStack(alignment: .leading, spacing: 2.0) {
-                                    if let title = explanation.title, title != "" {
-                                        Text("\(title): ")
-                                            .textSelection(.enabled)
-                                            .font(.body.bold())
-                                            .foregroundStyle(Color("TextColor"))
-                                            .padding(.bottom, 5)
-                                    }
-                                    Text("\(explanation.meaning ?? "")")
-                                        .textSelection(.enabled)
-                                        .font(.body)
-                                    
-                                    if vmExplanation.explanations.last != explanation {
-                                        Divider().background(.gray)
-                                            .padding(.vertical)
-                                    } else {
-                                        Divider().background(Color.clear)
-                                            .padding(.vertical)
-                                    }
-                                }
-                            }
+                            ExplanationView(explanations: vmExplanation.explanations)
                         }
-                        .padding(.top, size20)
-                        
+                        .padding(.bottom, size20)
+                        .padding(.vertical, size20)
                     }
                     .padding(size20)
                     .padding(.bottom, size20)

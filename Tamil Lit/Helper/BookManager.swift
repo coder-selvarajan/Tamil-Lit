@@ -28,7 +28,7 @@ class BookManager: ObservableObject {
                 bannerDisplay: "திருக்குறள்",
                 subtitle: "1330 குறள்கள்",
                 poemCount: 1330,
-                image: "Thiruvalluvar",
+                image: "_Thiruvalluvar",
                 color: theme.thirukuralColor,
                 bannerColor: "colorThirukural",
                 selected: true
@@ -40,7 +40,7 @@ class BookManager: ObservableObject {
                 bannerDisplay: "ஆத்திசூடி",
                 subtitle: "109 வாக்கியங்கள்",
                 poemCount: 109,
-                image: "Avvaiyar2",
+                image: "_Avvaiyar",
                 color: theme.athichudiColor,
                 bannerColor: "colorAthichudi",
                 selected: true
@@ -52,7 +52,7 @@ class BookManager: ObservableObject {
                 bannerDisplay: "நாலடியார்",
                 subtitle: "400 பாடல்கள்",
                 poemCount: 400,
-                image: "JainSanyasi2",
+                image: "_JainMonk",
                 color: theme.naaladiyarColor,
                 bannerColor: "colorNaaladiyar",
                 selected: true
@@ -64,7 +64,7 @@ class BookManager: ObservableObject {
                 bannerDisplay: "ஆசாரக் \nகோவை",
                 subtitle: "100 பாடல்கள்",
                 poemCount: 100,
-                image: "Rishi",
+                image: "_Acharakovai",
                 color: theme.acharakovaiColor,
                 bannerColor: "colorAcharakovai",
                 selected: true
@@ -76,7 +76,7 @@ class BookManager: ObservableObject {
                 bannerDisplay: "இனியவை \nநாற்பது",
                 subtitle: "40 பாடல்கள்",
                 poemCount: 40,
-                image: "Iniyavai",
+                image: "_Iniyavai",
                 color: theme.iniyavaiNaarpathuColor,
                 bannerColor: "colorIniyavaiNaarpathu",
                 selected: true
@@ -88,7 +88,7 @@ class BookManager: ObservableObject {
                 bannerDisplay: "இன்னா \nநாற்பது",
                 subtitle: "40 பாடல்கள்",
                 poemCount: 40,
-                image: "Inna",
+                image: "_Inna",
                 color: theme.innaNaarpathuColor,
                 bannerColor: "colorInnaNaarpathu",
                 selected: true
@@ -100,7 +100,7 @@ class BookManager: ObservableObject {
                 bannerDisplay: "நான்மணிக் \nகடிகை",
                 subtitle: "101 பாடல்கள்",
                 poemCount: 101,
-                image: "Naanmani",
+                image: "_Naanmanikadikai2",
                 color: theme.naanmanikadikaiColor,
                 bannerColor: "colorNaanmanikadikai",
                 selected: true
@@ -112,7 +112,7 @@ class BookManager: ObservableObject {
                 bannerDisplay: "திரிகடுகம்",
                 subtitle: "102 பாடல்கள்",
                 poemCount: 102,
-                image: "Thirikadugam",
+                image: "_Thirikadukam",
                 color: theme.thirikadukamColor,
                 bannerColor: "colorThirikadukam",
                 selected: true
@@ -124,7 +124,7 @@ class BookManager: ObservableObject {
                 bannerDisplay: "முதுமொழிக் \nகாஞ்சி",
                 subtitle: "100 பழமொழிகள்",
                 poemCount: 100,
-                image: "Muthumozhi",
+                image: "_Muthumozhi",
                 color: theme.muthumozhikanchiColor,
                 bannerColor: "colorMothumozhikanchi",
                 selected: true
@@ -136,7 +136,7 @@ class BookManager: ObservableObject {
                 bannerDisplay: "பழமொழி \nநானூறு",
                 subtitle: "400 பழமொழிகள்",
                 poemCount: 400,
-                image: "Pazhamozhi",
+                image: "_Pazhamozhi",
                 color: theme.pazhamozhiNaanooruColor,
                 bannerColor: "colorPazhamozhiNaanuru",
                 selected: true

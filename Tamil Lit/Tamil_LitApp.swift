@@ -18,6 +18,8 @@ struct Tamil_LitApp: App {
     @StateObject var themeManager = ThemeManager()
     @StateObject var bookManager = BookManager()
     
+    @StateObject var speechSynthesizer = SpeechSynthesizer()
+    
     let persistenceController = CoreDataManager.shared
 //    @State private var loadingStatus: LoadingStatus  = .idle
     
@@ -31,6 +33,7 @@ struct Tamil_LitApp: App {
                 .environmentObject(navigationManager)
                 .environmentObject(themeManager)
                 .environmentObject(bookManager)
+                .environmentObject(speechSynthesizer)
                 .environment(\.customFontScaling, userSettings.fontScaling.sizeCategory)
                 .onAppear {
                     notificationHandler.checkFirstLaunch()

@@ -61,6 +61,20 @@ class PoemHelper {
     static func poemText(poem: Poem, explanations: [Explanation]) -> String {
         var explanationsStr : String = ""
         var expTitle = ""
+        var poemTitle: String {
+            if poem.number == 0 {
+                return ""
+            }
+            
+            let poemType = poem.book?.poemType ?? "பாடல் "
+            
+            if let title = poem.title, title != "" {
+                return poemType + ": \(poem.number) \n" + title + ":"
+            }
+            
+            return poemType + ": \(poem.number)"
+        }
+        
         for explanation in explanations {
             if let title = explanation.title, title != "" {
                 expTitle = """
@@ -78,7 +92,7 @@ class PoemHelper {
         return """
             \(poem.bookname ?? "")\(getCategoryDisplay(poem: poem))
             
-            \(poem.book?.poemType ?? "பாடல் ") \(poem.number) :
+            \(poemTitle)
             \(poem.poem ?? "")
             
             \(explanationsStr)

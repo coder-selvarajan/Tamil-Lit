@@ -12,6 +12,7 @@ struct PoemDetailView: View {
     @EnvironmentObject var navigationManager: NavigationManager
     @EnvironmentObject var userSettings: UserSettings
     @EnvironmentObject var themeManager: ThemeManager
+    @EnvironmentObject var speechSynthesizer: SpeechSynthesizer
     
     @StateObject private var viewModel = ExplanationListViewModel()
     @StateObject private var vmFavPoem = FavouritePoemViewModel()
@@ -135,7 +136,8 @@ struct PoemDetailView: View {
                                         set: { newValue in
                                             //
                                         }
-                                    )).padding([.trailing, .top], size10)
+                                    ))
+                                    .padding([.trailing, .top], size10)
                                 }
                                 
                                 VStack(alignment: .leading) {
@@ -194,29 +196,9 @@ struct PoemDetailView: View {
                                     
                                     // Explanations
                                     VStack {
-                                        ForEach(viewModel.getExplanations(for: poem), id:\.self) { explanation in
-                                            VStack(alignment: .leading, spacing: 2.0) {
-                                                if let title = explanation.title, title != "" {
-                                                    Text("\(title): ")
-                                                        .textSelection(.enabled)
-                                                        .font(.body.bold())
-                                                        .padding(.bottom, 5)
-                                                }
-                                                Text("\(explanation.meaning ?? "")")
-                                                    .textSelection(.enabled)
-                                                    .font(.body)
-                                                
-                                                if viewModel.explanations.last != explanation {
-                                                    Divider()
-                                                        .background(.gray)
-                                                        .padding(.vertical)
-                                                } else {
-                                                    Divider().background(Color.clear)
-                                                        .padding(.vertical)
-                                                }
-                                            }
-                                        }
+                                        ExplanationView(explanations: viewModel.getExplanations(for: poem))
                                     }
+                                    .padding(.bottom)
                                     .padding(.vertical, size20)
                                     
                                 }.padding()

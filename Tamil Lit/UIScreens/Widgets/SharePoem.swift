@@ -72,7 +72,7 @@ class PoemHelper {
                 return poemType + ": \(poem.number) \n" + title + ":"
             }
             
-            return poemType + ": \(poem.number)"
+            return poemType + " - \(poem.number):"
         }
         
         for explanation in explanations {

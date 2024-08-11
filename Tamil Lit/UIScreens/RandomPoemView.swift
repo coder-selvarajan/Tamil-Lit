@@ -38,7 +38,7 @@ struct RandomPoemView: View {
                         }
                     } label: {
                         if themeManager.selectedTheme == .primary {
-                            Text("அடுத்து...")
+                            Text("Next...")
                                 .font(.body)
                                 .fontWeight(.bold)
                                 .foregroundStyle(.black)
@@ -49,7 +49,7 @@ struct RandomPoemView: View {
                                 .cornerRadius(size10)
                                 .shadow(radius: size10)
                         } else {
-                            Text("அடுத்து...")
+                            Text("Next...")
                                 .font(.body)
                                 .fontWeight(.bold)
                                 .foregroundStyle(.black)
@@ -71,7 +71,7 @@ struct RandomPoemView: View {
         .toolbar {
             ToolbarItem(placement: .principal) {
                 HStack {
-                    Text("ஏதோ ஒரு பாடல்")
+                    Text("Random Poem")
                         .font(.body)
                         .fontWeight(.semibold)
                     

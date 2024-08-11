@@ -12,63 +12,25 @@ struct MainView: View {
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = true
     @AppStorage("launchCount") var launchCount: Int = 0
     
-//    @State private var navigationPath = NavigationPath()
-//    @Environment(\.presentationMode) var presentationMode
-    
     var body: some View {
         ZStack {
             NavigationView {
+                HomeView()
+                
+                // Show onboarding screen if needed. 
+                /*
                 if hasCompletedOnboarding {
                     HomeView()
                 } else {
-                    // OnboardingView(hasCompletedOnboarding: $hasCompletedOnboarding)
+                     OnboardingView(hasCompletedOnboarding: $hasCompletedOnboarding)
                 }
+                 */
             }
             .onAppear {
                 launchCount += 1  // Incrementing the launch count
                 checkAndPromptForReview()
             }
         }
-        
-//        ZStack {
-//            if #available(iOS 16.0, *) {
-//                NavigationStack {
-//                    if hasCompletedOnboarding {
-//                        HomeView()
-//                    } else {
-//                        //                    OnboardingView(hasCompletedOnboarding: $hasCompletedOnboarding)
-//                    }
-//                }
-//                .onAppear(){
-//                    //                TelemetryDeck.signal(
-//                    //                    "Page Load",
-//                    //                    parameters: [
-//                    //                        "app": "BoardBrain",
-//                    //                        "event": "page load",
-//                    //                        "identifier":"main-view",
-//                    //                        "viewName":"Main View"
-//                    //                    ]
-//                    //                )
-//                }
-//                .onAppear {
-//                    launchCount += 1  // Incrementing the launch count
-//                    checkAndPromptForReview()
-//                }
-//            } else {
-//                // Fallback on earlier versions
-//                NavigationView {
-//                    if hasCompletedOnboarding {
-//                        HomeView()
-//                    } else {
-//                        //                    OnboardingView(hasCompletedOnboarding: $hasCompletedOnboarding)
-//                    }
-//                }
-//                .onAppear {
-//                    launchCount += 1  // Incrementing the launch count
-//                    checkAndPromptForReview()
-//                }
-//            }
-//        }
     }
     
     private func checkAndPromptForReview() {

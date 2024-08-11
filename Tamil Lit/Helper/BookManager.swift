@@ -112,7 +112,7 @@ class BookManager: ObservableObject {
                 bannerDisplay: "திரிகடுகம்",
                 subtitle: "102 பாடல்கள்",
                 poemCount: 102,
-                image: "_Thirikadukam",
+                image: "_Thirikadukam2",
                 color: theme.thirikadukamColor,
                 bannerColor: "colorThirikadukam",
                 selected: true

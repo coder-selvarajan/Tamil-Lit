@@ -176,7 +176,7 @@ struct FavouritePoemListView: View {
         .toolbar {
             ToolbarItem(placement: .principal) {
                 HStack {
-                    Text("சேமித்த பாடல்கள்")
+                    Text("Saved Poems")
                         .font(.body)
                         .fontWeight(.semibold)
                     

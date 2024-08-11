@@ -184,7 +184,7 @@ struct PoemScreenshotView: View {
             }) {
                 HStack(spacing: 5) {
                     Image(systemName: "camera")
-                    Text("நகல்")
+                    Text("படம்")
                 }
                 .font(.subheadline)
                 .foregroundStyle(Color("TextColor"))

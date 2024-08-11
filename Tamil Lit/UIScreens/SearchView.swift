@@ -219,7 +219,7 @@ struct SearchView: View {
                 }
             }
         } // VStack
-        .navigationTitle(Text("பாடல் தேடு"))
+        .navigationTitle(Text("Search Poems"))
         .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
         .sheet(isPresented: $isShowingDetail) {
             if selectedPoem != nil {

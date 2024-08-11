@@ -149,12 +149,13 @@ struct HomeView: View {
                                         }
                                     }.frame(height: size30)
                                     VStack(alignment: .leading) {
-                                        Text("ஏதோ ஒரு பாடல்")
+                                        Text("Random Poem")
+//                                        Text("ஏதோ ஒரு பாடல்")
                                             .lineLimit(1)
                                             .foregroundStyle(Color("TextColor"))
                                     }
                                 }
-                                .font(.subheadline)
+                                .font(.body.bold())
                                 .padding()
                                 .frame(maxWidth: .infinity)
                                 .background(.gray.opacity(0.15))
@@ -175,11 +176,12 @@ struct HomeView: View {
                                         }
                                     }.frame(height: size30)
                                     
-                                    Text("சேமித்தவை ")
+                                    Text("Saved ")
+//                                    Text("சேமித்தவை ")
                                         .lineLimit(1)
                                         .foregroundStyle(Color("TextColor"))
                                 }
-                                .font(.subheadline)
+                                .font(.body.bold())
                                 .padding()
                                 .frame(maxWidth: .infinity)
                                 //                                }
@@ -377,6 +379,8 @@ struct HomeView: View {
                         .scaledToFit()
                         .frame(width: size40)
                         .cornerRadius(size10)
+                        .saturation(themeManager.selectedTheme == ThemeSelection.primary ?  0.5 : 1.0)
+                        .opacity(0.9)
                     
                     Text("Tamil Lit")
                         .font(.custom("Quicksand", size: 22))
@@ -393,7 +397,7 @@ struct HomeView: View {
                         Image(systemName: "magnifyingglass")
                             .foregroundStyle(Color("TextColor"))
                         
-                        Text("தேடுக").foregroundStyle(.gray)
+                        Text("Search").foregroundStyle(.gray)
                     }.padding(.horizontal)
                 }
             }

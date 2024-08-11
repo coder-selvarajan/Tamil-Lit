@@ -55,6 +55,7 @@
 		70A1E9432C4A565F00264AC8 /* SimplePoemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A1E9422C4A565F00264AC8 /* SimplePoemDetailView.swift */; };
 		70A1E9452C4A9B0300264AC8 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A1E9442C4A9B0300264AC8 /* HomeViewModel.swift */; };
 		70A1E9472C4AA12900264AC8 /* RandomPoemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A1E9462C4AA12900264AC8 /* RandomPoemViewModel.swift */; };
+		70A9082C2C68FB6C00DF5625 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A9082B2C68FB6C00DF5625 /* OnboardingView.swift */; };
 		70B5EBD32C3AD6FB00471451 /* ImportDBView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B5EBD22C3AD6FB00471451 /* ImportDBView.swift */; };
 		70B5EBDB2C3AF73500471451 /* TamilLitDB.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 70B5EBD82C3AF73500471451 /* TamilLitDB.sqlite */; };
 		70BA907A2C501E3F0003CAA5 /* SharePoem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70BA90792C501E3F0003CAA5 /* SharePoem.swift */; };
@@ -146,6 +147,7 @@
 		70A1E9422C4A565F00264AC8 /* SimplePoemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePoemDetailView.swift; sourceTree = "<group>"; };
 		70A1E9442C4A9B0300264AC8 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		70A1E9462C4AA12900264AC8 /* RandomPoemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomPoemViewModel.swift; sourceTree = "<group>"; };
+		70A9082B2C68FB6C00DF5625 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		70B5EBD22C3AD6FB00471451 /* ImportDBView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportDBView.swift; sourceTree = "<group>"; };
 		70B5EBD82C3AF73500471451 /* TamilLitDB.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = TamilLitDB.sqlite; sourceTree = "<group>"; };
 		70BA90792C501E3F0003CAA5 /* SharePoem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePoem.swift; sourceTree = "<group>"; };
@@ -299,6 +301,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		70A9082A2C68FB3000DF5625 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				70A9082B2C68FB6C00DF5625 /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		70C057D92C554A1A00C10ABA /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
@@ -317,6 +327,7 @@
 		70E7297F2C2309EF00DE5977 /* UIScreens */ = {
 			isa = PBXGroup;
 			children = (
+				70A9082A2C68FB3000DF5625 /* Onboarding */,
 				70824FBD2C56238D00088810 /* ArticleScreens */,
 				70C057D92C554A1A00C10ABA /* Widgets */,
 				70160F6A2C0B20E20053B4A9 /* MainView.swift */,
@@ -533,6 +544,7 @@
 				705757142C626FCD00512AF9 /* SpeakButtonView.swift in Sources */,
 				70DD898E2C65DD0000E66076 /* Poem+CoreDataClass.swift in Sources */,
 				70DD898F2C65DD0000E66076 /* Poem+CoreDataProperties.swift in Sources */,
+				70A9082C2C68FB6C00DF5625 /* OnboardingView.swift in Sources */,
 				7093B6752C398FFB00D38548 /* SingleCategoryView.swift in Sources */,
 				7051D59B2C587A3A00CCED81 /* DailyPoemViewModel.swift in Sources */,
 				702DF7AF2C527F0B0037D0BD /* SettingsView.swift in Sources */,

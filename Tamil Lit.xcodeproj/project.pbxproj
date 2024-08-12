@@ -12,6 +12,8 @@
 		70027ACC2C578336002055A8 /* Idaikaala-Ilakkiyam.md in Resources */ = {isa = PBXBuildFile; fileRef = 70027ACA2C5781D7002055A8 /* Idaikaala-Ilakkiyam.md */; };
 		70027ACD2C578336002055A8 /* Naveena-Yugam.md in Resources */ = {isa = PBXBuildFile; fileRef = 70027ACB2C578211002055A8 /* Naveena-Yugam.md */; };
 		70027ACF2C579B0B002055A8 /* SangaIlakkiyaNoolkal.md in Resources */ = {isa = PBXBuildFile; fileRef = 70027ACE2C5799F1002055A8 /* SangaIlakkiyaNoolkal.md */; };
+		7004A9932C6A1AE200E336EE /* TamilKeyboardPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7004A9922C6A1AE200E336EE /* TamilKeyboardPopupView.swift */; };
+		7004A9952C6A715100E336EE /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7004A9942C6A715100E336EE /* Launch Screen.storyboard */; };
 		70068B622C5DF7A5009543EB /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70068B612C5DF7A5009543EB /* ThemeManager.swift */; };
 		70068B642C5DFD18009543EB /* BookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70068B632C5DFD18009543EB /* BookManager.swift */; };
 		70068B662C5DFF52009543EB /* BookTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70068B652C5DFF52009543EB /* BookTileView.swift */; };
@@ -105,6 +107,8 @@
 		70027ACA2C5781D7002055A8 /* Idaikaala-Ilakkiyam.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Idaikaala-Ilakkiyam.md"; sourceTree = "<group>"; };
 		70027ACB2C578211002055A8 /* Naveena-Yugam.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Naveena-Yugam.md"; sourceTree = "<group>"; };
 		70027ACE2C5799F1002055A8 /* SangaIlakkiyaNoolkal.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = SangaIlakkiyaNoolkal.md; sourceTree = "<group>"; };
+		7004A9922C6A1AE200E336EE /* TamilKeyboardPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TamilKeyboardPopupView.swift; sourceTree = "<group>"; };
+		7004A9942C6A715100E336EE /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		70068B612C5DF7A5009543EB /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		70068B632C5DFD18009543EB /* BookManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookManager.swift; sourceTree = "<group>"; };
 		70068B652C5DFF52009543EB /* BookTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTileView.swift; sourceTree = "<group>"; };
@@ -296,7 +300,6 @@
 		708FB19D2C4C1C9000553498 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				708FB19B2C4C1C6F00553498 /* Quicksand.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 				70D47F7F2C5F87EE00E3DF88 /* ListBackgroundModifier.swift */,
 				705757132C626FCD00512AF9 /* SpeakButtonView.swift */,
 				7038CCE12C688EA4001C9841 /* ExplanationView.swift */,
+				7004A9922C6A1AE200E336EE /* TamilKeyboardPopupView.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -354,6 +358,7 @@
 		70EAE0602B663CD800E4930D = {
 			isa = PBXGroup;
 			children = (
+				708FB19B2C4C1C6F00553498 /* Quicksand.ttf */,
 				70EAE06B2B663CD800E4930D /* Tamil Lit */,
 				70EAE06A2B663CD800E4930D /* Products */,
 			);
@@ -383,6 +388,7 @@
 				70C057D32C54EB3200C10ABA /* AppDelegate.swift */,
 				70EAE0722B663CDA00E4930D /* Assets.xcassets */,
 				70EAE0832B66420400E4930D /* README.md */,
+				7004A9942C6A715100E336EE /* Launch Screen.storyboard */,
 			);
 			path = "Tamil Lit";
 			sourceTree = "<group>";
@@ -477,6 +483,7 @@
 				70027ACF2C579B0B002055A8 /* SangaIlakkiyaNoolkal.md in Resources */,
 				70027ACC2C578336002055A8 /* Idaikaala-Ilakkiyam.md in Resources */,
 				70027ACD2C578336002055A8 /* Naveena-Yugam.md in Resources */,
+				7004A9952C6A715100E336EE /* Launch Screen.storyboard in Resources */,
 				70027AC32C57769F002055A8 /* SangaIlakkiyam.md in Resources */,
 				70027ABF2C577366002055A8 /* TamilLiterature.md in Resources */,
 				70CECFD92C5BEB0600AC2ADA /* TamilLitDB.sqlite-shm in Resources */,
@@ -513,6 +520,7 @@
 				70A1E9452C4A9B0300264AC8 /* HomeViewModel.swift in Sources */,
 				702BCA552C313F1F0051D8C2 /* CoreDataManager.swift in Sources */,
 				70A1E9472C4AA12900264AC8 /* RandomPoemViewModel.swift in Sources */,
+				7004A9932C6A1AE200E336EE /* TamilKeyboardPopupView.swift in Sources */,
 				709EFAE72C4ED0320018DB5C /* FavouritePoemViewModel.swift in Sources */,
 				70F86D3C2C490C8600799435 /* Book+CoreDataClass.swift in Sources */,
 				70C7CF6F2C4AD63B00D4189B /* RandomPoemView.swift in Sources */,
@@ -715,6 +723,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -754,6 +763,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;

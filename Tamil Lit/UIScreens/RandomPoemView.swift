@@ -99,7 +99,6 @@ struct RandomPoemView: View {
                     .cornerRadius(8)
                 }
             }
-            
         }
         .popup(isPresented: $showOptions) {
             let titleString = "Books to include for "

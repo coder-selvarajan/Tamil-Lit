@@ -32,7 +32,8 @@ struct SpeakButtonView: View {
             HStack(alignment: .center, spacing: 5) {
                 Image(systemName: "speaker.wave.2.fill")
                     .font(.caption)
-                Text(speechSynthesizer.isSpeaking ? "நிறுத்து" : "வாசி")
+//                Text(speechSynthesizer.isSpeaking ? "நிறுத்து" : "வாசி")
+                Text(speechSynthesizer.isSpeaking ? "Stop" : "Speak")
             }
             .font(.subheadline)
             .foregroundStyle(Color("TextColor"))

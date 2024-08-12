@@ -262,16 +262,17 @@ struct SettingsView: View {
                     }
                 }
                 
-                SwiftUI.Section {
-                    NavigationLink(destination: TamilKeyboardInstructionView()) {
-                        VStack(alignment: .leading) {
-                            Text("Tamil Keyboard")
-                                .font(.headline)
-                            Text("How to enable it on iPhone?")
-                                .font(.subheadline)
-                        }
-                    }
-                }
+//                SwiftUI.Section {
+//                    NavigationLink(destination: TamilKeyboardInstructionView()) {
+//                        VStack(alignment: .leading) {
+//                            Text("Tamil Keyboard")
+//                                .font(.headline)
+//                            Text("How to enable it on iPhone?")
+//                                .font(.subheadline)
+//                        }
+//                    }
+//                }
+                
                 SwiftUI.Section {
                     Button(action: {
                         // Action to redirect to App Store for rating
@@ -312,7 +313,7 @@ struct SettingsView: View {
                 
                 Button(action: {
                     // Action to redirect to App Store for rating
-                    let url = URL(string: "https://apps.apple.com/in/app/board-brain/id6482852806")!
+                    let url = URL(string: "https://apps.apple.com/app/tamil-lit/id6476827222")!
                     let activityController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
                     
                     if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,

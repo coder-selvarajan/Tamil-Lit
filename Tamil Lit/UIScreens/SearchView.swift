@@ -85,6 +85,7 @@ struct SearchView: View {
     @State private var isShowingDetail = false
     
     @State private var showOptions = false
+    @State private var showSettingPopup = false
     
     var body: some View {
         VStack(alignment: HorizontalAlignment.leading) {
@@ -124,6 +125,7 @@ struct SearchView: View {
                         }
                     }
                 }
+                .environment(\.locale, Locale(identifier: "ta"))  // Set the locale to Tamil
                 
                 Button {
                     showOptions = true
@@ -134,7 +136,7 @@ struct SearchView: View {
                 .padding()
                 .background(.gray.opacity(0.2))
                 .cornerRadius(size10)
-//                .padding(.leading, size10)
+                //                .padding(.leading, size10)
             }
             .padding(.horizontal)
             .padding(.top, size10)
@@ -159,24 +161,23 @@ struct SearchView: View {
                         }
                         if vm.getRecentSearch().count == 0 {
                             Text("No search yet!")
-                                .font(.footnote)
                                 .foregroundStyle(.gray)
                         }
                     }
                     
-                    if vm.getRecentSearch().count < 2 {
-                        NavigationLink(destination: TamilKeyboardInstructionView()) {
-                            HStack {
-                                Text("How to enable Tamil keyboard?")
-                                    .font(.footnote)
-                                    .foregroundStyle(.gray)
-                                    .padding(.top, 5)
-                                    .padding(.bottom, size10)
-                                
-                                Spacer()
-                            }
-                        }
-                    }
+//                    if vm.getRecentSearch().count < 2 {
+//                        NavigationLink(destination: TamilKeyboardInstructionView()) {
+//                            HStack {
+//                                Text("How to enable Tamil keyboard?")
+//                                    .font(.footnote)
+//                                    .foregroundStyle(.gray)
+//                                    .padding(.top, 5)
+//                                    .padding(.bottom, size10)
+//                                
+//                                Spacer()
+//                            }
+//                        }
+//                    }
                 }
                 
                 if (searchState == .submitted) {
@@ -198,7 +199,7 @@ struct SearchView: View {
                                     }
                                     if let poemText = poem.poem {
                                         Text(poemText.highlight(searchText))
-                                            
+                                        
                                     }
                                 }
                                 .onTapGesture {
@@ -209,15 +210,13 @@ struct SearchView: View {
                         }
                     }
                 }
-                
-                
             }
             .listStyle(InsetGroupedListStyle())
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.55) {
-                    self.searchIsFocused = true
-                }
-            }
+//            .onAppear {
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.55) {
+//                    self.searchIsFocused = true
+//                }
+//            }
         } // VStack
         .navigationTitle(Text("Search Poems"))
         .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
@@ -230,7 +229,7 @@ struct SearchView: View {
             let titleString = "Books to include for **Search** : "
             let attributedTitle = try! AttributedString(markdown: titleString)
             
-            BookSelectorView(showModal: $showOptions, 
+            BookSelectorView(showModal: $showOptions,
                              booksInfo: $bookOptions,
                              title: attributedTitle) {
                 // This will be called for each book selection/deselection
@@ -243,11 +242,48 @@ struct SearchView: View {
                 .animation(.spring())
                 .closeOnTapOutside(true)
                 .closeOnTap(false)
-//                .backgroundColor(Color("TextColor").opacity(0.5))
+            //                .backgroundColor(Color("TextColor").opacity(0.5))
                 .backgroundColor(userSettings.darkMode ? .white.opacity(0.25) : .black.opacity(0.65))
                 .autohideIn(50)
         }
+        .popup(isPresented: $showSettingPopup) {
+            TamilKeyboardPopupView(isPresented: $showSettingPopup)
+        } customize: {
+            $0
+                .type(.floater())
+                .position(.center)
+                .animation(.spring())
+                .closeOnTapOutside(true)
+                .closeOnTap(false)
+                .backgroundColor(userSettings.darkMode ? .gray.opacity(0.50) : .black.opacity(0.5))
+                .autohideIn(50)
+        }
         .onAppear(perform: loadBookOptions) // To load book options for search from user-defaults
+        .onAppear {
+            checkForTamilKeyboard()
+        }
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                HStack {
+                    Text("Search Poems")
+                        .font(.body)
+                        .fontWeight(.semibold)
+                    
+                    Spacer()
+                }
+                .padding(0)
+            }
+            
+            ToolbarItem {
+                Button {
+                    searchIsFocused = false // hide the keyboard
+                    showSettingPopup = true
+                } label: {
+                    Image(systemName: "keyboard")
+                        .foregroundColor(Color("TextColor"))
+                }
+            }
+        }
         .customFontScaling()
     }
     
@@ -276,7 +312,26 @@ struct SearchView: View {
         
         return .blue
     }
+    
+    func checkForTamilKeyboard() {
+        // Use UserDefaults to check if this is the first time the user is visiting the search page
+        let hasSeenPrompt = UserDefaults.standard.bool(forKey: "hasSeenKeyboardPrompt")
+        if !hasSeenPrompt && !isTamilKeyboardEnabled() {
+            searchIsFocused = false
+            showSettingPopup = true
+            UserDefaults.standard.set(true, forKey: "hasSeenKeyboardPrompt")
+        } else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.55) {
+                self.searchIsFocused = true
+            }
+        }
+    }
 
+    func isTamilKeyboardEnabled() -> Bool {
+        // Placeholder for the check, which isn't possible directly
+        return false // Always return false for the sake of example
+    }
+    
 }
 
 #Preview {

@@ -30,22 +30,25 @@ struct AboutView: View {
                 
                 // Main content
                 VStack(alignment: .leading, spacing: size20) {
-                    Text("Welcome to Tamil Lit, an app dedicated to providing rich information about Tamil literature. Our app is designed to offer a seamless and enjoyable reading experience with a variety of features:")
+                    Text("Welcome to Tamil Lit, your comprehensive app for exploring the richness of Tamil literature. Designed for a seamless and enjoyable reading experience, our app offers a range of features:")
                         .font(.body)
                     
-                    FeatureView(title: "Extensive Collection", description: "Tamil Lit currently includes 10 renowned literature books, each featuring multiple explanations. Our library is continuously expanding, with more books to be added in the future.")
-                    FeatureView(title: "Daily Poem Notifications", description: "Stay inspired with our 'Daily Poem' notification feature, delivering a new poem to your device every day.")
-                    FeatureView(title: "Random Poem Display", description: "Discover new poems effortlessly with our random poem display feature, which showcases poems from selected books.")
-                    FeatureView(title: "Bookmarking", description: "Easily bookmark your favorite poems and revisit them later. You can organize your bookmarks by date and book.")
-                    FeatureView(title: "Sharing", description: "Share the beauty of Tamil literature with friends. Tamil Lit allows you to share poem content directly from the app.")
-                    FeatureView(title: "Screenshot Capture", description: "Capture the essence of any poem, along with its explanations, by taking a screenshot within the app.")
-                    FeatureView(title: "Advanced Search", description: "Our advanced search functionality lets you search for poems using Tamil words. You can also filter your search by selecting specific books.")
-                    FeatureView(title: "Dark Mode", description: "Enjoy reading in any lighting condition with our dark mode feature, providing a comfortable reading experience in low light.")
+                    VStack(alignment: .leading, spacing: size20) {
+                        FeatureView(title: "Curated Collection", description: "Tamil Lit features 10 renowned books like Thirukural, Naaladiyar, and Athichudi, each with multiple explanations to deepen your understanding.")
+                        FeatureView(title: "Daily Inspiration", description: "Receive a new poem every day with our 'Daily Poem' notifications, keeping you inspired.")
+                        FeatureView(title: "Discover and Bookmark", description: "Effortlessly explore random poems and bookmark your favorites for easy access later. Organize your bookmarks by date or book.")
+                        FeatureView(title: "Share and Capture", description: "Share the beauty of Tamil literature with friends directly from the app, or capture the essence of any poem with a screenshot.")
+                        FeatureView(title: "Powerful Search", description: "Search across all books using Tamil words, with the option to filter results by specific titles.")
+                        FeatureView(title: "Personalized Experience", description: "Customize your reading experience with three theme options—Colorful, Monochrome, and Dark. Text-to-speech is available on poem and article pages, and your reading progress is tracked on the book banners. Additionally, you can adjust font scaling for optimal readability.",
+                        showDivider: false)
+                    }
+                    .padding()
+                    .background(.gray.opacity(0.1))
+                    .cornerRadius(10)
                     
-                    Text("Tamil Lit is your gateway to exploring the profound and timeless world of Tamil literature. Dive in and discover the beauty of classical Tamil poems and their interpretations.")
+                    Text("Tamil Lit is your gateway to the timeless beauty of classical Tamil poems and their interpretations. Dive in and explore the profound world of Tamil literature.")
                         .font(.body)
                 }
-//                .padding(.bottom, paddingSize)
                 
                 Divider()
                     .padding(.vertical, 5)
@@ -55,10 +58,10 @@ struct AboutView: View {
                     Text("App Information")
                         .font(.body)
                         .fontWeight(.semibold)
-                    Text("Tamil Lit is an ad-free app that requires no internet connectivity. It does not require access to any information from the user's phone.")
+                    Text("Tamil Lit is an ad-free app that works without internet connectivity and does not require access to any personal information on your device. ")
                         .font(.body)
                         .padding(.bottom)
-                    Text("This app is built using the SwiftUI framework.")
+                    Text("The app is built using Apple's SwiftUI framework.")
                         .font(.body)
                     HStack {
                         Link("Developer Website", destination: URL(string: "https://selvarajan.in")!)
@@ -117,18 +120,20 @@ struct AboutView: View {
 struct FeatureView: View {
     var title: String
     var description: String
+    var showDivider: Bool = true
     
     var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 5) {
-                Text(title)
-                    .font(.body)
-                    .fontWeight(.semibold)
-                Text(description)
-                    .font(.body)
-                    .foregroundColor(.secondary)
+        VStack(alignment: .leading, spacing: 5) {
+            Text("\(title):")
+                .font(.body.bold())
+            Text(description)
+                .font(.body)
+            
+            if showDivider {
+                Divider().padding(.top, size10)
             }
         }
+        
     }
 }
 

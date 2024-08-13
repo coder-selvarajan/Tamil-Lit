@@ -28,6 +28,7 @@ struct BookTileView: View {
 //            return result
 //        }
 //    }
+   
     
     var readDisplay: String {
         
@@ -101,12 +102,17 @@ struct BookTileView: View {
                     HStack {
                         Spacer()
                         
-                        Image(book.image)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: size70)
-                            .saturation(themeManager.selectedTheme == ThemeSelection.primary ?  0.0 : 1.0)
-                            .opacity(0.9)
+                        if themeManager.selectedTheme == ThemeSelection.primary {
+                            FilterImage(imageName: book.image)
+                                .scaledToFit()
+                                .frame(height: size70)
+                        } else {
+                            Image(book.image)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: size70)
+                                .opacity(0.9)
+                        }
                         
                     }.padding(0)
                 }.padding(0)

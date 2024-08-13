@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,30 +22,22 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo400" translatesAutoresizingMaskIntoConstraints="NO" id="3za-p0-veh">
-                                <rect key="frame" x="154" y="333.66666666666669" width="85" height="85"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch-screen-logo" translatesAutoresizingMaskIntoConstraints="NO" id="9D3-Sj-v9I">
+                                <rect key="frame" x="121.66666666666669" y="351" width="150" height="150"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="85" id="d8s-Cn-pk5"/>
-                                    <constraint firstAttribute="width" constant="85" id="vyJ-SR-mLH"/>
+                                    <constraint firstAttribute="width" constant="150" id="bT4-mq-ytK"/>
+                                    <constraint firstAttribute="height" constant="150" id="nwE-ia-Ls1"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tamil Lit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0oa-fV-bPG">
-                                <rect key="frame" x="147" y="448.66666666666669" width="99" height="37.666666666666686"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Bcu-3y-fUS" firstAttribute="centerX" secondItem="obG-Y5-kRd" secondAttribute="centerX" id="5cz-MP-9tL"/>
-                            <constraint firstItem="0oa-fV-bPG" firstAttribute="top" secondItem="3za-p0-veh" secondAttribute="bottom" constant="30" id="IBR-kX-Qxc"/>
                             <constraint firstItem="obG-Y5-kRd" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="20" symbolic="YES" id="SfN-ll-jLj"/>
-                            <constraint firstItem="3za-p0-veh" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="TOj-ic-NVj"/>
                             <constraint firstAttribute="bottom" secondItem="obG-Y5-kRd" secondAttribute="bottom" constant="20" id="Y44-ml-fuU"/>
-                            <constraint firstItem="0oa-fV-bPG" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="t3f-n1-Vzu"/>
-                            <constraint firstItem="3za-p0-veh" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-50" id="yDM-N8-AA0"/>
+                            <constraint firstItem="9D3-Sj-v9I" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="fBf-TY-5Eq"/>
+                            <constraint firstItem="9D3-Sj-v9I" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="uVR-Yf-TfD"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -56,9 +47,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo400" width="400" height="400"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="launch-screen-logo" width="400" height="400"/>
     </resources>
 </document>

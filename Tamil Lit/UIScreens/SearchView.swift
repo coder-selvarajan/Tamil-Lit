@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PopupView
+import TelemetryDeck
 
 enum SearchState {
     case initial
@@ -261,6 +262,17 @@ struct SearchView: View {
         .onAppear(perform: loadBookOptions) // To load book options for search from user-defaults
         .onAppear {
             checkForTamilKeyboard()
+            
+            //Analytics code
+            TelemetryDeck.signal(
+                "Page Load",
+                parameters: [
+                    "app": "Tamil Lit",
+                    "event": "page load",
+                    "identifier":"search-view",
+                    "viewName":"Search View"
+                ]
+            )
         }
         .toolbar {
             ToolbarItem(placement: .principal) {

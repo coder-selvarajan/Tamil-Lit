@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TelemetryDeck
 
 struct HomeView: View {
     @EnvironmentObject var userSettings: UserSettings
@@ -358,6 +359,16 @@ struct HomeView: View {
             // BookViewSummary
             vmHome.getAllBookViewSummry()
             
+            //Analytics code
+            TelemetryDeck.signal(
+                "Page Load",
+                parameters: [
+                    "app": "Tamil Lit",
+                    "event": "page load",
+                    "identifier":"home-view",
+                    "viewName":"Home View"
+                ]
+            )
         }
         .onChange(of: notificationHandler.appOpenedFromNotification, perform: { newValue in
             // this code is added since the app is open and the onAppear event would n't trigger..

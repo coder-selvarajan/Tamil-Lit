@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PopupView
+import TelemetryDeck
 
 struct RandomPoemView: View {
     @AppStorage("BooksOptedForRandomPoems") private var bookOptionsData: Data = Data()
@@ -128,6 +129,17 @@ struct RandomPoemView: View {
             if let poem = vm.getRandomPoem(bookOptions: bookOptions) {
                 randomPoem = poem
             }
+            
+            //Analytics code
+            TelemetryDeck.signal(
+                "Page Load",
+                parameters: [
+                    "app": "Tamil Lit",
+                    "event": "page load",
+                    "identifier":"random-poem-view",
+                    "viewName":"Random Poem View"
+                ]
+            )
         }
         .customFontScaling()
     }

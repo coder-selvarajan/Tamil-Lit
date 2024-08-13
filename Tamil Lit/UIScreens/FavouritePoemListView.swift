@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TelemetryDeck
 
 enum PoemListingOrder: String, CaseIterable {
     case ByDate = "Date"
@@ -213,6 +214,17 @@ struct FavouritePoemListView: View {
             if let poem = vm.getRandomPoem() {
                 selectedPoem = poem
             }
+            
+            //Analytics code
+            TelemetryDeck.signal(
+                "Page Load",
+                parameters: [
+                    "app": "Tamil Lit",
+                    "event": "page load",
+                    "identifier":"saved-poems-view",
+                    "viewName":"Saved Poems View"
+                ]
+            )
         }
         .customFontScaling()
     }

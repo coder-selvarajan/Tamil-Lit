@@ -12,7 +12,6 @@ import CoreImage.CIFilterBuiltins
 struct FilterImage: View {
     var imageName: String
     
-    
     func applySilvertoneAndBWFilter(to inputImage: UIImage) -> UIImage? {
         let context = CIContext()
         

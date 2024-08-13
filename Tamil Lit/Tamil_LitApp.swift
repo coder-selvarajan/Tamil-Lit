@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import TelemetryDeck
 
 @main
 struct Tamil_LitApp: App {
@@ -22,6 +23,19 @@ struct Tamil_LitApp: App {
     
     let persistenceController = CoreDataManager.shared
 //    @State private var loadingStatus: LoadingStatus  = .idle
+    
+    init() {
+        let config = TelemetryDeck.Config(appID: "1C8C778D-C7DA-49BD-AD34-D6396724E6D2")
+        TelemetryDeck.initialize(config: config)
+        
+        TelemetryDeck.signal(
+            "App Launched",
+            parameters: [
+                "app": "TamilLit",
+                "event": "app_load"
+            ]
+        )
+    }
     
     var body: some Scene {
         WindowGroup {

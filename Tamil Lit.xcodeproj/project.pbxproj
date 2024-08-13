@@ -31,6 +31,8 @@
 		702DF7A82C5210A10037D0BD /* PoemScreenshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702DF7A72C5210A10037D0BD /* PoemScreenshotView.swift */; };
 		702DF7AF2C527F0B0037D0BD /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702DF7AE2C527F0B0037D0BD /* SettingsView.swift */; };
 		702DF7B12C5285890037D0BD /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702DF7B02C5285890037D0BD /* AboutView.swift */; };
+		703145382C6BD09800BA0059 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703145372C6BD09800BA0059 /* AnalyticsManager.swift */; };
+		7031453B2C6BD10F00BA0059 /* TelemetryDeck in Frameworks */ = {isa = PBXBuildFile; productRef = 7031453A2C6BD10F00BA0059 /* TelemetryDeck */; };
 		7038CCE22C688EA4001C9841 /* ExplanationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7038CCE12C688EA4001C9841 /* ExplanationView.swift */; };
 		703CD63B2C4E46E900509F46 /* BookDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703CD63A2C4E46E900509F46 /* BookDetailsView.swift */; };
 		703CD63D2C4E470800509F46 /* BookDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703CD63C2C4E470800509F46 /* BookDetailsViewModel.swift */; };
@@ -126,6 +128,7 @@
 		702DF7A72C5210A10037D0BD /* PoemScreenshotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemScreenshotView.swift; sourceTree = "<group>"; };
 		702DF7AE2C527F0B0037D0BD /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		702DF7B02C5285890037D0BD /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		703145372C6BD09800BA0059 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		7038CCE12C688EA4001C9841 /* ExplanationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplanationView.swift; sourceTree = "<group>"; };
 		703CD63A2C4E46E900509F46 /* BookDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsView.swift; sourceTree = "<group>"; };
 		703CD63C2C4E470800509F46 /* BookDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsViewModel.swift; sourceTree = "<group>"; };
@@ -206,6 +209,7 @@
 			files = (
 				70206A6C2C4D421900B55EE6 /* PopupView in Frameworks */,
 				70824FC62C569FF600088810 /* MarkdownUI in Frameworks */,
+				7031453B2C6BD10F00BA0059 /* TelemetryDeck in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +269,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		703145362C6BD07D00BA0059 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				703145372C6BD09800BA0059 /* AnalyticsManager.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
 		70626FCA2C23D54A00055E77 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -302,6 +314,7 @@
 		708FB19D2C4C1C9000553498 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				708FB19B2C4C1C6F00553498 /* Quicksand.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -361,7 +374,6 @@
 		70EAE0602B663CD800E4930D = {
 			isa = PBXGroup;
 			children = (
-				708FB19B2C4C1C6F00553498 /* Quicksand.ttf */,
 				70EAE06B2B663CD800E4930D /* Tamil Lit */,
 				70EAE06A2B663CD800E4930D /* Products */,
 			);
@@ -378,6 +390,7 @@
 		70EAE06B2B663CD800E4930D /* Tamil Lit */ = {
 			isa = PBXGroup;
 			children = (
+				703145362C6BD07D00BA0059 /* Analytics */,
 				70C057D02C54BEE000C10ABA /* Tamil Lit.entitlements */,
 				708FB19E2C4C290B00553498 /* Tamil-Lit-Info.plist */,
 				70EAE0742B663CDA00E4930D /* Preview Content */,
@@ -435,6 +448,7 @@
 			packageProductDependencies = (
 				70206A6B2C4D421900B55EE6 /* PopupView */,
 				70824FC52C569FF600088810 /* MarkdownUI */,
+				7031453A2C6BD10F00BA0059 /* TelemetryDeck */,
 			);
 			productName = "Tamil Lit";
 			productReference = 70EAE0692B663CD800E4930D /* Tamil Lit.app */;
@@ -467,6 +481,7 @@
 			packageReferences = (
 				70206A6A2C4D421900B55EE6 /* XCRemoteSwiftPackageReference "PopupView" */,
 				70824FC42C569FF600088810 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
+				703145392C6BD10F00BA0059 /* XCRemoteSwiftPackageReference "SwiftSDK" */,
 			);
 			productRefGroup = 70EAE06A2B663CD800E4930D /* Products */;
 			projectDirPath = "";
@@ -520,6 +535,7 @@
 				70B5EBD32C3AD6FB00471451 /* ImportDBView.swift in Sources */,
 				709EFAE92C4ED25E0018DB5C /* FavouritePoemListView.swift in Sources */,
 				70E739382C316DBA00A4CF0E /* CategoryListView.swift in Sources */,
+				703145382C6BD09800BA0059 /* AnalyticsManager.swift in Sources */,
 				70A1E9452C4A9B0300264AC8 /* HomeViewModel.swift in Sources */,
 				702BCA552C313F1F0051D8C2 /* CoreDataManager.swift in Sources */,
 				70A1E9472C4AA12900264AC8 /* RandomPoemViewModel.swift in Sources */,
@@ -820,6 +836,14 @@
 				minimumVersion = 3.0.4;
 			};
 		};
+		703145392C6BD10F00BA0059 /* XCRemoteSwiftPackageReference "SwiftSDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TelemetryDeck/SwiftSDK";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.0;
+			};
+		};
 		70824FC42C569FF600088810 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
@@ -835,6 +859,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 70206A6A2C4D421900B55EE6 /* XCRemoteSwiftPackageReference "PopupView" */;
 			productName = PopupView;
+		};
+		7031453A2C6BD10F00BA0059 /* TelemetryDeck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 703145392C6BD10F00BA0059 /* XCRemoteSwiftPackageReference "SwiftSDK" */;
+			productName = TelemetryDeck;
 		};
 		70824FC52C569FF600088810 /* MarkdownUI */ = {
 			isa = XCSwiftPackageProductDependency;

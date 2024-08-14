@@ -61,8 +61,10 @@
         <relationship name="subCategories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SubCategory" inverseName="mainCategory" inverseEntity="SubCategory"/>
     </entity>
     <entity name="Poem" representedClassName="Poem" syncable="YES">
+        <attribute name="bookmarked" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="bookname" attributeType="String"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="lastUpdated" optional="YES" attributeType="Date" defaultDateTimeInterval="745333440" usesScalarValueType="NO"/>
         <attribute name="maincategoryname" optional="YES" attributeType="String"/>
         <attribute name="number" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="poem" attributeType="String" defaultValueString=""/>

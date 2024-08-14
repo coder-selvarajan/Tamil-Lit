@@ -2,7 +2,7 @@
 //  Poem+CoreDataProperties.swift
 //  Tamil Lit
 //
-//  Created by Selvarajan on 09/08/24.
+//  Created by Selvarajan on 14/08/24.
 //
 //
 
@@ -16,8 +16,10 @@ extension Poem {
         return NSFetchRequest<Poem>(entityName: "Poem")
     }
 
+    @NSManaged public var bookmarked: Bool
     @NSManaged public var bookname: String?
     @NSManaged public var id: UUID?
+    @NSManaged public var lastUpdated: Date?
     @NSManaged public var maincategoryname: String?
     @NSManaged public var number: Int16
     @NSManaged public var poem: String?

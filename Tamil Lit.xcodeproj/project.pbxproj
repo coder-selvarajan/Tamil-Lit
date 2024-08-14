@@ -89,6 +89,7 @@
 		70EAE0732B663CDA00E4930D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70EAE0722B663CDA00E4930D /* Assets.xcassets */; };
 		70EAE0762B663CDA00E4930D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70EAE0752B663CDA00E4930D /* Preview Assets.xcassets */; };
 		70EAE0842B66420400E4930D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 70EAE0832B66420400E4930D /* README.md */; };
+		70F121212C6D16B20028BD67 /* LastViewedPoemsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F121202C6D16B20028BD67 /* LastViewedPoemsViewModel.swift */; };
 		70F7709F2C08BBAD00D329C3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F7709E2C08BBAD00D329C3 /* HomeView.swift */; };
 		70F86D3C2C490C8600799435 /* Book+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F86D2E2C490C8600799435 /* Book+CoreDataClass.swift */; };
 		70F86D3D2C490C8600799435 /* Book+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F86D2F2C490C8600799435 /* Book+CoreDataProperties.swift */; };
@@ -188,6 +189,7 @@
 		70EAE0722B663CDA00E4930D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		70EAE0752B663CDA00E4930D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		70EAE0832B66420400E4930D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		70F121202C6D16B20028BD67 /* LastViewedPoemsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastViewedPoemsViewModel.swift; sourceTree = "<group>"; };
 		70F7709E2C08BBAD00D329C3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		70F86D2E2C490C8600799435 /* Book+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataClass.swift"; sourceTree = "<group>"; };
 		70F86D2F2C490C8600799435 /* Book+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Book+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				709EFAE62C4ED0320018DB5C /* FavouritePoemViewModel.swift */,
 				7051D59A2C587A3A00CCED81 /* DailyPoemViewModel.swift */,
 				70CF63B22C671887000CC8C5 /* PoemDetailViewModel.swift */,
+				70F121202C6D16B20028BD67 /* LastViewedPoemsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				709EFAE92C4ED25E0018DB5C /* FavouritePoemListView.swift in Sources */,
 				70E739382C316DBA00A4CF0E /* CategoryListView.swift in Sources */,
 				703145382C6BD09800BA0059 /* AnalyticsManager.swift in Sources */,
+				70F121212C6D16B20028BD67 /* LastViewedPoemsViewModel.swift in Sources */,
 				70A1E9452C4A9B0300264AC8 /* HomeViewModel.swift in Sources */,
 				702BCA552C313F1F0051D8C2 /* CoreDataManager.swift in Sources */,
 				70A1E9472C4AA12900264AC8 /* RandomPoemViewModel.swift in Sources */,

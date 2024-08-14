@@ -106,6 +106,7 @@ struct BookTileView: View {
                             FilterImage(imageName: book.image)
                                 .scaledToFit()
                                 .frame(height: size70)
+                                .opacity(book.title == "திரிகடுகம்" ? 0.8 : 0.9)
                         } else {
                             Image(book.image)
                                 .resizable()

@@ -518,6 +518,23 @@ extension CoreDataManager {
         }
     }
     
+    //Fetch last 100 viewed records
+    func fetchLastHundredViewedPoems() -> [Poem] {
+        let fetchRequest: NSFetchRequest<Poem> = Poem.fetchRequest()
+        
+        fetchRequest.predicate = NSPredicate(format: "viewed == %@", NSNumber(value: true))
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "lastUpdated", ascending: false)]
+        fetchRequest.fetchLimit = 100
+        
+        do {
+            let poems = try viewContext.fetch(fetchRequest)
+            return poems
+        } catch let error as NSError {
+            print("Could not fetch last five viewed poems. \(error), \(error.userInfo)")
+            return []
+        }
+    }
+    
     
     //fetch book viewed summary
     func fetchBookViewedSummary() -> [BookViewedSummary] {

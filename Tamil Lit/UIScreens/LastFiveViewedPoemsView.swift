@@ -8,21 +8,26 @@
 import SwiftUI
 
 struct LastFiveViewedPoemsView: View {
-    @Binding var viewedPoems: [Poem]
+    @StateObject private var vm = LastViewedPoemsViewModel()
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
+            Text("Recently Viewed: ")
+                .font(.title3.bold())
+            
             //Results
             List {
-                ForEach(viewedPoems, id: \.self) { poem in
+                ForEach(vm.lastFiveViewedPoems, id: \.id) { poem in
                     VStack(alignment: .leading) {
-                        if let title = poem.title, title != "" {
-                            Text(title)
-                                .font(.headline)
-                        }
+                        Text("\(String(describing: poem.bookname)) - \(poem.number)")
+                        
+//                        if let title = poem.title, title != "" {
+//                            Text(title)
+//                                .font(.headline)
+//                        }
                         if let poemText = poem.poem {
                             Text(poemText)
-                            
+                                .lineLimit(3)
                         }
                     }
                     .onTapGesture {
@@ -32,6 +37,9 @@ struct LastFiveViewedPoemsView: View {
                 }
             }
             .listStyle(InsetGroupedListStyle())
+        }
+        .onAppear() {
+            vm.getLastFiveViewedPoems()
         }
     }
 }

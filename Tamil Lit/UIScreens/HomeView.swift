@@ -236,6 +236,9 @@ struct HomeView: View {
                     }
                     .padding()
                     
+                    //Recently Viewed
+                    LastFiveViewedPoemsView()
+                    
                     // Tamil Articles Links
                     VStack(spacing: size15) {
                         HStack {

@@ -502,12 +502,12 @@ extension CoreDataManager {
     }
     
     //Fetch last 5 viewed records
-    func fetchLastFiveViewedPoems() -> [Poem] {
+    func fetchLastThreeViewedPoems() -> [Poem] {
         let fetchRequest: NSFetchRequest<Poem> = Poem.fetchRequest()
         
         fetchRequest.predicate = NSPredicate(format: "viewed == %@", NSNumber(value: true))
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "lastUpdated", ascending: false)]
-        fetchRequest.fetchLimit = 5
+        fetchRequest.fetchLimit = 3
         
         do {
             let poems = try viewContext.fetch(fetchRequest)
@@ -578,6 +578,24 @@ extension CoreDataManager {
             }
         } catch {
             print("Failed to fetch book viewed summary: \(error)")
+            return []
+        }
+    }
+    
+    func fetchPoemsByBookandCategoryNames(bookName: String, mainCategory: String, subCategory: String, section: String) -> [Poem] {
+        let fetchRequest: NSFetchRequest<Poem> = Poem.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "number", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        if section != "" {
+            fetchRequest.predicate = NSPredicate(format: "bookname == %@ AND maincategoryname == %@ AND subcategoryname == %@ AND sectionname == %@",
+                                                 bookName, mainCategory, subCategory, section)
+        } else {
+            fetchRequest.predicate = NSPredicate(format: "bookname == %@ AND maincategoryname == %@", bookName, mainCategory)
+        }
+        do {
+            return try viewContext.fetch(fetchRequest)
+        } catch {
+            print("Error fetching poems: \(error)")
             return []
         }
     }

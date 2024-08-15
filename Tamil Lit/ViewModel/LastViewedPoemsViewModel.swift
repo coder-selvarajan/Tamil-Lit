@@ -8,11 +8,13 @@
 import SwiftUI
 
 class LastViewedPoemsViewModel: ObservableObject {
-    @Published var lastFiveViewedPoems: [Poem] = []
-    @Published var lastHundredViewedPoems: [Poem] = []
+    @Published var lastFiveViewedPoems: [Poem]?
+    @Published var lastHundredViewedPoems: [Poem]?
     
-    func getLastFiveViewedPoems() {
-        lastFiveViewedPoems = CoreDataManager.shared.fetchLastFiveViewedPoems()
+    func getLastThreeViewedPoems() {
+        lastFiveViewedPoems = CoreDataManager.shared.fetchLastThreeViewedPoems()
+        
+        print("\(String(describing: lastFiveViewedPoems?.count)) poems fetched")
     }
     
     func getLastHundredViewedPoems() {

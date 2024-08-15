@@ -76,6 +76,7 @@
 		70CECFD92C5BEB0600AC2ADA /* TamilLitDB.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 70CECFD72C5BEB0600AC2ADA /* TamilLitDB.sqlite-shm */; };
 		70CECFDA2C5BEB0600AC2ADA /* TamilLitDB.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 70CECFD82C5BEB0600AC2ADA /* TamilLitDB.sqlite-wal */; };
 		70CF63B32C671887000CC8C5 /* PoemDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CF63B22C671887000CC8C5 /* PoemDetailViewModel.swift */; };
+		70CFF07A2C6E066800A5E959 /* PoemDetailWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CFF0792C6E066800A5E959 /* PoemDetailWrapperView.swift */; };
 		70D47F802C5F87EE00E3DF88 /* ListBackgroundModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D47F7F2C5F87EE00E3DF88 /* ListBackgroundModifier.swift */; };
 		70DEF95A2C5402A800E72152 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DEF9592C5402A800E72152 /* Constants.swift */; };
 		70E729822C230C7D00DE5977 /* TamilLitDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 70E729802C230C7D00DE5977 /* TamilLitDB.xcdatamodeld */; };
@@ -175,6 +176,7 @@
 		70CECFD72C5BEB0600AC2ADA /* TamilLitDB.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TamilLitDB.sqlite-shm"; sourceTree = "<group>"; };
 		70CECFD82C5BEB0600AC2ADA /* TamilLitDB.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TamilLitDB.sqlite-wal"; sourceTree = "<group>"; };
 		70CF63B22C671887000CC8C5 /* PoemDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemDetailViewModel.swift; sourceTree = "<group>"; };
+		70CFF0792C6E066800A5E959 /* PoemDetailWrapperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemDetailWrapperView.swift; sourceTree = "<group>"; };
 		70D47F7F2C5F87EE00E3DF88 /* ListBackgroundModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListBackgroundModifier.swift; sourceTree = "<group>"; };
 		70DEF9592C5402A800E72152 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		70E729812C230C7D00DE5977 /* TamilLitDB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TamilLitDB.xcdatamodel; sourceTree = "<group>"; };
@@ -373,6 +375,7 @@
 				7090CFF82C5A6E9A00B23353 /* TamilKeyboardInstructionView.swift */,
 				7090CFFA2C5A73E000B23353 /* CreditsView.swift */,
 				7010CCBE2C6CF0B400630A96 /* LastFiveViewedPoemsView.swift */,
+				70CFF0792C6E066800A5E959 /* PoemDetailWrapperView.swift */,
 			);
 			path = UIScreens;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 				7051D5BE2C58868B00CCED81 /* DailyPoem+CoreDataClass.swift in Sources */,
 				7051D5BF2C58868B00CCED81 /* DailyPoem+CoreDataProperties.swift in Sources */,
 				7051D5C22C58868B00CCED81 /* FavouritePoem+CoreDataClass.swift in Sources */,
+				70CFF07A2C6E066800A5E959 /* PoemDetailWrapperView.swift in Sources */,
 				70CE96EE2C61D5B70013F185 /* CustomFontScaling.swift in Sources */,
 				7056974D2C63E3FC00D90D45 /* NavigationManager.swift in Sources */,
 				7051D5C32C58868B00CCED81 /* FavouritePoem+CoreDataProperties.swift in Sources */,

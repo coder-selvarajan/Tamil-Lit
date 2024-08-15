@@ -32,7 +32,7 @@ struct PoemDetailView: View {
     
     @State private var timeElapsed = 0
     @State private var timer: Timer?
-    
+    @State var showHomeButton: Bool = true
     
     func getCategoryText() -> String {
         if poems.count > 0 {
@@ -255,21 +255,23 @@ struct PoemDetailView: View {
             }
             
             ToolbarItem {
-                Button {
-                    navigationManager.isRootActive = false
-                    navigationManager.activeBook.keys.forEach { navigationManager.activeBook[$0] = false }
-                } label: {
-                    HStack(alignment: .top, spacing: 5) {
-                        Image(systemName: "house")
-                            .font(.caption2)
-                        Text("Home")
+                if showHomeButton {
+                    Button {
+                        navigationManager.isRootActive = false
+                        navigationManager.activeBook.keys.forEach { navigationManager.activeBook[$0] = false }
+                    } label: {
+                        HStack(alignment: .top, spacing: 5) {
+                            Image(systemName: "house")
+                                .font(.caption2)
+                            Text("Home")
+                        }
+                        .font(.subheadline)
+                        .foregroundStyle(Color("TextColor"))
+                        .padding(.vertical, 5)
+                        .padding(.horizontal, size10)
+                        .background(themeManager.selectedTheme == .primary ? book.color.opacity(0.3) : .gray.opacity(0.2))
+                        .cornerRadius(8)
                     }
-                    .font(.subheadline)
-                    .foregroundStyle(Color("TextColor"))
-                    .padding(.vertical, 5)
-                    .padding(.horizontal, size10)
-                    .background(themeManager.selectedTheme == .primary ? book.color.opacity(0.3) : .gray.opacity(0.2))
-                    .cornerRadius(8)
                 }
             }
         }

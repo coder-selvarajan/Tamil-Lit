@@ -8,38 +8,76 @@
 import SwiftUI
 
 struct LastFiveViewedPoemsView: View {
+    @EnvironmentObject var bookManager: BookManager
     @StateObject private var vm = LastViewedPoemsViewModel()
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Recently Viewed: ")
-                .font(.title3.bold())
+            HStack {
+                Image(systemName: "clock")
+                    .font(.title2)
+                    .padding(.trailing, 5)
+                Text("சமீபத்தில் படித்தவை")
+                    .font(.title3)
+                
+                Spacer()
+            }
+            .padding(.bottom, size10)
+            
+            Divider()
             
             //Results
-            List {
-                ForEach(vm.lastFiveViewedPoems, id: \.id) { poem in
+            VStack(alignment: .leading, spacing: 8) {
+                ForEach(vm.lastFiveViewedPoems ?? [], id: \.id) { poem in
                     VStack(alignment: .leading) {
-                        Text("\(String(describing: poem.bookname)) - \(poem.number)")
-                        
-//                        if let title = poem.title, title != "" {
-//                            Text(title)
-//                                .font(.headline)
-//                        }
-                        if let poemText = poem.poem {
-                            Text(poemText)
-                                .lineLimit(3)
+                        NavigationLink(destination: PoemDetailWrapperView(selectedPoem: poem))
+                        {
+                            VStack(alignment: .leading) {
+                                Text("\(poem.bookname ?? "") - \(poem.book?.poemType ?? "") \(poem.number)")
+                                    .font(.headline)
+                                    .padding(.leading, size10)
+                                
+                                Text(poem.poem ?? "")
+                                    .lineLimit(3)
+                                    .multilineTextAlignment(TextAlignment.leading)
+                                    .padding(.leading, size10)
+                            }
+                            .foregroundStyle(.black)
                         }
+                        
+                        Divider()
                     }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(Color(.systemBackground))
                     .onTapGesture {
-//                        selectedPoem = poem
-//                        isShowingDetail = true
+                        // Handle tap gesture if needed
                     }
+                    
                 }
+                
+                Text("View all recent poems  ⇾ ")
+                    .font(.subheadline.bold())
+                    .padding([.vertical, .leading], size10)
             }
-            .listStyle(InsetGroupedListStyle())
+            .frame(maxWidth: .infinity, alignment: .leading)
+            
+//            ForEach(vm.lastFiveViewedPoems ?? [], id: \.id) { poem in
+//                
+//                VStack(alignment: .leading) {
+//                    Text("\(String(describing: poem.bookname)) - \(poem.number)")
+//                    Text(poem.poem ?? "")
+//                        .lineLimit(3)
+//                }
+//                .onTapGesture {
+//                    //                        selectedPoem = poem
+//                    //                        isShowingDetail = true
+//                }
+//            }
+            
         }
+        .padding()
         .onAppear() {
-            vm.getLastFiveViewedPoems()
+            vm.getLastThreeViewedPoems()
         }
     }
 }

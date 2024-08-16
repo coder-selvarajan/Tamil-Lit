@@ -12,70 +12,78 @@ struct LastFiveViewedPoemsView: View {
     @StateObject private var vm = LastViewedPoemsViewModel()
     
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Image(systemName: "clock")
-                    .font(.title2)
-                    .padding(.trailing, 5)
-                Text("சமீபத்தில் படித்தவை")
-                    .font(.title3)
-                
-                Spacer()
-            }
-            .padding(.bottom, size10)
-            
-            Divider()
-            
-            //Results
-            VStack(alignment: .leading, spacing: 8) {
-                ForEach(vm.lastFiveViewedPoems ?? [], id: \.id) { poem in
-                    VStack(alignment: .leading) {
-                        NavigationLink(destination: PoemDetailWrapperView(selectedPoem: poem))
-                        {
+        ZStack {
+            if let viewedPoems = vm.lastFiveViewedPoems, viewedPoems.count > 0 {
+                VStack(alignment: .leading) {
+                    HStack {
+                        Image(systemName: "clock")
+                            .font(.title2)
+                            .padding(.trailing, 5)
+                        Text("சமீபத்தில் படித்தவை")
+                            .font(.title3)
+                        
+                        Spacer()
+                    }
+                    .padding(.bottom, size10)
+                    
+                    Divider()
+                    
+                    //Results
+                    VStack(alignment: .leading, spacing: 8) {
+                        ForEach(vm.lastFiveViewedPoems ?? [], id: \.id) { poem in
                             VStack(alignment: .leading) {
-                                Text("\(poem.bookname ?? "") - \(poem.book?.poemType ?? "") \(poem.number)")
-                                    .font(.headline)
-                                    .padding(.leading, size10)
+                                NavigationLink(destination: PoemDetailWrapperView(selectedPoem: poem))
+                                {
+                                    VStack(alignment: .leading) {
+                                        Text("\(poem.bookname ?? "") - \(poem.book?.poemType ?? "") \(poem.number)")
+                                            .font(.headline)
+                                            .padding(.leading, size10)
+                                        
+                                        Text(poem.poem ?? "")
+                                            .lineLimit(3)
+                                            .multilineTextAlignment(TextAlignment.leading)
+                                            .padding(.leading, size10)
+                                    }
+                                    .foregroundStyle(.black)
+                                }
                                 
-                                Text(poem.poem ?? "")
-                                    .lineLimit(3)
-                                    .multilineTextAlignment(TextAlignment.leading)
-                                    .padding(.leading, size10)
+                                Divider()
                             }
-                            .foregroundStyle(.black)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(Color(.systemBackground))
+                            .onTapGesture {
+                                // Handle tap gesture if needed
+                            }
                         }
                         
-                        Divider()
+                        NavigationLink(destination: LastViewedPoemListView()) {
+                            Text("View all recent poems  ⇾ ")
+                                .font(.subheadline.bold())
+                                .foregroundStyle(Color("TextColor"))
+                                .padding([.vertical, .leading], size10)
+                        }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(Color(.systemBackground))
-                    .onTapGesture {
-                        // Handle tap gesture if needed
-                    }
+                    
+                    //            ForEach(vm.lastFiveViewedPoems ?? [], id: \.id) { poem in
+                    //
+                    //                VStack(alignment: .leading) {
+                    //                    Text("\(String(describing: poem.bookname)) - \(poem.number)")
+                    //                    Text(poem.poem ?? "")
+                    //                        .lineLimit(3)
+                    //                }
+                    //                .onTapGesture {
+                    //                    //                        selectedPoem = poem
+                    //                    //                        isShowingDetail = true
+                    //                }
+                    //            }
                     
                 }
-                
-                Text("View all recent poems  ⇾ ")
-                    .font(.subheadline.bold())
-                    .padding([.vertical, .leading], size10)
+                .padding()
+            } else {
+                EmptyView()
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            
-//            ForEach(vm.lastFiveViewedPoems ?? [], id: \.id) { poem in
-//                
-//                VStack(alignment: .leading) {
-//                    Text("\(String(describing: poem.bookname)) - \(poem.number)")
-//                    Text(poem.poem ?? "")
-//                        .lineLimit(3)
-//                }
-//                .onTapGesture {
-//                    //                        selectedPoem = poem
-//                    //                        isShowingDetail = true
-//                }
-//            }
-            
         }
-        .padding()
         .onAppear() {
             vm.getLastThreeViewedPoems()
         }

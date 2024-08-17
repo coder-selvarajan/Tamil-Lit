@@ -242,11 +242,45 @@ extension CoreDataManager {
         }
     }
     
-    func fetchAllFavPoems(excludingBookNames excludedBookNames: [String]) -> [FavouritePoem] {
-        let fetchRequest: NSFetchRequest<FavouritePoem> = FavouritePoem.fetchRequest()
+//    func fetchAllFavPoems(excludingBookNames excludedBookNames: [String]) -> [FavouritePoem] {
+//        let fetchRequest: NSFetchRequest<FavouritePoem> = FavouritePoem.fetchRequest()
+//        
+//        if !excludedBookNames.isEmpty {
+//            fetchRequest.predicate = NSPredicate(format: "NOT (bookname IN %@)", excludedBookNames)
+//        }
+//        
+//        let sortDescriptor = NSSortDescriptor(key: "timestamp", ascending: false)
+//        fetchRequest.sortDescriptors = [sortDescriptor]
+//        
+//        do {
+//            return try viewContext.fetch(fetchRequest)
+//        } catch {
+//            print("Error fetching poems: \(error)")
+//            return []
+//        }
+//    }
+//    
+//    func fetchFavPoemsByBook(for bookname: String) -> [FavouritePoem] {
+//        let fetchRequest: NSFetchRequest<FavouritePoem> = FavouritePoem.fetchRequest()
+//        let sortDescriptor = NSSortDescriptor(key: "timestamp", ascending: false)
+//        fetchRequest.sortDescriptors = [sortDescriptor]
+//        fetchRequest.predicate = NSPredicate(format: "book.name == %@", bookname)
+//        do {
+//            return try viewContext.fetch(fetchRequest)
+//        } catch {
+//            print("Error fetching poems: \(error)")
+//            return []
+//        }
+//    }
+    
+    func fetchAllBookmarkedPoems(excludingBookNames excludedBookNames: [String]) -> [Poem] {
+        let fetchRequest: NSFetchRequest<Poem> = Poem.fetchRequest()
         
         if !excludedBookNames.isEmpty {
-            fetchRequest.predicate = NSPredicate(format: "NOT (bookname IN %@)", excludedBookNames)
+            fetchRequest.predicate = NSPredicate(format: "bookmarked == %@ AND NOT (bookname IN %@)",
+                                                 NSNumber(value: true), excludedBookNames)
+        } else {
+            fetchRequest.predicate = NSPredicate(format: "bookmarked == %@", NSNumber(value: true))
         }
         
         let sortDescriptor = NSSortDescriptor(key: "timestamp", ascending: false)
@@ -260,11 +294,14 @@ extension CoreDataManager {
         }
     }
     
-    func fetchFavPoemsByBook(for bookname: String) -> [FavouritePoem] {
-        let fetchRequest: NSFetchRequest<FavouritePoem> = FavouritePoem.fetchRequest()
+    func fetchBookmarkedPoemsByBook(for bookname: String) -> [Poem] {
+        let fetchRequest: NSFetchRequest<Poem> = Poem.fetchRequest()
+        
         let sortDescriptor = NSSortDescriptor(key: "timestamp", ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
-        fetchRequest.predicate = NSPredicate(format: "book.name == %@", bookname)
+        fetchRequest.predicate = NSPredicate(format: "bookmarked == %@ AND book.name == %@", 
+                                             NSNumber(value: true), bookname)
+        
         do {
             return try viewContext.fetch(fetchRequest)
         } catch {
@@ -273,18 +310,18 @@ extension CoreDataManager {
         }
     }
     
-    func isPoemBookmarked(bookname: String, number: Int) -> Bool {
-        let fetchRequest: NSFetchRequest<FavouritePoem> = FavouritePoem.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "bookname == %@ AND number == %d", bookname, number)
-        
-        do {
-            let existingPoems = try viewContext.fetch(fetchRequest)
-            return !existingPoems.isEmpty
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-            return false
-        }
-    }
+//    func isPoemBookmarked(bookname: String, number: Int) -> Bool {
+//        let fetchRequest: NSFetchRequest<FavouritePoem> = FavouritePoem.fetchRequest()
+//        fetchRequest.predicate = NSPredicate(format: "bookname == %@ AND number == %d", bookname, number)
+//        
+//        do {
+//            let existingPoems = try viewContext.fetch(fetchRequest)
+//            return !existingPoems.isEmpty
+//        } catch let error as NSError {
+//            print("Could not fetch. \(error), \(error.userInfo)")
+//            return false
+//        }
+//    }
     
     func randomDateWithinLastFiveDays() -> Date {
         let now = Date()
@@ -294,59 +331,59 @@ extension CoreDataManager {
         return randomDate
     }
     
-    func saveFavPoem(bookname: String, number: Int16,
-                     poem: String, title: String,
-                     mainCategory: String, subCategory: String, section: String) -> Bool {
-        
-        // Create a new Poem entity
-        let entity = NSEntityDescription.entity(forEntityName: "FavouritePoem", in: viewContext)!
-        let favPoem = NSManagedObject(entity: entity, insertInto: viewContext)
-        
-        // Set the attributes
-        favPoem.setValue(UUID(), forKey: "id")
-        favPoem.setValue(bookname, forKeyPath: "bookname")
-        favPoem.setValue(number, forKey: "number")
-        favPoem.setValue(poem, forKey: "poem")
-        favPoem.setValue(title, forKey: "title")
-        favPoem.setValue(mainCategory, forKey: "maincategoryname")
-        favPoem.setValue(subCategory, forKey: "subcategoryname")
-        favPoem.setValue(section, forKey: "sectionname")
-//        favPoem.setValue(Date(), forKey: "timestamp")
-        
-        let randomDate = randomDateWithinLastFiveDays()
-        favPoem.setValue(randomDate, forKey: "timestamp")
-        
-        // Save the context
-        do {
-            try viewContext.save()
-            print("Poem bookmarked successfully")
-            return true
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-            return false
-        }
-    }
+//    func saveFavPoem(bookname: String, number: Int16,
+//                     poem: String, title: String,
+//                     mainCategory: String, subCategory: String, section: String) -> Bool {
+//        
+//        // Create a new Poem entity
+//        let entity = NSEntityDescription.entity(forEntityName: "FavouritePoem", in: viewContext)!
+//        let favPoem = NSManagedObject(entity: entity, insertInto: viewContext)
+//        
+//        // Set the attributes
+//        favPoem.setValue(UUID(), forKey: "id")
+//        favPoem.setValue(bookname, forKeyPath: "bookname")
+//        favPoem.setValue(number, forKey: "number")
+//        favPoem.setValue(poem, forKey: "poem")
+//        favPoem.setValue(title, forKey: "title")
+//        favPoem.setValue(mainCategory, forKey: "maincategoryname")
+//        favPoem.setValue(subCategory, forKey: "subcategoryname")
+//        favPoem.setValue(section, forKey: "sectionname")
+////        favPoem.setValue(Date(), forKey: "timestamp")
+//        
+//        let randomDate = randomDateWithinLastFiveDays()
+//        favPoem.setValue(randomDate, forKey: "timestamp")
+//        
+//        // Save the context
+//        do {
+//            try viewContext.save()
+//            print("Poem bookmarked successfully")
+//            return true
+//        } catch let error as NSError {
+//            print("Could not save. \(error), \(error.userInfo)")
+//            return false
+//        }
+//    }
     
-    func removeFavPoem(bookname: String, number: Int16) -> Bool {
-        let fetchRequest: NSFetchRequest<FavouritePoem> = FavouritePoem.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "bookname == %@ AND number == %d", bookname, number)
-        
-        do {
-            let existingPoems = try viewContext.fetch(fetchRequest)
-            if let poemToDelete = existingPoems.first {
-                viewContext.delete(poemToDelete)
-                try viewContext.save()
-                print("Poem removed from favorites successfully")
-                return true
-            } else {
-                print("Poem not found in favorites")
-                return false
-            }
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-            return false
-        }
-    }
+//    func removeFavPoem(bookname: String, number: Int16) -> Bool {
+//        let fetchRequest: NSFetchRequest<FavouritePoem> = FavouritePoem.fetchRequest()
+//        fetchRequest.predicate = NSPredicate(format: "bookname == %@ AND number == %d", bookname, number)
+//        
+//        do {
+//            let existingPoems = try viewContext.fetch(fetchRequest)
+//            if let poemToDelete = existingPoems.first {
+//                viewContext.delete(poemToDelete)
+//                try viewContext.save()
+//                print("Poem removed from favorites successfully")
+//                return true
+//            } else {
+//                print("Poem not found in favorites")
+//                return false
+//            }
+//        } catch let error as NSError {
+//            print("Could not fetch. \(error), \(error.userInfo)")
+//            return false
+//        }
+//    }
     
     func performSearch(searchText: String, excludingBookNames excludedBookNames: [String]) -> [Poem] {
         let request: NSFetchRequest<Poem> = Poem.fetchRequest()
@@ -487,11 +524,25 @@ extension CoreDataManager {
         return nil
     }
 
+    // Update poem bookmarking status
+    func updatePoemBookmarkingStatus(poem: Poem, status: Bool) {
+        viewContext.performAndWait {
+            poem.bookmarked = status
+            poem.timestamp = Date()
+            do {
+                try viewContext.save()
+                print("poem viewed")
+            } catch {
+                print("Failed to update viewed status: \(error)")
+            }
+        }
+    }
+    
     // Update poem viewed status
     func updatePoemViewedStatus(for poem: Poem) {
         viewContext.performAndWait {
             poem.viewed = true
-            poem.lastUpdated = Date()
+            poem.viewedDate = Date()
             do {
                 try viewContext.save()
                 print("poem viewed")
@@ -506,7 +557,7 @@ extension CoreDataManager {
         let fetchRequest: NSFetchRequest<Poem> = Poem.fetchRequest()
         
         fetchRequest.predicate = NSPredicate(format: "viewed == %@", NSNumber(value: true))
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "lastUpdated", ascending: false)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "viewedDate", ascending: false)]
         fetchRequest.fetchLimit = 3
         
         do {
@@ -523,7 +574,7 @@ extension CoreDataManager {
         let fetchRequest: NSFetchRequest<Poem> = Poem.fetchRequest()
         
         fetchRequest.predicate = NSPredicate(format: "viewed == %@", NSNumber(value: true))
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "lastUpdated", ascending: false)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "viewedDate", ascending: false)]
         fetchRequest.fetchLimit = 100
         
         do {

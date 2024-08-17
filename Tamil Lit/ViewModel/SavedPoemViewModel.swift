@@ -1,5 +1,5 @@
 //
-//  FavouritePoemViewModel.swift
+//  SavedPoemViewModel.swift
 //  Tamil Lit
 //
 //  Created by Selvarajan on 22/07/24.
@@ -8,13 +8,13 @@
 import SwiftUI
 import CoreData
 
-class FavouritePoemViewModel : ObservableObject {
-    @Published var favPoemsByCategory: [String: [FavouritePoem]] = [:]
-    @Published var favPoemsByDate: [String: [FavouritePoem]] = [:]
+class SavedPoemViewModel : ObservableObject {
+    @Published var favPoemsByCategory: [String: [Poem]] = [:]
+    @Published var favPoemsByDate: [String: [Poem]] = [:]
     @Published var sortedKeys: [String] = []
     
-    @Published var favPoems: [FavouritePoem] = []
-    @Published var favPoemsByBook: [FavouritePoem] = []
+    @Published var favPoems: [Poem] = []
+    @Published var favPoemsByBook: [Poem] = []
     
 //    func getAllFavPoems() {
 //        favPoems = CoreDataManager.shared.fetchAllFavPoems()
@@ -28,7 +28,7 @@ class FavouritePoemViewModel : ObservableObject {
         return nil
     }
     
-    func getPoemFromFavPoem(favPoem: FavouritePoem) -> Poem? {
+    func getPoemFromFavPoem(favPoem: Poem) -> Poem? {
         return CoreDataManager.shared.fetchPoemByBookNumber(favPoem.bookname ?? "", Int(favPoem.number))
     }
     
@@ -47,7 +47,7 @@ class FavouritePoemViewModel : ObservableObject {
         
         let excludedBookNames: [String] = bookOptions.filter { !$0.selected }.map { $0.title }
         
-        let poems = CoreDataManager.shared.fetchAllFavPoems(excludingBookNames: excludedBookNames)
+        let poems = CoreDataManager.shared.fetchAllBookmarkedPoems(excludingBookNames: excludedBookNames)
         favPoems = poems
         
         // order by date
@@ -72,7 +72,7 @@ class FavouritePoemViewModel : ObservableObject {
             return order1 < order2
         }
         
-        let orderedSearchResults = sortedKeys.reduce(into: [String: [FavouritePoem]]()) { (dict, key) in
+        let orderedSearchResults = sortedKeys.reduce(into: [String: [Poem]]()) { (dict, key) in
             if let value = dictResults[key] {
                 dict[key] = value
             }
@@ -82,25 +82,22 @@ class FavouritePoemViewModel : ObservableObject {
     }
     
     func getAllFavPoemsByBook(_ bookName: String) {
-        favPoemsByBook = CoreDataManager.shared.fetchFavPoemsByBook(for: bookName)
+        favPoemsByBook = CoreDataManager.shared.fetchBookmarkedPoemsByBook(for: bookName)
     }
     
     func saveFavPoem(_ favPoem: Poem) -> Bool {
-        return CoreDataManager.shared.saveFavPoem(bookname: favPoem.bookname!,
-                                           number: favPoem.number,
-                                           poem: favPoem.poem!,
-                                           title: favPoem.title!,
-                                           mainCategory: favPoem.maincategoryname ?? "",
-                                           subCategory: favPoem.subcategoryname ?? "",
-                                           section: favPoem.sectionname ?? "")
+        CoreDataManager.shared.updatePoemBookmarkingStatus(poem: favPoem, status: true)
+        
+        return true
     }
     
     func removeFavPoem(_ favPoem: Poem) -> Bool {
-        return CoreDataManager.shared.removeFavPoem(bookname: favPoem.bookname!, number: favPoem.number)
+        CoreDataManager.shared.updatePoemBookmarkingStatus(poem: favPoem, status: false)
+        
+        return true
     }
     
     func isPoemBookmarked(_ poem: Poem) -> Bool {
-        return CoreDataManager.shared.isPoemBookmarked(bookname: poem.bookname ?? "", 
-                                                       number: Int(poem.number))
+        return poem.bookmarked
     }
 }

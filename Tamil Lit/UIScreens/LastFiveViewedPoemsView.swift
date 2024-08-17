@@ -13,7 +13,7 @@ struct LastFiveViewedPoemsView: View {
     
     var body: some View {
         ZStack {
-            if let viewedPoems = vm.lastFiveViewedPoems, viewedPoems.count > 0 {
+            if let viewedPoems = vm.lastThreeViewedPoems, viewedPoems.count > 0 {
                 VStack(alignment: .leading) {
                     HStack {
                         Image(systemName: "clock")
@@ -30,7 +30,7 @@ struct LastFiveViewedPoemsView: View {
                     
                     //Results
                     VStack(alignment: .leading, spacing: 8) {
-                        ForEach(vm.lastFiveViewedPoems ?? [], id: \.id) { poem in
+                        ForEach(vm.lastThreeViewedPoems ?? [], id: \.id) { poem in
                             VStack(alignment: .leading) {
                                 NavigationLink(destination: PoemDetailWrapperView(selectedPoem: poem))
                                 {
@@ -44,7 +44,7 @@ struct LastFiveViewedPoemsView: View {
                                             .multilineTextAlignment(TextAlignment.leading)
                                             .padding(.leading, size10)
                                     }
-                                    .foregroundStyle(.black)
+                                    .foregroundStyle(Color("TextColor"))
                                 }
                                 
                                 Divider()

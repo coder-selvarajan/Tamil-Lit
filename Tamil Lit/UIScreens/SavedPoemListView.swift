@@ -13,12 +13,12 @@ enum PoemListingOrder: String, CaseIterable {
     case ByBook = "Book"
 }
 
-struct FavouritePoemListView: View {
+struct SavedPoemListView: View {
     @EnvironmentObject var userSettings: UserSettings
     @EnvironmentObject var bookManager: BookManager
     
-    @StateObject private var vm = FavouritePoemViewModel()
-    @AppStorage("BooksOptedForFavouritePoems") private var bookOptionsData: Data = Data()
+    @StateObject private var vm = SavedPoemViewModel()
+    @AppStorage("BooksOptedForSavedPoems") private var bookOptionsData: Data = Data()
     @State private var bookOptions: [BookInfo] = []
     
     @State private var isShowingDetail: Bool = false
@@ -27,7 +27,7 @@ struct FavouritePoemListView: View {
     @State private var listingOrder: PoemListingOrder = .ByBook
     @State private var showOptions = false
     
-    func getCategoryDisplay(_ poem: FavouritePoem) -> String {
+    func getCategoryDisplay(_ poem: Poem) -> String {
         if let section = poem.sectionname, section != "", !section.starts(with: "பாடல்") {
             return " - " + section
         } else if let subCat = poem.subcategoryname, subCat != "", !subCat.starts(with: "பாடல்") {
@@ -38,7 +38,7 @@ struct FavouritePoemListView: View {
         return ""
     }
     
-    func getCategoryDisplayAlone(_ poem: FavouritePoem) -> String {
+    func getCategoryDisplayAlone(_ poem: Poem) -> String {
         return getCategoryDisplay(poem).replacingOccurrences(of: " - ", with: "")
     }
     
@@ -76,27 +76,30 @@ struct FavouritePoemListView: View {
                                     .font(.headline)
                             }) {
                                 ForEach(vm.favPoemsByCategory[bookname] ?? [], id: \.self) { favPoem in
-                                    VStack(alignment: .leading) {
-                                        let cat = getCategoryDisplayAlone(favPoem)
-                                        if cat != "" {
-                                            Text("\(cat)")
-                                                .font(.subheadline)
-                                                .fontWeight(.semibold)
+                                    NavigationLink(destination: PoemDetailWrapperView(selectedPoem: favPoem))
+                                    {
+                                        VStack(alignment: .leading) {
+                                            let cat = getCategoryDisplayAlone(favPoem)
+                                            if cat != "" {
+                                                Text("\(cat)")
+                                                    .font(.subheadline)
+                                                    .fontWeight(.semibold)
+                                            }
+                                            
+                                            if let title = favPoem.title, title != "" {
+                                                Text(title).font(.headline)
+                                            }
+                                            
+                                            if let poemText = favPoem.poem {
+                                                Text("\(poemText)  (\(favPoem.number))")
+                                            }
                                         }
-                                        
-                                        if let title = favPoem.title, title != "" {
-                                            Text(title).font(.headline)
-                                        }
-                                        
-                                        if let poemText = favPoem.poem {
-                                            Text("\(poemText)  (\(favPoem.number))")
-                                        }
-                                    }
-                                    .onTapGesture {
-                                        if let poem = vm.getPoemFromFavPoem(favPoem: favPoem) {
-                                            selectedPoem = poem
-                                            isShowingDetail = true
-                                        }
+//                                        .onTapGesture {
+//                                            if let poem = vm.getPoemFromFavPoem(favPoem: favPoem) {
+//                                                selectedPoem = poem
+//                                                isShowingDetail = true
+//                                            }
+//                                        }
                                     }
                                 }
                             }
@@ -116,25 +119,28 @@ struct FavouritePoemListView: View {
                                     .font(.headline)
                             }) {
                                 ForEach(vm.favPoemsByDate[day] ?? [], id: \.id) { favPoem in
-                                    VStack(alignment: .leading) {
-                                        
-                                        Text("\(favPoem.bookname ?? "")\(getCategoryDisplay(favPoem))")
-                                            .font(.subheadline)
-                                            .fontWeight(.semibold)
-                                        
-                                        if let title = favPoem.title, title != "" {
-                                            Text("\(title):").font(.headline)
+                                    NavigationLink(destination: PoemDetailWrapperView(selectedPoem: favPoem))
+                                    {
+                                        VStack(alignment: .leading) {
+                                            
+                                            Text("\(favPoem.bookname ?? "")\(getCategoryDisplay(favPoem))")
+                                                .font(.subheadline)
+                                                .fontWeight(.semibold)
+                                            
+                                            if let title = favPoem.title, title != "" {
+                                                Text("\(title):").font(.headline)
+                                            }
+                                            
+                                            if let poemText = favPoem.poem {
+                                                Text("\(poemText)  (\(favPoem.number))")
+                                            }
                                         }
-                                        
-                                        if let poemText = favPoem.poem {
-                                            Text("\(poemText)  (\(favPoem.number))")
-                                        }
-                                    }
-                                    .onTapGesture {
-                                        if let poem = vm.getPoemFromFavPoem(favPoem: favPoem) {
-                                            selectedPoem = poem
-                                            isShowingDetail = true
-                                        }
+//                                        .onTapGesture {
+//                                            if let poem = vm.getPoemFromFavPoem(favPoem: favPoem) {
+//                                                selectedPoem = poem
+//                                                isShowingDetail = true
+//                                            }
+//                                        }
                                     }
                                 }
                             }
@@ -177,6 +183,12 @@ struct FavouritePoemListView: View {
         .toolbar {
             ToolbarItem(placement: .principal) {
                 HStack {
+                    Image(systemName: "bookmark")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: size20)
+                        .padding(.trailing, size10)
+                    
                     Text("Saved Poems")
                         .font(.body)
                         .fontWeight(.semibold)
@@ -257,5 +269,5 @@ struct FavouritePoemListView: View {
 }
 
 #Preview {
-    FavouritePoemListView()
+    SavedPoemListView()
 }

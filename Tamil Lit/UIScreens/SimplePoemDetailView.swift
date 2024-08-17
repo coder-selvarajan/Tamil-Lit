@@ -13,7 +13,7 @@ struct SimplePoemDetailView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @StateObject private var vmExplanation = ExplanationListViewModel()
-    @StateObject private var vmFavPoem = FavouritePoemViewModel()
+    @StateObject private var vmFavPoem = SavedPoemViewModel()
     @StateObject private var vmPoemDet = PoemDetailsViewModel()
     
     let colorTheme: Color = Color.gray

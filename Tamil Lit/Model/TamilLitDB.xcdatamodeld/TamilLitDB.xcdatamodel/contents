@@ -64,7 +64,6 @@
         <attribute name="bookmarked" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="bookname" attributeType="String"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="lastUpdated" optional="YES" attributeType="Date" defaultDateTimeInterval="745333440" usesScalarValueType="NO"/>
         <attribute name="maincategoryname" optional="YES" attributeType="String"/>
         <attribute name="number" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="poem" attributeType="String" defaultValueString=""/>
@@ -72,10 +71,12 @@
         <attribute name="sectionname" optional="YES" attributeType="String"/>
         <attribute name="subcategoryname" optional="YES" attributeType="String"/>
         <attribute name="tag" optional="YES" attributeType="String"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String" defaultValueString=""/>
         <attribute name="transliteration" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
         <attribute name="viewed" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="viewedDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="book" maxCount="1" deletionRule="Nullify" destinationEntity="Book" inverseName="poems" inverseEntity="Book"/>
         <relationship name="explanations" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Explanation" inverseName="poem" inverseEntity="Explanation"/>
         <relationship name="mainCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MainCategory" inverseName="poems" inverseEntity="MainCategory"/>

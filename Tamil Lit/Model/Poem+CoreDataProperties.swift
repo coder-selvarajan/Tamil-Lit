@@ -2,7 +2,7 @@
 //  Poem+CoreDataProperties.swift
 //  Tamil Lit
 //
-//  Created by Selvarajan on 14/08/24.
+//  Created by Selvarajan on 17/08/24.
 //
 //
 
@@ -19,7 +19,6 @@ extension Poem {
     @NSManaged public var bookmarked: Bool
     @NSManaged public var bookname: String?
     @NSManaged public var id: UUID?
-    @NSManaged public var lastUpdated: Date?
     @NSManaged public var maincategoryname: String?
     @NSManaged public var number: Int16
     @NSManaged public var poem: String?
@@ -27,10 +26,12 @@ extension Poem {
     @NSManaged public var sectionname: String?
     @NSManaged public var subcategoryname: String?
     @NSManaged public var tag: String?
+    @NSManaged public var timestamp: Date?
     @NSManaged public var title: String?
     @NSManaged public var transliteration: String?
     @NSManaged public var type: String?
     @NSManaged public var viewed: Bool
+    @NSManaged public var viewedDate: Date?
     @NSManaged public var book: Book?
     @NSManaged public var explanations: NSOrderedSet?
     @NSManaged public var mainCategory: MainCategory?

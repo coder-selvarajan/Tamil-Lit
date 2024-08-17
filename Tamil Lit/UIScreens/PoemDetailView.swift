@@ -15,7 +15,7 @@ struct PoemDetailView: View {
     @EnvironmentObject var speechSynthesizer: SpeechSynthesizer
     
     @StateObject private var viewModel = ExplanationListViewModel()
-    @StateObject private var vmFavPoem = FavouritePoemViewModel()
+    @StateObject private var vmFavPoem = SavedPoemViewModel()
     @StateObject private var vmPoemDet = PoemDetailsViewModel()
     
     let book: BookInfo

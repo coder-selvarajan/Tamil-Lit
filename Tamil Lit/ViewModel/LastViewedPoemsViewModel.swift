@@ -8,14 +8,14 @@
 import SwiftUI
 
 class LastViewedPoemsViewModel: ObservableObject {
-    @Published var lastFiveViewedPoems: [Poem]?
+    @Published var lastThreeViewedPoems: [Poem]?
     @Published var lastHundredViewedPoems: [Poem]?
     @Published var lastViewedPoemsByDate: [String: [Poem]] = [:]
     
     func getLastThreeViewedPoems() {
-        lastFiveViewedPoems = CoreDataManager.shared.fetchLastThreeViewedPoems()
+        lastThreeViewedPoems = CoreDataManager.shared.fetchLastThreeViewedPoems()
         
-        print("\(String(describing: lastFiveViewedPoems?.count)) poems fetched")
+        print("\(String(describing: lastThreeViewedPoems?.count)) poems fetched")
     }
     
     func getLastHundredViewedPoems() {
@@ -31,7 +31,7 @@ class LastViewedPoemsViewModel: ObservableObject {
         dateFormatter.dateStyle = .medium
         
         let dictByDate = Dictionary(grouping: poems, by: { poem in
-            dateFormatter.string(from: poem.lastUpdated ?? Date())
+            dateFormatter.string(from: poem.viewedDate ?? Date())
         })
         
         lastViewedPoemsByDate = dictByDate

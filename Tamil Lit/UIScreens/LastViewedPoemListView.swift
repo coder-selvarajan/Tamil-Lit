@@ -53,7 +53,7 @@ struct LastViewedPoemListView: View {
                                     Text("\(poem.poem ?? "")")
                                         .lineLimit(3)
                                 }
-                                .foregroundStyle(.black)
+                                .foregroundStyle(Color("TextColor"))
                                 
                             }
                             .listRowBackground(Color.gray.opacity(0.15))

@@ -163,7 +163,7 @@ struct HomeView: View {
                                 .cornerRadius(size10)
                             }
                             
-                            NavigationLink(destination: FavouritePoemListView()) {
+                            NavigationLink(destination: SavedPoemListView()) {
                                 VStack(alignment: .center, spacing: size10) {
                                     HStack {
                                         if themeManager.selectedTheme == .primary {

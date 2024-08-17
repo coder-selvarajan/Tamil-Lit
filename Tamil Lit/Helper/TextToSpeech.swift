@@ -25,7 +25,10 @@ class SpeechSynthesizer: NSObject, ObservableObject, AVSpeechSynthesizerDelegate
         if isVoiceAvailable(language: language) {
             let utterance = AVSpeechUtterance(string: cleanText)
             utterance.voice = AVSpeechSynthesisVoice(language: language)
-            utterance.rate = AVSpeechUtteranceDefaultSpeechRate
+//            utterance.rate = AVSpeechUtteranceDefaultSpeechRate
+            
+            utterance.rate = Float(UserDefaults.standard.double(forKey: "speechRate"))
+            
             synthesizer.speak(utterance)
             isSpeaking = true
             completion(true)

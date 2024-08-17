@@ -5,10 +5,15 @@
 //  Created by Selvarajan on 25/07/24.
 //
 
+import Foundation
 import SwiftUI
 import StoreKit
+import AVFoundation
+
 
 struct SettingsView: View {
+    @AppStorage("speechRate") var speechRate: Double = Double(AVSpeechUtteranceDefaultSpeechRate)
+        
     @EnvironmentObject var themeManager: ThemeManager
     @EnvironmentObject var bookManager: BookManager
     
@@ -16,6 +21,9 @@ struct SettingsView: View {
     @EnvironmentObject var notificationHandler: NotificationHandler
     
     @State private var activeAlert: ActiveAlert?
+    
+    let speechRates: [Double] = [0.25, 0.5, 0.75, 1.0]
+    let speechRateLabels = ["Slow", "Normal", "Fast", "Very Fast"]
     
     enum ActiveAlert: Identifiable {
         case settings, feedback
@@ -223,6 +231,16 @@ struct SettingsView: View {
                         }
                     }
                     .padding(.vertical)
+                }
+                
+                SwiftUI.Section(header: Text("Speech Speed")) {
+                    Picker("Speech Speed", selection: $speechRate) {
+                        ForEach(0..<speechRates.count) { index in
+                            Text(speechRateLabels[index])
+                                .tag(speechRates[index])
+                        }
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
                 }
                 
 //                SwiftUI.Section(header: Text("Adjust Content Scaling").font(.subheadline.bold())) {

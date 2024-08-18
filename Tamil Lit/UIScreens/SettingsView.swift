@@ -22,7 +22,7 @@ struct SettingsView: View {
     
     @State private var activeAlert: ActiveAlert?
     
-    let speechRates: [Double] = [0.25, 0.5, 0.75, 1.0]
+    let speechRates: [Double] = [0.3, 0.4, 0.5, 0.6]
     let speechRateLabels = ["Slow", "Normal", "Fast", "Very Fast"]
     
     enum ActiveAlert: Identifiable {
@@ -30,6 +30,21 @@ struct SettingsView: View {
         
         var id: Int {
             hashValue
+        }
+    }
+    
+    func speechSpeedDescription(for rate: Double) -> String {
+        switch rate {
+        case 0.1..<0.2:
+            return "Very Slow"
+        case 0.2..<0.3:
+            return "Slow"
+        case 0.3..<0.5:
+            return "Normal"
+        case 0.5..<0.6:
+            return "Fast"
+        default:
+            return "Very Fast"
         }
     }
     
@@ -70,33 +85,6 @@ struct SettingsView: View {
                     //                    .padding(.vertical, 2)
                     
                 }
-                
-                //                SwiftUI.Section(header: Text("Select Theme")) {
-                //                    Button(action: {
-                //                        userSettings.darkMode = false
-                //                        themeManager.setTheme(.primary)
-                //                        bookManager.updateBooks(with: themeManager.currentTheme)
-                //                    }) {
-                //                        Text("Primary")
-                //                            .foregroundColor(themeManager.currentTheme == Themes.primaryTheme ? .blue : .primary)
-                //                    }
-                //                    Button(action: {
-                //                        userSettings.darkMode = false
-                //                        themeManager.setTheme(.light)
-                //                        bookManager.updateBooks(with: themeManager.currentTheme)
-                //                    }) {
-                //                        Text("Light ")
-                //                            .foregroundColor(themeManager.currentTheme == Themes.lightTheme ? .blue : .primary)
-                //                    }
-                //                    Button(action: {
-                //                        userSettings.darkMode = true
-                //                        themeManager.setTheme(.dark)
-                //                        bookManager.updateBooks(with: themeManager.currentTheme)
-                //                    }) {
-                //                        Text("Dark ")
-                //                            .foregroundColor(themeManager.currentTheme == Themes.darkTheme ? .blue : .primary)
-                //                    }
-                //                }
                 
                 SwiftUI.Section(header: Text("Choose your theme").font(.subheadline.bold())) {
                     VStack(spacing: size15) {
@@ -233,15 +221,30 @@ struct SettingsView: View {
                     .padding(.vertical)
                 }
                 
-                SwiftUI.Section(header: Text("Speech Speed")) {
-                    Picker("Speech Speed", selection: $speechRate) {
-                        ForEach(0..<speechRates.count) { index in
-                            Text(speechRateLabels[index])
-                                .tag(speechRates[index])
+//                SwiftUI.Section(header: Text("Speech Speed")) {
+//                    Picker("Speech Speed", selection: $speechRate) {
+//                        ForEach(0..<Int(speechRates.count)) { index in
+//                            Text(speechRateLabels[index])
+//                                .tag(speechRates[index])
+//                        }
+//                    }
+//                    .pickerStyle(SegmentedPickerStyle())
+//                }
+                
+                SwiftUI.Section(header: Text("Adjust Voice Speed").font(.subheadline.bold())) {
+                    VStack {
+                        Slider(value: $speechRate, in: 0.1...0.7, step: 0.05)
+                            .accentColor(.green)
+                        HStack {
+                            Image(systemName: "tortoise")
+                            Spacer()
+                            Text(speechSpeedDescription(for: speechRate))
+                            Spacer()
+                            Image(systemName: "hare")
                         }
                     }
-                    .pickerStyle(SegmentedPickerStyle())
                 }
+                
                 
 //                SwiftUI.Section(header: Text("Adjust Content Scaling").font(.subheadline.bold())) {
 //                    VStack {

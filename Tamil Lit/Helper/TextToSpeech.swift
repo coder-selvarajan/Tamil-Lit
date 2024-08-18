@@ -10,6 +10,8 @@ import SwiftUI
 import AVFoundation
 
 class SpeechSynthesizer: NSObject, ObservableObject, AVSpeechSynthesizerDelegate {
+    @AppStorage("speechRate") var speechRate: Double = Double(AVSpeechUtteranceDefaultSpeechRate)
+    
     private var synthesizer = AVSpeechSynthesizer()
     @Published var isSpeaking = false
     
@@ -27,7 +29,8 @@ class SpeechSynthesizer: NSObject, ObservableObject, AVSpeechSynthesizerDelegate
             utterance.voice = AVSpeechSynthesisVoice(language: language)
 //            utterance.rate = AVSpeechUtteranceDefaultSpeechRate
             
-            utterance.rate = Float(UserDefaults.standard.double(forKey: "speechRate"))
+//            utterance.rate = Float(UserDefaults.standard.double(forKey: "speechRate"))
+            utterance.rate = Float(speechRate)
             
             synthesizer.speak(utterance)
             isSpeaking = true

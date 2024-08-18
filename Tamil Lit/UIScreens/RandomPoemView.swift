@@ -38,18 +38,18 @@ struct RandomPoemView: View {
                             randomPoem = poem
                         }
                     } label: {
-                        if themeManager.selectedTheme == .primary {
-                            Text("Next...")
-                                .font(.body)
-                                .fontWeight(.bold)
-                                .foregroundStyle(.black)
-                                .padding(.horizontal)
-                                .padding(.vertical, size10)
-                                .padding(.trailing)
-                                .background(userSettings.darkMode ? .cyan : .cyan.opacity(0.9))
-                                .cornerRadius(size10)
-                                .shadow(radius: size10)
-                        } else {
+//                        if themeManager.selectedTheme == .primary {
+//                            Text("Next...")
+//                                .font(.body)
+//                                .fontWeight(.bold)
+//                                .foregroundStyle(.black)
+//                                .padding(.horizontal)
+//                                .padding(.vertical, size10)
+//                                .padding(.trailing)
+//                                .background(userSettings.darkMode ? .cyan : .cyan.opacity(0.9))
+//                                .cornerRadius(size10)
+//                                .shadow(radius: size10)
+//                        } else {
                             Text("Next...")
                                 .font(.body)
                                 .fontWeight(.bold)
@@ -60,7 +60,7 @@ struct RandomPoemView: View {
                                 .background(userSettings.darkMode ? .yellow : .yellow.opacity(0.9))
                                 .cornerRadius(size10)
                                 .shadow(radius: size10)
-                        }
+//                        }
                     }
                     .padding(.trailing, -size15)
                     .padding(.bottom)

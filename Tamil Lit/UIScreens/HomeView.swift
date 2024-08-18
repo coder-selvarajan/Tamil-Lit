@@ -121,7 +121,21 @@ struct HomeView: View {
                             NavigationLink(destination: RandomPoemView()) {
                                 VStack(alignment: .center, spacing: size10) {
                                     HStack(spacing: size10) {
-                                        if themeManager.selectedTheme == .primary {
+                                        Circle()
+                                            .fill(Color.yellow.opacity(userSettings.darkMode ? 0.75 : 0.5))
+                                            .background(Circle().fill(Color.white)) // to support the look in dark mode
+                                            .frame(width: size10, height: size10)
+                                        Circle()
+                                            .fill(Color.orange.opacity(userSettings.darkMode ? 0.75 : 0.5))
+                                            .background(Circle().fill(Color.white)) // to support the look in dark mode
+                                            .frame(width: size10, height: size10)
+                                        Circle()
+                                            .fill(Color.red.opacity(userSettings.darkMode ? 0.75 : 0.5))
+                                            .background(Circle().fill(Color.white)) // to support the look in dark mode
+                                            .frame(width: size10, height: size10)
+                                        
+                                        /*
+                                        if themeManager.selectedTheme != .primary {
                                             Circle()
                                                 .fill(Color.blue.opacity(userSettings.darkMode ? 0.75 : 0.5))
                                                 .background(Circle().fill(Color.white)) // to support the look in dark mode
@@ -148,6 +162,7 @@ struct HomeView: View {
                                                 .background(Circle().fill(Color.white)) // to support the look in dark mode
                                                 .frame(width: size10, height: size10)
                                         }
+                                         */
                                     }.frame(height: size30)
                                     VStack(alignment: .leading) {
                                         Text("Random Poem")
@@ -166,15 +181,21 @@ struct HomeView: View {
                             NavigationLink(destination: SavedPoemListView()) {
                                 VStack(alignment: .center, spacing: size10) {
                                     HStack {
-                                        if themeManager.selectedTheme == .primary {
+                                        Image(systemName: "bookmark.fill")
+                                            .font(.title3)
+                                            .foregroundColor(.yellow.opacity(userSettings.darkMode ? 0.9 : 0.7))
+                                        
+                                        /*
+                                        if themeManager.selectedTheme != .primary {
                                             Image(systemName: "bookmark.fill")
                                                 .font(.title3)
                                                 .foregroundColor(.cyan.opacity(userSettings.darkMode ? 0.9 : 0.6))
                                         } else {
                                             Image(systemName: "bookmark.fill")
                                                 .font(.title3)
-                                                .foregroundColor(.orange.opacity(userSettings.darkMode ? 0.9 : 0.6))
+                                                .foregroundColor(.yellow.opacity(userSettings.darkMode ? 0.9 : 0.6))
                                         }
+                                        */
                                     }.frame(height: size30)
                                     
                                     Text("Saved ")

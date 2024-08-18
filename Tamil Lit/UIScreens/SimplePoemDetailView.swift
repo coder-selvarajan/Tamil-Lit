@@ -52,6 +52,21 @@ struct SimplePoemDetailView: View {
         return poemType + ": \(selectedPoem.number)"
     }
     
+    func getMeaningsForSpeech() -> [SpeechContent]? {
+        var speechContent: [SpeechContent] = []
+        
+        speechContent.append(SpeechContent(title: selectedPoem.book?.poemType ?? "", 
+                                           content: getPoemTitle() + ". \n" + (selectedPoem.poem ?? "")))
+        
+        vmExplanation.explanations.forEach { explanation in
+            if let title = explanation.title, let meaning = explanation.meaning {
+                speechContent.append(SpeechContent(title: title, content: title + " \n" + meaning))
+            }
+        }
+        
+        return speechContent.count > 0 ? speechContent : nil
+    }
+    
     var body: some View {
         ZStack(alignment: .top) {
             ScrollView(showsIndicators: false) {
@@ -145,6 +160,11 @@ struct SimplePoemDetailView: View {
                         SpeakButtonView(textContent: Binding(
                             get: { PoemHelper.poemText(poem: selectedPoem,
                                                        explanations: vmExplanation.explanations) },
+                            set: { newValue in
+                                //
+                            }
+                        ), subContentList: Binding(
+                            get: { getMeaningsForSpeech() },
                             set: { newValue in
                                 //
                             }

@@ -57,7 +57,7 @@ struct RandomPoemView: View {
                                 .padding(.horizontal)
                                 .padding(.vertical, size10)
                                 .padding(.trailing)
-                                .background(userSettings.darkMode ? .yellow : .yellow.opacity(0.9))
+                                .background(userSettings.darkMode ? .orange.opacity(0.6) : .orange.opacity(0.8))
                                 .cornerRadius(size10)
                                 .shadow(radius: size10)
 //                        }

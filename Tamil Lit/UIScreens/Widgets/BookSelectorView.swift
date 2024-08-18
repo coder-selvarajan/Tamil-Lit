@@ -45,7 +45,7 @@ struct BookSelectorView: View {
 //                                } else {
                                     Image(systemName: "checkmark.circle.fill")
                                         .font(.title3)
-                                        .foregroundColor(bookInfo.selected ? .yellow.opacity(0.75) : .gray.opacity(0.5))
+                                        .foregroundColor(bookInfo.selected ? .orange.opacity(0.7) : .gray.opacity(0.5))
                                         .padding(.trailing)
 //                                }
                                 

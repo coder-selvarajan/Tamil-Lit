@@ -36,10 +36,10 @@ struct ArticleView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem {
-                SpeakButtonView(textContent: $markdownContent)
-                    .padding(.vertical, 5)
-                    .background(.gray.opacity(0.2))
-                    .cornerRadius(8)
+                SpeakButtonView(textContent: $markdownContent, subContentList: Binding.constant(nil))
+                .padding(.vertical, 5)
+                .background(.gray.opacity(0.2))
+                .cornerRadius(8)
             }
         } // toolbar
         .customFontScaling()

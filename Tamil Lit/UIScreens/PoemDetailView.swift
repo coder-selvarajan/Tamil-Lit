@@ -64,6 +64,21 @@ struct PoemDetailView: View {
         return poemType + ": \(poem.number)"
     }
     
+    func getMeaningsForSpeech() -> [SpeechContent]? {
+        var speechContent: [SpeechContent] = []
+        
+        speechContent.append(SpeechContent(title: selectedPoem.book?.poemType ?? "",
+                                           content: getPoemTitle(poem: selectedPoem) + ". \n" + (selectedPoem.poem ?? "")))
+        
+        viewModel.explanations.forEach { explanation in
+            if let title = explanation.title, let meaning = explanation.meaning {
+                speechContent.append(SpeechContent(title: title, content: title + " \n" + meaning))
+            }
+        }
+        
+        return speechContent.count > 0 ? speechContent : nil
+    }
+    
     var body: some View {
         ZStack(alignment: .top) {
             if #available(iOS 16.0, *) {
@@ -133,9 +148,10 @@ struct PoemDetailView: View {
                                     SpeakButtonView(textContent: Binding(
                                         get: { PoemHelper.poemText(poem: selectedPoem,
                                                                    explanations: viewModel.explanations) },
-                                        set: { newValue in
-                                            //
-                                        }
+                                        set: { _ in }
+                                    ), subContentList: Binding(
+                                            get: { getMeaningsForSpeech() },
+                                            set: { _ in }
                                     ))
                                     .padding([.trailing, .top], size10)
                                 }

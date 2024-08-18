@@ -7,10 +7,16 @@
 
 import SwiftUI
 
+struct SpeechContent: Hashable {
+    let title: String
+    let content: String
+}
+
 struct SpeakButtonView: View {
     @StateObject var speechSynthesizer = SpeechSynthesizer()
     
     @Binding var textContent: String
+    @Binding var subContentList: [SpeechContent]?
     @State var showAlert: Bool = false
     
     var body: some View {
@@ -37,6 +43,31 @@ struct SpeakButtonView: View {
             }
             .font(.subheadline)
             .foregroundStyle(Color("TextColor"))
+        }
+        .contextMenu {
+            if let subContentList = subContentList {
+                // for explanations
+                ForEach(subContentList, id:\.self) { subContent in
+                    Button(action: {
+                        if speechSynthesizer.isSpeaking {
+                            speechSynthesizer.stopSpeaking()
+                        } else {
+                            //Content clean up
+                            let content = subContent.content.replacingOccurrences(of: ":", with: ". \n")
+                            
+                            // if we dont find Tamil voice then instruct the user to enable the setting..
+                            speechSynthesizer.speak(text: content) { success in
+                                if !success {
+                                    showAlert = true
+                                }
+                            }
+                        }
+                    }) {
+                        Image(systemName: "speaker.wave.2")
+                        Text("\(subContent.title)")
+                    }
+                }
+            }
         }
         .padding(.trailing, size10)
         .alert(isPresented: $showAlert) {

@@ -102,7 +102,8 @@ struct BookDetailsView: View {
                                                 get: { getReadableText(from: vm.book) },
                                                 set: { newValue in
                                                     //
-                                                }))
+                                                }), 
+                                        subContentList: Binding.constant(nil))
                         .padding([.vertical, .trailing], 5)
 //                            .background(themeManager.selectedTheme == .primary ? .gray.opacity(0.3) : .gray.opacity(0.2))
 //                            .cornerRadius(8)

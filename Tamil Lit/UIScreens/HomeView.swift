@@ -183,7 +183,7 @@ struct HomeView: View {
                                     HStack {
                                         Image(systemName: "bookmark.fill")
                                             .font(.title3)
-                                            .foregroundColor(.yellow.opacity(userSettings.darkMode ? 0.9 : 0.7))
+                                            .foregroundColor(.orange.opacity(userSettings.darkMode ? 0.8 : 0.6))
                                         
                                         /*
                                         if themeManager.selectedTheme != .primary {

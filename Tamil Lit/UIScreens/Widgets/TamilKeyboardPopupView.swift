@@ -25,53 +25,41 @@ struct TamilKeyboardPopupView: View {
     
     - If you see a list of keyboards within Tamil, select the appropriate one (e.g., **Tamil99** or **Anjal**). If not, the Tamil keyboard will be enabled directly.
     """
-
+    
     var body: some View {
-//        ZStack {
-            VStack(spacing: 20) {
-                Markdown(content)
-                    .font(.body)
-                    .multilineTextAlignment(.leading)
-                
-                Button(action: {
-                    guard let url = URL(string: "App-Prefs:root=General") else {
-                        return
-                    }
-                    if UIApplication.shared.canOpenURL(url) {
-                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                    }
-                }) {
-                    Text("Go to Settings")
-                        .bold()
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .foregroundStyle(Color("TextColor"))
-                        .background(Color.gray.opacity(0.2))
-                        .cornerRadius(10)
-                }
-            }
-            .padding()
-            .background(Color("TextColorWhite"))
-            .cornerRadius(12)
-            .shadow(radius: 10)
-            .padding(.horizontal, 20)
-            .overlay(
-                CloseButton() {
-                    isPresented = false
-                }.padding(.trailing), alignment: .topTrailing
-                    
-            )
+        //        ZStack {
+        VStack(spacing: 20) {
+            Markdown(content)
+                .font(.body)
+                .multilineTextAlignment(.leading)
             
-//            VStack {
-//                HStack {
-//                    Spacer()
-//                    
-//                    CloseButton() {
-//                        isPresented = false
-//                    }
-//                }
-//                Spacer()
-//            }
-//        }
+            Button(action: {
+                guard let url = URL(string: "App-Prefs:root=General") else {
+                    return
+                }
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+            }) {
+                Text("Go to Settings")
+                    .bold()
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .foregroundStyle(Color("TextColor"))
+                    .background(Color.gray.opacity(0.2))
+                    .cornerRadius(10)
+            }
+        }
+        .padding()
+        .background(Color("TextColorWhite"))
+        .cornerRadius(12)
+        .shadow(radius: 10)
+        .padding(.horizontal, 20)
+        .overlay(
+            CloseButton() {
+                isPresented = false
+            }.padding(.trailing), alignment: .topTrailing
+            
+        )
     }
 }

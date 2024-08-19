@@ -165,20 +165,6 @@ struct SearchView: View {
                                 .foregroundStyle(.gray)
                         }
                     }
-                    
-//                    if vm.getRecentSearch().count < 2 {
-//                        NavigationLink(destination: TamilKeyboardInstructionView()) {
-//                            HStack {
-//                                Text("How to enable Tamil keyboard?")
-//                                    .font(.footnote)
-//                                    .foregroundStyle(.gray)
-//                                    .padding(.top, 5)
-//                                    .padding(.bottom, size10)
-//                                
-//                                Spacer()
-//                            }
-//                        }
-//                    }
                 }
                 
                 if (searchState == .submitted) {
@@ -213,11 +199,6 @@ struct SearchView: View {
                 }
             }
             .listStyle(InsetGroupedListStyle())
-//            .onAppear {
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.55) {
-//                    self.searchIsFocused = true
-//                }
-//            }
         } // VStack
         .navigationTitle(Text("Search Poems"))
         .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)

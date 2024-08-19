@@ -38,11 +38,14 @@ struct SpeakButtonView: View {
             HStack(alignment: .center, spacing: 5) {
                 Image(systemName: "speaker.wave.2.fill")
                     .font(.caption)
-//                Text(speechSynthesizer.isSpeaking ? "நிறுத்து" : "வாசி")
+
                 Text(speechSynthesizer.isSpeaking ? "Stop" : "Speak")
             }
             .font(.subheadline)
             .foregroundStyle(Color("TextColor"))
+            .padding(.horizontal, size10)
+            .padding(.vertical, size10 * 0.6)
+            .cornerRadius(8.0)
         }
         .contextMenu {
             if let subContentList = subContentList {
@@ -69,7 +72,7 @@ struct SpeakButtonView: View {
                 }
             }
         }
-        .padding(.trailing, size10)
+        .padding(.trailing, size5)
         .alert(isPresented: $showAlert) {
             Alert(
                 title: Text("Tamil Voice Not Available"),

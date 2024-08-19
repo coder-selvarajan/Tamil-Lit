@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct PoemListWithCategoryView: View {
+    @AppStorage("showBookInfoPopup") private var showBookInfoPopup: Bool = false
+    @AppStorage("bookInfoPopupCounter") private var bookInfoPopupCounter: Int = 0
+    
     let book: BookInfo
     
     @EnvironmentObject var userSettings: UserSettings
@@ -18,7 +21,6 @@ struct PoemListWithCategoryView: View {
     @State private var highlightedCategoryId: UUID?
     
     @State private var showBookInfo: Bool = false
-    
     
     func getShortTitle(_ category: MainCategory) -> String {
         if let title = category.title, title.starts(with: "பாடல்கள்") {
@@ -57,7 +59,7 @@ struct PoemListWithCategoryView: View {
                                         selectedCategoryId = nil
                                     }
                                 } label: {
-                                    if themeManager.selectedTheme == .primary { // for colorful theme
+                                    if themeManager.selectedTheme == .colorful { // for colorful theme
                                         if #available(iOS 16.0, *) {
                                             Text(getShortTitle(category))
                                                 .font(.subheadline)
@@ -121,26 +123,7 @@ struct PoemListWithCategoryView: View {
                                             }
                                         } //Section2
                                 } //Section1
-                                .listRowBackground(themeManager.selectedTheme == ThemeSelection.primary ? book.color.opacity(0.2) : .gray.opacity(0.1))
-                                
-//                                .background(
-//                                    GeometryReader { geo in
-//                                        Color.clear
-//                                            .onAppear {
-//                                                let frame = geo.frame(in: .global)
-//                                                if frame.minY < UIScreen.main.bounds.height / 2 && frame.maxY > UIScreen.main.bounds.height / 2 {
-//                                                    highlightedCategoryId = category.id
-//                                                }
-//                                            }
-//                                            .onChange(of: selectedCategoryId) { id in
-//                                                if let id = id {
-//                                                    withAnimation {
-//                                                        proxy.scrollTo(id, anchor: .top)
-//                                                    }
-//                                                }
-//                                            }
-//                                    }
-//                                )
+                                .listRowBackground(themeManager.selectedTheme == ThemeSelection.colorful ? book.color.opacity(0.2) : .gray.opacity(0.1))
                             }
                             .onChange(of: selectedCategoryId) { id in
                                 if let id = id {
@@ -159,6 +142,12 @@ struct PoemListWithCategoryView: View {
             } // VStack
         }
         .onAppear {
+            if showBookInfoPopup {
+                showBookInfo = true
+                showBookInfoPopup = false
+                bookInfoPopupCounter += 1
+            }
+            
             viewModel.fetchCateoriesByBook(book.title)
             viewModel.fetchPoemsByBook(book.title)
         }
@@ -188,13 +177,19 @@ struct PoemListWithCategoryView: View {
                 Button {
                     showBookInfo = true
                 } label: {
-                    Text("நூல் பற்றி")
-                        .font(.subheadline)
-                        .foregroundStyle(Color("TextColor"))
-                        .padding(.vertical, 5)
-                        .padding(.horizontal, size10)
-                        .background(themeManager.selectedTheme == .primary ? book.color.opacity(0.3) : .gray.opacity(0.2))
-                        .cornerRadius(8)
+                    HStack {
+                        Image(systemName: "book")
+                            .font(.footnote)
+                            .foregroundStyle(Color("TextColor"))
+                        
+                        Text("Info")
+                            .font(.subheadline.bold())
+                            .foregroundStyle(Color("TextColor"))
+                    }
+                    .padding(.vertical, size10 * 0.7)
+                    .padding(.horizontal, size10)
+                    .background(themeManager.selectedTheme == .colorful ? book.color.opacity(0.3) : .gray.opacity(0.2))
+                    .cornerRadius(8)
                 }
             }
         }

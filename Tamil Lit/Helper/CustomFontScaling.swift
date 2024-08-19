@@ -18,16 +18,6 @@ extension EnvironmentValues {
     }
 }
 
-
-
-//struct CustomFontScalingModifier: ViewModifier {
-//    @Environment(\.customFontScaling) var customFontScaling
-//
-//    func body(content: Content) -> some View {
-//        content.environment(\.sizeCategory, .extraExtraLarge) // Example for scaling up
-//    }
-//}
-
 struct CustomFontScalingModifier: ViewModifier {
     @Environment(\.customFontScaling) var customFontScaling
 

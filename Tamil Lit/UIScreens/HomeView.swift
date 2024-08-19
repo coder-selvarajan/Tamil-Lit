@@ -9,6 +9,9 @@ import SwiftUI
 import TelemetryDeck
 
 struct HomeView: View {
+    @AppStorage("showBookInfoPopup") private var showBookInfoPopup: Bool = false
+    @AppStorage("bookInfoPopupCounter") private var bookInfoPopupCounter: Int = 0
+    
     @EnvironmentObject var userSettings: UserSettings
     @EnvironmentObject var notificationHandler: NotificationHandler
     
@@ -133,40 +136,9 @@ struct HomeView: View {
                                             .fill(Color.red.opacity(userSettings.darkMode ? 0.75 : 0.5))
                                             .background(Circle().fill(Color.white)) // to support the look in dark mode
                                             .frame(width: size10, height: size10)
-                                        
-                                        /*
-                                        if themeManager.selectedTheme != .primary {
-                                            Circle()
-                                                .fill(Color.blue.opacity(userSettings.darkMode ? 0.75 : 0.5))
-                                                .background(Circle().fill(Color.white)) // to support the look in dark mode
-                                                .frame(width: size10, height: size10)
-                                            Circle()
-                                                .fill(Color.cyan.opacity(userSettings.darkMode ? 0.75 : 0.5))
-                                                .background(Circle().fill(Color.white)) // to support the look in dark mode
-                                                .frame(width: size10, height: size10)
-                                            Circle()
-                                                .fill(Color.purple.opacity(userSettings.darkMode ? 0.75 : 0.5))
-                                                .background(Circle().fill(Color.white)) // to support the look in dark mode
-                                                .frame(width: size10, height: size10)
-                                        } else {
-                                            Circle()
-                                                .fill(Color.yellow.opacity(userSettings.darkMode ? 0.75 : 0.5))
-                                                .background(Circle().fill(Color.white)) // to support the look in dark mode
-                                                .frame(width: size10, height: size10)
-                                            Circle()
-                                                .fill(Color.orange.opacity(userSettings.darkMode ? 0.75 : 0.5))
-                                                .background(Circle().fill(Color.white)) // to support the look in dark mode
-                                                .frame(width: size10, height: size10)
-                                            Circle()
-                                                .fill(Color.red.opacity(userSettings.darkMode ? 0.75 : 0.5))
-                                                .background(Circle().fill(Color.white)) // to support the look in dark mode
-                                                .frame(width: size10, height: size10)
-                                        }
-                                         */
                                     }.frame(height: size30)
                                     VStack(alignment: .leading) {
                                         Text("Random Poem")
-//                                        Text("ஏதோ ஒரு பாடல்")
                                             .lineLimit(1)
                                             .foregroundStyle(Color("TextColor"))
                                     }
@@ -185,21 +157,9 @@ struct HomeView: View {
                                             .font(.title3)
                                             .foregroundColor(.orange.opacity(userSettings.darkMode ? 0.8 : 0.6))
                                         
-                                        /*
-                                        if themeManager.selectedTheme != .primary {
-                                            Image(systemName: "bookmark.fill")
-                                                .font(.title3)
-                                                .foregroundColor(.cyan.opacity(userSettings.darkMode ? 0.9 : 0.6))
-                                        } else {
-                                            Image(systemName: "bookmark.fill")
-                                                .font(.title3)
-                                                .foregroundColor(.yellow.opacity(userSettings.darkMode ? 0.9 : 0.6))
-                                        }
-                                        */
                                     }.frame(height: size30)
                                     
                                     Text("Saved ")
-//                                    Text("சேமித்தவை ")
                                         .lineLimit(1)
                                         .foregroundStyle(Color("TextColor"))
                                 }
@@ -258,7 +218,7 @@ struct HomeView: View {
                     .padding()
                     
                     //Recently Viewed
-                    LastFiveViewedPoemsView()
+                    LastThreeViewedPoemsView()
                     
                     // Tamil Articles Links
                     VStack(spacing: size15) {
@@ -359,11 +319,6 @@ struct HomeView: View {
                     }
                     .padding()
                     
-                    
-//                    VStack{
-//                        Text(" ")
-//                    }.frame(height: size10)
-                    
                     Spacer()
                 }
             }
@@ -382,6 +337,14 @@ struct HomeView: View {
             
             // BookViewSummary
             vmHome.getAllBookViewSummry()
+            
+            //Book intro popup related
+            if bookInfoPopupCounter < 2 {
+                showBookInfoPopup = true
+            } else {
+                showBookInfoPopup = false
+            }
+            
             
             //Analytics code
             TelemetryDeck.signal(
@@ -414,7 +377,7 @@ struct HomeView: View {
                         .scaledToFit()
                         .frame(width: size40)
                         .cornerRadius(size10)
-                        .saturation(themeManager.selectedTheme == ThemeSelection.primary ?  0.5 : 1.0)
+                        .saturation(themeManager.selectedTheme == ThemeSelection.colorful ?  0.5 : 1.0)
                         .opacity(0.9)
                     
                     Text("Tamil Lit")

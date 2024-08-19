@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LastFiveViewedPoemsView: View {
+struct LastThreeViewedPoemsView: View {
     @EnvironmentObject var bookManager: BookManager
     @StateObject private var vm = LastViewedPoemsViewModel()
     
@@ -64,20 +64,6 @@ struct LastFiveViewedPoemsView: View {
                         }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    //            ForEach(vm.lastFiveViewedPoems ?? [], id: \.id) { poem in
-                    //
-                    //                VStack(alignment: .leading) {
-                    //                    Text("\(String(describing: poem.bookname)) - \(poem.number)")
-                    //                    Text(poem.poem ?? "")
-                    //                        .lineLimit(3)
-                    //                }
-                    //                .onTapGesture {
-                    //                    //                        selectedPoem = poem
-                    //                    //                        isShowingDetail = true
-                    //                }
-                    //            }
-                    
                 }
                 .padding()
             } else {

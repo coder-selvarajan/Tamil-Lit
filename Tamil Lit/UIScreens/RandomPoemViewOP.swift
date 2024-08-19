@@ -38,18 +38,6 @@ struct RandomPoemView: View {
                             randomPoem = poem
                         }
                     } label: {
-//                        if themeManager.selectedTheme == .primary {
-//                            Text("Next...")
-//                                .font(.body)
-//                                .fontWeight(.bold)
-//                                .foregroundStyle(.black)
-//                                .padding(.horizontal)
-//                                .padding(.vertical, size10)
-//                                .padding(.trailing)
-//                                .background(userSettings.darkMode ? .cyan : .cyan.opacity(0.9))
-//                                .cornerRadius(size10)
-//                                .shadow(radius: size10)
-//                        } else {
                             Text("Next...")
                                 .font(.body)
                                 .fontWeight(.bold)
@@ -57,10 +45,9 @@ struct RandomPoemView: View {
                                 .padding(.horizontal)
                                 .padding(.vertical, size10)
                                 .padding(.trailing)
-                                .background(userSettings.darkMode ? .orange.opacity(0.6) : .orange.opacity(0.8))
+                                .background(userSettings.darkMode ? .orange.opacity(0.9) : .orange.opacity(0.8))
                                 .cornerRadius(size10)
                                 .shadow(radius: size10)
-//                        }
                     }
                     .padding(.trailing, -size15)
                     .padding(.bottom)

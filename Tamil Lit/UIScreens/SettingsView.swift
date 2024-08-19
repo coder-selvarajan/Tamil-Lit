@@ -75,15 +75,6 @@ struct SettingsView: View {
                             notificationHandler.cancelDailyNotification()
                         }
                     }
-                    
-                    //                    Toggle(isOn: $userSettings.darkMode) {
-                    //                        VStack(alignment: .leading) {
-                    //                            Text("கரும் திரை")
-                    //                                .font(.headline)
-                    //                        }
-                    //                    }
-                    //                    .padding(.vertical, 2)
-                    
                 }
                 
                 SwiftUI.Section(header: Text("Choose your theme").font(.subheadline.bold())) {
@@ -91,7 +82,7 @@ struct SettingsView: View {
                         Button(action: {
                             performMediumHapticFeedback()
                             userSettings.darkMode = false
-                            themeManager.setTheme(.primary)
+                            themeManager.setTheme(.colorful)
                             bookManager.updateBooks(with: themeManager.currentTheme)
                         }) {
                             HStack {
@@ -110,7 +101,7 @@ struct SettingsView: View {
                                     .frame(width: size10, height: size10)
                             }
                         }
-                        .buttonStyle(RoundedBackgroundButtonStyle(isSelected: themeManager.selectedTheme == .primary))
+                        .buttonStyle(RoundedBackgroundButtonStyle(isSelected: themeManager.selectedTheme == .colorful))
                         
                         Button(action: {
                             performMediumHapticFeedback()
@@ -221,16 +212,6 @@ struct SettingsView: View {
                     .padding(.vertical)
                 }
                 
-//                SwiftUI.Section(header: Text("Speech Speed")) {
-//                    Picker("Speech Speed", selection: $speechRate) {
-//                        ForEach(0..<Int(speechRates.count)) { index in
-//                            Text(speechRateLabels[index])
-//                                .tag(speechRates[index])
-//                        }
-//                    }
-//                    .pickerStyle(SegmentedPickerStyle())
-//                }
-                
                 SwiftUI.Section(header: Text("Adjust Voice Speed").font(.subheadline.bold())) {
                     VStack {
                         Slider(value: $speechRate, in: 0.1...0.7, step: 0.05)
@@ -244,22 +225,6 @@ struct SettingsView: View {
                         }
                     }
                 }
-                
-                
-//                SwiftUI.Section(header: Text("Adjust Content Scaling").font(.subheadline.bold())) {
-//                    VStack {
-//                        Picker("Content Size", selection: $userSettings.fontScaling) {
-//                            ForEach(FontScalingOption.allCases) { option in
-//                                Text(option.rawValue.capitalized)
-//                                    .tag(option)
-//                                    .font(.system(size: 20).bold())
-//                            }
-//                        }
-//                        .pickerStyle(SegmentedPickerStyle())
-//                        .frame(maxWidth: .infinity)
-//                    }
-//                    .padding(.vertical, size10)
-//                }
                 
                 SwiftUI.Section {
                     NavigationLink(destination: AboutView()) {
@@ -282,17 +247,6 @@ struct SettingsView: View {
                         }
                     }
                 }
-                
-//                SwiftUI.Section {
-//                    NavigationLink(destination: TamilKeyboardInstructionView()) {
-//                        VStack(alignment: .leading) {
-//                            Text("Tamil Keyboard")
-//                                .font(.headline)
-//                            Text("How to enable it on iPhone?")
-//                                .font(.subheadline)
-//                        }
-//                    }
-//                }
                 
                 SwiftUI.Section {
                     Button(action: {
@@ -454,9 +408,3 @@ struct TileButtonStyle: ButtonStyle {
         )
     }
 }
-
-//struct SettingsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SettingsView()
-//    }
-//}

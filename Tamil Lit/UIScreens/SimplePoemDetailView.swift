@@ -55,12 +55,14 @@ struct SimplePoemDetailView: View {
     func getMeaningsForSpeech() -> [SpeechContent]? {
         var speechContent: [SpeechContent] = []
         
-        speechContent.append(SpeechContent(title: selectedPoem.book?.poemType ?? "", 
-                                           content: getPoemTitle() + ". \n" + (selectedPoem.poem ?? "")))
+        var content: String = getPoemTitle() + ". \n" + (selectedPoem.poem ?? "")
+        content = content.replacingOccurrences(of: ":", with: ". \n")
+        
+        speechContent.append(SpeechContent(title: selectedPoem.book?.poemType ?? "", content: content))
         
         vmExplanation.explanations.forEach { explanation in
             if let title = explanation.title, let meaning = explanation.meaning {
-                speechContent.append(SpeechContent(title: title, content: title + " \n" + meaning))
+                speechContent.append(SpeechContent(title: title, content: title + ". \n" + meaning))
             }
         }
         
@@ -75,7 +77,7 @@ struct SimplePoemDetailView: View {
                     // Book and Category titles
                     VStack {
                         HStack(alignment: .top, spacing: 5) {
-                            if themeManager.selectedTheme == .primary {
+                            if themeManager.selectedTheme == .colorful {
                                 Text("நூல்: ")
                                     .padding(3)
                                     .frame(width: size60)
@@ -104,7 +106,7 @@ struct SimplePoemDetailView: View {
                         .padding(.trailing, 5)
                         
                         HStack(alignment: .top, spacing: 5) {
-                            if themeManager.selectedTheme == .primary {
+                            if themeManager.selectedTheme == .colorful {
                                 Text("வகை: ")
                                     .padding(3)
                                     .frame(minWidth: size60)

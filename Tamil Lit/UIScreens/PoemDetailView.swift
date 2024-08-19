@@ -67,12 +67,14 @@ struct PoemDetailView: View {
     func getMeaningsForSpeech() -> [SpeechContent]? {
         var speechContent: [SpeechContent] = []
         
-        speechContent.append(SpeechContent(title: selectedPoem.book?.poemType ?? "",
-                                           content: getPoemTitle(poem: selectedPoem) + ". \n" + (selectedPoem.poem ?? "")))
+        var content: String = getPoemTitle(poem: selectedPoem) + ". \n" + (selectedPoem.poem ?? "")
+        content = content.replacingOccurrences(of: ":", with: ". ")
+        
+        speechContent.append(SpeechContent(title: selectedPoem.book?.poemType ?? "", content: content))
         
         viewModel.explanations.forEach { explanation in
             if let title = explanation.title, let meaning = explanation.meaning {
-                speechContent.append(SpeechContent(title: title, content: title + " \n" + meaning))
+                speechContent.append(SpeechContent(title: title, content: title + ". \n" + meaning))
             }
         }
         
@@ -82,7 +84,7 @@ struct PoemDetailView: View {
     var body: some View {
         ZStack(alignment: .top) {
             if #available(iOS 16.0, *) {
-                if themeManager.selectedTheme == ThemeSelection.primary {
+                if themeManager.selectedTheme == ThemeSelection.colorful {
                     book.color.opacity(0.2).ignoresSafeArea()
                 }
             }
@@ -90,7 +92,7 @@ struct PoemDetailView: View {
             VStack(alignment: .leading, spacing: size10) {
                 // Category strip
                 HStack(alignment: .top, spacing: 5) {
-                    if themeManager.selectedTheme == .primary {
+                    if themeManager.selectedTheme == .colorful {
                         Text("வகை: ")
                             .padding(3)
                             .frame(width: size60)
@@ -139,7 +141,7 @@ struct PoemDetailView: View {
                                     .padding()
                                     .padding(.vertical, size5)
                                     .frame(maxWidth: .infinity)
-                                    .background(themeManager.selectedTheme == ThemeSelection.primary ? book.color.opacity(0.2) : .gray.opacity(0.2))
+                                    .background(themeManager.selectedTheme == ThemeSelection.colorful ? book.color.opacity(0.2) : .gray.opacity(0.2))
                                     .cornerRadius(size10)
                                     .padding(.horizontal, size10)
                                     .padding(.bottom, size10)
@@ -285,7 +287,7 @@ struct PoemDetailView: View {
                         .foregroundStyle(Color("TextColor"))
                         .padding(.vertical, 5)
                         .padding(.horizontal, size10)
-                        .background(themeManager.selectedTheme == .primary ? book.color.opacity(0.3) : .gray.opacity(0.2))
+                        .background(themeManager.selectedTheme == .colorful ? book.color.opacity(0.3) : .gray.opacity(0.2))
                         .cornerRadius(8)
                     }
                 }

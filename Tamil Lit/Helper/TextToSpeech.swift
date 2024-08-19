@@ -24,6 +24,8 @@ class SpeechSynthesizer: NSObject, ObservableObject, AVSpeechSynthesizerDelegate
         // Data cleaning
         let cleanText = text.replacingOccurrences(of: "#", with: "")
         
+        print(text)
+        
         if isVoiceAvailable(language: language) {
             let utterance = AVSpeechUtterance(string: cleanText)
             utterance.voice = AVSpeechSynthesisVoice(language: language)

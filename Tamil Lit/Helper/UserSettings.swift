@@ -32,20 +32,3 @@ enum FontScalingOption: String, CaseIterable, Identifiable {
         }
     }
 }
-
-//enum FontScalingOption: String {
-//    case normal, large, extraLarge
-//}
-//
-//extension UserSettings {
-//    var sizeCategory: ContentSizeCategory {
-//        switch fontScaling {
-//        case .normal:
-//            return .large
-//        case .large:
-//            return .extraLarge
-//        case .extraLarge:
-//            return .extraExtraLarge
-//        }
-//    }
-//}

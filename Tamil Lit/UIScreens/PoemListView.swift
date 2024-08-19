@@ -52,7 +52,7 @@ struct PoemListView: View {
     
     var body: some View {
         ZStack {
-            if themeManager.selectedTheme == .primary {
+            if themeManager.selectedTheme == .colorful {
                 book.color.opacity(0.2).ignoresSafeArea()
             }
             
@@ -67,7 +67,7 @@ struct PoemListView: View {
                                             .environmentObject(navigationManager)) {
                                 Text("\(poem.number). \(poem.poem ?? "No Poem")")
                             }
-                                                                       .listRowBackground(themeManager.selectedTheme == ThemeSelection.primary ? book.color.opacity(0.2) : .gray.opacity(0.2))
+                                                                       .listRowBackground(themeManager.selectedTheme == ThemeSelection.colorful ? book.color.opacity(0.2) : .gray.opacity(0.2))
                         }
                     }
                 }
@@ -127,7 +127,7 @@ struct PoemListView: View {
                     .foregroundStyle(Color("TextColor"))
                     .padding(.vertical, 5)
                     .padding(.horizontal, size10)
-                    .background(themeManager.selectedTheme == .primary ? book.color.opacity(0.3) : .gray.opacity(0.2))
+                    .background(themeManager.selectedTheme == .colorful ? book.color.opacity(0.3) : .gray.opacity(0.2))
                     .cornerRadius(8)
                 }
             }

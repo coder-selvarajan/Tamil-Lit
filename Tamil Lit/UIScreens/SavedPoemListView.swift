@@ -94,27 +94,17 @@ struct SavedPoemListView: View {
                                                 Text("\(poemText)  (\(favPoem.number))")
                                             }
                                         }
-//                                        .onTapGesture {
-//                                            if let poem = vm.getPoemFromFavPoem(favPoem: favPoem) {
-//                                                selectedPoem = poem
-//                                                isShowingDetail = true
-//                                            }
-//                                        }
                                     }
                                 }
                             }
                         }
                     } else { // order by date
-//                        ForEach(vm.favPoems, id:\.id) { favPoem in
-//                            Text("\(favPoem.bookname ?? "") - \(favPoem.poem ?? "")")
-//                        }
                         ForEach(vm.favPoemsByDate.keys.sorted().reversed(), id: \.self) { day in
                             SwiftUI.Section(header:
                                                 HStack {
                                 Image(systemName: "calendar") // Replace with your image name
                                     .resizable()
                                     .frame(width: size20, height: size20)
-//                                    .foregroundColor(getColorByBook(bookname))
                                 Text(day)
                                     .font(.headline)
                             }) {
@@ -135,12 +125,6 @@ struct SavedPoemListView: View {
                                                 Text("\(poemText)  (\(favPoem.number))")
                                             }
                                         }
-//                                        .onTapGesture {
-//                                            if let poem = vm.getPoemFromFavPoem(favPoem: favPoem) {
-//                                                selectedPoem = poem
-//                                                isShowingDetail = true
-//                                            }
-//                                        }
                                     }
                                 }
                             }

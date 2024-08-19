@@ -12,8 +12,8 @@ class BookManager: ObservableObject {
     @Published var books: [BookInfo]
 
     init() {
-        let savedTheme = UserDefaults.standard.string(forKey: "selectedTheme") ?? ThemeSelection.primary.rawValue
-        let selTheme = ThemeSelection(rawValue: savedTheme) ?? .primary
+        let savedTheme = UserDefaults.standard.string(forKey: "selectedTheme") ?? ThemeSelection.light.rawValue
+        let selTheme = ThemeSelection(rawValue: savedTheme) ?? .light
         let currentTheme = ThemeManager.getTheme(for: selTheme)
         
         self.books = BookManager.getBooks(for: currentTheme)

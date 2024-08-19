@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct SingleCategoryView: View {
+    @AppStorage("showBookInfoPopup") private var showBookInfoPopup: Bool = false
+    @AppStorage("bookInfoPopupCounter") private var bookInfoPopupCounter: Int = 0
+    
     @EnvironmentObject var themeManager: ThemeManager
     
     let book: BookInfo
@@ -29,11 +32,21 @@ struct SingleCategoryView: View {
                         }
                     }
                 }
-                .listRowBackground(themeManager.selectedTheme == ThemeSelection.primary ? book.color.opacity(0.2) : .gray.opacity(0.1))
+                .listRowBackground(themeManager.selectedTheme == ThemeSelection.colorful ? book.color.opacity(0.2) : .gray.opacity(0.1))
             }
             .modifier(ListBackgroundModifier())
             .listStyle(.insetGrouped)
             .background(Color.clear)
+        }
+        .onAppear {
+            viewModel.fetchCateoriesByBook(book.title)
+            viewModel.fetchPoemsByBook(book.title)
+            
+            if showBookInfoPopup {
+                showBookInfo = true
+                showBookInfoPopup = false
+                bookInfoPopupCounter += 1
+            }
         }
         .sheet(isPresented: $showBookInfo) {
             BookDetailsView(bookName: book.title)
@@ -59,19 +72,21 @@ struct SingleCategoryView: View {
                 Button {
                     showBookInfo = true
                 } label: {
-                    Text("நூல் பற்றி")
-                        .font(.subheadline)
-                        .foregroundStyle(Color("TextColor"))
-                        .padding(.vertical, 7)
-                        .padding(.horizontal, size10)
-                        .background(themeManager.selectedTheme == .primary ? book.color.opacity(0.3) : .gray.opacity(0.2))
-                        .cornerRadius(8)
+                    HStack {
+                        Image(systemName: "book")
+                            .font(.footnote)
+                            .foregroundStyle(Color("TextColor"))
+                        
+                        Text("Info")
+                            .font(.subheadline.bold())
+                            .foregroundStyle(Color("TextColor"))
+                    }
+                    .padding(.vertical, size10 * 0.7)
+                    .padding(.horizontal, size10)
+                    .background(themeManager.selectedTheme == .colorful ? book.color.opacity(0.3) : .gray.opacity(0.2))
+                    .cornerRadius(8)
                 }
             }
-        }
-        .onAppear {
-            viewModel.fetchCateoriesByBook(book.title)
-            viewModel.fetchPoemsByBook(book.title)
         }
         .customFontScaling()
     }

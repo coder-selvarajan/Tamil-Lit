@@ -35,7 +35,7 @@ struct Theme: Equatable {
 }
 
 struct Themes {
-    static let primaryTheme = Theme(thirukuralColor: Color.blue.opacity(0.85),
+    static let colorfulTheme = Theme(thirukuralColor: Color.blue.opacity(0.85),
                                     athichudiColor: Color.cyan.opacity(0.9),
                                     naaladiyarColor: Color.indigo.opacity(0.85),
                                     acharakovaiColor: Color.purple.opacity(0.5),
@@ -70,24 +70,24 @@ struct Themes {
 }
 
 enum ThemeSelection: String {
-    case primary, light, dark
+    case colorful, light, dark
 }
 
 class ThemeManager: ObservableObject {
-    @Published var currentTheme: Theme //= ThemeManager.getTheme(for: .primary)
-    @Published var selectedTheme: ThemeSelection //= .primary
+    @Published var currentTheme: Theme //= ThemeManager.getTheme(for: .light)
+    @Published var selectedTheme: ThemeSelection //= .light
 
     init() {
-        let savedTheme = UserDefaults.standard.string(forKey: "selectedTheme") ?? ThemeSelection.primary.rawValue
-        let selTheme = ThemeSelection(rawValue: savedTheme) ?? .primary
+        let savedTheme = UserDefaults.standard.string(forKey: "selectedTheme") ?? ThemeSelection.light.rawValue
+        let selTheme = ThemeSelection(rawValue: savedTheme) ?? .light
         self.selectedTheme = selTheme
         self.currentTheme = ThemeManager.getTheme(for: selTheme)
     }
     
     static func getTheme(for selection: ThemeSelection) -> Theme {
         switch selection {
-        case .primary:
-            return Themes.primaryTheme
+        case .colorful:
+            return Themes.colorfulTheme
         case .light:
             return Themes.lightTheme
         case .dark:

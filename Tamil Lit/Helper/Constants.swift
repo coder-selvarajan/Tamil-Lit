@@ -42,34 +42,3 @@ let size90: CGFloat = UIScreen.main.bounds.size.width * 0.24
 
 // aprox 110 for 375 screen size..
 let size110: CGFloat = UIScreen.main.bounds.size.width * 0.295
-
-
-//func switchToLightTheme()  {
-//    thirukuralColor = Color.gray
-//    athichudiColor = Color.gray
-//    naaladiyarColor = Color.gray
-//    acharakovaiColor = Color.gray
-//    
-//    iniyavaiNaarpathuColor = Color.gray
-//    innaNaarpathuColor = Color.gray
-//    naanmanikadikaiColor = Color.gray
-//    
-//    thirikadukamColor = Color.gray
-//    muthumozhikanchiColor = Color.gray
-//    pazhamozhiNaanooruColor = Color.gray
-//}
-//
-//func switchToDarkTheme()  {
-//    thirukuralColor = Color.gray
-//    athichudiColor = Color.gray
-//    naaladiyarColor = Color.gray
-//    acharakovaiColor = Color.gray
-//    
-//    iniyavaiNaarpathuColor = Color.gray
-//    innaNaarpathuColor = Color.gray
-//    naanmanikadikaiColor = Color.gray
-//    
-//    thirikadukamColor = Color.gray
-//    muthumozhikanchiColor = Color.gray
-//    pazhamozhiNaanooruColor = Color.gray
-//}

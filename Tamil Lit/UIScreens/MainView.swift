@@ -16,15 +16,6 @@ struct MainView: View {
         ZStack {
             NavigationView {
                 HomeView()
-                
-                // Show onboarding screen if needed. 
-                /*
-                if hasCompletedOnboarding {
-                    HomeView()
-                } else {
-                     OnboardingView(hasCompletedOnboarding: $hasCompletedOnboarding)
-                }
-                 */
             }
             .onAppear {
                 launchCount += 1  // Incrementing the launch count

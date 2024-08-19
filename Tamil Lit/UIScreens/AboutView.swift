@@ -67,12 +67,6 @@ struct AboutView: View {
                         Link("Developer Website", destination: URL(string: "https://selvarajan.in")!)
                             .font(.body)
                             .foregroundColor(.blue)
-//                        Text(" | ")
-//                            .font(.body)
-//                            .foregroundColor(Color("TextColor").opacity(0.7))
-//                        Link("Github Profile", destination: URL(string: "https://github.com/coder-selvarajan")!)
-//                            .font(.body)
-//                            .foregroundColor(.blue)
                         
                         Spacer()
                     }

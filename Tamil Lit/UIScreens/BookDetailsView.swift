@@ -47,7 +47,7 @@ struct BookDetailsView: View {
     
     var body: some View {
         ZStack {
-            if themeManager.selectedTheme == ThemeSelection.primary {
+            if themeManager.selectedTheme == ThemeSelection.colorful {
                 bookInfo.color.opacity(0.2).ignoresSafeArea()
             }
             
@@ -58,7 +58,7 @@ struct BookDetailsView: View {
                         Image(bookInfo.image)
                             .resizable()
                             .scaledToFit()
-                            .saturation(themeManager.selectedTheme == ThemeSelection.primary ?  0.1 : 1.0)
+                            .saturation(themeManager.selectedTheme == ThemeSelection.colorful ?  0.1 : 1.0)
                             .opacity(0.75)
                             .frame(width: size60)
                             .padding(.trailing, size10)
@@ -91,7 +91,7 @@ struct BookDetailsView: View {
                     }
                     .padding()
                     .padding(.vertical)
-                    .background(themeManager.selectedTheme == .primary
+                    .background(themeManager.selectedTheme == .colorful
                                 ? bookInfo.color.opacity(0.2) : .gray.opacity(0.1))
                     
                     HStack {
@@ -105,8 +105,6 @@ struct BookDetailsView: View {
                                                 }), 
                                         subContentList: Binding.constant(nil))
                         .padding([.vertical, .trailing], 5)
-//                            .background(themeManager.selectedTheme == .primary ? .gray.opacity(0.3) : .gray.opacity(0.2))
-//                            .cornerRadius(8)
                     }
 
                     // book description
@@ -123,7 +121,7 @@ struct BookDetailsView: View {
                         
                         Image(systemName: "xmark.app.fill")
                             .font(.largeTitle)
-                            .foregroundColor(themeManager.selectedTheme == .primary
+                            .foregroundColor(themeManager.selectedTheme == .colorful
                                              ? .black.opacity(0.60) : .red.opacity(0.9))
                             .padding(size10)
                             .padding(.top, 5)

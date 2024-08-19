@@ -37,9 +37,6 @@ struct ArticleView: View {
         .toolbar {
             ToolbarItem {
                 SpeakButtonView(textContent: $markdownContent, subContentList: Binding.constant(nil))
-                .padding(.vertical, 5)
-                .background(.gray.opacity(0.2))
-                .cornerRadius(8)
             }
         } // toolbar
         .customFontScaling()

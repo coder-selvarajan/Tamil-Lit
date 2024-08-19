@@ -52,15 +52,6 @@ struct Tamil_LitApp: App {
                 .onAppear {
                     notificationHandler.checkFirstLaunch()
                 }
-            
-//                .environment(\.showLoading) { loadingStatus in
-//                    self.loadingStatus = loadingStatus
-//                }
-//                .overlay(alignment: .center) {
-//                    if loadingStatus == .loading {
-//                        LoadingView()
-//                    }
-//                }
         }
     }
 }

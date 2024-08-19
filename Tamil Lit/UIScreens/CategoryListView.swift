@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct CategoryListView: View {
+    @AppStorage("showBookInfoPopup") private var showBookInfoPopup: Bool = false
+    @AppStorage("bookInfoPopupCounter") private var bookInfoPopupCounter: Int = 0
+    
+    @EnvironmentObject var userSettings: UserSettings
     @EnvironmentObject var themeManager: ThemeManager
     @EnvironmentObject var navigationManager: NavigationManager
     
@@ -26,7 +30,7 @@ struct CategoryListView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(viewModel.mainCategories, id:\.id) { mainCategory in
-                            if themeManager.selectedTheme == .primary {
+                            if themeManager.selectedTheme == .colorful {
                                 if #available(iOS 16.0, *) {
                                     Text("\(mainCategory.title!)")
                                         .padding(size10)
@@ -77,7 +81,7 @@ struct CategoryListView: View {
                     
                 WrapView(data: viewModel.filteredSubCategories, content: { subCategory in
                     Button(action: {}) {
-                        if themeManager.selectedTheme == .primary {
+                        if themeManager.selectedTheme == .colorful {
                             if #available(iOS 16.0, *) {
                                 Text(subCategory.title!)
                                     .padding(size10)
@@ -156,11 +160,16 @@ struct CategoryListView: View {
                     }
                 }                
             }
-            
         }
         .padding(size20)
         .onAppear {
             viewModel.fetchAllData(bookname: book.title)
+            
+            if showBookInfoPopup {
+                showBookInfo = true
+                showBookInfoPopup = false
+                bookInfoPopupCounter += 1
+            }
         }
         .sheet(isPresented: $showBookInfo) {
             BookDetailsView(bookName: book.title)
@@ -186,13 +195,19 @@ struct CategoryListView: View {
                 Button {
                     showBookInfo = true
                 } label: {
-                    Text("நூல் பற்றி")
-                        .font(.subheadline)
-                        .foregroundStyle(Color("TextColor"))
-                        .padding(.vertical, 7)
-                        .padding(.horizontal, size10)
-                        .background(themeManager.selectedTheme == .primary ? book.color.opacity(0.3) : .gray.opacity(0.2))
-                        .cornerRadius(8)
+                    HStack {
+                        Image(systemName: "book")
+                            .font(.footnote)
+                            .foregroundStyle(Color("TextColor"))
+                        
+                        Text("Info")
+                            .font(.subheadline.bold())
+                            .foregroundStyle(Color("TextColor"))
+                    }
+                    .padding(.vertical, size10 * 0.7)
+                    .padding(.horizontal, size10)
+                    .background(themeManager.selectedTheme == .colorful ? book.color.opacity(0.3) : .gray.opacity(0.2))
+                    .cornerRadius(8)
                 }
             }
         }

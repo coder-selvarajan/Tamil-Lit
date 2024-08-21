@@ -372,11 +372,10 @@ struct HomeView: View {
         .toolbar {
             ToolbarItem(placement: .principal) {
                 HStack {
-                    Image("114")
+                    Image("logo300")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: size40)
-                        .cornerRadius(size10)
+                        .frame(width: size40 * 0.9)
                         .saturation(themeManager.selectedTheme == ThemeSelection.colorful ?  0.5 : 1.0)
                         .opacity(0.9)
                     

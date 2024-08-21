@@ -31,7 +31,7 @@ struct Tamil_LitApp: App {
         TelemetryDeck.signal(
             "App Launched",
             parameters: [
-                "app": "TamilLit",
+                "app": "Tamil Lit",
                 "event": "app_load"
             ]
         )
@@ -51,6 +51,12 @@ struct Tamil_LitApp: App {
                 .environment(\.customFontScaling, userSettings.fontScaling.sizeCategory)
                 .onAppear {
                     notificationHandler.checkFirstLaunch()
+                    
+                    let uiAppClass = UIApplication.self
+                    let currentSendEvent = class_getInstanceMethod(uiAppClass, #selector(uiAppClass.sendEvent))
+                    let newSendEvent = class_getInstanceMethod(uiAppClass, #selector(uiAppClass.newSendEvent))
+                    method_exchangeImplementations(currentSendEvent!, newSendEvent!)
+                    print("Swizzlling called")
                 }
         }
     }

@@ -16,7 +16,7 @@ struct AboutView: View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: size20) {
                 HStack {
-                    Image("114")
+                    Image("logo400")
                         .resizable()
                         .frame(width: size50, height: size50)
                         .clipShape(RoundedRectangle(cornerRadius: size15))

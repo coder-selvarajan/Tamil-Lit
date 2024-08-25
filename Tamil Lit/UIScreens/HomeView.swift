@@ -372,7 +372,7 @@ struct HomeView: View {
         .toolbar {
             ToolbarItem(placement: .principal) {
                 HStack {
-                    Image("logo300")
+                    Image("logo400")
                         .resizable()
                         .scaledToFit()
                         .frame(width: size40 * 0.9)

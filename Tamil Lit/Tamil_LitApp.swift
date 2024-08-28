@@ -52,12 +52,28 @@ struct Tamil_LitApp: App {
                 .onAppear {
                     notificationHandler.checkFirstLaunch()
                     
-                    let uiAppClass = UIApplication.self
-                    let currentSendEvent = class_getInstanceMethod(uiAppClass, #selector(uiAppClass.sendEvent))
-                    let newSendEvent = class_getInstanceMethod(uiAppClass, #selector(uiAppClass.newSendEvent))
-                    method_exchangeImplementations(currentSendEvent!, newSendEvent!)
-                    print("Swizzlling called")
+                    //Analytics instrumentation
+                    instrumentWithSwiftUIAnalytics()
                 }
         }
     }
+}
+
+func instrumentWithSwiftUIAnalytics(){
+    DispatchQueue.main.async {
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let rootView = windowScene.windows.first?.rootViewController?.view {
+            rootView.accessibilityActivate()
+            print("Activating accessibility info")
+        } else {
+            print("No accessible windows found.")
+        }
+    }
+    
+    
+    let uiAppClass = UIApplication.self
+    let currentSendEvent = class_getInstanceMethod(uiAppClass, #selector(uiAppClass.sendEvent))
+    let newSendEvent = class_getInstanceMethod(uiAppClass, #selector(uiAppClass.newSendEvent))
+    method_exchangeImplementations(currentSendEvent!, newSendEvent!)
+    print("Swizzlling called")
 }

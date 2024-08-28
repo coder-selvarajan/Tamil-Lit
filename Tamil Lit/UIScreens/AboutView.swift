@@ -18,13 +18,14 @@ struct AboutView: View {
                 HStack {
                     Image("logo400")
                         .resizable()
-                        .frame(width: size50, height: size50)
+                        .scaledToFit()
+                        .frame(width: size60)
                         .clipShape(RoundedRectangle(cornerRadius: size15))
                     
                     Text("Tamil Lit")
                         .font(.custom("Quicksand", size: 24))
                         .fontWeight(.semibold)
-                        .padding(.horizontal, size10)
+                        .padding(.horizontal, size5)
                     Spacer()
                 }.padding(.top)
                 

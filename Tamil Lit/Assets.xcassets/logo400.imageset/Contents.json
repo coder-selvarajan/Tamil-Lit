@@ -1,7 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "logo400.png",
+      "filename" : "4.Logo Orange-White400.png",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "3.Logo Orange-BlackBG400.png",
       "idiom" : "universal"
     }
   ],

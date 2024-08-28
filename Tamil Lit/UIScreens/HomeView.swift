@@ -371,13 +371,13 @@ struct HomeView: View {
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
-                HStack {
+                HStack(alignment: .center) {
                     Image("logo400")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: size40 * 0.9)
-                        .saturation(themeManager.selectedTheme == ThemeSelection.colorful ?  0.5 : 1.0)
-                        .opacity(0.9)
+                        .frame(width: size50)
+//                        .saturation(themeManager.selectedTheme == ThemeSelection.colorful ?  0.5 : 1.0)
+//                        .opacity(0.9)
                     
                     Text("Tamil Lit")
                         .font(.custom("Quicksand", size: 22))
@@ -385,17 +385,21 @@ struct HomeView: View {
                     
                     Spacer()
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(0)
             }
             
             ToolbarItem {
                 NavigationLink(destination: SearchView()) {
                     HStack {
+                        Spacer()
+                        
                         Image(systemName: "magnifyingglass")
                             .foregroundStyle(Color("TextColor"))
                         
                         Text("Search").foregroundStyle(.gray)
-                    }.padding(.horizontal)
+                    }
+                    .padding(.horizontal, size10)
                 }
             }
             

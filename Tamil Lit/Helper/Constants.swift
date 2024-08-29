@@ -42,3 +42,6 @@ let size90: CGFloat = UIScreen.main.bounds.size.width * 0.24
 
 // aprox 110 for 375 screen size..
 let size110: CGFloat = UIScreen.main.bounds.size.width * 0.295
+
+// aprox 150 for 375 screen size..
+let size150: CGFloat = UIScreen.main.bounds.size.width * 0.4

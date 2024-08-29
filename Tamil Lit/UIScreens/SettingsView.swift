@@ -216,6 +216,8 @@ struct SettingsView: View {
                     VStack {
                         Slider(value: $speechRate, in: 0.1...0.7, step: 0.05)
                             .accentColor(.green)
+                            .accessibilityLabel(Text("Slider"))
+                        
                         HStack {
                             Image(systemName: "tortoise")
                             Spacer()
@@ -223,6 +225,9 @@ struct SettingsView: View {
                             Spacer()
                             Image(systemName: "hare")
                         }
+                    }
+                    .onChange(of: speechRate) { newValue in
+                        performMediumHapticFeedback()
                     }
                 }
                 

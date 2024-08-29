@@ -42,6 +42,8 @@ struct CategoryListView: View {
                                         .onTapGesture {
                                             viewModel.selectMainCategory(mainCategory)
                                         }
+                                        .accessibilityLabel(Text(mainCategory.title!))
+                                        .accessibilityAddTraits(.isButton)
                                 } else {
                                     Text("\(mainCategory.title!)")
                                         .padding(size10)
@@ -53,6 +55,8 @@ struct CategoryListView: View {
                                         .onTapGesture {
                                             viewModel.selectMainCategory(mainCategory)
                                         }
+                                        .accessibilityLabel(Text(mainCategory.title!))
+                                        .accessibilityAddTraits(.isButton)
                                 }
                             } else { // light, dark
                                 Text("\(mainCategory.title!)")
@@ -66,6 +70,8 @@ struct CategoryListView: View {
                                     .onTapGesture {
                                         viewModel.selectMainCategory(mainCategory)
                                     }
+                                    .accessibilityLabel(Text(mainCategory.title!))
+                                    .accessibilityAddTraits(.isButton)
                             }
                         }
                     }
@@ -93,6 +99,8 @@ struct CategoryListView: View {
                                     .onTapGesture {
                                         viewModel.selectSubCategory(subCategory)
                                     }
+                                    .accessibilityLabel(Text(subCategory.title!))
+                                    .accessibilityAddTraits(.isButton)
                             } else {
                                 Text(subCategory.title!)
                                     .padding(size10)
@@ -104,6 +112,8 @@ struct CategoryListView: View {
                                     .onTapGesture {
                                         viewModel.selectSubCategory(subCategory)
                                     }
+                                    .accessibilityLabel(Text(subCategory.title!))
+                                    .accessibilityAddTraits(.isButton)
                             }
                         } else {
                             Text(subCategory.title!)
@@ -117,6 +127,8 @@ struct CategoryListView: View {
                                 .onTapGesture {
                                     viewModel.selectSubCategory(subCategory)
                                 }
+                                .accessibilityLabel(Text(subCategory.title!))
+                                .accessibilityAddTraits(.isButton)
                         }
                     }
                 })

@@ -90,7 +90,9 @@ struct BookTileView: View {
                 }.padding()
             }.padding(0)
         }
-        .frame(height: 150)
+        .accessibilityElement(children: .combine)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityLabel(Text("\(book.title) Tile"))
+        .frame(height: size150)
     }
 }
-

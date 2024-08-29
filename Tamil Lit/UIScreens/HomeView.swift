@@ -376,6 +376,7 @@ struct HomeView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: size50)
+                        .accessibilityLabel(Text("TamilLit Logo"))
 //                        .saturation(themeManager.selectedTheme == ThemeSelection.colorful ?  0.5 : 1.0)
 //                        .opacity(0.9)
                     
@@ -399,6 +400,7 @@ struct HomeView: View {
                         
                         Text("Search").foregroundStyle(.gray)
                     }
+                    .accessibilityLabel(Text("Search Button"))
                     .padding(.horizontal, size10)
                 }
             }
@@ -407,6 +409,8 @@ struct HomeView: View {
                 NavigationLink(destination: SettingsView()) {
                     Image(systemName: "gearshape")
                         .foregroundStyle(Color("TextColor"))
+                        .accessibilityAddTraits(.isButton)
+                        .accessibilityLabel(Text("Settings Icon"))
                 }
             }
         } // toolbar

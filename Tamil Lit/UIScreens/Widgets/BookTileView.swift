@@ -92,7 +92,8 @@ struct BookTileView: View {
         }
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.isButton)
-        .accessibilityLabel(Text("\(book.title) Tile"))
+        .accessibilityLabel(Text("\(book.title) Book Tile"))
+        .accessibilityIdentifier("\(book.title)")
         .frame(height: size150)
     }
 }

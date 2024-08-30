@@ -41,6 +41,10 @@ struct SpeakButtonView: View {
 
                 Text(speechSynthesizer.isSpeaking ? "Stop" : "Speak")
             }
+            .accessibilityElement(children: .combine)
+            .accessibilityAddTraits(.isButton)
+            .accessibilityLabel(Text("\(speechSynthesizer.isSpeaking ? "Stop" : "Speak") - \((textContent).prefix(50))"))
+            .accessibilityIdentifier("\(speechSynthesizer.isSpeaking ? "Stop" : "Speak") - \((textContent).prefix(20))")
             .font(.subheadline)
             .foregroundStyle(Color("TextColor"))
             .padding(.horizontal, size10)

@@ -186,6 +186,10 @@ struct PoemScreenshotView: View {
                     Image(systemName: "camera")
                     Text("படம்")
                 }
+                .accessibilityElement(children: .combine)
+                .accessibilityAddTraits(.isButton)
+                .accessibilityLabel(Text("படம் - \((poem.poem ?? "").prefix(20))"))
+                .accessibilityIdentifier("படம் - \(poem.bookname ?? "") - \(poem.number)")
                 .font(.subheadline)
                 .foregroundStyle(Color("TextColor"))
             }

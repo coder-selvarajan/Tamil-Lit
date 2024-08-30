@@ -187,6 +187,10 @@ struct PoemDetailView: View {
                                                 Image(systemName: poemBookmarked ? "bookmark.fill" : "bookmark")
                                                 Text("சேமி")
                                             }
+                                            .accessibilityElement(children: .combine)
+                                            .accessibilityAddTraits(.isButton)
+                                            .accessibilityLabel(Text("சேமி - \((selectedPoem.poem ?? "").prefix(25))"))
+                                            .accessibilityIdentifier("சேமி - \(book.title) - \(selectedPoem.number)")
                                             .font(.subheadline)
                                             .foregroundStyle(Color("TextColor"))
                                         }

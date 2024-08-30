@@ -70,7 +70,7 @@ func instrumentWithSwiftUIAnalytics(){
         }
     }
     
-    
+    // SwiftUI Analytics
     let uiAppClass = UIApplication.self
     let currentSendEvent = class_getInstanceMethod(uiAppClass, #selector(uiAppClass.sendEvent))
     let newSendEvent = class_getInstanceMethod(uiAppClass, #selector(uiAppClass.newSendEvent))

@@ -22,6 +22,10 @@ struct SharePoem: View {
                 Image(systemName: "paperplane")
                 Text("பகிர்")
             }
+            .accessibilityElement(children: .combine)
+            .accessibilityAddTraits(.isButton)
+            .accessibilityLabel(Text("பகிர் - \((poem.poem ?? "").prefix(25))"))
+            .accessibilityIdentifier("பகிர் - \(poem.bookname ?? "") - \(poem.number)")
             .font(.subheadline)
             .foregroundStyle(Color("TextColor"))
         }

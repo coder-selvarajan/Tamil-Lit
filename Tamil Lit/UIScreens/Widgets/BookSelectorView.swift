@@ -46,12 +46,12 @@ struct BookSelectorView: View {
                                     .foregroundColor(bookInfo.selected ? Color("TextColor") : .gray.opacity(0.7))
                                 Spacer()
                             }
-                            .accessibilityElement(children: .combine)
-                            .accessibilityAddTraits(.isSelected)
-                            .accessibilityLabel(Text("Book Selector - \(bookInfo.title) - \(bookInfo.selected) "))
-                            .accessibilityIdentifier("\(bookInfo.title)")
                             Divider().padding(.bottom, 5)
                         }
+                        .accessibilityElement(children: .combine)
+                        .accessibilityAddTraits(.isButton)
+                        .accessibilityLabel(Text("Book Selector - \(bookInfo.title) - \(bookInfo.selected) "))
+                        .accessibilityIdentifier("\(bookInfo.title)")
                         .padding(.horizontal, size10)
                         .onTapGesture {
                             bookInfo.selected.toggle()

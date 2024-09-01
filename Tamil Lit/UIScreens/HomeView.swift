@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import TelemetryDeck
 
 struct HomeView: View {
     @AppStorage("showBookInfoPopup") private var showBookInfoPopup: Bool = false
@@ -347,7 +346,7 @@ struct HomeView: View {
             
             
             //Analytics code
-            TelemetryDeck.signal(
+            AnalyticsManager.shared.logEvent(
                 "Page Load",
                 parameters: [
                     "app": "Tamil Lit",

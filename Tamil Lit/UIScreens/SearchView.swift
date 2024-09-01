@@ -7,7 +7,6 @@
 
 import SwiftUI
 import PopupView
-import TelemetryDeck
 
 enum SearchState {
     case initial
@@ -82,7 +81,7 @@ struct SearchView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.showLoading) private var showLoading
     
-    @State private var selectedPoem: Poem? = nil
+    @State private var selectedPoem: Poem?
     @State private var isShowingDetail = false
     
     @State private var showOptions = false
@@ -245,7 +244,7 @@ struct SearchView: View {
             checkForTamilKeyboard()
             
             //Analytics code
-            TelemetryDeck.signal(
+            AnalyticsManager.shared.logEvent(
                 "Page Load",
                 parameters: [
                     "app": "Tamil Lit",

@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import TelemetryDeck
 
 enum PoemListingOrder: String, CaseIterable {
     case ByDate = "Date"
@@ -212,7 +211,7 @@ struct SavedPoemListView: View {
             }
             
             //Analytics code
-            TelemetryDeck.signal(
+            AnalyticsManager.shared.logEvent(
                 "Page Load",
                 parameters: [
                     "app": "Tamil Lit",

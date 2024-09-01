@@ -7,7 +7,6 @@
 
 import SwiftUI
 import PopupView
-import TelemetryDeck
 
 struct RandomPoemView: View {
     @AppStorage("BooksOptedForRandomPoems") private var bookOptionsData: Data = Data()
@@ -118,7 +117,7 @@ struct RandomPoemView: View {
             }
             
             //Analytics code
-            TelemetryDeck.signal(
+            AnalyticsManager.shared.logEvent(
                 "Page Load",
                 parameters: [
                     "app": "Tamil Lit",

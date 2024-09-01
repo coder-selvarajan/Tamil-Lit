@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import TelemetryDeck
 
 @main
 struct Tamil_LitApp: App {
@@ -22,13 +21,13 @@ struct Tamil_LitApp: App {
     @StateObject var speechSynthesizer = SpeechSynthesizer()
     
     let persistenceController = CoreDataManager.shared
-//    @State private var loadingStatus: LoadingStatus  = .idle
     
     init() {
-        let config = TelemetryDeck.Config(appID: "1C8C778D-C7DA-49BD-AD34-D6396724E6D2")
-        TelemetryDeck.initialize(config: config)
+        // SwiftUI Analytics instrumentation
+        instrumentWithSwiftUIAnalytics()
         
-        TelemetryDeck.signal(
+        // AppLaunch signals to TelemetryDeck
+        AnalyticsManager.shared.logEvent(
             "App Launched",
             parameters: [
                 "app": "Tamil Lit",
@@ -51,9 +50,6 @@ struct Tamil_LitApp: App {
                 .environment(\.customFontScaling, userSettings.fontScaling.sizeCategory)
                 .onAppear {
                     notificationHandler.checkFirstLaunch()
-                    
-                    //Analytics instrumentation
-                    instrumentWithSwiftUIAnalytics()
                 }
         }
     }

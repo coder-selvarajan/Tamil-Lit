@@ -18,8 +18,12 @@ class DailyPoemViewModel: ObservableObject {
         getDailyPoemFor(Date())
     }
     
-    func getthePoemOftheDay() -> Poem? {
-        return getDailyPoem(for: Date())
+    func getthePoemOftheDay(for date: Date) -> Poem? {
+        return getDailyPoem(for: date)
+    }
+    
+    func getFuturePoemsCount() -> Int {
+        return CoreDataManager.shared.fetchFutureDailyPoemsCount()
     }
     
     func getDailyPoemFor(_ date: Date) {

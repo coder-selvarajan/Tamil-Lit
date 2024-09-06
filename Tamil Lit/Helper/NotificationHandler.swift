@@ -11,10 +11,10 @@ import CoreData
 
 class NotificationHandler: ObservableObject {
     @Published var appOpenedFromNotification: Bool = false
-    @StateObject var vm = DailyPoemViewModel()
     
     private var cancellables = Set<AnyCancellable>()
     private var userSettings: UserSettings
+    private var dailyPoemVM = DailyPoemViewModel()
     
     init(userSettings: UserSettings) {
         self.userSettings = userSettings
@@ -24,15 +24,34 @@ class NotificationHandler: ObservableObject {
             }
             .store(in: &cancellables)
     }
-
+    
     func checkFirstLaunch() {
         let isFirstLaunch = UserDefaults.standard.bool(forKey: "isFirstLaunch")
         if !isFirstLaunch {
             UserDefaults.standard.setValue(true, forKey: "isFirstLaunch")
             requestNotificationPermission { granted in
                 if granted {
-                    self.scheduleDailyNotification()
+                    self.schedule64DailyNotifications()
                 }
+            }
+        }
+    }
+    
+    func manageNotifications() {
+        if !userSettings.notificationsEnabled {
+            return
+        }
+        
+        var futurePoemsCount = dailyPoemVM.getFuturePoemsCount()
+//        print("futurePoemsCount: \(futurePoemsCount)")
+        UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
+            let remainingCount = requests.count
+//            print("Pending noti requests: ", remainingCount)
+            
+            let futureNotifications = min(futurePoemsCount, remainingCount)
+            if futureNotifications < 50 {
+                let notificationsToAdd = 64 - futureNotifications
+                self.scheduleNotifications(upTo: notificationsToAdd)
             }
         }
     }
@@ -69,10 +88,43 @@ class NotificationHandler: ObservableObject {
             }
         }
     }
+    
+    func schedule64DailyNotifications() {
+        for day in 0..<64 {
+            if let notificationDate = Calendar.current.date(byAdding: .day, value: day, to: Date()) {
+                self.scheduleDailyNotification(for: notificationDate)
+            }
+        }
+        
+        print("All 64 Daily notifications have been scheduled.")
+    }
+    
+    func scheduleNotifications(upTo count: Int) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd"
+        var startDate = Date()
+        
+        UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
+            if let latestNotification = requests.sorted(by: { $0.identifier > $1.identifier }).first {
+                if let latestDate = formatter.date(from: latestNotification.identifier.components(separatedBy: "-").last ?? "") {
+                    startDate = Calendar.current.date(byAdding: .day, value: 1, to: latestDate) ?? Date()
+                }
+            }
+            
+            for day in 0..<count {
+                if let notificationDate = Calendar.current.date(byAdding: .day, value: day, to: startDate) {
+                    self.scheduleDailyNotification(for: notificationDate)
+                }
+            }
+        }
+    }
 
-    func scheduleDailyNotification() {
+    func scheduleDailyNotification(for notificationDate: Date) {
         let content = UNMutableNotificationContent()
-        let randomPoem = getRandomPoem()
+        let randomPoem = getDailyPoem(for: notificationDate)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd" // Format date as YYYYMMDD
+        
         content.title = randomPoem.1
         content.body = randomPoem.2
         content.sound = .default
@@ -80,36 +132,43 @@ class NotificationHandler: ObservableObject {
         //Daily notification
         var dateComponents = DateComponents()
         dateComponents.hour = 10
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        dateComponents.minute = 0
         
-        // Test notification
-//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 100, repeats: true) // 300 seconds = 5 minutes
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day], from: notificationDate)
+        dateComponents.year = components.year
+        dateComponents.month = components.month
+        dateComponents.day = components.day
         
-        let request = UNNotificationRequest(
-            identifier: "dailyPoemNotification", // UUID().uuidString,
-            content: content,
-            trigger: trigger)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        let identifier = "dailyPoemNotification-\(formatter.string(from: notificationDate))"
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
         
-        UNUserNotificationCenter.current().add(request) { (error) in
-            if let error = error {
-                print("Error scheduling notification: \(error)")
+        // Schedule the notification
+        UNUserNotificationCenter.current().add(request) { error in
+            if error != nil {
+                print("Error scheduling notification: \(String(describing: error?.localizedDescription))")
+            } else {
+//                print("\(identifier) with - \(content.body.prefix(15))")
             }
         }
-        
-        print("Daily notification scheduled.")
     }
     
     func cancelDailyNotification() {
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["dailyPoemNotification"])
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
     
-    func getRandomPoem() -> (String, String, String) { // returning id, book title, poem
-        var result : (String, String, String) = ("Book", "Number", "Poem")
+    func getDailyPoem(for date: Date) -> (String, String, String, String) { // returning id, book title, poem
+        var result : (String, String, String, String) = ("Book", "Number", "Poem", "Date")
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MMM-yyyy" // Set the date format
+        let formattedDate = dateFormatter.string(from: date)
         
-        if let randomPoem = vm.getthePoemOftheDay() {
+        if let randomPoem = dailyPoemVM.getthePoemOftheDay(for: date) {
             result.0 = randomPoem.id?.uuidString ?? ""
             result.1 = "\(randomPoem.bookname ?? "") - \(randomPoem.book?.poemType ?? "") \(randomPoem.number)"
             result.2 = randomPoem.poem ?? ""
+            result.3 = formattedDate
         }
         
         return result

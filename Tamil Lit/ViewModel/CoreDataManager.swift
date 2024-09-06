@@ -378,7 +378,7 @@ extension CoreDataManager {
                 // Filter out poems that are already in DailyPoem table
                 let filteredPoems = allPoems.filter { !dailyPoemIdentifiers.contains(PoemIdentifier(bookname: $0.bookname ?? "", number: $0.number)) }
 
-                // If there are any poems left, pick a random one
+                // If there are nt any poems left, pick a random one
                 if let randomPoem = filteredPoems.randomElement() {
                     // Create a new DailyPoem entry with the target date
                     let newDailyPoem = DailyPoem(context: viewContext)
@@ -424,6 +424,22 @@ extension CoreDataManager {
         }
 
         return nil
+    }
+    
+    func fetchFutureDailyPoemsCount() -> Int {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "DailyPoem")
+        
+        // Predicate to filter records with a date greater than the current date
+        fetchRequest.predicate = NSPredicate(format: "date > %@", Date() as CVarArg)
+        
+        do {
+            // Get the count of future poems
+            let futurePoemsCount = try viewContext.count(for: fetchRequest)
+            return futurePoemsCount
+        } catch {
+            print("Failed to fetch future poems count: \(error.localizedDescription)")
+            return 0
+        }
     }
 
     // Update poem bookmarking status

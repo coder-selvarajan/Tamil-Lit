@@ -66,8 +66,9 @@ struct SettingsView: View {
                             // checking if the user allow the notification from this app.
                             notificationHandler.requestNotificationPermission { granted in
                                 if granted {
-                                    notificationHandler.scheduleDailyNotification()
+                                    notificationHandler.schedule64DailyNotifications()
                                 } else {
+                                    userSettings.notificationsEnabled = false
                                     activeAlert = .settings
                                 }
                             }

@@ -17,8 +17,8 @@ struct Tamil_LitApp: App {
     @StateObject var navigationManager = NavigationManager()
     @StateObject var themeManager = ThemeManager()
     @StateObject var bookManager = BookManager()
-    
     @StateObject var speechSynthesizer = SpeechSynthesizer()
+    @StateObject var dailyPoemVM = DailyPoemViewModel()
     
     let persistenceController = CoreDataManager.shared
     
@@ -49,7 +49,13 @@ struct Tamil_LitApp: App {
                 .environmentObject(speechSynthesizer)
                 .environment(\.customFontScaling, userSettings.fontScaling.sizeCategory)
                 .onAppear {
+                    // To set the initial 64 notifications
                     notificationHandler.checkFirstLaunch()
+                    
+                    // If notifications already enabled,
+                    // then check and fill the notifications
+                    // when the count goes below 50
+                    notificationHandler.manageNotifications()
                 }
         }
     }

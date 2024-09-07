@@ -59,6 +59,9 @@ struct TamilKeyboardInstructionView: View {
             }
             .padding()
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("Tamil-keyboard-instructions-view")
+        .accessibilityLabel("Tamil Keyboard Instructions View")
         .navigationTitle("Tamil Keyboard")
         .customFontScaling()
     }

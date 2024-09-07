@@ -239,6 +239,9 @@ struct PoemDetailView: View {
             .tabViewStyle(.page)
             .indexViewStyle(.page(backgroundDisplayMode: .always))
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("\(book.title)-\(selectedPoem.number)-\(String(describing: selectedPoem.poem!.prefix(25)))")
+        .accessibilityLabel("Poem Detail View")
         .onChange(of: selectedPoem, perform: { newValue in
             resetTimer() //for 'viewed' field update
             

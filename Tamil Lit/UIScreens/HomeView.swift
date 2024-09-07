@@ -322,6 +322,9 @@ struct HomeView: View {
                 }
             }
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("home")
+        .accessibilityLabel("Home View")
         .navigationTitle("Home")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear() {

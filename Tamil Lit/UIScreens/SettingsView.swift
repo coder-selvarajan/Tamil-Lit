@@ -316,6 +316,9 @@ struct SettingsView: View {
             } // List
             .modifier(ListScrollIndicatorsModifier())
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("settings-view")
+        .accessibilityLabel("Settings View")
         .alert(item: $activeAlert) { alertType in
             switch alertType {
             case .settings:

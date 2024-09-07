@@ -55,6 +55,9 @@ struct RandomPoemView: View {
         }
 //        .navigationTitle(Text("ஏதோ ஒரு பாடல்"))
 //        .navigationBarTitleDisplayMode(.inline)
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("\(randomPoem?.bookname ?? "")-\(String(describing: randomPoem?.number))-\(String(describing: randomPoem?.poem?.prefix(25)))")
+        .accessibilityLabel("Ramdom Poem View")
         .toolbar {
             ToolbarItem(placement: .principal) {
                 HStack {

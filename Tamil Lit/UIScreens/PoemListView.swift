@@ -76,6 +76,9 @@ struct PoemListView: View {
                 .background(Color.clear)
             }
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("\(book.title)-\(getCategoryText())")
+        .accessibilityLabel("Poem List View")
         .navigationTitle(Text("Poem List"))
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {

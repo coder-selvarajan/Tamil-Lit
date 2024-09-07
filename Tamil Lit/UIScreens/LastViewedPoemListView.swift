@@ -88,6 +88,9 @@ struct LastViewedPoemListView: View {
             .listStyle(.insetGrouped)
             .background(Color.clear)
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("last-viewed-poems-list")
+        .accessibilityLabel("Last Viewed Poems List View")
 //        .navigationTitle(Text("Recently viewed poems"))
         .navigationBarTitleDisplayMode(.inline)
         .onAppear() {

@@ -70,6 +70,9 @@ struct LastThreeViewedPoemsView: View {
                 EmptyView()
             }
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("last-viewed-poems-section")
+        .accessibilityLabel("Last Viewed Poems Section View")
         .onAppear() {
             vm.getLastThreeViewedPoems()
         }

@@ -29,6 +29,9 @@ struct ArticleView: View {
                 .textSelection(.enabled)
                 .padding(size20)
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("\(markdownContent.prefix(30))")
+        .accessibilityLabel("Article View")
         .onAppear() {
             markdownContent = loadMarkdownFile(named: fileName) ?? ""
         }

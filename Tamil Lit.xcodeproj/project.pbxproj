@@ -69,7 +69,7 @@
 		70C057D42C54EB3200C10ABA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C057D32C54EB3200C10ABA /* AppDelegate.swift */; };
 		70C057D62C54EF2300C10ABA /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C057D52C54EF2300C10ABA /* NotificationHandler.swift */; };
 		70C057D82C5535CE00C10ABA /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C057D72C5535CE00C10ABA /* UserSettings.swift */; };
-		70C7CF6F2C4AD63B00D4189B /* RandomPoemViewOP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7CF6E2C4AD63B00D4189B /* RandomPoemViewOP.swift */; };
+		70C7CF6F2C4AD63B00D4189B /* RandomPoemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C7CF6E2C4AD63B00D4189B /* RandomPoemView.swift */; };
 		70CE96EE2C61D5B70013F185 /* CustomFontScaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CE96ED2C61D5B70013F185 /* CustomFontScaling.swift */; };
 		70CE96F02C61FE9E0013F185 /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CE96EF2C61FE9E0013F185 /* TextToSpeech.swift */; };
 		70CECFD92C5BEB0600AC2ADA /* TamilLitDB.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 70CECFD72C5BEB0600AC2ADA /* TamilLitDB.sqlite-shm */; };
@@ -171,7 +171,7 @@
 		70C057D32C54EB3200C10ABA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70C057D52C54EF2300C10ABA /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		70C057D72C5535CE00C10ABA /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
-		70C7CF6E2C4AD63B00D4189B /* RandomPoemViewOP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomPoemViewOP.swift; sourceTree = "<group>"; };
+		70C7CF6E2C4AD63B00D4189B /* RandomPoemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomPoemView.swift; sourceTree = "<group>"; };
 		70CE96ED2C61D5B70013F185 /* CustomFontScaling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFontScaling.swift; sourceTree = "<group>"; };
 		70CE96EF2C61FE9E0013F185 /* TextToSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeech.swift; sourceTree = "<group>"; };
 		70CECFD72C5BEB0600AC2ADA /* TamilLitDB.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TamilLitDB.sqlite-shm"; sourceTree = "<group>"; };
@@ -366,7 +366,7 @@
 				70F7709E2C08BBAD00D329C3 /* HomeView.swift */,
 				7068D7E22C33DCE700FAB1F6 /* BookHomeView.swift */,
 				70F86D4A2C49899300799435 /* SearchView.swift */,
-				70C7CF6E2C4AD63B00D4189B /* RandomPoemViewOP.swift */,
+				70C7CF6E2C4AD63B00D4189B /* RandomPoemView.swift */,
 				709EFAE82C4ED25E0018DB5C /* SavedPoemListView.swift */,
 				702DF7AE2C527F0B0037D0BD /* SettingsView.swift */,
 				702DF7B02C5285890037D0BD /* AboutView.swift */,
@@ -558,7 +558,7 @@
 				7004A9932C6A1AE200E336EE /* TamilKeyboardPopupView.swift in Sources */,
 				709EFAE72C4ED0320018DB5C /* SavedPoemViewModel.swift in Sources */,
 				70F86D3C2C490C8600799435 /* Book+CoreDataClass.swift in Sources */,
-				70C7CF6F2C4AD63B00D4189B /* RandomPoemViewOP.swift in Sources */,
+				70C7CF6F2C4AD63B00D4189B /* RandomPoemView.swift in Sources */,
 				70F86D3D2C490C8600799435 /* Book+CoreDataProperties.swift in Sources */,
 				7090CFFB2C5A73E000B23353 /* CreditsView.swift in Sources */,
 				701216102C667B580025CCB2 /* HapticFeedback.swift in Sources */,

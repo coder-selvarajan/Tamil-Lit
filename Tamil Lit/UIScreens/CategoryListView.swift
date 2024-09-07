@@ -173,6 +173,9 @@ struct CategoryListView: View {
                 }                
             }
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("\(book.title)")
+        .accessibilityLabel("Category List View")
         .padding(size20)
         .onAppear {
             viewModel.fetchAllData(bookname: book.title)

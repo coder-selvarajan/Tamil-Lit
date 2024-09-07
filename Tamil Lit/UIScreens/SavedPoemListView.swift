@@ -134,6 +134,9 @@ struct SavedPoemListView: View {
                 
             }
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("saved-poems-list-view")
+        .accessibilityLabel("Saved Poems List View")
         .sheet(isPresented: $isShowingDetail) {
             if selectedPoem != nil {
                 SimplePoemDetailView(selectedPoem: Binding($selectedPoem)!, popupMode: true)

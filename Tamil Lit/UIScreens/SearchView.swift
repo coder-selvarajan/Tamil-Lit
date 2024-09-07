@@ -199,6 +199,9 @@ struct SearchView: View {
             }
             .listStyle(InsetGroupedListStyle())
         } // VStack
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("search-view")
+        .accessibilityLabel("Search View")
         .navigationTitle(Text("Search Poems"))
         .navigationBarTitleDisplayMode(NavigationBarItem.TitleDisplayMode.inline)
         .sheet(isPresented: $isShowingDetail) {

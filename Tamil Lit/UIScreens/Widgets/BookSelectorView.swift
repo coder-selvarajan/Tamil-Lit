@@ -73,6 +73,9 @@ struct BookSelectorView: View {
                 )
             }
         } // ZStack
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("book-selector-view")
+        .accessibilityLabel("Book Selector View")
     }
 }
 

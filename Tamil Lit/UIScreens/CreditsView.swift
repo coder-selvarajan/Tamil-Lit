@@ -28,6 +28,9 @@ struct CreditsView: View {
             }
             .padding()
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("credits-view")
+        .accessibilityLabel("Credits View")
         .customFontScaling()
     }
 }

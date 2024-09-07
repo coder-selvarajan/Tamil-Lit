@@ -14,8 +14,6 @@ class LastViewedPoemsViewModel: ObservableObject {
     
     func getLastThreeViewedPoems() {
         lastThreeViewedPoems = CoreDataManager.shared.fetchLastThreeViewedPoems()
-        
-        print("\(String(describing: lastThreeViewedPoems?.count)) poems fetched")
     }
     
     func getLastHundredViewedPoems() {

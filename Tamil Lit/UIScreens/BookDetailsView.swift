@@ -135,6 +135,9 @@ struct BookDetailsView: View {
                 .customFontScaling()
             }
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("\(bookName)")
+        .accessibilityLabel("Book Details View")
         .customFontScaling()
         .onAppear() {
             vm.getBookInfo(bookName: bookName)

@@ -38,6 +38,9 @@ struct SingleCategoryView: View {
             .listStyle(.insetGrouped)
             .background(Color.clear)
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("\(book.title)")
+        .accessibilityLabel("Single Category View")
         .onAppear {
             viewModel.fetchCateoriesByBook(book.title)
             viewModel.fetchPoemsByBook(book.title)

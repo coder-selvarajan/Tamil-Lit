@@ -77,6 +77,9 @@ struct AboutView: View {
                 Spacer()
             }
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("about-view")
+        .accessibilityLabel("About View")
         .padding(.horizontal)
         .background(Color("TextColorWhite").opacity(0.20))
         .toolbar {

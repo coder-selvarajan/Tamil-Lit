@@ -259,6 +259,9 @@ struct SimplePoemDetailView: View {
                 }
             }
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("\(String(describing: selectedPoem.bookname!))-\(selectedPoem.number)-\(String(describing: selectedPoem.poem?.prefix(25)))")
+        .accessibilityLabel("Simple Poem Detail View")
         .popup(isPresented: $showAlert) {
             PopupContentView(alertMessage: $alertMessage)
         } customize: {

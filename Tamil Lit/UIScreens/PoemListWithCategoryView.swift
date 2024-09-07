@@ -19,7 +19,6 @@ struct PoemListWithCategoryView: View {
     @StateObject var viewModel = PoemListWithCategoryViewModel()
     @State private var selectedCategoryId: UUID?
     @State private var highlightedCategoryId: UUID?
-    
     @State private var showBookInfo: Bool = false
     
     func getShortTitle(_ category: MainCategory) -> String {
@@ -141,6 +140,9 @@ struct PoemListWithCategoryView: View {
                 }
             } // VStack
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityIdentifier("\(book.title)")
+        .accessibilityLabel("Category & Poem List View")
         .onAppear {
             if showBookInfoPopup {
                 showBookInfo = true

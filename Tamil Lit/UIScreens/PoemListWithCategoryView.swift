@@ -140,6 +140,7 @@ struct PoemListWithCategoryView: View {
                 }
             } // VStack
         }
+        .navigationBarBackButtonHidden(/*@START_MENU_TOKEN@*/false/*@END_MENU_TOKEN@*/)
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("\(book.title)")
         .accessibilityLabel("Category & Poem List View")

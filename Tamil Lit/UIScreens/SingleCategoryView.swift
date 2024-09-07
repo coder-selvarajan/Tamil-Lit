@@ -41,6 +41,7 @@ struct SingleCategoryView: View {
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("\(book.title)")
         .accessibilityLabel("Single Category View")
+        .navigationBarBackButtonHidden(/*@START_MENU_TOKEN@*/false/*@END_MENU_TOKEN@*/)
         .onAppear {
             viewModel.fetchCateoriesByBook(book.title)
             viewModel.fetchPoemsByBook(book.title)

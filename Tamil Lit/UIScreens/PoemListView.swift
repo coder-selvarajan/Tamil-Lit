@@ -79,8 +79,9 @@ struct PoemListView: View {
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("\(book.title)-\(getCategoryText())")
         .accessibilityLabel("Poem List View")
-        .navigationTitle(Text("Poem List"))
+        .navigationTitle(Text(""))
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(/*@START_MENU_TOKEN@*/false/*@END_MENU_TOKEN@*/)
         .onAppear {
             if section != nil {
                 viewModel.fetchPoemsBySection(section!)

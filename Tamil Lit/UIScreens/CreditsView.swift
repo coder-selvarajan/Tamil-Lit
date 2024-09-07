@@ -31,6 +31,7 @@ struct CreditsView: View {
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("credits-view")
         .accessibilityLabel("Credits View")
+        .navigationBarBackButtonHidden(/*@START_MENU_TOKEN@*/false/*@END_MENU_TOKEN@*/)
         .customFontScaling()
     }
 }

@@ -137,6 +137,7 @@ struct SavedPoemListView: View {
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("saved-poems-list-view")
         .accessibilityLabel("Saved Poems List View")
+        .navigationBarBackButtonHidden(/*@START_MENU_TOKEN@*/false/*@END_MENU_TOKEN@*/)
         .sheet(isPresented: $isShowingDetail) {
             if selectedPoem != nil {
                 SimplePoemDetailView(selectedPoem: Binding($selectedPoem)!, popupMode: true)

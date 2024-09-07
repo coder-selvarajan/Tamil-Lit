@@ -242,6 +242,7 @@ struct PoemDetailView: View {
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("\(book.title)-\(selectedPoem.number)-\(String(describing: selectedPoem.poem!.prefix(25)))")
         .accessibilityLabel("Poem Detail View")
+        .navigationBarBackButtonHidden(/*@START_MENU_TOKEN@*/false/*@END_MENU_TOKEN@*/)
         .onChange(of: selectedPoem, perform: { newValue in
             resetTimer() //for 'viewed' field update
             

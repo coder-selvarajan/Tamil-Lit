@@ -325,7 +325,7 @@ struct HomeView: View {
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("home")
         .accessibilityLabel("Home View")
-        .navigationTitle("Home")
+        .navigationTitle("")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear() {
             // Fetch the poem of the day

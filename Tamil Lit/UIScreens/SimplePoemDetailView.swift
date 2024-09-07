@@ -262,6 +262,7 @@ struct SimplePoemDetailView: View {
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("\(String(describing: selectedPoem.bookname!))-\(selectedPoem.number)-\(String(describing: selectedPoem.poem?.prefix(25)))")
         .accessibilityLabel("Simple Poem Detail View")
+        .navigationBarBackButtonHidden(/*@START_MENU_TOKEN@*/false/*@END_MENU_TOKEN@*/)
         .popup(isPresented: $showAlert) {
             PopupContentView(alertMessage: $alertMessage)
         } customize: {

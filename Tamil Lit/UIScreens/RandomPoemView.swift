@@ -55,6 +55,7 @@ struct RandomPoemView: View {
         }
 //        .navigationTitle(Text("ஏதோ ஒரு பாடல்"))
 //        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(/*@START_MENU_TOKEN@*/false/*@END_MENU_TOKEN@*/)
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("\(randomPoem?.bookname ?? "")-\(String(describing: randomPoem?.number))-\(String(describing: randomPoem?.poem?.prefix(25)))")
         .accessibilityLabel("Ramdom Poem View")

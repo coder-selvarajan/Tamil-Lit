@@ -34,7 +34,7 @@ struct CategoryListView: View {
                                 if #available(iOS 16.0, *) {
                                     Text("\(mainCategory.title!)")
                                         .padding(size10)
-                                        .font(.subheadline)
+                                        .font(viewModel.selectedMainCategory == mainCategory ? .subheadline.bold() : .subheadline)
                                         .foregroundColor(viewModel.selectedMainCategory == mainCategory ? .white : .black)
                                         .background(viewModel.selectedMainCategory == mainCategory
                                                     ? book.color.opacity(0.8) : .white)
@@ -47,7 +47,7 @@ struct CategoryListView: View {
                                 } else {
                                     Text("\(mainCategory.title!)")
                                         .padding(size10)
-                                        .font(.subheadline)
+                                        .font(viewModel.selectedMainCategory == mainCategory ? .subheadline.bold() : .subheadline)
                                         .foregroundColor(viewModel.selectedMainCategory == mainCategory ? .white : .black)
                                         .background(viewModel.selectedMainCategory == mainCategory
                                                     ? book.color.opacity(0.8) : book.color.opacity(0.1))
@@ -61,7 +61,7 @@ struct CategoryListView: View {
                             } else { // light, dark
                                 Text("\(mainCategory.title!)")
                                     .padding(size10)
-                                    .font(.subheadline)
+                                    .font(viewModel.selectedMainCategory == mainCategory ? .subheadline.bold() : .subheadline)
                                     .foregroundColor(viewModel.selectedMainCategory == mainCategory
                                                      ? Color("TextColorWhite") : Color("TextColor"))
                                     .background(viewModel.selectedMainCategory == mainCategory
@@ -176,6 +176,7 @@ struct CategoryListView: View {
         .accessibilityElement(children: .contain)
         .accessibilityIdentifier("\(book.title)")
         .accessibilityLabel("Category List View")
+        .navigationBarBackButtonHidden(false)
         .padding(size20)
         .onAppear {
             viewModel.fetchAllData(bookname: book.title)

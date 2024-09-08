@@ -92,6 +92,7 @@ struct CategoryListView: View {
                                 Text(subCategory.title!)
                                     .padding(size10)
                                     .font(.subheadline)
+                                    .font(viewModel.selectedSubCategory == subCategory ? .subheadline.bold() : .subheadline)
                                     .foregroundColor(viewModel.selectedSubCategory == subCategory ? .white : .black)
                                     .background(viewModel.selectedSubCategory == subCategory
                                                 ? book.color.opacity(0.8) : .white)
@@ -104,7 +105,7 @@ struct CategoryListView: View {
                             } else {
                                 Text(subCategory.title!)
                                     .padding(size10)
-                                    .font(.subheadline)
+                                    .font(viewModel.selectedSubCategory == subCategory ? .subheadline.bold() : .subheadline)
                                     .foregroundColor(viewModel.selectedSubCategory == subCategory ? .white : .black)
                                     .background(viewModel.selectedSubCategory == subCategory
                                                 ? book.color.opacity(0.8) : book.color.opacity(0.1))
@@ -118,7 +119,7 @@ struct CategoryListView: View {
                         } else {
                             Text(subCategory.title!)
                                 .padding(size10)
-                                .font(.subheadline)
+                                .font(viewModel.selectedSubCategory == subCategory ? .subheadline.bold() : .subheadline)
                                 .foregroundColor(viewModel.selectedSubCategory == subCategory 
                                                  ? Color("TextColorWhite") : Color("TextColor"))
                                 .background(viewModel.selectedSubCategory == subCategory

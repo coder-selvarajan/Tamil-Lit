@@ -105,7 +105,7 @@
 		70F86D4B2C49899300799435 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F86D4A2C49899300799435 /* SearchView.swift */; };
 		70FA4E912C706024008406E0 /* Poem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FA4E8F2C706024008406E0 /* Poem+CoreDataClass.swift */; };
 		70FA4E922C706024008406E0 /* Poem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FA4E902C706024008406E0 /* Poem+CoreDataProperties.swift */; };
-		FF40B2FE2C84BCBF00572C54 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF40B2FD2C84BCBF00572C54 /* AnalyticsManager.swift */; };
+		FF0B4E572CADB9BF00AE77DB /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0B4E562CADB9BF00AE77DB /* AnalyticsManager.swift */; };
 		FF9A26F22CADA83100C71DB9 /* STAnalytics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF9A26F12CADA83100C71DB9 /* STAnalytics.xcframework */; };
 /* End PBXBuildFile section */
 
@@ -208,7 +208,7 @@
 		70F86D4A2C49899300799435 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		70FA4E8F2C706024008406E0 /* Poem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Poem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		70FA4E902C706024008406E0 /* Poem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Poem+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		FF40B2FD2C84BCBF00572C54 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
+		FF0B4E562CADB9BF00AE77DB /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		FF9A26F12CADA83100C71DB9 /* STAnalytics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = STAnalytics.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -285,7 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				FF9A26F12CADA83100C71DB9 /* STAnalytics.xcframework */,
-				FF40B2FD2C84BCBF00572C54 /* AnalyticsManager.swift */,
+				FF0B4E562CADB9BF00AE77DB /* AnalyticsManager.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -547,6 +547,7 @@
 				70C057D62C54EF2300C10ABA /* NotificationHandler.swift in Sources */,
 				70E729822C230C7D00DE5977 /* TamilLitDB.xcdatamodeld in Sources */,
 				700920002C3BB1270049C60C /* PoemListWithCategoryView.swift in Sources */,
+				FF0B4E572CADB9BF00AE77DB /* AnalyticsManager.swift in Sources */,
 				70F86D4B2C49899300799435 /* SearchView.swift in Sources */,
 				70B5EBD32C3AD6FB00471451 /* ImportDBView.swift in Sources */,
 				709EFAE92C4ED25E0018DB5C /* SavedPoemListView.swift in Sources */,
@@ -571,7 +572,6 @@
 				70F86D422C490C8600799435 /* Explanation+CoreDataClass.swift in Sources */,
 				70F86D432C490C8600799435 /* Explanation+CoreDataProperties.swift in Sources */,
 				703CD63B2C4E46E900509F46 /* BookDetailsView.swift in Sources */,
-				FF40B2FE2C84BCBF00572C54 /* AnalyticsManager.swift in Sources */,
 				70F86D442C490C8600799435 /* Settings+CoreDataClass.swift in Sources */,
 				706632C72C6B146D00069555 /* FilterImage.swift in Sources */,
 				702DF7A82C5210A10037D0BD /* PoemScreenshotView.swift in Sources */,

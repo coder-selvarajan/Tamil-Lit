@@ -32,7 +32,6 @@
 		702DF7A82C5210A10037D0BD /* PoemScreenshotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702DF7A72C5210A10037D0BD /* PoemScreenshotView.swift */; };
 		702DF7AF2C527F0B0037D0BD /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702DF7AE2C527F0B0037D0BD /* SettingsView.swift */; };
 		702DF7B12C5285890037D0BD /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702DF7B02C5285890037D0BD /* AboutView.swift */; };
-		703145382C6BD09800BA0059 /* AnalyticsLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703145372C6BD09800BA0059 /* AnalyticsLogic.swift */; };
 		7031453B2C6BD10F00BA0059 /* TelemetryDeck in Frameworks */ = {isa = PBXBuildFile; productRef = 7031453A2C6BD10F00BA0059 /* TelemetryDeck */; };
 		7038CCE22C688EA4001C9841 /* ExplanationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7038CCE12C688EA4001C9841 /* ExplanationView.swift */; };
 		703CD63B2C4E46E900509F46 /* BookDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 703CD63A2C4E46E900509F46 /* BookDetailsView.swift */; };
@@ -107,6 +106,7 @@
 		70FA4E912C706024008406E0 /* Poem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FA4E8F2C706024008406E0 /* Poem+CoreDataClass.swift */; };
 		70FA4E922C706024008406E0 /* Poem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FA4E902C706024008406E0 /* Poem+CoreDataProperties.swift */; };
 		FF40B2FE2C84BCBF00572C54 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF40B2FD2C84BCBF00572C54 /* AnalyticsManager.swift */; };
+		FF9A26F22CADA83100C71DB9 /* STAnalytics.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF9A26F12CADA83100C71DB9 /* STAnalytics.xcframework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -134,7 +134,6 @@
 		702DF7A72C5210A10037D0BD /* PoemScreenshotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoemScreenshotView.swift; sourceTree = "<group>"; };
 		702DF7AE2C527F0B0037D0BD /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		702DF7B02C5285890037D0BD /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
-		703145372C6BD09800BA0059 /* AnalyticsLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsLogic.swift; sourceTree = "<group>"; };
 		7038CCE12C688EA4001C9841 /* ExplanationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplanationView.swift; sourceTree = "<group>"; };
 		703CD63A2C4E46E900509F46 /* BookDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsView.swift; sourceTree = "<group>"; };
 		703CD63C2C4E470800509F46 /* BookDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailsViewModel.swift; sourceTree = "<group>"; };
@@ -210,6 +209,7 @@
 		70FA4E8F2C706024008406E0 /* Poem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Poem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		70FA4E902C706024008406E0 /* Poem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Poem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FF40B2FD2C84BCBF00572C54 /* AnalyticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
+		FF9A26F12CADA83100C71DB9 /* STAnalytics.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = STAnalytics.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70206A6C2C4D421900B55EE6 /* PopupView in Frameworks */,
+				FF9A26F22CADA83100C71DB9 /* STAnalytics.xcframework in Frameworks */,
 				70824FC62C569FF600088810 /* MarkdownUI in Frameworks */,
 				7031453B2C6BD10F00BA0059 /* TelemetryDeck in Frameworks */,
 			);
@@ -283,7 +284,7 @@
 		703145362C6BD07D00BA0059 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
-				703145372C6BD09800BA0059 /* AnalyticsLogic.swift */,
+				FF9A26F12CADA83100C71DB9 /* STAnalytics.xcframework */,
 				FF40B2FD2C84BCBF00572C54 /* AnalyticsManager.swift */,
 			);
 			path = Analytics;
@@ -550,7 +551,6 @@
 				70B5EBD32C3AD6FB00471451 /* ImportDBView.swift in Sources */,
 				709EFAE92C4ED25E0018DB5C /* SavedPoemListView.swift in Sources */,
 				70E739382C316DBA00A4CF0E /* CategoryListView.swift in Sources */,
-				703145382C6BD09800BA0059 /* AnalyticsLogic.swift in Sources */,
 				70F121212C6D16B20028BD67 /* LastViewedPoemsViewModel.swift in Sources */,
 				70A1E9452C4A9B0300264AC8 /* HomeViewModel.swift in Sources */,
 				702BCA552C313F1F0051D8C2 /* CoreDataManager.swift in Sources */,
@@ -755,6 +755,13 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Tamil Lit/Preview Content\"";
 				DEVELOPMENT_TEAM = G6KL98HCPY;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Tamil\\ Lit/Analytics",
+					"$(PROJECT_DIR)/Tamil\\ Lit/Analytics",
+					"$(PROJECT_DIR)/Tamil\\ Lit/Analytics",
+					"$(PROJECT_DIR)/Tamil\\ Lit/Analytics",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Tamil-Lit-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Tamil Lit";
@@ -795,6 +802,13 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Tamil Lit/Preview Content\"";
 				DEVELOPMENT_TEAM = G6KL98HCPY;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Tamil\\ Lit/Analytics",
+					"$(PROJECT_DIR)/Tamil\\ Lit/Analytics",
+					"$(PROJECT_DIR)/Tamil\\ Lit/Analytics",
+					"$(PROJECT_DIR)/Tamil\\ Lit/Analytics",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Tamil-Lit-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Tamil Lit";

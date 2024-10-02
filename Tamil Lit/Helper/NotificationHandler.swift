@@ -42,7 +42,7 @@ class NotificationHandler: ObservableObject {
             return
         }
         
-        var futurePoemsCount = dailyPoemVM.getFuturePoemsCount()
+        let futurePoemsCount = dailyPoemVM.getFuturePoemsCount()
 //        print("futurePoemsCount: \(futurePoemsCount)")
         UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
             let remainingCount = requests.count
